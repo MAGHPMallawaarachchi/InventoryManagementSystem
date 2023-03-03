@@ -69,5 +69,15 @@ namespace InventoryManagementSystem.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2022_09_19_at_14_471 {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp_Image_2022-09-19_at_14.471", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
