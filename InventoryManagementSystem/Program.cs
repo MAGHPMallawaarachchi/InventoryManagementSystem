@@ -1,4 +1,4 @@
-namespace inventory
+namespace InventoryManagementSystem
 {
     internal static class Program
     {

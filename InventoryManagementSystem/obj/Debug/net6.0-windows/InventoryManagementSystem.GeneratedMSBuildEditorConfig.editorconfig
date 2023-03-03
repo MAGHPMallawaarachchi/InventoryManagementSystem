@@ -13,5 +13,5 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = inventory
-build_property.ProjectDir = C:\Users\Pramudi\source\repos\inventory\
+build_property.RootNamespace = InventoryManagementSystem
+build_property.ProjectDir = D:\github\InventoryManagementSystem\InventoryManagementSystem\

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace inventory.Properties {
+namespace InventoryManagementSystem.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace inventory.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("inventory.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("InventoryManagementSystem.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,16 +66,6 @@ namespace inventory.Properties {
         internal static System.Drawing.Bitmap WhatsApp_Image_2022_09_19_at_14_47_15_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WhatsApp_Image_2022_09_19_at_14_471 {
-            get {
-                object obj = ResourceManager.GetObject("WhatsApp_Image_2022-09-19_at_14.471", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

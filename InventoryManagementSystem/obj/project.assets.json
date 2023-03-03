@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pramudi\\source\\repos\\inventory\\inventory.csproj",
-      "projectName": "inventory",
-      "projectPath": "C:\\Users\\Pramudi\\source\\repos\\inventory\\inventory.csproj",
+      "projectUniqueName": "D:\\github\\InventoryManagementSystem\\InventoryManagementSystem\\InventoryManagementSystem.csproj",
+      "projectName": "InventoryManagementSystem",
+      "projectPath": "D:\\github\\InventoryManagementSystem\\InventoryManagementSystem\\InventoryManagementSystem.csproj",
       "packagesPath": "C:\\Users\\Pramudi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pramudi\\source\\repos\\inventory\\obj\\",
+      "outputPath": "D:\\github\\InventoryManagementSystem\\InventoryManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Pramudi\\AppData\\Roaming\\NuGet\\NuGet.Config",
