@@ -31,8 +31,8 @@
             panel1 = new Panel();
             Logo = new PictureBox();
             loginButton = new Button();
-            password = new TextBox();
-            username = new TextBox();
+            txtPassword = new TextBox();
+            txtUsername = new TextBox();
             passwordLabel = new Label();
             usernameLabel = new Label();
             heading = new Label();
@@ -45,8 +45,8 @@
             // 
             panel1.Controls.Add(Logo);
             panel1.Controls.Add(loginButton);
-            panel1.Controls.Add(password);
-            panel1.Controls.Add(username);
+            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(passwordLabel);
             panel1.Controls.Add(usernameLabel);
             panel1.Controls.Add(heading);
@@ -83,23 +83,23 @@
             loginButton.UseVisualStyleBackColor = false;
             loginButton.Click += loginButton_Click;
             // 
-            // password
+            // txtPassword
             // 
-            password.Location = new Point(505, 314);
-            password.Margin = new Padding(3, 2, 3, 2);
-            password.Name = "password";
-            password.Size = new Size(238, 23);
-            password.TabIndex = 18;
-            password.TextChanged += password_TextChanged;
+            txtPassword.Location = new Point(505, 314);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(238, 23);
+            txtPassword.TabIndex = 18;
+            txtPassword.TextChanged += password_TextChanged;
             // 
-            // username
+            // txtUsername
             // 
-            username.Location = new Point(505, 270);
-            username.Margin = new Padding(3, 2, 3, 2);
-            username.Name = "username";
-            username.Size = new Size(238, 23);
-            username.TabIndex = 17;
-            username.TextChanged += username_TextChanged;
+            txtUsername.Location = new Point(505, 270);
+            txtUsername.Margin = new Padding(3, 2, 3, 2);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(238, 23);
+            txtUsername.TabIndex = 17;
+            txtUsername.TextChanged += username_TextChanged;
             // 
             // passwordLabel
             // 
@@ -184,8 +184,8 @@
         private Panel panel1;
         private PictureBox Logo;
         private Button loginButton;
-        private TextBox password;
-        private TextBox username;
+        private TextBox txtPassword;
+        private TextBox txtUsername;
         private Label passwordLabel;
         private Label usernameLabel;
         private Label heading;

@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿using InventoryManagementSystem.Managers;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,6 +73,37 @@ namespace InventoryManagementSystem
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            // Replace this connection string with your own URI
+            string connectionString = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0";
+            string databaseName = "InventoryManagementSystem";
+            string collectionName = "admin";
+
+            // Get the MongoDB client
+            MongoClient client = new MongoClient(connectionString);
+
+            // Get the database and collection objects
+            IMongoDatabase db = client.GetDatabase(databaseName);
+            IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>(collectionName);
+
+            // Get the username and password entered by the user
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+
+            // Build the query to find a matching user
+            var filter = Builders<BsonDocument>.Filter.Eq("username", username) & Builders<BsonDocument>.Filter.Eq("password", password);
+
+            // Execute the query and check if a matching user is found
+            var user = collection.Find(filter).FirstOrDefault();
+            if (user != null)
+            {
+                MessageBox.Show("Login successful!");
+                // Proceed with user authentication
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
+                // Show an error message or clear the input fields
+            }
         }
 
         private void password_TextChanged(object sender, EventArgs e)
