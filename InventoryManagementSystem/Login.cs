@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace InventoryManagementSystem
 {
     public partial class Login : Form
     {
+
         public Login()
         {
             InitializeComponent();
@@ -33,6 +35,69 @@ namespace InventoryManagementSystem
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneShapes1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rectangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void password_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void username_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void passwordLabel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void usernameLabel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void heading_Click_1(object sender, EventArgs e)
+        {
+        }
+
+        private void Logo_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }
