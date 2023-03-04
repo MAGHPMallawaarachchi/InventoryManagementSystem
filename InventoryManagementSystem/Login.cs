@@ -1,5 +1,4 @@
-﻿using InventoryManagementSystem.Managers;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -73,7 +72,7 @@ namespace InventoryManagementSystem
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            // Replace this connection string with your own URI
+
             string connectionString = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0";
             string databaseName = "InventoryManagementSystem";
             string collectionName = "admin";

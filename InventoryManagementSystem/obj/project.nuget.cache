@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wBx1O1C7raXJ+nnhe3Hkuv4gKxN4GhXWBg97nVRY4TqBFYNY9DqZx4vRMYtkpVrkfnXsSpHuk/b7AZxrckGxCw==",
+  "dgSpecHash": "of3ISunAbYLM0FjOMfB5QrJm4hJs4/UKMdbhNkfUcpWcX0Z39Fs6KrXaHBMOkLtD4i9lZFSr+X/3wHGhTIRBsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hasini\\OneDrive\\Desktop\\github\\InventoryManagementSystem\\InventoryManagementSystem\\InventoryManagementSystem.csproj",
   "expectedPackageFiles": [
@@ -28,10 +28,10 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Siticone.Desktop.UI 2.1.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Siticone.Desktop.UI 2.1.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "Siticone.Desktop.UI",
       "targetGraphs": [
-        "net6.0-windows7.0"
+        "net7.0-windows7.0"
       ]
     }
   ]

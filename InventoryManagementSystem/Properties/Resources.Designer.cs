@@ -63,6 +63,16 @@ namespace InventoryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap vertical_Original__PVT_LTD {
+            get {
+                object obj = ResourceManager.GetObject("vertical Original (PVT)LTD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WhatsApp_Image_2022_09_19_at_14_47_15_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview", resourceCulture);

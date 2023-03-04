@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             panel1 = new Panel();
-            Logo = new PictureBox();
+            pictureBox1 = new PictureBox();
             loginButton = new Button();
             txtPassword = new TextBox();
             txtUsername = new TextBox();
@@ -38,12 +39,12 @@
             heading = new Label();
             rectangle = new Siticone.Desktop.UI.WinForms.SiticoneShapes();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(Logo);
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(loginButton);
             panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(txtUsername);
@@ -53,31 +54,31 @@
             panel1.Controls.Add(rectangle);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(934, 561);
+            panel1.Size = new Size(1168, 701);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint_1;
             // 
-            // Logo
+            // pictureBox1
             // 
-            Logo.Image = Properties.Resources.WhatsApp_Image_2022_09_19_at_14_47_15_removebg_preview;
-            Logo.Location = new Point(34, 187);
-            Logo.Name = "Logo";
-            Logo.Size = new Size(397, 179);
-            Logo.SizeMode = PictureBoxSizeMode.StretchImage;
-            Logo.TabIndex = 20;
-            Logo.TabStop = false;
-            Logo.Click += Logo_Click;
+            pictureBox1.Image = Properties.Resources.vertical_Original__PVT_LTD;
+            pictureBox1.Location = new Point(95, 169);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(380, 348);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
             // 
             // loginButton
             // 
             loginButton.BackColor = SystemColors.ActiveCaptionText;
             loginButton.FlatStyle = FlatStyle.Popup;
             loginButton.ForeColor = SystemColors.ButtonHighlight;
-            loginButton.Location = new Point(505, 344);
-            loginButton.Margin = new Padding(3, 2, 3, 2);
+            loginButton.Location = new Point(631, 430);
+            loginButton.Margin = new Padding(4, 2, 4, 2);
             loginButton.Name = "loginButton";
-            loginButton.Size = new Size(238, 22);
+            loginButton.Size = new Size(298, 28);
             loginButton.TabIndex = 19;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = false;
@@ -85,19 +86,20 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(505, 314);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
+            txtPassword.Location = new Point(631, 392);
+            txtPassword.Margin = new Padding(4, 2, 4, 2);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(238, 23);
+            txtPassword.Size = new Size(296, 27);
             txtPassword.TabIndex = 18;
+            txtPassword.UseSystemPasswordChar = true;
             txtPassword.TextChanged += password_TextChanged;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(505, 270);
-            txtUsername.Margin = new Padding(3, 2, 3, 2);
+            txtUsername.Location = new Point(631, 338);
+            txtUsername.Margin = new Padding(4, 2, 4, 2);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(238, 23);
+            txtUsername.Size = new Size(296, 27);
             txtUsername.TabIndex = 17;
             txtUsername.TextChanged += username_TextChanged;
             // 
@@ -106,9 +108,10 @@
             passwordLabel.AutoSize = true;
             passwordLabel.BackColor = Color.FromArgb(10, 73, 156);
             passwordLabel.ForeColor = SystemColors.ButtonHighlight;
-            passwordLabel.Location = new Point(505, 296);
+            passwordLabel.Location = new Point(631, 370);
+            passwordLabel.Margin = new Padding(4, 0, 4, 0);
             passwordLabel.Name = "passwordLabel";
-            passwordLabel.Size = new Size(57, 15);
+            passwordLabel.Size = new Size(70, 20);
             passwordLabel.TabIndex = 16;
             passwordLabel.Text = "Password";
             passwordLabel.Click += passwordLabel_Click;
@@ -118,9 +121,10 @@
             usernameLabel.AutoSize = true;
             usernameLabel.BackColor = Color.FromArgb(10, 73, 156);
             usernameLabel.ForeColor = SystemColors.ButtonHighlight;
-            usernameLabel.Location = new Point(505, 252);
+            usernameLabel.Location = new Point(631, 315);
+            usernameLabel.Margin = new Padding(4, 0, 4, 0);
             usernameLabel.Name = "usernameLabel";
-            usernameLabel.Size = new Size(60, 15);
+            usernameLabel.Size = new Size(75, 20);
             usernameLabel.TabIndex = 15;
             usernameLabel.Text = "Username";
             usernameLabel.Click += usernameLabel_Click;
@@ -131,9 +135,10 @@
             heading.BackColor = Color.FromArgb(10, 73, 156);
             heading.Font = new Font("Calibri", 36F, FontStyle.Bold, GraphicsUnit.Point);
             heading.ForeColor = SystemColors.ButtonHighlight;
-            heading.Location = new Point(492, 187);
+            heading.Location = new Point(615, 234);
+            heading.Margin = new Padding(4, 0, 4, 0);
             heading.Name = "heading";
-            heading.Size = new Size(132, 59);
+            heading.Size = new Size(164, 73);
             heading.TabIndex = 14;
             heading.Text = "Login";
             heading.Click += heading_Click_1;
@@ -147,14 +152,14 @@
             rectangle.Enabled = false;
             rectangle.FillColor = Color.FromArgb(10, 73, 156);
             rectangle.LineThickness = 1;
-            rectangle.Location = new Point(375, 0);
+            rectangle.Location = new Point(469, 0);
             rectangle.Margin = new Padding(0);
             rectangle.Name = "rectangle";
             rectangle.PolygonSkip = 1;
             rectangle.Rotate = 0F;
             rectangle.RoundedRadius = 10;
             rectangle.Shape = Siticone.Desktop.UI.WinForms.Enums.ShapeType.Rounded;
-            rectangle.Size = new Size(824, 557);
+            rectangle.Size = new Size(1030, 696);
             rectangle.TabIndex = 13;
             rectangle.Text = "Rectangle";
             rectangle.UseTransparentBackground = true;
@@ -163,26 +168,26 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
-            ClientSize = new Size(934, 561);
+            ClientSize = new Size(1168, 701);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 2, 4, 2);
             Name = "Login";
             Text = "Login";
             Load += Login_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private PictureBox Logo;
         private Button loginButton;
         private TextBox txtPassword;
         private TextBox txtUsername;
@@ -190,5 +195,6 @@
         private Label usernameLabel;
         private Label heading;
         private Siticone.Desktop.UI.WinForms.SiticoneShapes rectangle;
+        private PictureBox pictureBox1;
     }
 }

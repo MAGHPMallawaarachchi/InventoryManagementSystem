@@ -1,0 +1,1 @@
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.csproj.AssemblyReference.cache
