@@ -100,8 +100,8 @@ namespace InventoryManagementSystem
             }
             else
             {
-                MessageBox.Show("Invalid username or password.");
-                // Show an error message or clear the input fields
+                LoginError loginError = new LoginError();
+                loginError.Show();
             }
         }
 
@@ -132,6 +132,22 @@ namespace InventoryManagementSystem
         private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtPassword.Focus();
+            }
+        }
+
+        private void txtPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                txtUsername.Focus();
+            }
         }
     }
 }
