@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -95,11 +96,15 @@ namespace InventoryManagementSystem
             var user = collection.Find(filter).FirstOrDefault();
             if (user != null)
             {
-                MessageBox.Show("Login successful!");
-                // Proceed with user authentication
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
+
+                this.Hide();
             }
             else
             {
+                SystemSounds.Exclamation.Play();
+
                 LoginError loginError = new LoginError();
                 loginError.Show();
             }
