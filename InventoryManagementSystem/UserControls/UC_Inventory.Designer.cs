@@ -28,34 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             SuspendLayout();
             // 
-            // label1
+            // siticonePanel1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(487, 383);
-            label1.Name = "label1";
-            label1.Size = new Size(143, 41);
-            label1.TabIndex = 1;
-            label1.Text = "Inventory";
-            label1.Click += label1_Click;
+            siticonePanel1.BackColor = Color.White;
+            siticonePanel1.BorderColor = Color.White;
+            siticonePanel1.BorderRadius = 8;
+            siticonePanel1.BorderThickness = 10;
+            siticonePanel1.Dock = DockStyle.Top;
+            siticonePanel1.Location = new Point(19, 19);
+            siticonePanel1.Name = "siticonePanel1";
+            siticonePanel1.Size = new Size(1101, 160);
+            siticonePanel1.TabIndex = 0;
+            siticonePanel1.Paint += siticonePanel1_Paint;
+            // 
+            // siticonePanel2
+            // 
+            siticonePanel2.BackColor = Color.White;
+            siticonePanel2.BorderColor = Color.White;
+            siticonePanel2.BorderRadius = 8;
+            siticonePanel2.BorderThickness = 10;
+            siticonePanel2.Dock = DockStyle.Bottom;
+            siticonePanel2.Location = new Point(19, 203);
+            siticonePanel2.Name = "siticonePanel2";
+            siticonePanel2.Size = new Size(1101, 589);
+            siticonePanel2.TabIndex = 1;
             // 
             // UC_Inventory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
-            Controls.Add(label1);
+            Controls.Add(siticonePanel2);
+            Controls.Add(siticonePanel1);
             Name = "UC_Inventory";
-            Size = new Size(1136, 807);
+            Padding = new Padding(19, 19, 22, 22);
+            Size = new Size(1142, 814);
+            Load += UC_Inventory_Load;
+            SizeChanged += UC_Inventory_SizeChanged;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
     }
 }

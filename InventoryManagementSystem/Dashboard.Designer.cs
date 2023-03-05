@@ -259,7 +259,10 @@
             Controls.Add(siticonePanel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Dashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
+            WindowState = FormWindowState.Maximized;
+            Load += Dashboard_Load_1;
             siticonePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

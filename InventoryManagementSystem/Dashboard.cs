@@ -62,5 +62,10 @@ namespace InventoryManagementSystem
             UC_Orders uc = new UC_Orders();
             addUserControl(uc);
         }
+
+        private void Dashboard_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
