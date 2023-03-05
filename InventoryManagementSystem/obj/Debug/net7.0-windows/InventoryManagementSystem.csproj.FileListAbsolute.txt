@@ -34,3 +34,8 @@ C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManag
 C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\ref\InventoryManagementSystem.dll
 C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.LoginError.resources
 C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.Dashboard.resources
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.UC_Dashboard.resources
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.UC_Inventory.resources
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.UserControls.UC_Customers.resources
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.UserControls.UC_Orders.resources
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.UserControls.UC_Reports.resources

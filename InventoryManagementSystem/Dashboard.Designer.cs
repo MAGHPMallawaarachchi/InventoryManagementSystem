@@ -37,6 +37,7 @@
             btnDashboard = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             siticonePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -53,12 +54,16 @@
             siticonePanel1.Dock = DockStyle.Left;
             siticonePanel1.Location = new Point(0, 0);
             siticonePanel1.Name = "siticonePanel1";
-            siticonePanel1.Size = new Size(250, 913);
+            siticonePanel1.Size = new Size(280, 913);
             siticonePanel1.TabIndex = 0;
             // 
             // btnOrders
             // 
             btnOrders.BackColor = Color.Transparent;
+            btnOrders.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnOrders.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
+            btnOrders.CheckedState.FillColor = Color.Transparent;
+            btnOrders.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnOrders.DisabledState.BorderColor = Color.DarkGray;
             btnOrders.DisabledState.CustomBorderColor = Color.DarkGray;
             btnOrders.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -73,16 +78,24 @@
             btnOrders.HoverState.Image = Properties.Resources.ordersBlue;
             btnOrders.Image = Properties.Resources.orders;
             btnOrders.ImageAlign = HorizontalAlignment.Left;
-            btnOrders.Location = new Point(25, 396);
+            btnOrders.ImageOffset = new Point(30, 0);
+            btnOrders.Location = new Point(0, 396);
             btnOrders.Name = "btnOrders";
-            btnOrders.Size = new Size(200, 56);
+            btnOrders.PressedDepth = 0;
+            btnOrders.Size = new Size(277, 56);
             btnOrders.TabIndex = 5;
             btnOrders.Text = "Orders";
             btnOrders.TextAlign = HorizontalAlignment.Left;
+            btnOrders.TextOffset = new Point(35, 0);
+            btnOrders.Click += btnOrders_Click;
             // 
             // btnCustomers
             // 
             btnCustomers.BackColor = Color.Transparent;
+            btnCustomers.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnCustomers.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
+            btnCustomers.CheckedState.FillColor = Color.Transparent;
+            btnCustomers.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnCustomers.DisabledState.BorderColor = Color.DarkGray;
             btnCustomers.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCustomers.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -97,16 +110,24 @@
             btnCustomers.HoverState.Image = Properties.Resources.customersBlue;
             btnCustomers.Image = Properties.Resources.customers;
             btnCustomers.ImageAlign = HorizontalAlignment.Left;
-            btnCustomers.Location = new Point(25, 332);
+            btnCustomers.ImageOffset = new Point(30, 0);
+            btnCustomers.Location = new Point(0, 332);
             btnCustomers.Name = "btnCustomers";
-            btnCustomers.Size = new Size(200, 56);
+            btnCustomers.PressedDepth = 0;
+            btnCustomers.Size = new Size(277, 56);
             btnCustomers.TabIndex = 4;
             btnCustomers.Text = "Customers";
             btnCustomers.TextAlign = HorizontalAlignment.Left;
+            btnCustomers.TextOffset = new Point(35, 0);
+            btnCustomers.Click += btnCustomers_Click;
             // 
             // btnReports
             // 
             btnReports.BackColor = Color.Transparent;
+            btnReports.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnReports.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
+            btnReports.CheckedState.FillColor = Color.Transparent;
+            btnReports.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnReports.DisabledState.BorderColor = Color.DarkGray;
             btnReports.DisabledState.CustomBorderColor = Color.DarkGray;
             btnReports.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -121,16 +142,24 @@
             btnReports.HoverState.Image = Properties.Resources.reportsBlue;
             btnReports.Image = Properties.Resources.reports;
             btnReports.ImageAlign = HorizontalAlignment.Left;
-            btnReports.Location = new Point(25, 268);
+            btnReports.ImageOffset = new Point(30, 0);
+            btnReports.Location = new Point(0, 268);
             btnReports.Name = "btnReports";
-            btnReports.Size = new Size(200, 56);
+            btnReports.PressedDepth = 0;
+            btnReports.Size = new Size(277, 56);
             btnReports.TabIndex = 3;
             btnReports.Text = "Reports";
             btnReports.TextAlign = HorizontalAlignment.Left;
+            btnReports.TextOffset = new Point(35, 0);
+            btnReports.Click += btnReports_Click;
             // 
             // btnInventory
             // 
             btnInventory.BackColor = Color.Transparent;
+            btnInventory.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnInventory.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
+            btnInventory.CheckedState.FillColor = Color.Transparent;
+            btnInventory.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnInventory.DisabledState.BorderColor = Color.DarkGray;
             btnInventory.DisabledState.CustomBorderColor = Color.DarkGray;
             btnInventory.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -145,16 +174,27 @@
             btnInventory.HoverState.Image = Properties.Resources.inventoryBlue;
             btnInventory.Image = Properties.Resources.inventory;
             btnInventory.ImageAlign = HorizontalAlignment.Left;
-            btnInventory.Location = new Point(24, 204);
+            btnInventory.ImageOffset = new Point(30, 0);
+            btnInventory.Location = new Point(0, 204);
             btnInventory.Name = "btnInventory";
-            btnInventory.Size = new Size(200, 56);
+            btnInventory.PressedDepth = 0;
+            btnInventory.Size = new Size(277, 56);
             btnInventory.TabIndex = 2;
             btnInventory.Text = "Inventory";
             btnInventory.TextAlign = HorizontalAlignment.Left;
+            btnInventory.TextOffset = new Point(35, 0);
+            btnInventory.CheckedChanged += btnInventory_Click;
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnDashboard
             // 
             btnDashboard.BackColor = Color.Transparent;
+            btnDashboard.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnDashboard.Checked = true;
+            btnDashboard.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
+            btnDashboard.CheckedState.FillColor = Color.Transparent;
+            btnDashboard.CustomBorderColor = Color.Transparent;
+            btnDashboard.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnDashboard.DisabledState.BorderColor = Color.DarkGray;
             btnDashboard.DisabledState.CustomBorderColor = Color.DarkGray;
             btnDashboard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -169,13 +209,17 @@
             btnDashboard.HoverState.Image = Properties.Resources.dashboardBlue;
             btnDashboard.Image = Properties.Resources.dashboard;
             btnDashboard.ImageAlign = HorizontalAlignment.Left;
-            btnDashboard.Location = new Point(24, 140);
+            btnDashboard.ImageOffset = new Point(30, 0);
+            btnDashboard.Location = new Point(0, 140);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(200, 56);
+            btnDashboard.PressedDepth = 0;
+            btnDashboard.Size = new Size(277, 56);
             btnDashboard.TabIndex = 1;
             btnDashboard.Text = "Dashboard";
             btnDashboard.TextAlign = HorizontalAlignment.Left;
-            btnDashboard.Click += siticoneButton1_Click;
+            btnDashboard.TextOffset = new Point(35, 0);
+            btnDashboard.CheckedChanged += btnDashboard_Click;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // pictureBox1
             // 
@@ -191,10 +235,18 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(250, 0);
+            panel1.Location = new Point(280, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1172, 100);
+            panel1.Size = new Size(1142, 100);
             panel1.TabIndex = 1;
+            // 
+            // siticonePanel2
+            // 
+            siticonePanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            siticonePanel2.Location = new Point(286, 106);
+            siticonePanel2.Name = "siticonePanel2";
+            siticonePanel2.Size = new Size(1136, 807);
+            siticonePanel2.TabIndex = 0;
             // 
             // Dashboard
             // 
@@ -202,6 +254,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
             ClientSize = new Size(1422, 913);
+            Controls.Add(siticonePanel2);
             Controls.Add(panel1);
             Controls.Add(siticonePanel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -222,5 +275,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnDashboard;
         private PictureBox pictureBox1;
         private Panel panel1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
     }
 }
