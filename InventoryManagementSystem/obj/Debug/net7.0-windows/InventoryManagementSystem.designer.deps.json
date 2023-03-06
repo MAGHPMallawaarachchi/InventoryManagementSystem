@@ -36,6 +36,14 @@
           }
         }
       },
+      "ImageResizer/4.2.8": {
+        "runtime": {
+          "lib/net45/ImageResizer.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.2.8.1168"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging.Abstractions/2.0.0": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
@@ -240,6 +248,13 @@
       "sha512": "sha512-4H/f2uYJOZ+YObZjpY9ABrKZI+JNw3uizp6oMzTXwDw6F+2qIPhpRl/1t68O/6e98+vqNiYGu+lswmwdYUy3gg==",
       "path": "dnsclient/1.6.1",
       "hashPath": "dnsclient.1.6.1.nupkg.sha512"
+    },
+    "ImageResizer/4.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3OZKxlsyYr9Zxsz0KwXJ5S749azmjcPV4B344ssR/3oneEY6ZdTawDPochD4Z4RHBs4bYBf592lVhmEngxtZ7g==",
+      "path": "imageresizer/4.2.8",
+      "hashPath": "imageresizer.4.2.8.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging.Abstractions/2.0.0": {
       "type": "package",

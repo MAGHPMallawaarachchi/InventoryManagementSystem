@@ -30,7 +30,10 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
+            btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            btnFilters = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             panel3 = new Panel();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -47,12 +50,62 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(btnAddItem);
+            panel2.Controls.Add(btnFilters);
             panel2.Location = new Point(19, 200);
             panel2.Margin = new Padding(30);
             panel2.Name = "panel2";
+            panel2.Padding = new Padding(19);
             panel2.Size = new Size(1101, 592);
             panel2.TabIndex = 1;
             panel2.SizeChanged += panel2_SizeChanged;
+            // 
+            // btnAddItem
+            // 
+            btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.BorderRadius = 4;
+            btnAddItem.BorderThickness = 2;
+            btnAddItem.DisabledState.BorderColor = Color.DarkGray;
+            btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddItem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddItem.FillColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddItem.ForeColor = Color.White;
+            btnAddItem.ImageOffset = new Point(0, 1);
+            btnAddItem.ImageSize = new Size(15, 10);
+            btnAddItem.Location = new Point(859, 22);
+            btnAddItem.Name = "btnAddItem";
+            btnAddItem.Size = new Size(102, 40);
+            btnAddItem.TabIndex = 1;
+            btnAddItem.Text = "Add Item";
+            btnAddItem.TextOffset = new Point(2, 0);
+            btnAddItem.Click += btnAddItem_Click;
+            // 
+            // btnFilters
+            // 
+            btnFilters.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnFilters.BorderColor = Color.FromArgb(208, 211, 217);
+            btnFilters.BorderRadius = 4;
+            btnFilters.BorderThickness = 2;
+            btnFilters.DisabledState.BorderColor = Color.DarkGray;
+            btnFilters.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnFilters.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnFilters.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnFilters.FillColor = Color.White;
+            btnFilters.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFilters.ForeColor = Color.FromArgb(93, 102, 121);
+            btnFilters.Image = Properties.Resources.filters;
+            btnFilters.ImageOffset = new Point(0, 1);
+            btnFilters.ImageSize = new Size(15, 10);
+            btnFilters.Location = new Point(977, 22);
+            btnFilters.Name = "btnFilters";
+            btnFilters.Size = new Size(102, 40);
+            btnFilters.TabIndex = 0;
+            btnFilters.Text = "Filters";
+            btnFilters.TextOffset = new Point(2, 0);
+            btnFilters.Click += btnFilters_Click;
             // 
             // panel3
             // 
@@ -76,6 +129,7 @@
             Size = new Size(1142, 814);
             Load += UC_Inventory_Load;
             SizeChanged += UC_Inventory_SizeChanged;
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -84,5 +138,7 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnFilters;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnAddItem;
     }
 }

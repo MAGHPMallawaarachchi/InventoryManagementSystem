@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InventoryManagementSystem.UserControls;
+using Siticone.Desktop.UI.WinForms.Suite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +15,11 @@ namespace InventoryManagementSystem
 {
     public partial class UC_Inventory : UserControl
     {
+
         public UC_Inventory()
         {
             InitializeComponent();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -71,5 +75,44 @@ namespace InventoryManagementSystem
 
         }
 
+        private void btnFilters_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (AddItem addItem = new AddItem())
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .70d;
+                    formBackground.BackColor = Color.Black;
+                    formBackground.WindowState = FormWindowState.Maximized;
+                    formBackground.TopMost = true;
+                    formBackground.Location = Screen.PrimaryScreen.WorkingArea.Location;
+                    formBackground.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    addItem.Owner = null;
+
+                    addItem.ShowDialog();
+
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
+        }
     }
 }
