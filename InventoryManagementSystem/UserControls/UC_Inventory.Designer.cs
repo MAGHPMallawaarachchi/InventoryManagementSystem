@@ -41,6 +41,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1101, 159);
             panel1.TabIndex = 0;
+            panel1.SizeChanged += panel1_SizeChanged;
             // 
             // panel2
             // 
@@ -51,6 +52,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1101, 592);
             panel2.TabIndex = 1;
+            panel2.SizeChanged += panel2_SizeChanged;
             // 
             // panel3
             // 
@@ -59,6 +61,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1101, 773);
             panel3.TabIndex = 2;
+            panel3.Paint += panel3_Paint;
             // 
             // UC_Inventory
             // 
