@@ -28,42 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
             SuspendLayout();
             // 
-            // siticonePanel1
+            // panel1
             // 
-            siticonePanel1.BackColor = Color.White;
-            siticonePanel1.BorderColor = Color.White;
-            siticonePanel1.BorderRadius = 8;
-            siticonePanel1.BorderThickness = 10;
-            siticonePanel1.Dock = DockStyle.Top;
-            siticonePanel1.Location = new Point(19, 19);
-            siticonePanel1.Name = "siticonePanel1";
-            siticonePanel1.Size = new Size(1101, 160);
-            siticonePanel1.TabIndex = 0;
-            siticonePanel1.Paint += siticonePanel1_Paint;
+            panel1.BackColor = Color.White;
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(19, 19);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1101, 159);
+            panel1.TabIndex = 0;
             // 
-            // siticonePanel2
+            // panel2
             // 
-            siticonePanel2.BackColor = Color.White;
-            siticonePanel2.BorderColor = Color.White;
-            siticonePanel2.BorderRadius = 8;
-            siticonePanel2.BorderThickness = 10;
-            siticonePanel2.Dock = DockStyle.Bottom;
-            siticonePanel2.Location = new Point(19, 203);
-            siticonePanel2.Name = "siticonePanel2";
-            siticonePanel2.Size = new Size(1101, 589);
-            siticonePanel2.TabIndex = 1;
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.White;
+            panel2.Location = new Point(19, 200);
+            panel2.Margin = new Padding(30);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1101, 592);
+            panel2.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(19, 19);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1101, 773);
+            panel3.TabIndex = 2;
             // 
             // UC_Inventory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
-            Controls.Add(siticonePanel2);
-            Controls.Add(siticonePanel1);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(panel3);
             Name = "UC_Inventory";
             Padding = new Padding(19, 19, 22, 22);
             Size = new Size(1142, 814);
@@ -74,7 +78,8 @@
 
         #endregion
 
-        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
     }
 }

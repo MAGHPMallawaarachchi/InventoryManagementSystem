@@ -29,13 +29,12 @@ namespace InventoryManagementSystem
 
         private void UC_Inventory_Load(object sender, EventArgs e)
         {
-            siticonePanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
         }
 
         private void UC_Inventory_SizeChanged(object sender, EventArgs e)
         {
-            int newHeight = (int)(this.Height * 0.73);
-            siticonePanel2.Height = newHeight;
+
         }
     }
 }
