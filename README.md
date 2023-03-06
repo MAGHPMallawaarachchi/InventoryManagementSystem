@@ -1,7 +1,7 @@
 # InventoryManagementSystem
 An Inventory Management System built using C# and .NET framework
 
-prerequisites & resources
+*prerequisites & resources*
 
 * Clone the repository via visual studio (not github desktop)
 
@@ -15,7 +15,7 @@ prerequisites & resources
 
 
 
-Keep in mind
+*Keep in mind*
 
 * I have already made the frame of the dashboard, you guys only have to edit the user controls which are placed inside the folder named UserControls (for example, think you are assigned to do the inventory tab, edit only the UC_Inventory.cs [DESIGN] and UC_Inventory.cs).
 
