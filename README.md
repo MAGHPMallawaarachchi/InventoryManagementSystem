@@ -5,9 +5,9 @@ prerequisites & resources
 
 * Clone the repository via visual studio (not github desktop)
 
-* Install the below mentioned NuGet packages for the solution (right click on the solution and you will see an option called "manage NuGet packages...". Click browse and search the below-mentioned packages and install them),
-    MongoDB.Driver
-    Siticone.Desktop.UI
+* Install the below mentioned NuGet packages for the solution (right click on the solution and you will see an option called "manage NuGet packages...". Click browse and search the below-mentioned packages and install them), <br>
+    1. MongoDB.Driver <br>
+    2. Siticone.Desktop.UI
     
 * Set up MongoDB on your device (Watch this youtube video to get help - https://www.youtube.com/watch?v=ofme2o29ngU )
 
