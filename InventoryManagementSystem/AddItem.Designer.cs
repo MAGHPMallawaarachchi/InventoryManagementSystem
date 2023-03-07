@@ -61,6 +61,7 @@
             btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
             btnAddItem.BorderRadius = 4;
             btnAddItem.BorderThickness = 2;
+            btnAddItem.Cursor = Cursors.Hand;
             btnAddItem.DisabledState.BorderColor = Color.DarkGray;
             btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -84,6 +85,7 @@
             btnDiscard.BorderColor = Color.FromArgb(208, 211, 217);
             btnDiscard.BorderRadius = 4;
             btnDiscard.BorderThickness = 2;
+            btnDiscard.Cursor = Cursors.Hand;
             btnDiscard.DisabledState.BorderColor = Color.DarkGray;
             btnDiscard.DisabledState.CustomBorderColor = Color.DarkGray;
             btnDiscard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -112,6 +114,7 @@
             txtSupplier.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtSupplier.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtSupplier.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSupplier.ForeColor = Color.FromArgb(72, 80, 94);
             txtSupplier.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSupplier.Location = new Point(199, 579);
             txtSupplier.Margin = new Padding(3, 4, 3, 4);
@@ -127,6 +130,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.ForeColor = Color.FromArgb(72, 80, 94);
             label10.Location = new Point(32, 590);
             label10.Name = "label10";
             label10.Size = new Size(77, 25);
@@ -137,6 +141,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(72, 80, 94);
             label6.Location = new Point(32, 528);
             label6.Name = "label6";
             label6.Size = new Size(80, 25);
@@ -147,6 +152,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(72, 80, 94);
             label7.Location = new Point(32, 464);
             label7.Name = "label7";
             label7.Size = new Size(86, 25);
@@ -164,6 +170,7 @@
             txtBrand.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtBrand.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtBrand.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBrand.ForeColor = Color.FromArgb(72, 80, 94);
             txtBrand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtBrand.Location = new Point(199, 329);
             txtBrand.Margin = new Padding(3, 4, 3, 4);
@@ -179,6 +186,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = Color.FromArgb(72, 80, 94);
             label8.Location = new Point(32, 402);
             label8.Name = "label8";
             label8.Size = new Size(108, 25);
@@ -189,6 +197,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.ForeColor = Color.FromArgb(72, 80, 94);
             label9.Location = new Point(32, 339);
             label9.Name = "label9";
             label9.Size = new Size(58, 25);
@@ -206,6 +215,7 @@
             txtCategory.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtCategory.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtCategory.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCategory.ForeColor = Color.FromArgb(72, 80, 94);
             txtCategory.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtCategory.Location = new Point(199, 269);
             txtCategory.Margin = new Padding(3, 4, 3, 4);
@@ -221,6 +231,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(72, 80, 94);
             label5.Location = new Point(32, 280);
             label5.Name = "label5";
             label5.Size = new Size(84, 25);
@@ -238,6 +249,7 @@
             txtDescription.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtDescription.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtDescription.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDescription.ForeColor = Color.FromArgb(72, 80, 94);
             txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescription.Location = new Point(199, 205);
             txtDescription.Margin = new Padding(3, 4, 3, 4);
@@ -253,6 +265,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(72, 80, 94);
             label4.Location = new Point(32, 216);
             label4.Name = "label4";
             label4.Size = new Size(102, 25);
@@ -270,6 +283,7 @@
             txtOEMNumber.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtOEMNumber.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtOEMNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtOEMNumber.ForeColor = Color.FromArgb(72, 80, 94);
             txtOEMNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtOEMNumber.Location = new Point(199, 143);
             txtOEMNumber.Margin = new Padding(3, 4, 3, 4);
@@ -292,6 +306,7 @@
             txtPartNumber.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtPartNumber.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtPartNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPartNumber.ForeColor = Color.FromArgb(72, 80, 94);
             txtPartNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPartNumber.Location = new Point(199, 81);
             txtPartNumber.Margin = new Padding(3, 4, 3, 4);
@@ -307,6 +322,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(72, 80, 94);
             label3.Location = new Point(32, 154);
             label3.Name = "label3";
             label3.Size = new Size(121, 25);
@@ -317,6 +333,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(72, 80, 94);
             label2.Location = new Point(32, 91);
             label2.Name = "label2";
             label2.Size = new Size(112, 25);
@@ -327,6 +344,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(56, 62, 73);
             label1.Location = new Point(32, 30);
             label1.Name = "label1";
             label1.Size = new Size(112, 31);
@@ -342,6 +360,7 @@
             txtQuantity.FocusedState.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
             txtQuantity.FocusedState.UpDownButtonForeColor = Color.White;
             txtQuantity.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtQuantity.ForeColor = Color.FromArgb(72, 80, 94);
             txtQuantity.Location = new Point(199, 519);
             txtQuantity.Margin = new Padding(3, 4, 3, 4);
             txtQuantity.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
@@ -349,7 +368,7 @@
             txtQuantity.Size = new Size(276, 44);
             txtQuantity.TabIndex = 42;
             txtQuantity.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
-            txtQuantity.UpDownButtonForeColor = SystemColors.ControlText;
+            txtQuantity.UpDownButtonForeColor = Color.White;
             // 
             // txtUnitPrice
             // 
@@ -361,6 +380,7 @@
             txtUnitPrice.FocusedState.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
             txtUnitPrice.FocusedState.UpDownButtonForeColor = Color.White;
             txtUnitPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUnitPrice.ForeColor = Color.FromArgb(72, 80, 94);
             txtUnitPrice.Location = new Point(199, 455);
             txtUnitPrice.Margin = new Padding(3, 4, 3, 4);
             txtUnitPrice.Maximum = new decimal(new int[] { 10000000, 0, 0, 131072 });
@@ -368,7 +388,7 @@
             txtUnitPrice.Size = new Size(276, 44);
             txtUnitPrice.TabIndex = 43;
             txtUnitPrice.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
-            txtUnitPrice.UpDownButtonForeColor = SystemColors.ControlText;
+            txtUnitPrice.UpDownButtonForeColor = Color.White;
             // 
             // txtBuyingPrice
             // 
@@ -380,6 +400,7 @@
             txtBuyingPrice.FocusedState.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
             txtBuyingPrice.FocusedState.UpDownButtonForeColor = Color.White;
             txtBuyingPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBuyingPrice.ForeColor = Color.FromArgb(72, 80, 94);
             txtBuyingPrice.Location = new Point(199, 392);
             txtBuyingPrice.Margin = new Padding(3, 4, 3, 4);
             txtBuyingPrice.Maximum = new decimal(new int[] { 10000000, 0, 0, 131072 });
@@ -387,7 +408,7 @@
             txtBuyingPrice.Size = new Size(276, 44);
             txtBuyingPrice.TabIndex = 44;
             txtBuyingPrice.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
-            txtBuyingPrice.UpDownButtonForeColor = SystemColors.ControlText;
+            txtBuyingPrice.UpDownButtonForeColor = Color.White;
             // 
             // AddItem
             // 

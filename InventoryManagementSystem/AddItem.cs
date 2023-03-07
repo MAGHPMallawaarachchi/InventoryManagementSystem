@@ -67,6 +67,17 @@ namespace InventoryManagementSystem
                 addItemSuccessForm.Owner = this;
                 addItemSuccessForm.TopMost = true;
                 addItemSuccessForm.ShowDialog();
+
+                // Empty the text boxes
+                txtPartNumber.Text = "";
+                txtOEMNumber.Text = "";
+                txtDescription.Text = "";
+                txtCategory.Text = "";
+                txtBrand.Text = "";
+                txtBuyingPrice.Value = 0;
+                txtUnitPrice.Value = 0;
+                txtQuantity.Value = 0;
+                txtSupplier.Text = "";
             }
             catch (Exception ex)
             {
