@@ -41,3 +41,4 @@ C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManag
 C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.UserControls.UC_Reports.resources
 C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\bin\Debug\net7.0-windows\ImageResizer.dll
 C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.AddItem.resources
+C:\Users\Hasini\OneDrive\Desktop\github\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\net7.0-windows\InventoryManagementSystem.Messages.AddItemSuccess.resources

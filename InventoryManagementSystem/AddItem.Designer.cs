@@ -31,25 +31,28 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddItem));
             btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnDiscard = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            siticoneTextBox9 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            txtSupplier = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label10 = new Label();
-            siticoneTextBox5 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label6 = new Label();
-            siticoneTextBox6 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label7 = new Label();
-            siticoneTextBox7 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            siticoneTextBox8 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            txtBrand = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label8 = new Label();
             label9 = new Label();
-            siticoneTextBox4 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            txtCategory = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label5 = new Label();
-            siticoneTextBox3 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            txtDescription = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label4 = new Label();
-            siticoneTextBox2 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            txtOEMNumber = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            txtPartNumber = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            txtQuantity = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            txtUnitPrice = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            txtBuyingPrice = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)txtQuantity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtUnitPrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtBuyingPrice).BeginInit();
             SuspendLayout();
             // 
             // btnAddItem
@@ -73,6 +76,7 @@
             btnAddItem.TabIndex = 41;
             btnAddItem.Text = "Add Item";
             btnAddItem.TextOffset = new Point(2, 0);
+            btnAddItem.Click += btnAddItem_Click;
             // 
             // btnDiscard
             // 
@@ -97,27 +101,27 @@
             btnDiscard.TextOffset = new Point(2, 0);
             btnDiscard.Click += btnDiscard_Click;
             // 
-            // siticoneTextBox9
+            // txtSupplier
             // 
-            siticoneTextBox9.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox9.BorderRadius = 8;
-            siticoneTextBox9.DefaultText = "";
-            siticoneTextBox9.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox9.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox9.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox9.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox9.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox9.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox9.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox9.Location = new Point(199, 579);
-            siticoneTextBox9.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox9.Name = "siticoneTextBox9";
-            siticoneTextBox9.PasswordChar = '\0';
-            siticoneTextBox9.PlaceholderText = "";
-            siticoneTextBox9.SelectedText = "";
-            siticoneTextBox9.Size = new Size(273, 44);
-            siticoneTextBox9.TabIndex = 39;
-            siticoneTextBox9.TextOffset = new Point(10, 0);
+            txtSupplier.BorderColor = Color.FromArgb(208, 213, 221);
+            txtSupplier.BorderRadius = 8;
+            txtSupplier.DefaultText = "";
+            txtSupplier.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSupplier.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSupplier.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSupplier.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSupplier.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtSupplier.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSupplier.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSupplier.Location = new Point(199, 579);
+            txtSupplier.Margin = new Padding(3, 4, 3, 4);
+            txtSupplier.Name = "txtSupplier";
+            txtSupplier.PasswordChar = '\0';
+            txtSupplier.PlaceholderText = "";
+            txtSupplier.SelectedText = "";
+            txtSupplier.Size = new Size(273, 44);
+            txtSupplier.TabIndex = 39;
+            txtSupplier.TextOffset = new Point(10, 0);
             // 
             // label10
             // 
@@ -129,28 +133,6 @@
             label10.TabIndex = 38;
             label10.Text = "Supplier";
             // 
-            // siticoneTextBox5
-            // 
-            siticoneTextBox5.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox5.BorderRadius = 8;
-            siticoneTextBox5.DefaultText = "";
-            siticoneTextBox5.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox5.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox5.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox5.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox5.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox5.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox5.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox5.Location = new Point(199, 517);
-            siticoneTextBox5.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox5.Name = "siticoneTextBox5";
-            siticoneTextBox5.PasswordChar = '\0';
-            siticoneTextBox5.PlaceholderText = "";
-            siticoneTextBox5.SelectedText = "";
-            siticoneTextBox5.Size = new Size(273, 44);
-            siticoneTextBox5.TabIndex = 37;
-            siticoneTextBox5.TextOffset = new Point(10, 0);
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -160,28 +142,6 @@
             label6.Size = new Size(80, 25);
             label6.TabIndex = 36;
             label6.Text = "Quantity";
-            // 
-            // siticoneTextBox6
-            // 
-            siticoneTextBox6.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox6.BorderRadius = 8;
-            siticoneTextBox6.DefaultText = "";
-            siticoneTextBox6.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox6.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox6.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox6.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox6.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox6.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox6.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox6.Location = new Point(199, 453);
-            siticoneTextBox6.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox6.Name = "siticoneTextBox6";
-            siticoneTextBox6.PasswordChar = '\0';
-            siticoneTextBox6.PlaceholderText = "";
-            siticoneTextBox6.SelectedText = "";
-            siticoneTextBox6.Size = new Size(273, 44);
-            siticoneTextBox6.TabIndex = 35;
-            siticoneTextBox6.TextOffset = new Point(10, 0);
             // 
             // label7
             // 
@@ -193,49 +153,27 @@
             label7.TabIndex = 34;
             label7.Text = "Unit Price";
             // 
-            // siticoneTextBox7
+            // txtBrand
             // 
-            siticoneTextBox7.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox7.BorderRadius = 8;
-            siticoneTextBox7.DefaultText = "";
-            siticoneTextBox7.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox7.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox7.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox7.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox7.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox7.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox7.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox7.Location = new Point(199, 391);
-            siticoneTextBox7.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox7.Name = "siticoneTextBox7";
-            siticoneTextBox7.PasswordChar = '\0';
-            siticoneTextBox7.PlaceholderText = "";
-            siticoneTextBox7.SelectedText = "";
-            siticoneTextBox7.Size = new Size(273, 44);
-            siticoneTextBox7.TabIndex = 33;
-            siticoneTextBox7.TextOffset = new Point(10, 0);
-            // 
-            // siticoneTextBox8
-            // 
-            siticoneTextBox8.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox8.BorderRadius = 8;
-            siticoneTextBox8.DefaultText = "";
-            siticoneTextBox8.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox8.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox8.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox8.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox8.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox8.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox8.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox8.Location = new Point(199, 329);
-            siticoneTextBox8.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox8.Name = "siticoneTextBox8";
-            siticoneTextBox8.PasswordChar = '\0';
-            siticoneTextBox8.PlaceholderText = "";
-            siticoneTextBox8.SelectedText = "";
-            siticoneTextBox8.Size = new Size(273, 44);
-            siticoneTextBox8.TabIndex = 32;
-            siticoneTextBox8.TextOffset = new Point(10, 0);
+            txtBrand.BorderColor = Color.FromArgb(208, 213, 221);
+            txtBrand.BorderRadius = 8;
+            txtBrand.DefaultText = "";
+            txtBrand.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBrand.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBrand.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBrand.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBrand.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtBrand.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBrand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBrand.Location = new Point(199, 329);
+            txtBrand.Margin = new Padding(3, 4, 3, 4);
+            txtBrand.Name = "txtBrand";
+            txtBrand.PasswordChar = '\0';
+            txtBrand.PlaceholderText = "";
+            txtBrand.SelectedText = "";
+            txtBrand.Size = new Size(273, 44);
+            txtBrand.TabIndex = 32;
+            txtBrand.TextOffset = new Point(10, 0);
             // 
             // label8
             // 
@@ -257,27 +195,27 @@
             label9.TabIndex = 30;
             label9.Text = "Brand";
             // 
-            // siticoneTextBox4
+            // txtCategory
             // 
-            siticoneTextBox4.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox4.BorderRadius = 8;
-            siticoneTextBox4.DefaultText = "";
-            siticoneTextBox4.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox4.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox4.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox4.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox4.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox4.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox4.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox4.Location = new Point(199, 269);
-            siticoneTextBox4.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox4.Name = "siticoneTextBox4";
-            siticoneTextBox4.PasswordChar = '\0';
-            siticoneTextBox4.PlaceholderText = "";
-            siticoneTextBox4.SelectedText = "";
-            siticoneTextBox4.Size = new Size(273, 44);
-            siticoneTextBox4.TabIndex = 29;
-            siticoneTextBox4.TextOffset = new Point(10, 0);
+            txtCategory.BorderColor = Color.FromArgb(208, 213, 221);
+            txtCategory.BorderRadius = 8;
+            txtCategory.DefaultText = "";
+            txtCategory.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtCategory.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtCategory.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtCategory.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtCategory.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtCategory.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCategory.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtCategory.Location = new Point(199, 269);
+            txtCategory.Margin = new Padding(3, 4, 3, 4);
+            txtCategory.Name = "txtCategory";
+            txtCategory.PasswordChar = '\0';
+            txtCategory.PlaceholderText = "";
+            txtCategory.SelectedText = "";
+            txtCategory.Size = new Size(273, 44);
+            txtCategory.TabIndex = 29;
+            txtCategory.TextOffset = new Point(10, 0);
             // 
             // label5
             // 
@@ -289,27 +227,27 @@
             label5.TabIndex = 28;
             label5.Text = "Category";
             // 
-            // siticoneTextBox3
+            // txtDescription
             // 
-            siticoneTextBox3.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox3.BorderRadius = 8;
-            siticoneTextBox3.DefaultText = "";
-            siticoneTextBox3.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox3.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox3.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox3.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox3.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox3.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox3.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox3.Location = new Point(199, 205);
-            siticoneTextBox3.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox3.Name = "siticoneTextBox3";
-            siticoneTextBox3.PasswordChar = '\0';
-            siticoneTextBox3.PlaceholderText = "";
-            siticoneTextBox3.SelectedText = "";
-            siticoneTextBox3.Size = new Size(273, 44);
-            siticoneTextBox3.TabIndex = 27;
-            siticoneTextBox3.TextOffset = new Point(10, 0);
+            txtDescription.BorderColor = Color.FromArgb(208, 213, 221);
+            txtDescription.BorderRadius = 8;
+            txtDescription.DefaultText = "";
+            txtDescription.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtDescription.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtDescription.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtDescription.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtDescription.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtDescription.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDescription.Location = new Point(199, 205);
+            txtDescription.Margin = new Padding(3, 4, 3, 4);
+            txtDescription.Name = "txtDescription";
+            txtDescription.PasswordChar = '\0';
+            txtDescription.PlaceholderText = "";
+            txtDescription.SelectedText = "";
+            txtDescription.Size = new Size(273, 44);
+            txtDescription.TabIndex = 27;
+            txtDescription.TextOffset = new Point(10, 0);
             // 
             // label4
             // 
@@ -321,49 +259,49 @@
             label4.TabIndex = 26;
             label4.Text = "Description";
             // 
-            // siticoneTextBox2
+            // txtOEMNumber
             // 
-            siticoneTextBox2.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox2.BorderRadius = 8;
-            siticoneTextBox2.DefaultText = "";
-            siticoneTextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox2.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox2.Location = new Point(199, 143);
-            siticoneTextBox2.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox2.Name = "siticoneTextBox2";
-            siticoneTextBox2.PasswordChar = '\0';
-            siticoneTextBox2.PlaceholderText = "";
-            siticoneTextBox2.SelectedText = "";
-            siticoneTextBox2.Size = new Size(273, 44);
-            siticoneTextBox2.TabIndex = 25;
-            siticoneTextBox2.TextOffset = new Point(10, 0);
+            txtOEMNumber.BorderColor = Color.FromArgb(208, 213, 221);
+            txtOEMNumber.BorderRadius = 8;
+            txtOEMNumber.DefaultText = "";
+            txtOEMNumber.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtOEMNumber.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtOEMNumber.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtOEMNumber.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtOEMNumber.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtOEMNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtOEMNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtOEMNumber.Location = new Point(199, 143);
+            txtOEMNumber.Margin = new Padding(3, 4, 3, 4);
+            txtOEMNumber.Name = "txtOEMNumber";
+            txtOEMNumber.PasswordChar = '\0';
+            txtOEMNumber.PlaceholderText = "";
+            txtOEMNumber.SelectedText = "";
+            txtOEMNumber.Size = new Size(273, 44);
+            txtOEMNumber.TabIndex = 25;
+            txtOEMNumber.TextOffset = new Point(10, 0);
             // 
-            // siticoneTextBox1
+            // txtPartNumber
             // 
-            siticoneTextBox1.BorderColor = Color.FromArgb(208, 213, 221);
-            siticoneTextBox1.BorderRadius = 8;
-            siticoneTextBox1.DefaultText = "";
-            siticoneTextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            siticoneTextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            siticoneTextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            siticoneTextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox1.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneTextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            siticoneTextBox1.Location = new Point(199, 81);
-            siticoneTextBox1.Margin = new Padding(3, 4, 3, 4);
-            siticoneTextBox1.Name = "siticoneTextBox1";
-            siticoneTextBox1.PasswordChar = '\0';
-            siticoneTextBox1.PlaceholderText = "";
-            siticoneTextBox1.SelectedText = "";
-            siticoneTextBox1.Size = new Size(273, 44);
-            siticoneTextBox1.TabIndex = 24;
-            siticoneTextBox1.TextOffset = new Point(10, 0);
+            txtPartNumber.BorderColor = Color.FromArgb(208, 213, 221);
+            txtPartNumber.BorderRadius = 8;
+            txtPartNumber.DefaultText = "";
+            txtPartNumber.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPartNumber.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPartNumber.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPartNumber.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPartNumber.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtPartNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPartNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPartNumber.Location = new Point(199, 81);
+            txtPartNumber.Margin = new Padding(3, 4, 3, 4);
+            txtPartNumber.Name = "txtPartNumber";
+            txtPartNumber.PasswordChar = '\0';
+            txtPartNumber.PlaceholderText = "";
+            txtPartNumber.SelectedText = "";
+            txtPartNumber.Size = new Size(273, 44);
+            txtPartNumber.TabIndex = 24;
+            txtPartNumber.TextOffset = new Point(10, 0);
             // 
             // label3
             // 
@@ -395,6 +333,62 @@
             label1.TabIndex = 21;
             label1.Text = "New Item";
             // 
+            // txtQuantity
+            // 
+            txtQuantity.BackColor = Color.Transparent;
+            txtQuantity.BorderColor = Color.FromArgb(208, 213, 221);
+            txtQuantity.BorderRadius = 8;
+            txtQuantity.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtQuantity.FocusedState.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
+            txtQuantity.FocusedState.UpDownButtonForeColor = Color.White;
+            txtQuantity.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtQuantity.Location = new Point(199, 519);
+            txtQuantity.Margin = new Padding(3, 4, 3, 4);
+            txtQuantity.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.Size = new Size(276, 44);
+            txtQuantity.TabIndex = 42;
+            txtQuantity.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
+            txtQuantity.UpDownButtonForeColor = SystemColors.ControlText;
+            // 
+            // txtUnitPrice
+            // 
+            txtUnitPrice.BackColor = Color.Transparent;
+            txtUnitPrice.BorderColor = Color.FromArgb(208, 213, 221);
+            txtUnitPrice.BorderRadius = 8;
+            txtUnitPrice.DecimalPlaces = 2;
+            txtUnitPrice.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtUnitPrice.FocusedState.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
+            txtUnitPrice.FocusedState.UpDownButtonForeColor = Color.White;
+            txtUnitPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUnitPrice.Location = new Point(199, 455);
+            txtUnitPrice.Margin = new Padding(3, 4, 3, 4);
+            txtUnitPrice.Maximum = new decimal(new int[] { 10000000, 0, 0, 131072 });
+            txtUnitPrice.Name = "txtUnitPrice";
+            txtUnitPrice.Size = new Size(276, 44);
+            txtUnitPrice.TabIndex = 43;
+            txtUnitPrice.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
+            txtUnitPrice.UpDownButtonForeColor = SystemColors.ControlText;
+            // 
+            // txtBuyingPrice
+            // 
+            txtBuyingPrice.BackColor = Color.Transparent;
+            txtBuyingPrice.BorderColor = Color.FromArgb(208, 213, 221);
+            txtBuyingPrice.BorderRadius = 8;
+            txtBuyingPrice.DecimalPlaces = 2;
+            txtBuyingPrice.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
+            txtBuyingPrice.FocusedState.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
+            txtBuyingPrice.FocusedState.UpDownButtonForeColor = Color.White;
+            txtBuyingPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBuyingPrice.Location = new Point(199, 392);
+            txtBuyingPrice.Margin = new Padding(3, 4, 3, 4);
+            txtBuyingPrice.Maximum = new decimal(new int[] { 10000000, 0, 0, 131072 });
+            txtBuyingPrice.Name = "txtBuyingPrice";
+            txtBuyingPrice.Size = new Size(276, 44);
+            txtBuyingPrice.TabIndex = 44;
+            txtBuyingPrice.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
+            txtBuyingPrice.UpDownButtonForeColor = SystemColors.ControlText;
+            // 
             // AddItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -402,24 +396,24 @@
             BackColor = Color.White;
             ClientSize = new Size(504, 714);
             ControlBox = false;
+            Controls.Add(txtBuyingPrice);
+            Controls.Add(txtUnitPrice);
+            Controls.Add(txtQuantity);
             Controls.Add(btnAddItem);
             Controls.Add(btnDiscard);
-            Controls.Add(siticoneTextBox9);
+            Controls.Add(txtSupplier);
             Controls.Add(label10);
-            Controls.Add(siticoneTextBox5);
             Controls.Add(label6);
-            Controls.Add(siticoneTextBox6);
             Controls.Add(label7);
-            Controls.Add(siticoneTextBox7);
-            Controls.Add(siticoneTextBox8);
+            Controls.Add(txtBrand);
             Controls.Add(label8);
             Controls.Add(label9);
-            Controls.Add(siticoneTextBox4);
+            Controls.Add(txtCategory);
             Controls.Add(label5);
-            Controls.Add(siticoneTextBox3);
+            Controls.Add(txtDescription);
             Controls.Add(label4);
-            Controls.Add(siticoneTextBox2);
-            Controls.Add(siticoneTextBox1);
+            Controls.Add(txtOEMNumber);
+            Controls.Add(txtPartNumber);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -429,6 +423,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             TopMost = true;
             Load += AddItem_Load;
+            ((System.ComponentModel.ISupportInitialize)txtQuantity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtUnitPrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtBuyingPrice).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -437,24 +434,24 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnAddItem;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnDiscard;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox9;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtSupplier;
         private Label label10;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox5;
         private Label label6;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox6;
         private Label label7;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox7;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox8;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtBrand;
         private Label label8;
         private Label label9;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox4;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtCategory;
         private Label label5;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox3;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtDescription;
         private Label label4;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox2;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox1;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtOEMNumber;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtPartNumber;
         private Label label3;
         private Label label2;
         private Label label1;
+        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtQuantity;
+        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtUnitPrice;
+        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtBuyingPrice;
     }
 }
