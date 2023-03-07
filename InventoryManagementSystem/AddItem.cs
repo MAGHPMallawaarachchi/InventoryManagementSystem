@@ -22,6 +22,8 @@ namespace InventoryManagementSystem
         {
             InitializeComponent();
 
+            // set initial focus to the first textbox
+            txtPartNumber.Focus();
         }
 
         private void AddItem_Load(object sender, EventArgs e)
@@ -53,6 +55,7 @@ namespace InventoryManagementSystem
                 { "description", txtDescription.Text },
                 { "category", txtCategory.Text },
                 { "brand", txtBrand.Text },
+                { "vehicle_brand", txtVehicleBrand.Text },
                 { "buying_price", txtBuyingPrice.Value },
                 { "unit_price", txtUnitPrice.Value },
                 { "quantity", txtQuantity.Value},
@@ -74,6 +77,7 @@ namespace InventoryManagementSystem
                 txtDescription.Text = "";
                 txtCategory.Text = "";
                 txtBrand.Text = "";
+                txtVehicleBrand.Text = "";
                 txtBuyingPrice.Value = 0;
                 txtUnitPrice.Value = 0;
                 txtQuantity.Value = 0;
@@ -88,6 +92,136 @@ namespace InventoryManagementSystem
         private void AddItemSuccess_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Show();
+        }
+
+        private void txtPartNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtOEMNumber.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtSupplier.Focus();
+            }
+        }
+
+        private void txtOEMNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtDescription.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtPartNumber.Focus();
+            }
+        }
+
+        private void txtDescription_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtCategory.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtOEMNumber.Focus();
+            }
+        }
+
+        private void txtCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtBrand.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtDescription.Focus();
+            }
+        }
+
+        private void txtBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtVehicleBrand.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtCategory.Focus();
+            }
+        }
+
+        private void txtVehicleBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtBuyingPrice.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtBrand.Focus();
+            }
+        }
+
+        private void txtBuyingPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtUnitPrice.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtVehicleBrand.Focus();
+            }
+        }
+
+        private void txtUnitPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtQuantity.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtBuyingPrice.Focus();
+            }
+        }
+
+        private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtSupplier.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtUnitPrice.Focus();
+            }
+        }
+
+        private void txtSupplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtPartNumber.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtQuantity.Focus();
+            }
         }
     }
 }
