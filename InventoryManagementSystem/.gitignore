@@ -1,34 +1,51 @@
+# Visual Studio files
+*.suo
+*.user
+*.ncb
+*.aps
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.sbr
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.obj
+*.pdb
+*.res
+*.scc
+*.sdf
+*.opensdf
+
 # Build results
 [Dd]ebug/
 [Rr]elease/
 x64/
-x86/
-[Aa][Rr][Mm]/
-[Oo]bj/
-[Oo]ut/
-
-# Visual Studio files
-*.user
-*.aps
-*.pch
-*.vspscc
-*.vssscc
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.log
-*.vspx
-*.vsix
-*.vstemplate
-*.pdb
-*.res
-
-# ReSharper files
-_ReSharper.*
-*.[Rr]e[Ss]harper
-*.DotSettings
-
-# Build results
+build/
 [Bb]in/
+[Oo]bj/
+
+# NuGet packages
+*.nuget/
+packages/
+
+# Windows Forms Designer files
+*.Designer.cs
+*.Designer.resx
+
+# Resharper files
+_ReSharper*/
+*.resharper
+*.sln.DotSettings.user
+
+# ReSharper Cache
+resharper_cache/
+
+# Others
+[Tt]humbs.db
+desktop.ini
