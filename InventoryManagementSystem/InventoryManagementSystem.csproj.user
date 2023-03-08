@@ -25,6 +25,9 @@
     <Compile Update="UserControls\UC_Inventory.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControls\UC_ItemDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\UC_Orders.cs">
       <SubType>UserControl</SubType>
     </Compile>
