@@ -45,6 +45,7 @@
             panel1.Size = new Size(1101, 159);
             panel1.TabIndex = 0;
             panel1.SizeChanged += panel1_SizeChanged;
+            panel1.Paint += panel1_Paint;
             // 
             // panel2
             // 
