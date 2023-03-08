@@ -1,0 +1,34 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Oo]bj/
+[Oo]ut/
+
+# Visual Studio files
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.log
+*.vspx
+*.vsix
+*.vstemplate
+*.pdb
+*.res
+
+# ReSharper files
+_ReSharper.*
+*.[Rr]e[Ss]harper
+*.DotSettings
+
+# Build results
+[Bb]in/
