@@ -21,9 +21,6 @@ namespace InventoryManagementSystem
         public AddItem()
         {
             InitializeComponent();
-
-            // set initial focus to the first textbox
-            txtPartNumber.Focus();
         }
 
         private void AddItem_Load(object sender, EventArgs e)
@@ -58,7 +55,8 @@ namespace InventoryManagementSystem
                 { "vehicle_brand", txtVehicleBrand.Text },
                 { "buying_price", txtBuyingPrice.Value },
                 { "unit_price", txtUnitPrice.Value },
-                { "quantity", txtQuantity.Value},
+                { "quantity", Convert.ToInt32(txtQuantity.Value) },
+                { "quantity_sold", 0 },
                 { "supplier", txtSupplier.Text },
             };
 
@@ -82,16 +80,12 @@ namespace InventoryManagementSystem
                 txtUnitPrice.Value = 0;
                 txtQuantity.Value = 0;
                 txtSupplier.Text = "";
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while adding the item to the database: {ex.Message}");
             }
-        }
-
-        private void AddItemSuccess_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Show();
         }
 
         private void txtPartNumber_KeyDown(object sender, KeyEventArgs e)

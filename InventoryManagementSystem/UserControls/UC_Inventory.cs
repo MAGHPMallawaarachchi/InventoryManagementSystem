@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace InventoryManagementSystem
 {
@@ -22,20 +24,60 @@ namespace InventoryManagementSystem
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void UC_Inventory_Load(object sender, EventArgs e)
         {
             UpdatePanelRegion(panel1);
             UpdatePanelRegion(panel2);
+
+            ItemsLoad();
+        }
+
+        public void ItemsLoad()
+        {
+            // Disable automatic row height adjustment
+            dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            // Create a MongoDB client and connect to the database
+            var mongoClient = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
+            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+            // Get a reference to the collection you want to query
+            var collection = database.GetCollection<BsonDocument>("items");
+
+            // Execute the query and store the result in a variable
+            var result = collection.Find(new BsonDocument()).ToList();
+
+            // Process the result
+            foreach (var document in result)
+            {
+                // Do something with each document
+                var part_number = document["part_number"].AsString;
+                var description = document["description"].AsString;
+                var brand = document["brand"].AsString;
+                var quantity = document["quantity"].AsInt32;
+                var quantity_sold = document["quantity_sold"].AsInt32;
+                var quantity_in_hand = quantity - quantity_sold;
+                var unit_price = document["unit_price"].AsDecimal128;
+
+                var availability = "In-Stock";
+
+                if (quantity < 50 && quantity > 0)
+                {
+                    availability = "Low-Stock";
+                }
+
+                if (quantity == 0)
+                {
+                    availability = "Out-of-stock";
+                }
+
+                dgvItems.Rows.Add(new object[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+            }
+
+            foreach (DataGridViewRow row in dgvItems.Rows)
+            {
+                row.Height = 50;
+            }
         }
 
         private void UpdatePanelRegion(Panel panel)
@@ -62,17 +104,6 @@ namespace InventoryManagementSystem
         private void panel2_SizeChanged(object sender, EventArgs e)
         {
             UpdatePanelRegion(panel2);
-        }
-
-
-        private void UC_Inventory_SizeChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnFilters_Click(object sender, EventArgs e)
@@ -115,9 +146,10 @@ namespace InventoryManagementSystem
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void btnReload_Click(object sender, EventArgs e)
         {
-
+            dgvItems.Rows.Clear();
+            ItemsLoad();
         }
     }
 }
