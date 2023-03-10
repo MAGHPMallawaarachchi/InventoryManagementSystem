@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using dotenv.net;
+using System.Configuration;
 
 namespace InventoryManagementSystem
 {
@@ -37,8 +39,10 @@ namespace InventoryManagementSystem
             // Disable automatic row height adjustment
             dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
+            DotEnv.Load();
+
             // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
+            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
             var database = mongoClient.GetDatabase("InventoryManagementSystem");
 
             // Get a reference to the collection you want to query

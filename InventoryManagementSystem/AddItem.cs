@@ -1,10 +1,12 @@
-﻿using ImageResizer.Plugins.Basic;
+﻿using dotenv.net;
+using ImageResizer.Plugins.Basic;
 using InventoryManagementSystem.Messages;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -35,15 +37,13 @@ namespace InventoryManagementSystem
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            string connectionString = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0";
-            string databaseName = "InventoryManagementSystem";
             string collectionName = "items";
 
             // Get the MongoDB client
-            MongoClient client = new MongoClient(connectionString);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
 
             // Get the database and collection objects
-            IMongoDatabase db = client.GetDatabase(databaseName);
+            IMongoDatabase db = client.GetDatabase("InventoryManagementSystem");
             IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>(collectionName);
 
             var item = new BsonDocument {
