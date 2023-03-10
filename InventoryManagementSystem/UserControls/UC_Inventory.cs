@@ -157,10 +157,13 @@ namespace InventoryManagementSystem
             // Check if a row is selected
             if (dgvItems.SelectedRows.Count > 0)
             {
-                // Get the selected item ID from the first cell of the selected row
+                // Get the selected part number from the first cell of the selected row
                 string partNumber = dgvItems.SelectedRows[0].Cells["part_number"].Value?.ToString() ?? "N/A";
 
                 UC_ItemDetails uc = new UC_ItemDetails();
+
+                // Update the user control based on the value of the clicked cell
+                uc.UpdateContent(partNumber);
 
                 Dashboard? dashboard = this.FindForm() as Dashboard;
 

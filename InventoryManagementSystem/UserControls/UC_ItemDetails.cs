@@ -19,6 +19,11 @@ namespace InventoryManagementSystem.UserControls
             InitializeComponent();
         }
 
+        public void UpdateContent(string part_number)
+        {
+            partNumber.Text = part_number.ToString();
+        }
+
         private void UpdatePanelRegion(Panel panel)
         {
             // Create a new GraphicsPath object that defines a rounded rectangle
@@ -54,7 +59,7 @@ namespace InventoryManagementSystem.UserControls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
+
         }
 
     }
