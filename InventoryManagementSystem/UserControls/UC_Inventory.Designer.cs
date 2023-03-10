@@ -34,6 +34,7 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel2 = new Panel();
+            btnReload = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             part_number = new DataGridViewTextBoxColumn();
@@ -47,7 +48,6 @@
             btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnFilters = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             middlePanel = new Panel();
-            btnReload = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             SuspendLayout();
@@ -79,6 +79,30 @@
             panel2.Size = new Size(963, 444);
             panel2.TabIndex = 1;
             panel2.SizeChanged += panel2_SizeChanged;
+            // 
+            // btnReload
+            // 
+            btnReload.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnReload.DisabledState.BorderColor = Color.DarkGray;
+            btnReload.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnReload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnReload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnReload.FillColor = Color.Transparent;
+            btnReload.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReload.ForeColor = Color.White;
+            btnReload.HoverState.BorderColor = Color.Transparent;
+            btnReload.HoverState.FillColor = Color.Transparent;
+            btnReload.HoverState.Image = Properties.Resources.reloadBlue;
+            btnReload.Image = Properties.Resources.reload;
+            btnReload.ImageOffset = new Point(1, 0);
+            btnReload.ImageSize = new Size(16, 15);
+            btnReload.Location = new Point(710, 18);
+            btnReload.Name = "btnReload";
+            btnReload.PressedColor = Color.Transparent;
+            btnReload.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            btnReload.Size = new Size(30, 30);
+            btnReload.TabIndex = 4;
+            btnReload.Click += btnReload_Click;
             // 
             // siticoneHtmlLabel1
             // 
@@ -265,26 +289,6 @@
             middlePanel.Name = "middlePanel";
             middlePanel.Size = new Size(963, 580);
             middlePanel.TabIndex = 2;
-            // 
-            // btnReload
-            // 
-            btnReload.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnReload.DisabledState.BorderColor = Color.DarkGray;
-            btnReload.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnReload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnReload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnReload.FillColor = Color.Transparent;
-            btnReload.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnReload.ForeColor = Color.White;
-            btnReload.HoverState.Image = Properties.Resources.reloadBlue;
-            btnReload.Image = Properties.Resources.reload;
-            btnReload.ImageSize = new Size(16, 15);
-            btnReload.Location = new Point(710, 18);
-            btnReload.Name = "btnReload";
-            btnReload.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            btnReload.Size = new Size(30, 30);
-            btnReload.TabIndex = 4;
-            btnReload.Click += btnReload_Click;
             // 
             // UC_Inventory
             // 
