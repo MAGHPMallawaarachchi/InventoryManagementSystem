@@ -151,5 +151,24 @@ namespace InventoryManagementSystem
             dgvItems.Rows.Clear();
             ItemsLoad();
         }
+
+        public void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if a row is selected
+            if (dgvItems.SelectedRows.Count > 0)
+            {
+                // Get the selected item ID from the first cell of the selected row
+                string partNumber = dgvItems.SelectedRows[0].Cells["part_number"].Value?.ToString() ?? "N/A";
+
+                UC_ItemDetails uc = new UC_ItemDetails();
+
+                Dashboard? dashboard = this.FindForm() as Dashboard;
+
+                if (dashboard != null)
+                {
+                    dashboard.addUserControl(uc);
+                }
+            }
+        }
     }
 }

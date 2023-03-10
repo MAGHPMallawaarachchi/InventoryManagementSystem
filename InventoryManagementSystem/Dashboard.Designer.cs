@@ -37,7 +37,6 @@
             btnDashboard = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             siticonePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -240,21 +239,12 @@
             panel1.Size = new Size(1142, 100);
             panel1.TabIndex = 1;
             // 
-            // siticonePanel2
-            // 
-            siticonePanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            siticonePanel2.Location = new Point(286, 106);
-            siticonePanel2.Name = "siticonePanel2";
-            siticonePanel2.Size = new Size(1136, 807);
-            siticonePanel2.TabIndex = 0;
-            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
             ClientSize = new Size(1422, 913);
-            Controls.Add(siticonePanel2);
             Controls.Add(panel1);
             Controls.Add(siticonePanel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -278,6 +268,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnDashboard;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
     }
 }

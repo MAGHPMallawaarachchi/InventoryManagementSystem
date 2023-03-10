@@ -1,10 +1,12 @@
 ﻿using InventoryManagementSystem.UserControls;
+using Siticone.Desktop.UI.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,18 +15,29 @@ namespace InventoryManagementSystem
 {
     public partial class Dashboard : Form
     {
+        public Panel mainPanel;
+
         public Dashboard()
         {
             InitializeComponent();
+
+            mainPanel = new Panel();
+            mainPanel.BackColor = Color.FromArgb(240, 241, 243);
+            mainPanel.Location = new Point(286, 106);
+            mainPanel.Size = new Size(1136, 807);
+            mainPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+
+            Controls.Add(mainPanel);
+
             UC_Dashboard uc = new UC_Dashboard();
             addUserControl(uc);
         }
 
-        private void addUserControl(UserControl userControl)
+        public void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
-            siticonePanel2.Controls.Clear();
-            siticonePanel2.Controls.Add(userControl);
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(userControl);
             userControl.BringToFront();
         }
 
@@ -67,5 +80,6 @@ namespace InventoryManagementSystem
         {
 
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Siticone.Desktop.UI.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +17,6 @@ namespace InventoryManagementSystem.UserControls
         public UC_ItemDetails()
         {
             InitializeComponent();
-        }
-
-        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void UpdatePanelRegion(Panel panel)
@@ -44,74 +40,22 @@ namespace InventoryManagementSystem.UserControls
             UpdatePanelRegion(siticonePanel1);
         }
 
-        private void siticonePanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void siticoneHtmlLabel1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
+            UC_Inventory uc = new UC_Inventory();
+
+            Dashboard? dashboard = this.FindForm() as Dashboard;
+
+            if (dashboard != null)
+            {
+                dashboard.addUserControl(uc);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            
         }
 
-        private void partNumber_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void primaryDetails_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void itemNumber_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void oemumber_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void description_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void category_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void brand_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void supplierDetails_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void supplierName_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void supplierEmail_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void priceDetails_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void buyingPrice_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void qtySold_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
