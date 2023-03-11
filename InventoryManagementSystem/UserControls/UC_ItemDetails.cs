@@ -107,17 +107,15 @@ namespace InventoryManagementSystem.UserControls
                 dashboard.addUserControl(uc);
             }
         }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            // set the update button control to not visible
-            updateBtn.Visible = false;
-        }
 
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             // set the update button control to visible
-            updateBtn.Visible = true;
+            btnUpdate.Visible = true;
+            btnDiscard.Visible = true;
+            btnEdit.Hide();
+            btnBack.Hide();
 
             //Hiding the Previous data
             partNumberData.Hide();
@@ -220,6 +218,66 @@ namespace InventoryManagementSystem.UserControls
                 part_numberText.Text = "Update failed.";
             }
 
+        }
+
+        private void UC_ItemDetails_Load(object sender, EventArgs e)
+        {
+            // set the update button control to not visible
+            btnUpdate.Visible = false;
+            btnDiscard.Visible = false;
+        }
+
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+
+            btnUpdate.Hide();
+            btnDiscard.Hide();
+            btnEdit.Visible = true;
+            btnBack.Visible = true;
+
+            //making the Previous data visible
+            partNumberData.Visible = true;
+            oemNumberData.Visible = true;
+            descriptionData.Visible = true;
+            categoryData.Visible = true;
+            brandData.Visible = true;
+            supplierNameData.Visible = true;
+            buyingPriceData.Visible = true;
+            unitPriceData.Visible = true;
+            qtyInHndData.Visible = true; //quantity in hand in stock details i named it as qtyInHnd
+            qtySoldData.Visible = true;
+            totalQtyData.Visible = true;
+            supplierEmailData.Visible = true;
+
+
+            // hide the text boxes
+            part_numberText.Hide();
+            oemNumberText.Hide();
+            descriptionText.Hide();
+            categoryText.Hide();
+            brandText.Hide();
+            supplierNameText.Hide();
+            supplierEmailText.Hide();
+            buyingPriceText.Hide();
+            unitPriceText.Hide();
+            qtyInHndData.Hide();
+            totalQtyText.Hide();
+            qtySoldText.Hide();
+            qtyInHndText.Hide();
+            supplierEmailText.Hide();
+
+            // hide the old data label
+            partNumberData.Visible = true;
+            descriptionData.Visible = true;
+            categoryData.Visible = true;
+            brandData.Visible = true;
+            supplierNameData.Visible = true;
+            supplierEmailData.Visible = true;
+            buyingPriceData.Visible = true;
+            unitPriceData.Visible = true;
+            qtySoldData.Visible = true;
+            qtyInHndData.Visible = true;
+            totalQtyData.Visible = true;
         }
     }
 }
