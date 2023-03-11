@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            updateBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             qtySoldText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             qtyInHndText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             totalQtyText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -78,6 +79,7 @@
             // siticonePanel1
             // 
             siticonePanel1.BackColor = Color.White;
+            siticonePanel1.Controls.Add(updateBtn);
             siticonePanel1.Controls.Add(qtySoldText);
             siticonePanel1.Controls.Add(qtyInHndText);
             siticonePanel1.Controls.Add(totalQtyText);
@@ -129,6 +131,31 @@
             siticonePanel1.TabIndex = 0;
             siticonePanel1.SizeChanged += siticonePanel1_SizeChanged;
             // 
+            // updateBtn
+            // 
+            updateBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            updateBtn.BorderColor = Color.FromArgb(10, 73, 156);
+            updateBtn.BorderRadius = 4;
+            updateBtn.BorderThickness = 2;
+            updateBtn.DisabledState.BorderColor = Color.DarkGray;
+            updateBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            updateBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            updateBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            updateBtn.FillColor = Color.FromArgb(10, 73, 156);
+            updateBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            updateBtn.ForeColor = Color.White;
+            updateBtn.ImageOffset = new Point(0, 1);
+            updateBtn.ImageSize = new Size(15, 10);
+            updateBtn.Location = new Point(851, 537);
+            updateBtn.Margin = new Padding(3, 2, 3, 2);
+            updateBtn.Name = "updateBtn";
+            updateBtn.Size = new Size(89, 30);
+            updateBtn.TabIndex = 45;
+            updateBtn.Text = "Update";
+            updateBtn.TextOffset = new Point(2, 0);
+            updateBtn.Visible = false;
+            updateBtn.Click += updateBtn_Click;
+            // 
             // qtySoldText
             // 
             qtySoldText.DefaultText = "";
@@ -140,11 +167,12 @@
             qtySoldText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             qtySoldText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             qtySoldText.Location = new Point(717, 192);
+            qtySoldText.Margin = new Padding(3, 4, 3, 4);
             qtySoldText.Name = "qtySoldText";
             qtySoldText.PasswordChar = '\0';
             qtySoldText.PlaceholderText = "";
             qtySoldText.SelectedText = "";
-            qtySoldText.Size = new Size(64, 28);
+            qtySoldText.Size = new Size(83, 28);
             qtySoldText.TabIndex = 44;
             qtySoldText.Visible = false;
             // 
@@ -159,11 +187,12 @@
             qtyInHndText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             qtyInHndText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             qtyInHndText.Location = new Point(717, 162);
+            qtyInHndText.Margin = new Padding(3, 4, 3, 4);
             qtyInHndText.Name = "qtyInHndText";
             qtyInHndText.PasswordChar = '\0';
             qtyInHndText.PlaceholderText = "";
             qtyInHndText.SelectedText = "";
-            qtyInHndText.Size = new Size(64, 28);
+            qtyInHndText.Size = new Size(83, 28);
             qtyInHndText.TabIndex = 43;
             qtyInHndText.Visible = false;
             // 
@@ -178,11 +207,12 @@
             totalQtyText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             totalQtyText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             totalQtyText.Location = new Point(717, 132);
+            totalQtyText.Margin = new Padding(3, 4, 3, 4);
             totalQtyText.Name = "totalQtyText";
             totalQtyText.PasswordChar = '\0';
             totalQtyText.PlaceholderText = "";
             totalQtyText.SelectedText = "";
-            totalQtyText.Size = new Size(64, 28);
+            totalQtyText.Size = new Size(83, 28);
             totalQtyText.TabIndex = 42;
             totalQtyText.Visible = false;
             // 
@@ -197,6 +227,7 @@
             unitPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             unitPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             unitPriceText.Location = new Point(256, 487);
+            unitPriceText.Margin = new Padding(3, 4, 3, 4);
             unitPriceText.Name = "unitPriceText";
             unitPriceText.PasswordChar = '\0';
             unitPriceText.PlaceholderText = "";
@@ -216,6 +247,7 @@
             buyingPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             buyingPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             buyingPriceText.Location = new Point(256, 453);
+            buyingPriceText.Margin = new Padding(3, 4, 3, 4);
             buyingPriceText.Name = "buyingPriceText";
             buyingPriceText.PasswordChar = '\0';
             buyingPriceText.PlaceholderText = "";
@@ -235,11 +267,12 @@
             supplierEmailText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             supplierEmailText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             supplierEmailText.Location = new Point(256, 379);
+            supplierEmailText.Margin = new Padding(3, 4, 3, 4);
             supplierEmailText.Name = "supplierEmailText";
             supplierEmailText.PasswordChar = '\0';
             supplierEmailText.PlaceholderText = "";
             supplierEmailText.SelectedText = "";
-            supplierEmailText.Size = new Size(64, 28);
+            supplierEmailText.Size = new Size(85, 28);
             supplierEmailText.TabIndex = 39;
             supplierEmailText.Visible = false;
             // 
@@ -254,11 +287,12 @@
             supplierNameText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             supplierNameText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             supplierNameText.Location = new Point(256, 346);
+            supplierNameText.Margin = new Padding(3, 4, 3, 4);
             supplierNameText.Name = "supplierNameText";
             supplierNameText.PasswordChar = '\0';
             supplierNameText.PlaceholderText = "";
             supplierNameText.SelectedText = "";
-            supplierNameText.Size = new Size(64, 28);
+            supplierNameText.Size = new Size(85, 28);
             supplierNameText.TabIndex = 38;
             supplierNameText.Visible = false;
             // 
@@ -273,11 +307,12 @@
             brandText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             brandText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             brandText.Location = new Point(256, 253);
+            brandText.Margin = new Padding(3, 4, 3, 4);
             brandText.Name = "brandText";
             brandText.PasswordChar = '\0';
             brandText.PlaceholderText = "";
             brandText.SelectedText = "";
-            brandText.Size = new Size(64, 28);
+            brandText.Size = new Size(85, 28);
             brandText.TabIndex = 37;
             brandText.Visible = false;
             // 
@@ -292,11 +327,12 @@
             categoryText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             categoryText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             categoryText.Location = new Point(256, 222);
+            categoryText.Margin = new Padding(3, 4, 3, 4);
             categoryText.Name = "categoryText";
             categoryText.PasswordChar = '\0';
             categoryText.PlaceholderText = "";
             categoryText.SelectedText = "";
-            categoryText.Size = new Size(64, 28);
+            categoryText.Size = new Size(85, 28);
             categoryText.TabIndex = 36;
             categoryText.Visible = false;
             // 
@@ -311,11 +347,12 @@
             descriptionText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             descriptionText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             descriptionText.Location = new Point(256, 192);
+            descriptionText.Margin = new Padding(3, 4, 3, 4);
             descriptionText.Name = "descriptionText";
             descriptionText.PasswordChar = '\0';
             descriptionText.PlaceholderText = "";
             descriptionText.SelectedText = "";
-            descriptionText.Size = new Size(64, 28);
+            descriptionText.Size = new Size(85, 28);
             descriptionText.TabIndex = 35;
             descriptionText.Visible = false;
             // 
@@ -330,11 +367,12 @@
             oemNumberText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             oemNumberText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             oemNumberText.Location = new Point(256, 162);
+            oemNumberText.Margin = new Padding(3, 4, 3, 4);
             oemNumberText.Name = "oemNumberText";
             oemNumberText.PasswordChar = '\0';
             oemNumberText.PlaceholderText = "";
             oemNumberText.SelectedText = "";
-            oemNumberText.Size = new Size(64, 28);
+            oemNumberText.Size = new Size(85, 28);
             oemNumberText.TabIndex = 34;
             oemNumberText.Visible = false;
             // 
@@ -349,11 +387,12 @@
             part_numberText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             part_numberText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             part_numberText.Location = new Point(256, 132);
+            part_numberText.Margin = new Padding(3, 4, 3, 4);
             part_numberText.Name = "part_numberText";
             part_numberText.PasswordChar = '\0';
             part_numberText.PlaceholderText = "";
             part_numberText.SelectedText = "";
-            part_numberText.Size = new Size(64, 28);
+            part_numberText.Size = new Size(85, 28);
             part_numberText.TabIndex = 33;
             part_numberText.Visible = false;
             // 
@@ -790,5 +829,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox categoryText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox descriptionText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox oemNumberText;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton updateBtn;
     }
 }
