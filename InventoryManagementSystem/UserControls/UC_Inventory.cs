@@ -14,6 +14,10 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using dotenv.net;
 using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ImageResizer.Configuration.Xml;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Text.RegularExpressions;
 
 namespace InventoryManagementSystem
 {
@@ -38,9 +42,16 @@ namespace InventoryManagementSystem
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOverallInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // set the current cell to null to prevent the first row from being selected
-            dgvItems.CurrentCell = null;
-            dgvOverallInventory.CurrentCell = null;
+            // Add the placeholder item to the ComboBox
+            cbCategory.Items.Add("-- Select Category --");
+            cbCategory.SelectedIndex = 0;
+            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            cbBrand.Items.Add("-- Select Brand --");
+            cbBrand.SelectedIndex = 0;
+            cbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            ComboBoxLoad();
         }
 
         public void ItemsLoad()
@@ -56,10 +67,10 @@ namespace InventoryManagementSystem
             var collection = database.GetCollection<BsonDocument>("items");
 
             // Execute the query and store the result in a variable
-            var result = collection.Find(new BsonDocument()).ToList();
+            var documents = collection.Find(new BsonDocument()).ToList();
 
             // Process the result
-            foreach (var document in result)
+            foreach (var document in documents)
             {
                 // Do something with each document
                 var part_number = document["part_number"].AsString;
@@ -89,6 +100,10 @@ namespace InventoryManagementSystem
             {
                 row.Height = 50;
             }
+
+            // set the current cell to null to prevent the first row from being selected
+            dgvItems.CurrentCell = null;
+            dgvOverallInventory.CurrentCell = null;
         }
 
         public void OverallInventoryLoad()
@@ -102,8 +117,8 @@ namespace InventoryManagementSystem
 
             // use the Aggregate method to get the number of unique items in the category field
             var distinctCategories = collection.Aggregate()
-                .Group(new BsonDocument { { "_id", "$category" } })
-                .ToList();
+            .Group(new BsonDocument { { "_id", "$category" } })
+            .ToList();
 
             // get the count of the distinct categories
             int uniqueCategoriesCount = distinctCategories.Count;
@@ -139,6 +154,36 @@ namespace InventoryManagementSystem
 
             dgvOverallInventory.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
 
+            // set the current cell to null to prevent the first row from being selected
+            dgvItems.CurrentCell = null;
+            dgvOverallInventory.CurrentCell = null;
+
+        }
+
+        public void ComboBoxLoad()
+        {
+            // Create a MongoDB client and connect to the database
+            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+            // Get a reference to the collection you want to query
+            var collection = database.GetCollection<BsonDocument>("items");
+
+            // use the Aggregate method to get the number of unique items in the category field
+            var distinctCategories = collection.Distinct<string>("category", "{}").ToList();
+
+            foreach (var category in distinctCategories)
+            {
+                cbCategory.Items.Add(category);
+            }
+
+            // use the Aggregate method to get the number of unique items in the brand field
+            var distinctBrands = collection.Distinct<string>("brand", "{}").ToList();
+
+            foreach (var brand in distinctBrands)
+            {
+                cbBrand.Items.Add(brand);
+            }
         }
 
         private void UpdatePanelRegion(Panel panel)
@@ -165,11 +210,6 @@ namespace InventoryManagementSystem
         private void panel2_SizeChanged(object sender, EventArgs e)
         {
             UpdatePanelRegion(panel2);
-        }
-
-        private void btnFilters_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -271,5 +311,144 @@ namespace InventoryManagementSystem
                                   rgbValues[columnIndex % rgbValues.Length][2]);
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            cbCategory.SelectedIndex = 0;
+
+            cbBrand.SelectedIndex = 0;
+
+            if (cbCategory.SelectedIndex == 0 && cbBrand.SelectedIndex == 0)
+            {
+                dgvItems.Rows.Clear();
+                ItemsLoad();
+            }               
+        }
+
+        private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbBrand.SelectedIndex != 0)
+            {
+                dgvItems.Rows.Clear();
+                string selectedBrand = cbBrand.Text;
+
+                // Disable automatic row height adjustment
+                dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+                // Create a MongoDB client and connect to the database
+                var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+                var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+                // Get a reference to the collection you want to query
+                var collection = database.GetCollection<BsonDocument>("items");
+
+                var filter = Builders<BsonDocument>.Filter.And(
+                    Builders<BsonDocument>.Filter.Eq("brand", selectedBrand)
+                );
+
+                // Execute the query and store the result in a variable
+                var documents = collection.Find(filter).ToList();
+
+                // Process the result
+                foreach (var document in documents)
+                {
+                    // Do something with each document
+                    var part_number = document["part_number"].AsString;
+                    var description = document["description"].AsString;
+                    var brand = document["brand"].AsString;
+                    var quantity = document["quantity"].AsInt32;
+                    var quantity_sold = document["quantity_sold"].AsInt32;
+                    var quantity_in_hand = quantity - quantity_sold;
+                    var unit_price = document["unit_price"].AsDecimal128;
+
+                    var availability = "In-Stock";
+
+                    if (quantity < 50 && quantity > 0)
+                    {
+                        availability = "Low-Stock";
+                    }
+
+                    if (quantity == 0)
+                    {
+                        availability = "Out-of-stock";
+                    }
+
+                    dgvItems.Rows.Add(new object[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+                }
+
+                foreach (DataGridViewRow row in dgvItems.Rows)
+                {
+                    row.Height = 50;
+                }
+
+                // set the current cell to null to prevent the first row from being selected
+                dgvItems.CurrentCell = null;
+                dgvOverallInventory.CurrentCell = null;
+            }
+
+        }
+
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCategory.SelectedIndex != 0)
+            {
+                dgvItems.Rows.Clear();
+                string selectedCategory = cbCategory.Text;
+                string selectedBrand = cbBrand.Text;
+
+                // Disable automatic row height adjustment
+                dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+                // Create a MongoDB client and connect to the database
+                var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+                var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+                // Get a reference to the collection you want to query
+                var collection = database.GetCollection<BsonDocument>("items");
+
+                var filter = Builders<BsonDocument>.Filter.And(
+                    Builders<BsonDocument>.Filter.Eq("category", selectedCategory),
+                    Builders<BsonDocument>.Filter.Eq("brand", selectedBrand)
+                );
+
+                // Execute the query and store the result in a variable
+                var documents = collection.Find(filter).ToList();
+
+                // Process the result
+                foreach (var document in documents)
+                {
+                    // Do something with each document
+                    var part_number = document["part_number"].AsString;
+                    var description = document["description"].AsString;
+                    var brand = document["brand"].AsString;
+                    var quantity = document["quantity"].AsInt32;
+                    var quantity_sold = document["quantity_sold"].AsInt32;
+                    var quantity_in_hand = quantity - quantity_sold;
+                    var unit_price = document["unit_price"].AsDecimal128;
+
+                    var availability = "In-Stock";
+
+                    if (quantity < 50 && quantity > 0)
+                    {
+                        availability = "Low-Stock";
+                    }
+
+                    if (quantity == 0)
+                    {
+                        availability = "Out-of-stock";
+                    }
+
+                    dgvItems.Rows.Add(new object[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+                }
+
+                foreach (DataGridViewRow row in dgvItems.Rows)
+                {
+                    row.Height = 50;
+                }
+
+                // set the current cell to null to prevent the first row from being selected
+                dgvItems.CurrentCell = null;
+                dgvOverallInventory.CurrentCell = null;
+            }
+        }
     }
 }

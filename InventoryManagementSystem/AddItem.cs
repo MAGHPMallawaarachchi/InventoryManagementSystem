@@ -217,5 +217,10 @@ namespace InventoryManagementSystem
                 txtQuantity.Focus();
             }
         }
+
+        private void txtPartNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
