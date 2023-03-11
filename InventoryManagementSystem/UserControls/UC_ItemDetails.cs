@@ -49,7 +49,7 @@ namespace InventoryManagementSystem.UserControls
 
 
             // Disable automatic row height adjustment
-            dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            //dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             // Create a MongoDB client and connect to the database
             var mongoClient = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
             var database = mongoClient.GetDatabase("InventoryManagementSystem");
@@ -113,6 +113,23 @@ namespace InventoryManagementSystem.UserControls
 
         private void partNumber_Click(object sender, EventArgs e)
         {
+            // Create a MongoDB client and connect to the database
+            var mongoClient = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
+            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+            // Get a reference to the collection you want to query
+            var collection = database.GetCollection<BsonDocument>("items");
+
+            // Execute the query and store the result in a variable
+            var result = collection.Find(new BsonDocument()).ToList();
+
+            // Process the result
+            foreach (var document in result)
+            {
+
+                // Do something with each document
+                var partNumber = document["part_number"].AsString;
+            }
         }
 
         private void primaryDetails_Click(object sender, EventArgs e)
@@ -163,5 +180,12 @@ namespace InventoryManagementSystem.UserControls
         {
 
         }
+
+
+        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
+
