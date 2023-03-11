@@ -54,7 +54,7 @@ namespace InventoryManagementSystem.UserControls
             var quantity = document["quantity"].AsInt32;
             var quantity_sold = document["quantity_sold"].AsInt32;
             var supplier = document["supplier"].AsString;
-            var unit_price = document["unit_price"].AsString;
+            var unit_price = document["unit_price"].AsDecimal128;
             int quantity_in_hand = quantity - quantity_sold;
             
 
