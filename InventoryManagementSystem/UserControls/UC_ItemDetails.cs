@@ -21,10 +21,10 @@ namespace InventoryManagementSystem.UserControls
         {
             InitializeComponent();
         }
-
-        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
+        
+        public void UpdateContent(string part_number)
         {
-
+            partNumber.Text = part_number.ToString();
         }
 
         private void UpdatePanelRegion(Panel panel)
@@ -43,149 +43,34 @@ namespace InventoryManagementSystem.UserControls
             panel.Region = new Region(path);
         }
 
-
-        public void ItemsLoad()
-        {
-
-
-            // Disable automatic row height adjustment
-            //dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // Execute the query and store the result in a variable
-            var result = collection.Find(new BsonDocument()).ToList();
-
-            // Process the result
-            foreach (var document in result)
-            {
-
-                // Do something with each document
-                var partNumberData = document["part_number"].AsString;
-                var oemNumberData = document["oem_number"].AsString;
-                var categoryData = document["category"].AsString;
-                var brandData = document["brand"].AsString;
-                var descriptionData = document["description"].AsInt32;
-                var supplierNameData = document["supplier"].AsString;
-                var supplierEmailData = document["supplier"].AsString;
-                var quantity = document["quantity"].AsInt32;
-                var qtySoldData = document["quantity_sold"].AsInt32;
-                var qtyInHandData = quantity - qtySoldData;
-                var buyingPriceData = document["buying_price"].AsDecimal128;
-                var totalQtyData = qtySoldData + qtyInHandData;
-
-                
-            }
-
-        }
-
         private void siticonePanel1_SizeChanged(object sender, EventArgs e)
         {
             UpdatePanelRegion(siticonePanel1);
         }
 
-        private void siticonePanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void siticoneHtmlLabel1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
 
-            // Retrieve the previous page or form data from MongoDB
-            //var client = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
-            //var database = mongoClient.GetDatabase("InventoryManagementSystem");
-            //var collection = database.GetCollection<BsonDocument>("items");
-            //var filter = Builders<BsonDocument>.Filter.Eq("page", "previous");
+            UC_Inventory uc = new UC_Inventory();
+
+            Dashboard? dashboard = this.FindForm() as Dashboard;
+
+            if (dashboard != null)
+            {
+                dashboard.addUserControl(uc);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+        
         }
-
-        private void partNumber_Click(object sender, EventArgs e)
-        {
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0");
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // Execute the query and store the result in a variable
-            var result = collection.Find(new BsonDocument()).ToList();
-
-            // Process the result
-            foreach (var document in result)
-            {
-
-                // Do something with each document
-                var partNumber = document["part_number"].AsString;
-            }
-        }
-
-        private void primaryDetails_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void itemNumber_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void oemumber_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void description_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void category_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void brand_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void supplierDetails_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void supplierName_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void supplierEmail_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void priceDetails_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void buyingPrice_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void qtySold_Click(object sender, EventArgs e)
+        
+        private void UC_ItemDetails_Load(object sender, EventArgs e)
         {
 
         }
-
-
-        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 }
 
