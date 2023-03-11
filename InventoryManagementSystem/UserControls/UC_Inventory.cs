@@ -1,4 +1,4 @@
-﻿using InventoryManagementSystem.UserControls;
+using InventoryManagementSystem.UserControls;
 using Siticone.Desktop.UI.WinForms.Suite;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using System.Configuration;
 
 namespace InventoryManagementSystem
 {
@@ -152,14 +153,26 @@ namespace InventoryManagementSystem
             ItemsLoad();
         }
 
-        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Check if a row is selected
+            if (dgvItems.SelectedRows.Count > 0)
+            {
+                // Get the selected part number from the first cell of the selected row
+                string partNumber = dgvItems.SelectedRows[0].Cells["part_number"].Value?.ToString() ?? "N/A";
 
-        }
+                UC_ItemDetails uc = new UC_ItemDetails();
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
+                // Update the user control based on the value of the clicked cell
+                uc.UpdateContent(partNumber);
 
+                Dashboard? dashboard = this.FindForm() as Dashboard;
+
+                if (dashboard != null)
+                {
+                    dashboard.addUserControl(uc);
+                }
+            }
         }
     }
 }
