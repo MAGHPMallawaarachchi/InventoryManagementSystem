@@ -32,10 +32,20 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            dgvOverallInventory = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            categories = new DataGridViewTextBoxColumn();
+            total_items = new DataGridViewTextBoxColumn();
+            low_in_stock = new DataGridViewTextBoxColumn();
+            out_of_stock = new DataGridViewTextBoxColumn();
+            lblOverallInventory = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             panel2 = new Panel();
             btnReload = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
-            siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             part_number = new DataGridViewTextBoxColumn();
             description = new DataGridViewTextBoxColumn();
@@ -48,6 +58,8 @@
             btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnFilters = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             middlePanel = new Panel();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOverallInventory).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             SuspendLayout();
@@ -55,6 +67,8 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(dgvOverallInventory);
+            panel1.Controls.Add(lblOverallInventory);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(19, 19);
             panel1.Name = "panel1";
@@ -62,12 +76,116 @@
             panel1.TabIndex = 0;
             panel1.SizeChanged += panel1_SizeChanged;
             // 
+            // dgvOverallInventory
+            // 
+            dgvOverallInventory.AllowUserToAddRows = false;
+            dgvOverallInventory.AllowUserToDeleteRows = false;
+            dgvOverallInventory.AllowUserToResizeColumns = false;
+            dgvOverallInventory.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvOverallInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvOverallInventory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle2.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvOverallInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvOverallInventory.ColumnHeadersHeight = 30;
+            dgvOverallInventory.Columns.AddRange(new DataGridViewColumn[] { categories, total_items, low_in_stock, out_of_stock });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle3.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvOverallInventory.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvOverallInventory.GridColor = Color.FromArgb(240, 241, 243);
+            dgvOverallInventory.ImeMode = ImeMode.NoControl;
+            dgvOverallInventory.Location = new Point(0, 66);
+            dgvOverallInventory.Name = "dgvOverallInventory";
+            dgvOverallInventory.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvOverallInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvOverallInventory.RowHeadersVisible = false;
+            dgvOverallInventory.RowHeadersWidth = 50;
+            dgvOverallInventory.RowTemplate.Height = 29;
+            dgvOverallInventory.Size = new Size(1101, 93);
+            dgvOverallInventory.TabIndex = 5;
+            dgvOverallInventory.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvOverallInventory.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvOverallInventory.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvOverallInventory.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvOverallInventory.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvOverallInventory.ThemeStyle.BackColor = Color.White;
+            dgvOverallInventory.ThemeStyle.GridColor = Color.FromArgb(240, 241, 243);
+            dgvOverallInventory.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvOverallInventory.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvOverallInventory.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dgvOverallInventory.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvOverallInventory.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvOverallInventory.ThemeStyle.HeaderStyle.Height = 30;
+            dgvOverallInventory.ThemeStyle.ReadOnly = false;
+            dgvOverallInventory.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvOverallInventory.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvOverallInventory.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dgvOverallInventory.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvOverallInventory.ThemeStyle.RowsStyle.Height = 29;
+            dgvOverallInventory.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvOverallInventory.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvOverallInventory.CellPainting += dgvOverallInventory_CellPainting;
+            // 
+            // categories
+            // 
+            categories.HeaderText = "Categories";
+            categories.MinimumWidth = 6;
+            categories.Name = "categories";
+            // 
+            // total_items
+            // 
+            total_items.HeaderText = "Total Items";
+            total_items.MinimumWidth = 6;
+            total_items.Name = "total_items";
+            // 
+            // low_in_stock
+            // 
+            low_in_stock.HeaderText = "Low in Stock";
+            low_in_stock.MinimumWidth = 6;
+            low_in_stock.Name = "low_in_stock";
+            // 
+            // out_of_stock
+            // 
+            out_of_stock.HeaderText = "Out of Stock";
+            out_of_stock.MinimumWidth = 6;
+            out_of_stock.Name = "out_of_stock";
+            // 
+            // lblOverallInventory
+            // 
+            lblOverallInventory.BackColor = Color.Transparent;
+            lblOverallInventory.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblOverallInventory.Location = new Point(16, 15);
+            lblOverallInventory.Name = "lblOverallInventory";
+            lblOverallInventory.Size = new Size(159, 30);
+            lblOverallInventory.TabIndex = 5;
+            lblOverallInventory.Text = "Overall Inventory";
+            // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
             panel2.Controls.Add(btnReload);
-            panel2.Controls.Add(siticoneHtmlLabel1);
+            panel2.Controls.Add(lblItems);
             panel2.Controls.Add(dgvItems);
             panel2.Controls.Add(btnAddItem);
             panel2.Controls.Add(btnFilters);
@@ -104,15 +222,15 @@
             btnReload.TabIndex = 4;
             btnReload.Click += btnReload_Click;
             // 
-            // siticoneHtmlLabel1
+            // lblItems
             // 
-            siticoneHtmlLabel1.BackColor = Color.Transparent;
-            siticoneHtmlLabel1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            siticoneHtmlLabel1.Location = new Point(16, 21);
-            siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
-            siticoneHtmlLabel1.Size = new Size(54, 30);
-            siticoneHtmlLabel1.TabIndex = 3;
-            siticoneHtmlLabel1.Text = "Items";
+            lblItems.BackColor = Color.Transparent;
+            lblItems.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblItems.Location = new Point(16, 21);
+            lblItems.Name = "lblItems";
+            lblItems.Size = new Size(54, 30);
+            lblItems.TabIndex = 3;
+            lblItems.Text = "Items";
             // 
             // dgvItems
             // 
@@ -120,41 +238,41 @@
             dgvItems.AllowUserToDeleteRows = false;
             dgvItems.AllowUserToResizeColumns = false;
             dgvItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle2.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle6.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvItems.ColumnHeadersHeight = 30;
             dgvItems.Columns.AddRange(new DataGridViewColumn[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle3.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle3.SelectionBackColor = Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvItems.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.White;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle7.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle7.SelectionBackColor = Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dgvItems.DefaultCellStyle = dataGridViewCellStyle7;
             dgvItems.GridColor = Color.FromArgb(240, 241, 243);
             dgvItems.Location = new Point(0, 85);
             dgvItems.Name = "dgvItems";
             dgvItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle8.SelectionBackColor = Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dgvItems.RowHeadersVisible = false;
             dgvItems.RowHeadersWidth = 50;
             dgvItems.RowTemplate.Height = 29;
@@ -285,6 +403,7 @@
             middlePanel.Name = "middlePanel";
             middlePanel.Size = new Size(1101, 773);
             middlePanel.TabIndex = 2;
+            middlePanel.Paint += middlePanel_Paint;
             // 
             // UC_Inventory
             // 
@@ -298,6 +417,9 @@
             Padding = new Padding(19, 19, 22, 21);
             Size = new Size(1142, 813);
             Load += UC_Inventory_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOverallInventory).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItems).EndInit();
@@ -312,7 +434,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnFilters;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnAddItem;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvItems;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblItems;
         private DataGridViewTextBoxColumn part_number;
         private DataGridViewTextBoxColumn description;
         private DataGridViewTextBoxColumn brand;
@@ -322,5 +444,11 @@
         private DataGridViewTextBoxColumn unit_price;
         private DataGridViewTextBoxColumn availability;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleButton btnReload;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblOverallInventory;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvOverallInventory;
+        private DataGridViewTextBoxColumn categories;
+        private DataGridViewTextBoxColumn total_items;
+        private DataGridViewTextBoxColumn low_in_stock;
+        private DataGridViewTextBoxColumn out_of_stock;
     }
 }

@@ -32,14 +32,21 @@ namespace InventoryManagementSystem
             UpdatePanelRegion(panel2);
 
             ItemsLoad();
+            OverallInventoryLoad();
+
+            // set the selection mode to full row select
+            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvOverallInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // set the current cell to null to prevent the first row from being selected
+            dgvItems.CurrentCell = null;
+            dgvOverallInventory.CurrentCell = null;
         }
 
         public void ItemsLoad()
         {
             // Disable automatic row height adjustment
             dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
-            DotEnv.Load();
 
             // Create a MongoDB client and connect to the database
             var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
@@ -82,6 +89,56 @@ namespace InventoryManagementSystem
             {
                 row.Height = 50;
             }
+        }
+
+        public void OverallInventoryLoad()
+        {
+            // Create a MongoDB client and connect to the database
+            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+            // Get a reference to the collection you want to query
+            var collection = database.GetCollection<BsonDocument>("items");
+
+            // use the Aggregate method to get the number of unique items in the category field
+            var distinctCategories = collection.Aggregate()
+                .Group(new BsonDocument { { "_id", "$category" } })
+                .ToList();
+
+            // get the count of the distinct categories
+            int uniqueCategoriesCount = distinctCategories.Count;
+
+            // Execute the query and store the result in a variable
+            var result = collection.Find(new BsonDocument()).ToList();
+
+            int totalItems = 0;
+            int lowInStock = 0;
+            int outOfStock = 0;
+
+            // Process the result
+            foreach (var document in result)
+            {
+                var quantity = document["quantity"].AsInt32;
+                var quantity_sold = document["quantity_sold"].AsInt32;
+                var quantity_in_hand = quantity - quantity_sold;
+
+                totalItems++;
+
+                if (quantity_in_hand == 0)
+                {
+                    outOfStock++;
+                }
+
+                if (quantity_in_hand < 50)
+                {
+                    lowInStock++;
+                }
+            }
+
+            dgvOverallInventory.Rows.Add(new object[] { uniqueCategoriesCount, totalItems, lowInStock, outOfStock });
+
+            dgvOverallInventory.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+
         }
 
         private void UpdatePanelRegion(Panel panel)
@@ -177,5 +234,42 @@ namespace InventoryManagementSystem
                 }
             }
         }
+
+        private void middlePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvOverallInventory_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            // Check if the current cell is a column header cell.
+            if (e.RowIndex == -1 && e.ColumnIndex > -1)
+            {
+
+                // Set the forecolor of the current header cell.
+                e.CellStyle.ForeColor = GetHeaderForeColor(e.ColumnIndex);
+
+                // Paint the background of the current header cell.
+                e.PaintBackground(e.CellBounds, false);
+
+                // Paint the content of the current header cell.
+                e.PaintContent(e.CellBounds);
+
+                // Prevent the default painting of the header cell.
+                e.Handled = true;
+            }
+        }
+
+        private Color GetHeaderForeColor(int columnIndex)
+        {
+            // Define the RGB values for each column header forecolor.
+            int[][] rgbValues = { new[] { 10, 73, 156 }, new[] { 132, 94, 188 }, new[] { 225, 145, 51 }, new[] { 243, 105, 96 } };
+
+            // Create a new color using the RGB values for the current column header forecolor.
+            return Color.FromArgb(rgbValues[columnIndex % rgbValues.Length][0],
+                                  rgbValues[columnIndex % rgbValues.Length][1],
+                                  rgbValues[columnIndex % rgbValues.Length][2]);
+        }
+
     }
 }
