@@ -105,7 +105,17 @@ namespace InventoryManagementSystem.UserControls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            partNumberData.Hide();
             oemNumberData.Hide();
+            descriptionData.Hide();
+            categoryData.Hide();
+            brandData.Hide();
+            supplierNameData.Hide();
+            buyingPriceData.Hide();
+            qtyInHandData.Hide();
+            totalQtyData.Hide();
+            qtySoldData.Hide();
+            
         }
 
     }
