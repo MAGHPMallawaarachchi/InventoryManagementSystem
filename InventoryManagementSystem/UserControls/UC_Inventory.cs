@@ -321,7 +321,7 @@ namespace InventoryManagementSystem
             {
                 dgvItems.Rows.Clear();
                 ItemsLoad();
-            }               
+            }
         }
 
         private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
@@ -448,6 +448,25 @@ namespace InventoryManagementSystem
                 // set the current cell to null to prevent the first row from being selected
                 dgvItems.CurrentCell = null;
                 dgvOverallInventory.CurrentCell = null;
+            }
+        }
+
+        private Color defaultForeColor;
+
+        private void dgvItems_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvItems.Rows.Count)
+            {
+                defaultForeColor = dgvItems.Rows[e.RowIndex].DefaultCellStyle.ForeColor;
+                dgvItems.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.FromArgb(10, 73, 156);
+            }
+        }
+
+        private void dgvItems_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvItems.Rows.Count)
+            {
+                dgvItems.Rows[e.RowIndex].DefaultCellStyle.ForeColor = defaultForeColor;
             }
         }
     }

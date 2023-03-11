@@ -146,6 +146,9 @@
             btnDiscard.FillColor = Color.White;
             btnDiscard.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnDiscard.ForeColor = Color.FromArgb(93, 102, 121);
+            btnDiscard.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnDiscard.HoverState.FillColor = Color.Transparent;
+            btnDiscard.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
             btnDiscard.ImageOffset = new Point(0, 1);
             btnDiscard.ImageSize = new Size(15, 10);
             btnDiscard.Location = new Point(733, 527);
@@ -170,6 +173,8 @@
             btnUpdate.FillColor = Color.FromArgb(10, 73, 156);
             btnUpdate.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnUpdate.ForeColor = Color.White;
+            btnUpdate.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnUpdate.HoverState.FillColor = Color.FromArgb(10, 73, 156);
             btnUpdate.ImageOffset = new Point(0, 1);
             btnUpdate.ImageSize = new Size(15, 10);
             btnUpdate.Location = new Point(832, 527);
@@ -769,8 +774,11 @@
             btnEdit.FillColor = Color.White;
             btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnEdit.ForeColor = Color.FromArgb(93, 102, 121);
+            btnEdit.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnEdit.HoverState.FillColor = Color.Transparent;
+            btnEdit.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnEdit.HoverState.Image = Properties.Resources.editBlue;
             btnEdit.Image = Properties.Resources.edit;
-            btnEdit.ImageOffset = new Point(0, 1);
             btnEdit.ImageSize = new Size(15, 15);
             btnEdit.Location = new Point(733, 20);
             btnEdit.Margin = new Padding(3, 2, 3, 2);
@@ -794,6 +802,9 @@
             btnBack.FillColor = Color.White;
             btnBack.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnBack.ForeColor = Color.FromArgb(93, 102, 121);
+            btnBack.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnBack.HoverState.FillColor = Color.Transparent;
+            btnBack.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
             btnBack.ImageOffset = new Point(0, 1);
             btnBack.ImageSize = new Size(15, 10);
             btnBack.Location = new Point(832, 20);

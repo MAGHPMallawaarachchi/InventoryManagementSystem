@@ -121,8 +121,8 @@
   <data name="vertical Original (PVT)LTD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vertical Original (PVT)LTD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dashboardBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dashboardBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inventoryBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inventoryBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,8 +151,11 @@
   <data name="filters" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filters.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="inventoryBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\inventoryBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="reloadBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reloadBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dashboardBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dashboardBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="customers" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\customers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,7 +172,7 @@
   <data name="WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="reloadBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reloadBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="editBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
