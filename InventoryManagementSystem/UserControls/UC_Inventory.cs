@@ -151,5 +151,15 @@ namespace InventoryManagementSystem
             dgvItems.Rows.Clear();
             ItemsLoad();
         }
+
+        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

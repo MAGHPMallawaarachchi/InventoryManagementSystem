@@ -56,10 +56,9 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(17, 14);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(19, 19);
             panel1.Name = "panel1";
-            panel1.Size = new Size(963, 119);
+            panel1.Size = new Size(1101, 159);
             panel1.TabIndex = 0;
             panel1.SizeChanged += panel1_SizeChanged;
             // 
@@ -72,13 +71,14 @@
             panel2.Controls.Add(dgvItems);
             panel2.Controls.Add(btnAddItem);
             panel2.Controls.Add(btnFilters);
-            panel2.Location = new Point(17, 150);
-            panel2.Margin = new Padding(26, 22, 26, 22);
+            panel2.Location = new Point(19, 200);
+            panel2.Margin = new Padding(30, 29, 30, 29);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(0, 14, 0, 0);
-            panel2.Size = new Size(963, 444);
+            panel2.Padding = new Padding(0, 19, 0, 0);
+            panel2.Size = new Size(1101, 592);
             panel2.TabIndex = 1;
             panel2.SizeChanged += panel2_SizeChanged;
+            panel2.Paint += panel2_Paint;
             // 
             // btnReload
             // 
@@ -96,11 +96,12 @@
             btnReload.Image = Properties.Resources.reload;
             btnReload.ImageOffset = new Point(1, 0);
             btnReload.ImageSize = new Size(16, 15);
-            btnReload.Location = new Point(710, 18);
+            btnReload.Location = new Point(811, 24);
+            btnReload.Margin = new Padding(3, 4, 3, 4);
             btnReload.Name = "btnReload";
             btnReload.PressedColor = Color.Transparent;
             btnReload.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            btnReload.Size = new Size(30, 30);
+            btnReload.Size = new Size(34, 40);
             btnReload.TabIndex = 4;
             btnReload.Click += btnReload_Click;
             // 
@@ -108,10 +109,9 @@
             // 
             siticoneHtmlLabel1.BackColor = Color.Transparent;
             siticoneHtmlLabel1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            siticoneHtmlLabel1.Location = new Point(14, 16);
-            siticoneHtmlLabel1.Margin = new Padding(3, 2, 3, 2);
+            siticoneHtmlLabel1.Location = new Point(16, 21);
             siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
-            siticoneHtmlLabel1.Size = new Size(44, 23);
+            siticoneHtmlLabel1.Size = new Size(54, 30);
             siticoneHtmlLabel1.TabIndex = 3;
             siticoneHtmlLabel1.Text = "Items";
             // 
@@ -145,8 +145,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvItems.DefaultCellStyle = dataGridViewCellStyle3;
             dgvItems.GridColor = Color.FromArgb(240, 241, 243);
-            dgvItems.Location = new Point(0, 64);
-            dgvItems.Margin = new Padding(3, 2, 3, 2);
+            dgvItems.Location = new Point(0, 85);
             dgvItems.Name = "dgvItems";
             dgvItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -160,7 +159,7 @@
             dgvItems.RowHeadersVisible = false;
             dgvItems.RowHeadersWidth = 50;
             dgvItems.RowTemplate.Height = 29;
-            dgvItems.Size = new Size(963, 380);
+            dgvItems.Size = new Size(1101, 507);
             dgvItems.TabIndex = 2;
             dgvItems.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvItems.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -183,6 +182,7 @@
             dgvItems.ThemeStyle.RowsStyle.Height = 29;
             dgvItems.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvItems.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvItems.CellContentClick += dgvItems_CellContentClick;
             // 
             // part_number
             // 
@@ -247,10 +247,9 @@
             btnAddItem.ForeColor = Color.White;
             btnAddItem.ImageOffset = new Point(0, 1);
             btnAddItem.ImageSize = new Size(15, 10);
-            btnAddItem.Location = new Point(746, 18);
-            btnAddItem.Margin = new Padding(3, 2, 3, 2);
+            btnAddItem.Location = new Point(853, 24);
             btnAddItem.Name = "btnAddItem";
-            btnAddItem.Size = new Size(89, 30);
+            btnAddItem.Size = new Size(102, 40);
             btnAddItem.TabIndex = 1;
             btnAddItem.Text = "Add Item";
             btnAddItem.TextOffset = new Point(2, 0);
@@ -272,10 +271,9 @@
             btnFilters.Image = Properties.Resources.filters;
             btnFilters.ImageOffset = new Point(0, 1);
             btnFilters.ImageSize = new Size(15, 10);
-            btnFilters.Location = new Point(850, 18);
-            btnFilters.Margin = new Padding(3, 2, 3, 2);
+            btnFilters.Location = new Point(971, 24);
             btnFilters.Name = "btnFilters";
-            btnFilters.Size = new Size(89, 30);
+            btnFilters.Size = new Size(102, 40);
             btnFilters.TabIndex = 0;
             btnFilters.Text = "Filters";
             btnFilters.TextOffset = new Point(2, 0);
@@ -284,24 +282,22 @@
             // middlePanel
             // 
             middlePanel.Dock = DockStyle.Fill;
-            middlePanel.Location = new Point(17, 14);
-            middlePanel.Margin = new Padding(3, 2, 3, 2);
+            middlePanel.Location = new Point(19, 19);
             middlePanel.Name = "middlePanel";
-            middlePanel.Size = new Size(963, 580);
+            middlePanel.Size = new Size(1101, 773);
             middlePanel.TabIndex = 2;
             // 
             // UC_Inventory
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(middlePanel);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "UC_Inventory";
-            Padding = new Padding(17, 14, 19, 16);
-            Size = new Size(999, 610);
+            Padding = new Padding(19, 19, 22, 21);
+            Size = new Size(1142, 813);
             Load += UC_Inventory_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
