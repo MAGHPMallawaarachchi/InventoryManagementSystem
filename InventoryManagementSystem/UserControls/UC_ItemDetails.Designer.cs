@@ -29,11 +29,22 @@
         private void InitializeComponent()
         {
             siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            qtySoldText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            qtyInHndText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            totalQtyText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            unitPriceText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            buyingPriceText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            supplierEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            supplierNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            brandText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            categoryText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            descriptionText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            oemNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             part_numberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             qtySoldData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             qtyInHndData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             totalQtyData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            qtyInHandData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            unitPriceData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             buyingPriceData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             supplierEmailData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             supplierNameData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -46,7 +57,7 @@
             qtyInHnd = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             totalQty = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             stockDetails = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            qtyInHand = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            unitPrice = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             buyingPrice = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             priceDetails = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             supplierEmail = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -61,17 +72,6 @@
             partNumber = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             btnEdit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnBack = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            oemNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            descriptionText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            categoryText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            brandText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            supplierNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            supplierEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            buyingPriceText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            qtyInHandText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            totalQtyText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            qtyInHndText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            qtySoldText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             siticonePanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -81,7 +81,7 @@
             siticonePanel1.Controls.Add(qtySoldText);
             siticonePanel1.Controls.Add(qtyInHndText);
             siticonePanel1.Controls.Add(totalQtyText);
-            siticonePanel1.Controls.Add(qtyInHandText);
+            siticonePanel1.Controls.Add(unitPriceText);
             siticonePanel1.Controls.Add(buyingPriceText);
             siticonePanel1.Controls.Add(supplierEmailText);
             siticonePanel1.Controls.Add(supplierNameText);
@@ -93,7 +93,7 @@
             siticonePanel1.Controls.Add(qtySoldData);
             siticonePanel1.Controls.Add(qtyInHndData);
             siticonePanel1.Controls.Add(totalQtyData);
-            siticonePanel1.Controls.Add(qtyInHandData);
+            siticonePanel1.Controls.Add(unitPriceData);
             siticonePanel1.Controls.Add(buyingPriceData);
             siticonePanel1.Controls.Add(supplierEmailData);
             siticonePanel1.Controls.Add(supplierNameData);
@@ -106,7 +106,7 @@
             siticonePanel1.Controls.Add(qtyInHnd);
             siticonePanel1.Controls.Add(totalQty);
             siticonePanel1.Controls.Add(stockDetails);
-            siticonePanel1.Controls.Add(qtyInHand);
+            siticonePanel1.Controls.Add(unitPrice);
             siticonePanel1.Controls.Add(buyingPrice);
             siticonePanel1.Controls.Add(priceDetails);
             siticonePanel1.Controls.Add(supplierEmail);
@@ -128,6 +128,215 @@
             siticonePanel1.Size = new Size(963, 580);
             siticonePanel1.TabIndex = 0;
             siticonePanel1.SizeChanged += siticonePanel1_SizeChanged;
+            // 
+            // qtySoldText
+            // 
+            qtySoldText.DefaultText = "";
+            qtySoldText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            qtySoldText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            qtySoldText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            qtySoldText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            qtySoldText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtySoldText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            qtySoldText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtySoldText.Location = new Point(717, 192);
+            qtySoldText.Name = "qtySoldText";
+            qtySoldText.PasswordChar = '\0';
+            qtySoldText.PlaceholderText = "";
+            qtySoldText.SelectedText = "";
+            qtySoldText.Size = new Size(64, 28);
+            qtySoldText.TabIndex = 44;
+            qtySoldText.Visible = false;
+            // 
+            // qtyInHndText
+            // 
+            qtyInHndText.DefaultText = "";
+            qtyInHndText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            qtyInHndText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            qtyInHndText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            qtyInHndText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            qtyInHndText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtyInHndText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            qtyInHndText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtyInHndText.Location = new Point(717, 162);
+            qtyInHndText.Name = "qtyInHndText";
+            qtyInHndText.PasswordChar = '\0';
+            qtyInHndText.PlaceholderText = "";
+            qtyInHndText.SelectedText = "";
+            qtyInHndText.Size = new Size(64, 28);
+            qtyInHndText.TabIndex = 43;
+            qtyInHndText.Visible = false;
+            // 
+            // totalQtyText
+            // 
+            totalQtyText.DefaultText = "";
+            totalQtyText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            totalQtyText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            totalQtyText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            totalQtyText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            totalQtyText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            totalQtyText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            totalQtyText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            totalQtyText.Location = new Point(717, 132);
+            totalQtyText.Name = "totalQtyText";
+            totalQtyText.PasswordChar = '\0';
+            totalQtyText.PlaceholderText = "";
+            totalQtyText.SelectedText = "";
+            totalQtyText.Size = new Size(64, 28);
+            totalQtyText.TabIndex = 42;
+            totalQtyText.Visible = false;
+            // 
+            // unitPriceText
+            // 
+            unitPriceText.DefaultText = "";
+            unitPriceText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            unitPriceText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            unitPriceText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            unitPriceText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            unitPriceText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            unitPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            unitPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            unitPriceText.Location = new Point(256, 487);
+            unitPriceText.Name = "unitPriceText";
+            unitPriceText.PasswordChar = '\0';
+            unitPriceText.PlaceholderText = "";
+            unitPriceText.SelectedText = "";
+            unitPriceText.Size = new Size(64, 28);
+            unitPriceText.TabIndex = 41;
+            unitPriceText.Visible = false;
+            // 
+            // buyingPriceText
+            // 
+            buyingPriceText.DefaultText = "";
+            buyingPriceText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            buyingPriceText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            buyingPriceText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            buyingPriceText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            buyingPriceText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            buyingPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            buyingPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            buyingPriceText.Location = new Point(256, 453);
+            buyingPriceText.Name = "buyingPriceText";
+            buyingPriceText.PasswordChar = '\0';
+            buyingPriceText.PlaceholderText = "";
+            buyingPriceText.SelectedText = "";
+            buyingPriceText.Size = new Size(64, 28);
+            buyingPriceText.TabIndex = 40;
+            buyingPriceText.Visible = false;
+            // 
+            // supplierEmailText
+            // 
+            supplierEmailText.DefaultText = "";
+            supplierEmailText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            supplierEmailText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            supplierEmailText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            supplierEmailText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            supplierEmailText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierEmailText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            supplierEmailText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierEmailText.Location = new Point(256, 379);
+            supplierEmailText.Name = "supplierEmailText";
+            supplierEmailText.PasswordChar = '\0';
+            supplierEmailText.PlaceholderText = "";
+            supplierEmailText.SelectedText = "";
+            supplierEmailText.Size = new Size(64, 28);
+            supplierEmailText.TabIndex = 39;
+            supplierEmailText.Visible = false;
+            // 
+            // supplierNameText
+            // 
+            supplierNameText.DefaultText = "";
+            supplierNameText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            supplierNameText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            supplierNameText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            supplierNameText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            supplierNameText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierNameText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            supplierNameText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierNameText.Location = new Point(256, 346);
+            supplierNameText.Name = "supplierNameText";
+            supplierNameText.PasswordChar = '\0';
+            supplierNameText.PlaceholderText = "";
+            supplierNameText.SelectedText = "";
+            supplierNameText.Size = new Size(64, 28);
+            supplierNameText.TabIndex = 38;
+            supplierNameText.Visible = false;
+            // 
+            // brandText
+            // 
+            brandText.DefaultText = "";
+            brandText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            brandText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            brandText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            brandText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            brandText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            brandText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            brandText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            brandText.Location = new Point(256, 253);
+            brandText.Name = "brandText";
+            brandText.PasswordChar = '\0';
+            brandText.PlaceholderText = "";
+            brandText.SelectedText = "";
+            brandText.Size = new Size(64, 28);
+            brandText.TabIndex = 37;
+            brandText.Visible = false;
+            // 
+            // categoryText
+            // 
+            categoryText.DefaultText = "";
+            categoryText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            categoryText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            categoryText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            categoryText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            categoryText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            categoryText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            categoryText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            categoryText.Location = new Point(256, 222);
+            categoryText.Name = "categoryText";
+            categoryText.PasswordChar = '\0';
+            categoryText.PlaceholderText = "";
+            categoryText.SelectedText = "";
+            categoryText.Size = new Size(64, 28);
+            categoryText.TabIndex = 36;
+            categoryText.Visible = false;
+            // 
+            // descriptionText
+            // 
+            descriptionText.DefaultText = "";
+            descriptionText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            descriptionText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            descriptionText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            descriptionText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            descriptionText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            descriptionText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            descriptionText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            descriptionText.Location = new Point(256, 192);
+            descriptionText.Name = "descriptionText";
+            descriptionText.PasswordChar = '\0';
+            descriptionText.PlaceholderText = "";
+            descriptionText.SelectedText = "";
+            descriptionText.Size = new Size(64, 28);
+            descriptionText.TabIndex = 35;
+            descriptionText.Visible = false;
+            // 
+            // oemNumberText
+            // 
+            oemNumberText.DefaultText = "";
+            oemNumberText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            oemNumberText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            oemNumberText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            oemNumberText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            oemNumberText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            oemNumberText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            oemNumberText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            oemNumberText.Location = new Point(256, 162);
+            oemNumberText.Name = "oemNumberText";
+            oemNumberText.PasswordChar = '\0';
+            oemNumberText.PlaceholderText = "";
+            oemNumberText.SelectedText = "";
+            oemNumberText.Size = new Size(64, 28);
+            oemNumberText.TabIndex = 34;
+            oemNumberText.Visible = false;
             // 
             // part_numberText
             // 
@@ -181,16 +390,16 @@
             totalQtyData.TabIndex = 30;
             totalQtyData.Text = "Data";
             // 
-            // qtyInHandData
+            // unitPriceData
             // 
-            qtyInHandData.BackColor = Color.Transparent;
-            qtyInHandData.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHandData.Location = new Point(271, 496);
-            qtyInHandData.Margin = new Padding(3, 2, 3, 2);
-            qtyInHandData.Name = "qtyInHandData";
-            qtyInHandData.Size = new Size(27, 17);
-            qtyInHandData.TabIndex = 29;
-            qtyInHandData.Text = "Data";
+            unitPriceData.BackColor = Color.Transparent;
+            unitPriceData.ForeColor = Color.FromArgb(133, 141, 157);
+            unitPriceData.Location = new Point(271, 496);
+            unitPriceData.Margin = new Padding(3, 2, 3, 2);
+            unitPriceData.Name = "unitPriceData";
+            unitPriceData.Size = new Size(27, 17);
+            unitPriceData.TabIndex = 29;
+            unitPriceData.Text = "Data";
             // 
             // buyingPriceData
             // 
@@ -325,16 +534,16 @@
             stockDetails.TabIndex = 17;
             stockDetails.Text = "Stock Details";
             // 
-            // qtyInHand
+            // unitPrice
             // 
-            qtyInHand.BackColor = Color.Transparent;
-            qtyInHand.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHand.Location = new Point(35, 496);
-            qtyInHand.Margin = new Padding(3, 2, 3, 2);
-            qtyInHand.Name = "qtyInHand";
-            qtyInHand.Size = new Size(92, 17);
-            qtyInHand.TabIndex = 16;
-            qtyInHand.Text = "Quantity in hand";
+            unitPrice.BackColor = Color.Transparent;
+            unitPrice.ForeColor = Color.FromArgb(133, 141, 157);
+            unitPrice.Location = new Point(35, 496);
+            unitPrice.Margin = new Padding(3, 2, 3, 2);
+            unitPrice.Name = "unitPrice";
+            unitPrice.Size = new Size(54, 17);
+            unitPrice.TabIndex = 16;
+            unitPrice.Text = "Unit Price";
             // 
             // buyingPrice
             // 
@@ -521,215 +730,6 @@
             btnBack.TextOffset = new Point(2, 0);
             btnBack.Click += btnBack_Click;
             // 
-            // oemNumberText
-            // 
-            oemNumberText.DefaultText = "";
-            oemNumberText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            oemNumberText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            oemNumberText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            oemNumberText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            oemNumberText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            oemNumberText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            oemNumberText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            oemNumberText.Location = new Point(256, 162);
-            oemNumberText.Name = "oemNumberText";
-            oemNumberText.PasswordChar = '\0';
-            oemNumberText.PlaceholderText = "";
-            oemNumberText.SelectedText = "";
-            oemNumberText.Size = new Size(64, 28);
-            oemNumberText.TabIndex = 34;
-            oemNumberText.Visible = false;
-            // 
-            // descriptionText
-            // 
-            descriptionText.DefaultText = "";
-            descriptionText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            descriptionText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            descriptionText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            descriptionText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            descriptionText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            descriptionText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            descriptionText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            descriptionText.Location = new Point(256, 192);
-            descriptionText.Name = "descriptionText";
-            descriptionText.PasswordChar = '\0';
-            descriptionText.PlaceholderText = "";
-            descriptionText.SelectedText = "";
-            descriptionText.Size = new Size(64, 28);
-            descriptionText.TabIndex = 35;
-            descriptionText.Visible = false;
-            // 
-            // categoryText
-            // 
-            categoryText.DefaultText = "";
-            categoryText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            categoryText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            categoryText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            categoryText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            categoryText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            categoryText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            categoryText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            categoryText.Location = new Point(256, 222);
-            categoryText.Name = "categoryText";
-            categoryText.PasswordChar = '\0';
-            categoryText.PlaceholderText = "";
-            categoryText.SelectedText = "";
-            categoryText.Size = new Size(64, 28);
-            categoryText.TabIndex = 36;
-            categoryText.Visible = false;
-            // 
-            // brandText
-            // 
-            brandText.DefaultText = "";
-            brandText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            brandText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            brandText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            brandText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            brandText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            brandText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            brandText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            brandText.Location = new Point(256, 253);
-            brandText.Name = "brandText";
-            brandText.PasswordChar = '\0';
-            brandText.PlaceholderText = "";
-            brandText.SelectedText = "";
-            brandText.Size = new Size(64, 28);
-            brandText.TabIndex = 37;
-            brandText.Visible = false;
-            // 
-            // supplierNameText
-            // 
-            supplierNameText.DefaultText = "";
-            supplierNameText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            supplierNameText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            supplierNameText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            supplierNameText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            supplierNameText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            supplierNameText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            supplierNameText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            supplierNameText.Location = new Point(256, 346);
-            supplierNameText.Name = "supplierNameText";
-            supplierNameText.PasswordChar = '\0';
-            supplierNameText.PlaceholderText = "";
-            supplierNameText.SelectedText = "";
-            supplierNameText.Size = new Size(64, 28);
-            supplierNameText.TabIndex = 38;
-            supplierNameText.Visible = false;
-            // 
-            // supplierEmailText
-            // 
-            supplierEmailText.DefaultText = "";
-            supplierEmailText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            supplierEmailText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            supplierEmailText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            supplierEmailText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            supplierEmailText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            supplierEmailText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            supplierEmailText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            supplierEmailText.Location = new Point(256, 379);
-            supplierEmailText.Name = "supplierEmailText";
-            supplierEmailText.PasswordChar = '\0';
-            supplierEmailText.PlaceholderText = "";
-            supplierEmailText.SelectedText = "";
-            supplierEmailText.Size = new Size(64, 28);
-            supplierEmailText.TabIndex = 39;
-            supplierEmailText.Visible = false;
-            // 
-            // buyingPriceText
-            // 
-            buyingPriceText.DefaultText = "";
-            buyingPriceText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            buyingPriceText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            buyingPriceText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            buyingPriceText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            buyingPriceText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            buyingPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            buyingPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            buyingPriceText.Location = new Point(256, 453);
-            buyingPriceText.Name = "buyingPriceText";
-            buyingPriceText.PasswordChar = '\0';
-            buyingPriceText.PlaceholderText = "";
-            buyingPriceText.SelectedText = "";
-            buyingPriceText.Size = new Size(64, 28);
-            buyingPriceText.TabIndex = 40;
-            buyingPriceText.Visible = false;
-            // 
-            // qtyInHandText
-            // 
-            qtyInHandText.DefaultText = "";
-            qtyInHandText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            qtyInHandText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            qtyInHandText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            qtyInHandText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            qtyInHandText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            qtyInHandText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            qtyInHandText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            qtyInHandText.Location = new Point(256, 485);
-            qtyInHandText.Name = "qtyInHandText";
-            qtyInHandText.PasswordChar = '\0';
-            qtyInHandText.PlaceholderText = "";
-            qtyInHandText.SelectedText = "";
-            qtyInHandText.Size = new Size(64, 28);
-            qtyInHandText.TabIndex = 41;
-            qtyInHandText.Visible = false;
-            // 
-            // totalQtyText
-            // 
-            totalQtyText.DefaultText = "";
-            totalQtyText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            totalQtyText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            totalQtyText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            totalQtyText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            totalQtyText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            totalQtyText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            totalQtyText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            totalQtyText.Location = new Point(717, 132);
-            totalQtyText.Name = "totalQtyText";
-            totalQtyText.PasswordChar = '\0';
-            totalQtyText.PlaceholderText = "";
-            totalQtyText.SelectedText = "";
-            totalQtyText.Size = new Size(64, 28);
-            totalQtyText.TabIndex = 42;
-            totalQtyText.Visible = false;
-            // 
-            // qtyInHndText
-            // 
-            qtyInHndText.DefaultText = "";
-            qtyInHndText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            qtyInHndText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            qtyInHndText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            qtyInHndText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            qtyInHndText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            qtyInHndText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            qtyInHndText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            qtyInHndText.Location = new Point(717, 162);
-            qtyInHndText.Name = "qtyInHndText";
-            qtyInHndText.PasswordChar = '\0';
-            qtyInHndText.PlaceholderText = "";
-            qtyInHndText.SelectedText = "";
-            qtyInHndText.Size = new Size(64, 28);
-            qtyInHndText.TabIndex = 43;
-            qtyInHndText.Visible = false;
-            // 
-            // qtySoldText
-            // 
-            qtySoldText.DefaultText = "";
-            qtySoldText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            qtySoldText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            qtySoldText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            qtySoldText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            qtySoldText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            qtySoldText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            qtySoldText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            qtySoldText.Location = new Point(717, 192);
-            qtySoldText.Name = "qtySoldText";
-            qtySoldText.PasswordChar = '\0';
-            qtySoldText.PlaceholderText = "";
-            qtySoldText.SelectedText = "";
-            qtySoldText.Size = new Size(64, 28);
-            qtySoldText.TabIndex = 44;
-            qtySoldText.Visible = false;
-            // 
             // UC_ItemDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -749,7 +749,7 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnBack;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnEdit;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHand;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel unitPrice;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel buyingPrice;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel priceDetails;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierEmail;
@@ -769,7 +769,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtySoldData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHndData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel totalQtyData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHandData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel unitPriceData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel buyingPriceData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierEmailData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierNameData;
@@ -782,7 +782,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox qtySoldText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox qtyInHndText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox totalQtyText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox qtyInHandText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox unitPriceText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox buyingPriceText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox supplierEmailText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox supplierNameText;

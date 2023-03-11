@@ -54,8 +54,9 @@ namespace InventoryManagementSystem.UserControls
             var quantity = document["quantity"].AsInt32;
             var quantity_sold = document["quantity_sold"].AsInt32;
             var supplier = document["supplier"].AsString;
+            var unit_price = document["unit_price"].AsString;
             int quantity_in_hand = quantity - quantity_sold;
-            int quantity_in_hnd = quantity - quantity_sold;
+            
 
 
             //Displaying fetched data
@@ -66,10 +67,10 @@ namespace InventoryManagementSystem.UserControls
             brandData.Text = brand.ToString();
             supplierNameData.Text = supplier.ToString();
             buyingPriceData.Text = buying_price.ToString();
-            qtyInHandData.Text = quantity_in_hand.ToString();
+            unitPriceData.Text = unit_price.ToString();
             totalQtyData.Text = quantity.ToString();
             qtySoldData.Text = quantity_sold.ToString();
-            qtyInHndData.Text = quantity_in_hnd.ToString();
+            qtyInHndData.Text = quantity_in_hand.ToString();
 
         }
 
@@ -116,7 +117,7 @@ namespace InventoryManagementSystem.UserControls
             brandData.Hide();
             supplierNameData.Hide();
             buyingPriceData.Hide();
-            qtyInHandData.Hide();
+            unitPriceData.Hide();
             qtyInHndData.Hide(); //quantity in hand in stock details i named it as qtyInHnd
             qtySoldData.Hide();
             totalQtyData.Hide();
@@ -132,7 +133,7 @@ namespace InventoryManagementSystem.UserControls
             supplierNameText.Visible = true;
             supplierEmailText.Visible = true;
             buyingPriceText.Visible = true;
-            qtyInHandText.Visible = true;
+            unitPriceText.Visible = true;
             qtyInHndData.Visible = true;
             totalQtyText.Visible = true;
             qtySoldText.Visible = true;
@@ -149,23 +150,23 @@ namespace InventoryManagementSystem.UserControls
             supplierNameText.Text = supplierNameData.Text;
             supplierEmailText.Text = supplierEmailData.Text;
             buyingPriceText.Text = buyingPriceData.Text;
-            qtyInHandText.Text = qtyInHandData.Text;
+            unitPriceText.Text = unitPriceData.Text;
             totalQtyText.Text = totalQtyData.Text;
             qtySoldText.Text = qtySoldData.Text;
             qtyInHndText.Text = qtyInHndData.Text;
 
             // hide the old data label
-            partNumberData.Visible =    false;
-            descriptionData.Visible =   false;
-            categoryData.Visible =      false;
-            brandData.Visible =         false;
-            supplierNameData.Visible =  false;
+            partNumberData.Visible = false;
+            descriptionData.Visible = false;
+            categoryData.Visible = false;
+            brandData.Visible = false;
+            supplierNameData.Visible = false;
             supplierEmailData.Visible = false;
-            buyingPriceData.Visible =   false;
-            qtyInHandData.Visible =     false;
-            qtySoldData.Visible =       false;
-            qtyInHndData.Visible =      false;
-            totalQtyData.Visible =      false;
+            buyingPriceData.Visible = false;
+            unitPriceData.Visible = false;
+            qtySoldData.Visible = false;
+            qtyInHndData.Visible = false;
+            totalQtyData.Visible = false;
 
 
         }
