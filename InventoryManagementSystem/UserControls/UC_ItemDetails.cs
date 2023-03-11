@@ -1,7 +1,11 @@
-﻿using Siticone.Desktop.UI.WinForms;
+﻿using dotenv.net;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using Siticone.Desktop.UI.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -21,7 +25,48 @@ namespace InventoryManagementSystem.UserControls
 
         public void UpdateContent(string part_number)
         {
+            //Displaying the parameter of the part Number label 
             partNumber.Text = part_number.ToString();
+
+            // Create a MongoDB client and connect to the database
+            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+
+            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+            // Get a reference to the collection you want to query
+            var collection = database.GetCollection<BsonDocument>("items");
+
+            // Define the query filter . representing the query
+            var filter = Builders<BsonDocument>.Filter.Eq("part_number", part_number);
+
+            //Storing the variable of the filtered document 
+            var document = collection.Find(filter).FirstOrDefault();
+
+            //Storing the variables of the document
+            //Creating Variables
+            var oem_number = document["oem_number"].AsString;
+            var description = document["description"].AsString;
+            var category = document["category"].AsString;
+            var brand = document["brand"].AsString;
+            var buying_price = document["buying_price"].AsDecimal128;
+            var quantity = document["quantity"].AsInt32;
+            var quantity_sold = document["quantity_sold"].AsInt32;
+            var supplier = document["supplier"].AsString;
+            int quantity_in_hand = quantity - quantity_sold;
+
+
+            //Displaying fetched data
+            partNumberData.Text = part_number.ToString();
+            oemNumberData.Text = oem_number.ToString();
+            descriptionData.Text = description.ToString();
+            categoryData.Text = category.ToString();
+            brandData.Text = brand.ToString();
+            supplierNameData.Text = supplier.ToString();
+            buyingPriceData.Text = buying_price.ToString();
+            qtyInHandData.Text = quantity_in_hand.ToString();
+            totalQtyData.Text = quantity.ToString();
+            qtySoldData.Text = quantity_sold.ToString();
+            
         }
 
         private void UpdatePanelRegion(Panel panel)
