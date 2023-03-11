@@ -32,7 +32,7 @@
             qtySoldData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             qtyInHndData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             totalQtyData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            qtyInHandData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            unitPriceData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             buyingPriceData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             supplierEmailData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             supplierNameData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -69,7 +69,7 @@
             siticonePanel1.Controls.Add(qtySoldData);
             siticonePanel1.Controls.Add(qtyInHndData);
             siticonePanel1.Controls.Add(totalQtyData);
-            siticonePanel1.Controls.Add(qtyInHandData);
+            siticonePanel1.Controls.Add(unitPriceData);
             siticonePanel1.Controls.Add(buyingPriceData);
             siticonePanel1.Controls.Add(supplierEmailData);
             siticonePanel1.Controls.Add(supplierNameData);
@@ -134,15 +134,15 @@
             totalQtyData.TabIndex = 30;
             totalQtyData.Text = "Data";
             // 
-            // qtyInHandData
+            // unitPriceData
             // 
-            qtyInHandData.BackColor = Color.Transparent;
-            qtyInHandData.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHandData.Location = new Point(310, 661);
-            qtyInHandData.Name = "qtyInHandData";
-            qtyInHandData.Size = new Size(35, 22);
-            qtyInHandData.TabIndex = 29;
-            qtyInHandData.Text = "Data";
+            unitPriceData.BackColor = Color.Transparent;
+            unitPriceData.ForeColor = Color.FromArgb(133, 141, 157);
+            unitPriceData.Location = new Point(310, 661);
+            unitPriceData.Name = "unitPriceData";
+            unitPriceData.Size = new Size(35, 22);
+            unitPriceData.TabIndex = 29;
+            unitPriceData.Text = "Data";
             // 
             // buyingPriceData
             // 
@@ -271,9 +271,9 @@
             qtyInHand.ForeColor = Color.FromArgb(133, 141, 157);
             qtyInHand.Location = new Point(40, 661);
             qtyInHand.Name = "qtyInHand";
-            qtyInHand.Size = new Size(112, 22);
+            qtyInHand.Size = new Size(66, 22);
             qtyInHand.TabIndex = 16;
-            qtyInHand.Text = "Quantity in hand";
+            qtyInHand.Text = "Unit Price";
             // 
             // buyingPrice
             // 
@@ -454,6 +454,7 @@
             Name = "UC_ItemDetails";
             Padding = new Padding(19, 19, 22, 21);
             Size = new Size(1142, 813);
+            Load += UC_ItemDetails_Load;
             siticonePanel1.ResumeLayout(false);
             siticonePanel1.PerformLayout();
             ResumeLayout(false);
@@ -484,7 +485,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtySoldData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHndData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel totalQtyData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHandData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel unitPriceData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel buyingPriceData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierEmailData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierNameData;

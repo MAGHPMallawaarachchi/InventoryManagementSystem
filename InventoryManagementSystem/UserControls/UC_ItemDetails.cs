@@ -49,6 +49,7 @@ namespace InventoryManagementSystem.UserControls
             var category = document["category"].AsString;
             var brand = document["brand"].AsString;
             var buying_price = document["buying_price"].AsDecimal128;
+            var unit_price = document["unit_price"].AsDecimal128;
             var quantity = document["quantity"].AsInt32;
             var quantity_sold = document["quantity_sold"].AsInt32;
             var supplier = document["supplier"].AsString;
@@ -63,10 +64,11 @@ namespace InventoryManagementSystem.UserControls
             brandData.Text = brand.ToString();
             supplierNameData.Text = supplier.ToString();
             buyingPriceData.Text = buying_price.ToString();
-            qtyInHandData.Text = quantity_in_hand.ToString();
+            unitPriceData.Text = unit_price.ToString();
             totalQtyData.Text = quantity.ToString();
             qtySoldData.Text = quantity_sold.ToString();
-            
+            qtyInHndData.Text = quantity_in_hand.ToString();
+
         }
 
         private void UpdatePanelRegion(Panel panel)
@@ -107,5 +109,9 @@ namespace InventoryManagementSystem.UserControls
 
         }
 
+        private void UC_ItemDetails_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
