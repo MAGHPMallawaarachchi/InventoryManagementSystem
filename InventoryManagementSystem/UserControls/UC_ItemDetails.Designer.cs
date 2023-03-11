@@ -139,6 +139,7 @@
             btnDiscard.BorderColor = Color.FromArgb(208, 211, 217);
             btnDiscard.BorderRadius = 4;
             btnDiscard.BorderThickness = 2;
+            btnDiscard.Cursor = Cursors.Hand;
             btnDiscard.DisabledState.BorderColor = Color.DarkGray;
             btnDiscard.DisabledState.CustomBorderColor = Color.DarkGray;
             btnDiscard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -166,6 +167,7 @@
             btnUpdate.BorderColor = Color.FromArgb(10, 73, 156);
             btnUpdate.BorderRadius = 4;
             btnUpdate.BorderThickness = 2;
+            btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.DisabledState.BorderColor = Color.DarkGray;
             btnUpdate.DisabledState.CustomBorderColor = Color.DarkGray;
             btnUpdate.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -767,6 +769,7 @@
             btnEdit.BorderColor = Color.FromArgb(208, 211, 217);
             btnEdit.BorderRadius = 4;
             btnEdit.BorderThickness = 2;
+            btnEdit.Cursor = Cursors.Hand;
             btnEdit.DisabledState.BorderColor = Color.DarkGray;
             btnEdit.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEdit.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -795,6 +798,7 @@
             btnBack.BorderColor = Color.FromArgb(208, 211, 217);
             btnBack.BorderRadius = 4;
             btnBack.BorderThickness = 2;
+            btnBack.Cursor = Cursors.Hand;
             btnBack.DisabledState.BorderColor = Color.DarkGray;
             btnBack.DisabledState.CustomBorderColor = Color.DarkGray;
             btnBack.DisabledState.FillColor = Color.FromArgb(169, 169, 169);

@@ -239,6 +239,7 @@
             cbBrand.BackColor = Color.Transparent;
             cbBrand.BorderColor = Color.FromArgb(208, 213, 221);
             cbBrand.BorderRadius = 8;
+            cbBrand.Cursor = Cursors.Hand;
             cbBrand.DrawMode = DrawMode.OwnerDrawFixed;
             cbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
             cbBrand.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -256,6 +257,7 @@
             // 
             // btnReload
             // 
+            btnReload.Cursor = Cursors.Hand;
             btnReload.DisabledState.BorderColor = Color.DarkGray;
             btnReload.DisabledState.CustomBorderColor = Color.DarkGray;
             btnReload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -283,6 +285,7 @@
             cbCategory.BackColor = Color.Transparent;
             cbCategory.BorderColor = Color.FromArgb(208, 213, 221);
             cbCategory.BorderRadius = 8;
+            cbCategory.Cursor = Cursors.Hand;
             cbCategory.DrawMode = DrawMode.OwnerDrawFixed;
             cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCategory.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -437,6 +440,7 @@
             btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
             btnAddItem.BorderRadius = 4;
             btnAddItem.BorderThickness = 2;
+            btnAddItem.Cursor = Cursors.Hand;
             btnAddItem.DisabledState.BorderColor = Color.DarkGray;
             btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
