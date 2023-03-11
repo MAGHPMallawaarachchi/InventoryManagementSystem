@@ -14,6 +14,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MongoDB.Driver.WriteConcern;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventoryManagementSystem.UserControls
@@ -56,7 +57,7 @@ namespace InventoryManagementSystem.UserControls
             var quantity_sold = document["quantity_sold"].AsInt32;
             var supplier = document["supplier"].AsString;
             int quantity_in_hand = quantity - quantity_sold;
-            
+
 
 
             //Displaying fetched data
@@ -106,9 +107,18 @@ namespace InventoryManagementSystem.UserControls
                 dashboard.addUserControl(uc);
             }
         }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // set the update button control to not visible
+            updateBtn.Visible = false;
+        }
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            // set the update button control to visible
+            updateBtn.Visible = true;
+
             //Hiding the Previous data
             partNumberData.Hide();
             oemNumberData.Hide();
@@ -167,6 +177,48 @@ namespace InventoryManagementSystem.UserControls
             qtySoldData.Visible = false;
             qtyInHndData.Visible = false;
             totalQtyData.Visible = false;
+
+        }
+
+        private void updateBtn_Click(object sender, EventArgs e)
+
+        {
+            // retrieve the new value from the text box
+            string newValue = part_numberText.Text;
+
+            // create a new MongoDB client object
+            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+
+            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+
+            // Get a reference to the collection you want to query
+            var collection = database.GetCollection<BsonDocument>("items");
+
+            // Define the query filter . representing the query
+            var filter = Builders<BsonDocument>.Filter.Eq("part_number", "part_numberText.Text");
+            UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.Set("part_number", newValue);
+
+            // execute the update operation
+            UpdateResult result = collection.UpdateOne(filter, update);
+
+            // check if the update was successful
+            if (result.ModifiedCount > 0)
+            {
+                // retrieve the updated document or documents from the database
+                List<BsonDocument> documents = collection.Find(filter).ToList();
+
+                // display the updated values
+                foreach (BsonDocument document in documents)
+                {
+                    string updatedValue = document["part_number"].ToString();
+                    part_numberText.Text = updatedValue;
+                }
+            }
+            else
+            {
+                // display an error message if the update failed
+                part_numberText.Text = "Update failed.";
+            }
 
         }
     }
