@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            qtySoldText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            qtyInHndText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            totalQtyText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            unitPriceText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            buyingPriceText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            supplierEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            supplierNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            brandText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            categoryText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            descriptionText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            oemNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            part_numberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             qtySoldData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             qtyInHndData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             totalQtyData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -45,7 +57,7 @@
             qtyInHnd = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             totalQty = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             stockDetails = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            qtyInHand = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            unitPrice = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             buyingPrice = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             priceDetails = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             supplierEmail = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -66,6 +78,18 @@
             // siticonePanel1
             // 
             siticonePanel1.BackColor = Color.White;
+            siticonePanel1.Controls.Add(qtySoldText);
+            siticonePanel1.Controls.Add(qtyInHndText);
+            siticonePanel1.Controls.Add(totalQtyText);
+            siticonePanel1.Controls.Add(unitPriceText);
+            siticonePanel1.Controls.Add(buyingPriceText);
+            siticonePanel1.Controls.Add(supplierEmailText);
+            siticonePanel1.Controls.Add(supplierNameText);
+            siticonePanel1.Controls.Add(brandText);
+            siticonePanel1.Controls.Add(categoryText);
+            siticonePanel1.Controls.Add(descriptionText);
+            siticonePanel1.Controls.Add(oemNumberText);
+            siticonePanel1.Controls.Add(part_numberText);
             siticonePanel1.Controls.Add(qtySoldData);
             siticonePanel1.Controls.Add(qtyInHndData);
             siticonePanel1.Controls.Add(totalQtyData);
@@ -82,7 +106,7 @@
             siticonePanel1.Controls.Add(qtyInHnd);
             siticonePanel1.Controls.Add(totalQty);
             siticonePanel1.Controls.Add(stockDetails);
-            siticonePanel1.Controls.Add(qtyInHand);
+            siticonePanel1.Controls.Add(unitPrice);
             siticonePanel1.Controls.Add(buyingPrice);
             siticonePanel1.Controls.Add(priceDetails);
             siticonePanel1.Controls.Add(supplierEmail);
@@ -98,19 +122,249 @@
             siticonePanel1.Controls.Add(btnEdit);
             siticonePanel1.Controls.Add(btnBack);
             siticonePanel1.Dock = DockStyle.Fill;
-            siticonePanel1.Location = new Point(19, 19);
+            siticonePanel1.Location = new Point(17, 14);
+            siticonePanel1.Margin = new Padding(3, 2, 3, 2);
             siticonePanel1.Name = "siticonePanel1";
-            siticonePanel1.Size = new Size(1101, 773);
+            siticonePanel1.Size = new Size(963, 580);
             siticonePanel1.TabIndex = 0;
             siticonePanel1.SizeChanged += siticonePanel1_SizeChanged;
+            // 
+            // qtySoldText
+            // 
+            qtySoldText.DefaultText = "";
+            qtySoldText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            qtySoldText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            qtySoldText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            qtySoldText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            qtySoldText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtySoldText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            qtySoldText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtySoldText.Location = new Point(717, 192);
+            qtySoldText.Name = "qtySoldText";
+            qtySoldText.PasswordChar = '\0';
+            qtySoldText.PlaceholderText = "";
+            qtySoldText.SelectedText = "";
+            qtySoldText.Size = new Size(64, 28);
+            qtySoldText.TabIndex = 44;
+            qtySoldText.Visible = false;
+            // 
+            // qtyInHndText
+            // 
+            qtyInHndText.DefaultText = "";
+            qtyInHndText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            qtyInHndText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            qtyInHndText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            qtyInHndText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            qtyInHndText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtyInHndText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            qtyInHndText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            qtyInHndText.Location = new Point(717, 162);
+            qtyInHndText.Name = "qtyInHndText";
+            qtyInHndText.PasswordChar = '\0';
+            qtyInHndText.PlaceholderText = "";
+            qtyInHndText.SelectedText = "";
+            qtyInHndText.Size = new Size(64, 28);
+            qtyInHndText.TabIndex = 43;
+            qtyInHndText.Visible = false;
+            // 
+            // totalQtyText
+            // 
+            totalQtyText.DefaultText = "";
+            totalQtyText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            totalQtyText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            totalQtyText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            totalQtyText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            totalQtyText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            totalQtyText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            totalQtyText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            totalQtyText.Location = new Point(717, 132);
+            totalQtyText.Name = "totalQtyText";
+            totalQtyText.PasswordChar = '\0';
+            totalQtyText.PlaceholderText = "";
+            totalQtyText.SelectedText = "";
+            totalQtyText.Size = new Size(64, 28);
+            totalQtyText.TabIndex = 42;
+            totalQtyText.Visible = false;
+            // 
+            // unitPriceText
+            // 
+            unitPriceText.DefaultText = "";
+            unitPriceText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            unitPriceText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            unitPriceText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            unitPriceText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            unitPriceText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            unitPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            unitPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            unitPriceText.Location = new Point(256, 487);
+            unitPriceText.Name = "unitPriceText";
+            unitPriceText.PasswordChar = '\0';
+            unitPriceText.PlaceholderText = "";
+            unitPriceText.SelectedText = "";
+            unitPriceText.Size = new Size(64, 28);
+            unitPriceText.TabIndex = 41;
+            unitPriceText.Visible = false;
+            // 
+            // buyingPriceText
+            // 
+            buyingPriceText.DefaultText = "";
+            buyingPriceText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            buyingPriceText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            buyingPriceText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            buyingPriceText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            buyingPriceText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            buyingPriceText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            buyingPriceText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            buyingPriceText.Location = new Point(256, 453);
+            buyingPriceText.Name = "buyingPriceText";
+            buyingPriceText.PasswordChar = '\0';
+            buyingPriceText.PlaceholderText = "";
+            buyingPriceText.SelectedText = "";
+            buyingPriceText.Size = new Size(64, 28);
+            buyingPriceText.TabIndex = 40;
+            buyingPriceText.Visible = false;
+            // 
+            // supplierEmailText
+            // 
+            supplierEmailText.DefaultText = "";
+            supplierEmailText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            supplierEmailText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            supplierEmailText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            supplierEmailText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            supplierEmailText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierEmailText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            supplierEmailText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierEmailText.Location = new Point(256, 379);
+            supplierEmailText.Name = "supplierEmailText";
+            supplierEmailText.PasswordChar = '\0';
+            supplierEmailText.PlaceholderText = "";
+            supplierEmailText.SelectedText = "";
+            supplierEmailText.Size = new Size(64, 28);
+            supplierEmailText.TabIndex = 39;
+            supplierEmailText.Visible = false;
+            // 
+            // supplierNameText
+            // 
+            supplierNameText.DefaultText = "";
+            supplierNameText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            supplierNameText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            supplierNameText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            supplierNameText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            supplierNameText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierNameText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            supplierNameText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            supplierNameText.Location = new Point(256, 346);
+            supplierNameText.Name = "supplierNameText";
+            supplierNameText.PasswordChar = '\0';
+            supplierNameText.PlaceholderText = "";
+            supplierNameText.SelectedText = "";
+            supplierNameText.Size = new Size(64, 28);
+            supplierNameText.TabIndex = 38;
+            supplierNameText.Visible = false;
+            // 
+            // brandText
+            // 
+            brandText.DefaultText = "";
+            brandText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            brandText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            brandText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            brandText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            brandText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            brandText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            brandText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            brandText.Location = new Point(256, 253);
+            brandText.Name = "brandText";
+            brandText.PasswordChar = '\0';
+            brandText.PlaceholderText = "";
+            brandText.SelectedText = "";
+            brandText.Size = new Size(64, 28);
+            brandText.TabIndex = 37;
+            brandText.Visible = false;
+            // 
+            // categoryText
+            // 
+            categoryText.DefaultText = "";
+            categoryText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            categoryText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            categoryText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            categoryText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            categoryText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            categoryText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            categoryText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            categoryText.Location = new Point(256, 222);
+            categoryText.Name = "categoryText";
+            categoryText.PasswordChar = '\0';
+            categoryText.PlaceholderText = "";
+            categoryText.SelectedText = "";
+            categoryText.Size = new Size(64, 28);
+            categoryText.TabIndex = 36;
+            categoryText.Visible = false;
+            // 
+            // descriptionText
+            // 
+            descriptionText.DefaultText = "";
+            descriptionText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            descriptionText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            descriptionText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            descriptionText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            descriptionText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            descriptionText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            descriptionText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            descriptionText.Location = new Point(256, 192);
+            descriptionText.Name = "descriptionText";
+            descriptionText.PasswordChar = '\0';
+            descriptionText.PlaceholderText = "";
+            descriptionText.SelectedText = "";
+            descriptionText.Size = new Size(64, 28);
+            descriptionText.TabIndex = 35;
+            descriptionText.Visible = false;
+            // 
+            // oemNumberText
+            // 
+            oemNumberText.DefaultText = "";
+            oemNumberText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            oemNumberText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            oemNumberText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            oemNumberText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            oemNumberText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            oemNumberText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            oemNumberText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            oemNumberText.Location = new Point(256, 162);
+            oemNumberText.Name = "oemNumberText";
+            oemNumberText.PasswordChar = '\0';
+            oemNumberText.PlaceholderText = "";
+            oemNumberText.SelectedText = "";
+            oemNumberText.Size = new Size(64, 28);
+            oemNumberText.TabIndex = 34;
+            oemNumberText.Visible = false;
+            // 
+            // part_numberText
+            // 
+            part_numberText.DefaultText = "";
+            part_numberText.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            part_numberText.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            part_numberText.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            part_numberText.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            part_numberText.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            part_numberText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            part_numberText.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            part_numberText.Location = new Point(256, 132);
+            part_numberText.Name = "part_numberText";
+            part_numberText.PasswordChar = '\0';
+            part_numberText.PlaceholderText = "";
+            part_numberText.SelectedText = "";
+            part_numberText.Size = new Size(64, 28);
+            part_numberText.TabIndex = 33;
+            part_numberText.Visible = false;
             // 
             // qtySoldData
             // 
             qtySoldData.BackColor = Color.Transparent;
             qtySoldData.ForeColor = Color.FromArgb(133, 141, 157);
-            qtySoldData.Location = new Point(838, 256);
+            qtySoldData.Location = new Point(733, 192);
+            qtySoldData.Margin = new Padding(3, 2, 3, 2);
             qtySoldData.Name = "qtySoldData";
-            qtySoldData.Size = new Size(35, 22);
+            qtySoldData.Size = new Size(27, 17);
             qtySoldData.TabIndex = 32;
             qtySoldData.Text = "Data";
             // 
@@ -118,9 +372,10 @@
             // 
             qtyInHndData.BackColor = Color.Transparent;
             qtyInHndData.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHndData.Location = new Point(838, 217);
+            qtyInHndData.Location = new Point(733, 163);
+            qtyInHndData.Margin = new Padding(3, 2, 3, 2);
             qtyInHndData.Name = "qtyInHndData";
-            qtyInHndData.Size = new Size(35, 22);
+            qtyInHndData.Size = new Size(27, 17);
             qtyInHndData.TabIndex = 31;
             qtyInHndData.Text = "Data";
             // 
@@ -128,9 +383,10 @@
             // 
             totalQtyData.BackColor = Color.Transparent;
             totalQtyData.ForeColor = Color.FromArgb(133, 141, 157);
-            totalQtyData.Location = new Point(838, 176);
+            totalQtyData.Location = new Point(733, 132);
+            totalQtyData.Margin = new Padding(3, 2, 3, 2);
             totalQtyData.Name = "totalQtyData";
-            totalQtyData.Size = new Size(35, 22);
+            totalQtyData.Size = new Size(27, 17);
             totalQtyData.TabIndex = 30;
             totalQtyData.Text = "Data";
             // 
@@ -138,9 +394,10 @@
             // 
             unitPriceData.BackColor = Color.Transparent;
             unitPriceData.ForeColor = Color.FromArgb(133, 141, 157);
-            unitPriceData.Location = new Point(310, 661);
+            unitPriceData.Location = new Point(271, 496);
+            unitPriceData.Margin = new Padding(3, 2, 3, 2);
             unitPriceData.Name = "unitPriceData";
-            unitPriceData.Size = new Size(35, 22);
+            unitPriceData.Size = new Size(27, 17);
             unitPriceData.TabIndex = 29;
             unitPriceData.Text = "Data";
             // 
@@ -148,9 +405,10 @@
             // 
             buyingPriceData.BackColor = Color.Transparent;
             buyingPriceData.ForeColor = Color.FromArgb(133, 141, 157);
-            buyingPriceData.Location = new Point(310, 618);
+            buyingPriceData.Location = new Point(271, 464);
+            buyingPriceData.Margin = new Padding(3, 2, 3, 2);
             buyingPriceData.Name = "buyingPriceData";
-            buyingPriceData.Size = new Size(35, 22);
+            buyingPriceData.Size = new Size(27, 17);
             buyingPriceData.TabIndex = 28;
             buyingPriceData.Text = "Data";
             // 
@@ -158,9 +416,10 @@
             // 
             supplierEmailData.BackColor = Color.Transparent;
             supplierEmailData.ForeColor = Color.FromArgb(133, 141, 157);
-            supplierEmailData.Location = new Point(310, 505);
+            supplierEmailData.Location = new Point(271, 379);
+            supplierEmailData.Margin = new Padding(3, 2, 3, 2);
             supplierEmailData.Name = "supplierEmailData";
-            supplierEmailData.Size = new Size(35, 22);
+            supplierEmailData.Size = new Size(27, 17);
             supplierEmailData.TabIndex = 27;
             supplierEmailData.Text = "Data";
             // 
@@ -168,9 +427,10 @@
             // 
             supplierNameData.BackColor = Color.Transparent;
             supplierNameData.ForeColor = Color.FromArgb(133, 141, 157);
-            supplierNameData.Location = new Point(310, 462);
+            supplierNameData.Location = new Point(271, 346);
+            supplierNameData.Margin = new Padding(3, 2, 3, 2);
             supplierNameData.Name = "supplierNameData";
-            supplierNameData.Size = new Size(35, 22);
+            supplierNameData.Size = new Size(27, 17);
             supplierNameData.TabIndex = 26;
             supplierNameData.Text = "Data";
             // 
@@ -178,9 +438,10 @@
             // 
             brandData.BackColor = Color.Transparent;
             brandData.ForeColor = Color.FromArgb(133, 141, 157);
-            brandData.Location = new Point(310, 337);
+            brandData.Location = new Point(271, 253);
+            brandData.Margin = new Padding(3, 2, 3, 2);
             brandData.Name = "brandData";
-            brandData.Size = new Size(35, 22);
+            brandData.Size = new Size(27, 17);
             brandData.TabIndex = 25;
             brandData.Text = "Data";
             // 
@@ -188,9 +449,10 @@
             // 
             categoryData.BackColor = Color.Transparent;
             categoryData.ForeColor = Color.FromArgb(133, 141, 157);
-            categoryData.Location = new Point(310, 296);
+            categoryData.Location = new Point(271, 222);
+            categoryData.Margin = new Padding(3, 2, 3, 2);
             categoryData.Name = "categoryData";
-            categoryData.Size = new Size(35, 22);
+            categoryData.Size = new Size(27, 17);
             categoryData.TabIndex = 24;
             categoryData.Text = "Data";
             // 
@@ -198,9 +460,10 @@
             // 
             descriptionData.BackColor = Color.Transparent;
             descriptionData.ForeColor = Color.FromArgb(133, 141, 157);
-            descriptionData.Location = new Point(310, 256);
+            descriptionData.Location = new Point(271, 192);
+            descriptionData.Margin = new Padding(3, 2, 3, 2);
             descriptionData.Name = "descriptionData";
-            descriptionData.Size = new Size(35, 22);
+            descriptionData.Size = new Size(27, 17);
             descriptionData.TabIndex = 23;
             descriptionData.Text = "Data";
             // 
@@ -208,9 +471,10 @@
             // 
             oemNumberData.BackColor = Color.Transparent;
             oemNumberData.ForeColor = Color.FromArgb(133, 141, 157);
-            oemNumberData.Location = new Point(310, 217);
+            oemNumberData.Location = new Point(271, 163);
+            oemNumberData.Margin = new Padding(3, 2, 3, 2);
             oemNumberData.Name = "oemNumberData";
-            oemNumberData.Size = new Size(35, 22);
+            oemNumberData.Size = new Size(27, 17);
             oemNumberData.TabIndex = 22;
             oemNumberData.Text = "Data";
             // 
@@ -218,9 +482,10 @@
             // 
             partNumberData.BackColor = Color.Transparent;
             partNumberData.ForeColor = Color.FromArgb(133, 141, 157);
-            partNumberData.Location = new Point(310, 176);
+            partNumberData.Location = new Point(271, 132);
+            partNumberData.Margin = new Padding(3, 2, 3, 2);
             partNumberData.Name = "partNumberData";
-            partNumberData.Size = new Size(35, 22);
+            partNumberData.Size = new Size(27, 17);
             partNumberData.TabIndex = 21;
             partNumberData.Text = "Data";
             // 
@@ -228,9 +493,10 @@
             // 
             qtySold.BackColor = Color.Transparent;
             qtySold.ForeColor = Color.FromArgb(133, 141, 157);
-            qtySold.Location = new Point(622, 256);
+            qtySold.Location = new Point(544, 192);
+            qtySold.Margin = new Padding(3, 2, 3, 2);
             qtySold.Name = "qtySold";
-            qtySold.Size = new Size(93, 22);
+            qtySold.Size = new Size(75, 17);
             qtySold.TabIndex = 20;
             qtySold.Text = "Quantity Sold";
             // 
@@ -238,9 +504,10 @@
             // 
             qtyInHnd.BackColor = Color.Transparent;
             qtyInHnd.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHnd.Location = new Point(622, 217);
+            qtyInHnd.Location = new Point(544, 163);
+            qtyInHnd.Margin = new Padding(3, 2, 3, 2);
             qtyInHnd.Name = "qtyInHnd";
-            qtyInHnd.Size = new Size(112, 22);
+            qtyInHnd.Size = new Size(92, 17);
             qtyInHnd.TabIndex = 19;
             qtyInHnd.Text = "Quantity in hand";
             // 
@@ -248,9 +515,10 @@
             // 
             totalQty.BackColor = Color.Transparent;
             totalQty.ForeColor = Color.FromArgb(133, 141, 157);
-            totalQty.Location = new Point(622, 176);
+            totalQty.Location = new Point(544, 132);
+            totalQty.Margin = new Padding(3, 2, 3, 2);
             totalQty.Name = "totalQty";
-            totalQty.Size = new Size(97, 22);
+            totalQty.Size = new Size(78, 17);
             totalQty.TabIndex = 18;
             totalQty.Text = "Total Quantity";
             // 
@@ -259,29 +527,32 @@
             stockDetails.BackColor = Color.Transparent;
             stockDetails.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             stockDetails.ForeColor = Color.FromArgb(72, 80, 94);
-            stockDetails.Location = new Point(622, 131);
+            stockDetails.Location = new Point(544, 98);
+            stockDetails.Margin = new Padding(3, 2, 3, 2);
             stockDetails.Name = "stockDetails";
-            stockDetails.Size = new Size(93, 22);
+            stockDetails.Size = new Size(76, 17);
             stockDetails.TabIndex = 17;
             stockDetails.Text = "Stock Details";
             // 
-            // qtyInHand
+            // unitPrice
             // 
-            qtyInHand.BackColor = Color.Transparent;
-            qtyInHand.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHand.Location = new Point(40, 661);
-            qtyInHand.Name = "qtyInHand";
-            qtyInHand.Size = new Size(66, 22);
-            qtyInHand.TabIndex = 16;
-            qtyInHand.Text = "Unit Price";
+            unitPrice.BackColor = Color.Transparent;
+            unitPrice.ForeColor = Color.FromArgb(133, 141, 157);
+            unitPrice.Location = new Point(35, 496);
+            unitPrice.Margin = new Padding(3, 2, 3, 2);
+            unitPrice.Name = "unitPrice";
+            unitPrice.Size = new Size(54, 17);
+            unitPrice.TabIndex = 16;
+            unitPrice.Text = "Unit Price";
             // 
             // buyingPrice
             // 
             buyingPrice.BackColor = Color.Transparent;
             buyingPrice.ForeColor = Color.FromArgb(133, 141, 157);
-            buyingPrice.Location = new Point(40, 618);
+            buyingPrice.Location = new Point(35, 464);
+            buyingPrice.Margin = new Padding(3, 2, 3, 2);
             buyingPrice.Name = "buyingPrice";
-            buyingPrice.Size = new Size(84, 22);
+            buyingPrice.Size = new Size(69, 17);
             buyingPrice.TabIndex = 15;
             buyingPrice.Text = "Buying Price";
             // 
@@ -290,9 +561,10 @@
             priceDetails.BackColor = Color.Transparent;
             priceDetails.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             priceDetails.ForeColor = Color.FromArgb(72, 80, 94);
-            priceDetails.Location = new Point(40, 576);
+            priceDetails.Location = new Point(35, 432);
+            priceDetails.Margin = new Padding(3, 2, 3, 2);
             priceDetails.Name = "priceDetails";
-            priceDetails.Size = new Size(89, 22);
+            priceDetails.Size = new Size(72, 17);
             priceDetails.TabIndex = 14;
             priceDetails.Text = "Price Details";
             // 
@@ -300,9 +572,10 @@
             // 
             supplierEmail.BackColor = Color.Transparent;
             supplierEmail.ForeColor = Color.FromArgb(133, 141, 157);
-            supplierEmail.Location = new Point(40, 505);
+            supplierEmail.Location = new Point(35, 379);
+            supplierEmail.Margin = new Padding(3, 2, 3, 2);
             supplierEmail.Name = "supplierEmail";
-            supplierEmail.Size = new Size(99, 22);
+            supplierEmail.Size = new Size(78, 17);
             supplierEmail.TabIndex = 13;
             supplierEmail.Text = "Supplier Email";
             // 
@@ -310,9 +583,10 @@
             // 
             supplierName.BackColor = Color.Transparent;
             supplierName.ForeColor = Color.FromArgb(133, 141, 157);
-            supplierName.Location = new Point(40, 462);
+            supplierName.Location = new Point(35, 346);
+            supplierName.Margin = new Padding(3, 2, 3, 2);
             supplierName.Name = "supplierName";
-            supplierName.Size = new Size(102, 22);
+            supplierName.Size = new Size(81, 17);
             supplierName.TabIndex = 12;
             supplierName.Text = "Supplier Name";
             // 
@@ -321,9 +595,10 @@
             supplierDetails.BackColor = Color.Transparent;
             supplierDetails.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             supplierDetails.ForeColor = Color.FromArgb(72, 80, 94);
-            supplierDetails.Location = new Point(40, 416);
+            supplierDetails.Location = new Point(35, 312);
+            supplierDetails.Margin = new Padding(3, 2, 3, 2);
             supplierDetails.Name = "supplierDetails";
-            supplierDetails.Size = new Size(112, 22);
+            supplierDetails.Size = new Size(90, 17);
             supplierDetails.TabIndex = 11;
             supplierDetails.Text = "Supplier Details";
             // 
@@ -331,9 +606,10 @@
             // 
             brand.BackColor = Color.Transparent;
             brand.ForeColor = Color.FromArgb(133, 141, 157);
-            brand.Location = new Point(43, 337);
+            brand.Location = new Point(38, 253);
+            brand.Margin = new Padding(3, 2, 3, 2);
             brand.Name = "brand";
-            brand.Size = new Size(42, 22);
+            brand.Size = new Size(34, 17);
             brand.TabIndex = 10;
             brand.Text = "Brand";
             // 
@@ -341,9 +617,10 @@
             // 
             category.BackColor = Color.Transparent;
             category.ForeColor = Color.FromArgb(133, 141, 157);
-            category.Location = new Point(43, 296);
+            category.Location = new Point(38, 222);
+            category.Margin = new Padding(3, 2, 3, 2);
             category.Name = "category";
-            category.Size = new Size(63, 22);
+            category.Size = new Size(51, 17);
             category.TabIndex = 9;
             category.Text = "Category";
             // 
@@ -351,9 +628,10 @@
             // 
             description.BackColor = Color.Transparent;
             description.ForeColor = Color.FromArgb(133, 141, 157);
-            description.Location = new Point(43, 256);
+            description.Location = new Point(38, 192);
+            description.Margin = new Padding(3, 2, 3, 2);
             description.Name = "description";
-            description.Size = new Size(79, 22);
+            description.Size = new Size(63, 17);
             description.TabIndex = 8;
             description.Text = "Description";
             // 
@@ -361,9 +639,10 @@
             // 
             oemumber.BackColor = Color.Transparent;
             oemumber.ForeColor = Color.FromArgb(133, 141, 157);
-            oemumber.Location = new Point(43, 217);
+            oemumber.Location = new Point(38, 163);
+            oemumber.Margin = new Padding(3, 2, 3, 2);
             oemumber.Name = "oemumber";
-            oemumber.Size = new Size(93, 22);
+            oemumber.Size = new Size(76, 17);
             oemumber.TabIndex = 7;
             oemumber.Text = "OEM Number";
             // 
@@ -371,9 +650,10 @@
             // 
             itemNumber.BackColor = Color.Transparent;
             itemNumber.ForeColor = Color.FromArgb(133, 141, 157);
-            itemNumber.Location = new Point(43, 176);
+            itemNumber.Location = new Point(38, 132);
+            itemNumber.Margin = new Padding(3, 2, 3, 2);
             itemNumber.Name = "itemNumber";
-            itemNumber.Size = new Size(87, 22);
+            itemNumber.Size = new Size(71, 17);
             itemNumber.TabIndex = 6;
             itemNumber.Text = "Part Number";
             // 
@@ -382,9 +662,10 @@
             primaryDetails.BackColor = Color.Transparent;
             primaryDetails.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             primaryDetails.ForeColor = Color.FromArgb(72, 80, 94);
-            primaryDetails.Location = new Point(43, 131);
+            primaryDetails.Location = new Point(38, 98);
+            primaryDetails.Margin = new Padding(3, 2, 3, 2);
             primaryDetails.Name = "primaryDetails";
-            primaryDetails.Size = new Size(110, 22);
+            primaryDetails.Size = new Size(87, 17);
             primaryDetails.TabIndex = 5;
             primaryDetails.Text = "Primary Details";
             // 
@@ -393,9 +674,10 @@
             partNumber.BackColor = Color.Transparent;
             partNumber.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             partNumber.ForeColor = Color.FromArgb(56, 62, 73);
-            partNumber.Location = new Point(43, 27);
+            partNumber.Location = new Point(38, 20);
+            partNumber.Margin = new Padding(3, 2, 3, 2);
             partNumber.Name = "partNumber";
-            partNumber.Size = new Size(121, 32);
+            partNumber.Size = new Size(97, 25);
             partNumber.TabIndex = 4;
             partNumber.Text = "PartNumber";
             // 
@@ -415,9 +697,10 @@
             btnEdit.Image = Properties.Resources.edit;
             btnEdit.ImageOffset = new Point(0, 1);
             btnEdit.ImageSize = new Size(15, 15);
-            btnEdit.Location = new Point(853, 27);
+            btnEdit.Location = new Point(746, 20);
+            btnEdit.Margin = new Padding(3, 2, 3, 2);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(103, 40);
+            btnEdit.Size = new Size(90, 30);
             btnEdit.TabIndex = 2;
             btnEdit.Text = "Edit";
             btnEdit.TextOffset = new Point(2, 0);
@@ -438,9 +721,10 @@
             btnBack.ForeColor = Color.FromArgb(93, 102, 121);
             btnBack.ImageOffset = new Point(0, 1);
             btnBack.ImageSize = new Size(15, 10);
-            btnBack.Location = new Point(973, 27);
+            btnBack.Location = new Point(851, 20);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(102, 40);
+            btnBack.Size = new Size(89, 30);
             btnBack.TabIndex = 1;
             btnBack.Text = "Back";
             btnBack.TextOffset = new Point(2, 0);
@@ -448,13 +732,13 @@
             // 
             // UC_ItemDetails
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(siticonePanel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "UC_ItemDetails";
-            Padding = new Padding(19, 19, 22, 21);
-            Size = new Size(1142, 813);
-            Load += UC_ItemDetails_Load;
+            Padding = new Padding(17, 14, 19, 16);
+            Size = new Size(999, 610);
             siticonePanel1.ResumeLayout(false);
             siticonePanel1.PerformLayout();
             ResumeLayout(false);
@@ -465,7 +749,7 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnBack;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnEdit;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHand;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel unitPrice;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel buyingPrice;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel priceDetails;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierEmail;
@@ -494,5 +778,17 @@
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel descriptionData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel oemNumberData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel partNumberData;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox part_numberText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox qtySoldText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox qtyInHndText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox totalQtyText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox unitPriceText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox buyingPriceText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supplierEmailText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supplierNameText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox brandText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox categoryText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox descriptionText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox oemNumberText;
     }
 }

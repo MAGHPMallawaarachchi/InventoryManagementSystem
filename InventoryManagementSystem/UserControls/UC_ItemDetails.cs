@@ -10,9 +10,11 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventoryManagementSystem.UserControls
 {
@@ -53,7 +55,9 @@ namespace InventoryManagementSystem.UserControls
             var quantity = document["quantity"].AsInt32;
             var quantity_sold = document["quantity_sold"].AsInt32;
             var supplier = document["supplier"].AsString;
+            var unit_price = document["unit_price"].AsDecimal128;
             int quantity_in_hand = quantity - quantity_sold;
+            
 
 
             //Displaying fetched data
@@ -106,11 +110,64 @@ namespace InventoryManagementSystem.UserControls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            //Hiding the Previous data
+            partNumberData.Hide();
+            oemNumberData.Hide();
+            descriptionData.Hide();
+            categoryData.Hide();
+            brandData.Hide();
+            supplierNameData.Hide();
+            buyingPriceData.Hide();
+            unitPriceData.Hide();
+            qtyInHndData.Hide(); //quantity in hand in stock details i named it as qtyInHnd
+            qtySoldData.Hide();
+            totalQtyData.Hide();
+            supplierEmailData.Hide();
 
-        }
 
-        private void UC_ItemDetails_Load(object sender, EventArgs e)
-        {
+            // make the text box visible
+            part_numberText.Visible = true;
+            oemNumberText.Visible = true;
+            descriptionText.Visible = true;
+            categoryText.Visible = true;
+            brandText.Visible = true;
+            supplierNameText.Visible = true;
+            supplierEmailText.Visible = true;
+            buyingPriceText.Visible = true;
+            unitPriceText.Visible = true;
+            qtyInHndData.Visible = true;
+            totalQtyText.Visible = true;
+            qtySoldText.Visible = true;
+            qtyInHndText.Visible = true;
+            supplierEmailText.Visible = true;
+
+
+            // copy the old data to the text box
+            part_numberText.Text = partNumberData.Text;
+            oemNumberText.Text = oemNumberData.Text;
+            descriptionText.Text = descriptionData.Text;
+            categoryText.Text = categoryData.Text;
+            brandText.Text = brandData.Text;
+            supplierNameText.Text = supplierNameData.Text;
+            supplierEmailText.Text = supplierEmailData.Text;
+            buyingPriceText.Text = buyingPriceData.Text;
+            unitPriceText.Text = unitPriceData.Text;
+            totalQtyText.Text = totalQtyData.Text;
+            qtySoldText.Text = qtySoldData.Text;
+            qtyInHndText.Text = qtyInHndData.Text;
+
+            // hide the old data label
+            partNumberData.Visible = false;
+            descriptionData.Visible = false;
+            categoryData.Visible = false;
+            brandData.Visible = false;
+            supplierNameData.Visible = false;
+            supplierEmailData.Visible = false;
+            buyingPriceData.Visible = false;
+            unitPriceData.Visible = false;
+            qtySoldData.Visible = false;
+            qtyInHndData.Visible = false;
+            totalQtyData.Visible = false;
 
         }
     }
