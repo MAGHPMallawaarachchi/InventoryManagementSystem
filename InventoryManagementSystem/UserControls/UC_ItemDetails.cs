@@ -108,10 +108,5 @@ namespace InventoryManagementSystem.UserControls
         {
 
         }
-
-        private void UC_ItemDetails_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
