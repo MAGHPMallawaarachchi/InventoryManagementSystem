@@ -51,6 +51,7 @@ namespace InventoryManagementSystem.UserControls
             var category = document["category"].AsString;
             var brand = document["brand"].AsString;
             var buying_price = document["buying_price"].AsDecimal128;
+            var unit_price = document["unit_price"].AsDecimal128;
             var quantity = document["quantity"].AsInt32;
             var quantity_sold = document["quantity_sold"].AsInt32;
             var supplier = document["supplier"].AsString;
@@ -167,7 +168,6 @@ namespace InventoryManagementSystem.UserControls
             qtySoldData.Visible = false;
             qtyInHndData.Visible = false;
             totalQtyData.Visible = false;
-
 
         }
     }
