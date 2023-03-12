@@ -63,6 +63,26 @@ namespace InventoryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add {
+            get {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap addBlue {
+            get {
+                object obj = ResourceManager.GetObject("addBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap customers {
             get {
                 object obj = ResourceManager.GetObject("customers", resourceCulture);

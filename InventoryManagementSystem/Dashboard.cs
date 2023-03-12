@@ -72,7 +72,7 @@ namespace InventoryManagementSystem
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
-            UC_Orders uc = new UC_Orders();
+            UC_Invoices uc = new UC_Invoices();
             addUserControl(uc);
         }
 
