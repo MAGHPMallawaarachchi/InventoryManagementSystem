@@ -1,0 +1,172 @@
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InventoryManagementSystem
+{
+    internal class MongoConnector
+    {
+        private readonly IMongoClient _client;
+        private readonly IMongoDatabase _database;
+
+        public MongoConnector(string connectionString, string databaseName)
+        {
+            _client = new MongoClient(connectionString);
+            _database = _client.GetDatabase(databaseName);
+        }
+
+        //get the collection
+        public IMongoCollection<T> GetCollection<T>(string collectionName)
+        {
+            return _database.GetCollection<T>(collectionName);
+        }
+
+        //READ
+
+        //get item by part_number
+        public async Task<Item> GetByPartNumber(string partNumber)
+        {
+            var collection = GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Eq("part_number", partNumber);
+            return await collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        //get customer by customer_id
+        public async Task<Customer> GetByCustomerID(string customerID)
+        {
+            var collection = GetCollection<Customer>("customers");
+            var filter = Builders<Customer>.Filter.Eq("customer_id", customerID);
+            return await collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        //get unique brands
+        public async Task<List<string>> GetUniqueBrands()
+        {
+            var collection = _database.GetCollection<BsonDocument>("items");
+
+            var distinctResults = await collection.DistinctAsync<string>("brand", "{}");
+
+            return distinctResults.ToList();
+        }
+
+        //get unique categories
+        public async Task<List<string>> GetUniqueCategories()
+        {
+            var collection = _database.GetCollection<BsonDocument>("items");
+
+            var distinctResults = await collection.DistinctAsync<string>("category", "{}");
+
+            return distinctResults.ToList();
+        }       
+
+        //get items by brand
+        public async Task<List<Item>> GetItemsByBrand(string brand)
+        {
+            var collection = _database.GetCollection<Item>("items");
+
+            var filter = Builders<Item>.Filter.Eq("brand", brand);
+
+            var items = await collection.Find(filter).ToListAsync();
+
+            return items;
+        }
+
+        //get items by category
+        public async Task<List<Item>> GetItemsByCategory(string category)
+        {
+            var collection = _database.GetCollection<Item>("items");
+
+            var filter = Builders<Item>.Filter.Eq("category", category);
+
+            var items = await collection.Find(filter).ToListAsync();
+
+            return items;
+        }
+
+        //get unique categories by brand
+        public async Task<List<string>> GetUniqueCategoriesByBrand(string selectedBrand)
+        {
+            var collection = _database.GetCollection<BsonDocument>("items");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("brand", selectedBrand);
+
+            var distinctResults = await collection.DistinctAsync<string>("category", filter);
+
+            return distinctResults.ToList();
+        }
+
+        //get all items
+        public async Task<List<Item>> GetAllItems()
+        {
+            var collection = GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Empty;
+            var result = await collection.Find(filter).ToListAsync();
+            return result;
+        }
+
+        //get all customers
+        public async Task<List<Customer>> GetAllCustomers()
+        {
+            var collection = GetCollection<Customer>("customers");
+            var filter = Builders<Customer>.Filter.Empty;
+            var sort = Builders<Customer>.Sort.Ascending(c => c.customer_id);
+            var result = await collection.Find(filter).Sort(sort).ToListAsync();
+            return result;
+        }
+
+
+        //CREATE
+
+        //insert a document to a collection
+        public async Task Insert<T>(string collectionName, T document)
+        {
+            var collection = GetCollection<T>(collectionName);
+            await collection.InsertOneAsync(document);
+        }
+
+        //update an item
+        public async Task<bool> UpdateItem<T>(string part_number, T document)
+        {
+            var collection = GetCollection<T>("items");
+            var objectId = new ObjectId(part_number);
+            var filter = Builders<T>.Filter.Eq("part_number", objectId);
+            var result = await collection.ReplaceOneAsync(filter, document);
+            return result.ModifiedCount > 0;
+        }
+
+        //update an customer
+        public async Task<bool> UpdateCustomer<T>(string customer_id, T document)
+        {
+            var collection = GetCollection<T>("customers");
+            var objectId = new ObjectId(customer_id);
+            var filter = Builders<T>.Filter.Eq("customer_id", objectId);
+            var result = await collection.ReplaceOneAsync(filter, document);
+            return result.ModifiedCount > 0;
+        }
+
+        //delete an item
+        public async Task<bool> DeleteItem<T>(string part_number)
+        {
+            var collection = GetCollection<T>("items");
+            var objectId = new ObjectId(part_number);
+            var filter = Builders<T>.Filter.Eq("part_number", objectId);
+            var result = await collection.DeleteOneAsync(filter);
+            return result.DeletedCount > 0;
+        }
+
+        //delete a customer
+        public async Task<bool> DeleteCustomer<T>(string customer_id)
+        {
+            var collection = GetCollection<T>("customers");
+            var objectId = new ObjectId(customer_id);
+            var filter = Builders<T>.Filter.Eq("customer_id", objectId);
+            var result = await collection.DeleteOneAsync(filter);
+            return result.DeletedCount > 0;
+        }
+    }
+}

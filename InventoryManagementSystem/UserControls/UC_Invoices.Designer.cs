@@ -46,6 +46,8 @@
             btnClear = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnSaveInvoice = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             Panel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            lblTotalData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            lblTotal = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             btnAddRow = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             no = new DataGridViewTextBoxColumn();
@@ -126,17 +128,16 @@
             Panel3.Controls.Add(lblInvoice);
             Panel3.Location = new Point(800, 0);
             Panel3.Name = "Panel3";
-            Panel3.Size = new Size(343, 232);
+            Panel3.Size = new Size(327, 232);
             Panel3.TabIndex = 54;
             Panel3.SizeChanged += Panel3_SizeChanged;
             // 
             // lblTimeData
             // 
-            lblTimeData.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblTimeData.BackColor = Color.Transparent;
             lblTimeData.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblTimeData.ForeColor = Color.FromArgb(72, 80, 94);
-            lblTimeData.Location = new Point(219, 189);
+            lblTimeData.Location = new Point(193, 189);
             lblTimeData.Name = "lblTimeData";
             lblTimeData.Size = new Size(39, 25);
             lblTimeData.TabIndex = 62;
@@ -144,11 +145,10 @@
             // 
             // lblDateData
             // 
-            lblDateData.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblDateData.BackColor = Color.Transparent;
             lblDateData.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblDateData.ForeColor = Color.FromArgb(72, 80, 94);
-            lblDateData.Location = new Point(219, 148);
+            lblDateData.Location = new Point(193, 148);
             lblDateData.Name = "lblDateData";
             lblDateData.Size = new Size(39, 25);
             lblDateData.TabIndex = 61;
@@ -156,11 +156,10 @@
             // 
             // lblInvoiceNoData
             // 
-            lblInvoiceNoData.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblInvoiceNoData.BackColor = Color.Transparent;
             lblInvoiceNoData.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblInvoiceNoData.ForeColor = Color.FromArgb(72, 80, 94);
-            lblInvoiceNoData.Location = new Point(219, 109);
+            lblInvoiceNoData.Location = new Point(193, 109);
             lblInvoiceNoData.Name = "lblInvoiceNoData";
             lblInvoiceNoData.Size = new Size(39, 25);
             lblInvoiceNoData.TabIndex = 60;
@@ -168,7 +167,6 @@
             // 
             // lblTime
             // 
-            lblTime.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblTime.BackColor = Color.Transparent;
             lblTime.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblTime.ForeColor = Color.FromArgb(93, 102, 121);
@@ -180,7 +178,6 @@
             // 
             // lblDate
             // 
-            lblDate.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblDate.BackColor = Color.Transparent;
             lblDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblDate.ForeColor = Color.FromArgb(93, 102, 121);
@@ -192,7 +189,6 @@
             // 
             // lblInvoiceNo2
             // 
-            lblInvoiceNo2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblInvoiceNo2.BackColor = Color.Transparent;
             lblInvoiceNo2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblInvoiceNo2.ForeColor = Color.FromArgb(93, 102, 121);
@@ -204,7 +200,6 @@
             // 
             // lblInvoiceNo
             // 
-            lblInvoiceNo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblInvoiceNo.BackColor = Color.Transparent;
             lblInvoiceNo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblInvoiceNo.Location = new Point(19, 51);
@@ -215,7 +210,6 @@
             // 
             // lblInvoice
             // 
-            lblInvoice.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblInvoice.BackColor = Color.Transparent;
             lblInvoice.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblInvoice.Location = new Point(19, 17);
@@ -243,7 +237,7 @@
             btnClear.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
             btnClear.ImageOffset = new Point(0, 1);
             btnClear.ImageSize = new Size(15, 10);
-            btnClear.Location = new Point(885, 715);
+            btnClear.Location = new Point(869, 715);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(102, 40);
             btnClear.TabIndex = 53;
@@ -269,7 +263,7 @@
             btnSaveInvoice.HoverState.FillColor = Color.FromArgb(10, 73, 156);
             btnSaveInvoice.ImageOffset = new Point(0, 1);
             btnSaveInvoice.ImageSize = new Size(15, 10);
-            btnSaveInvoice.Location = new Point(1003, 715);
+            btnSaveInvoice.Location = new Point(987, 715);
             btnSaveInvoice.Name = "btnSaveInvoice";
             btnSaveInvoice.Size = new Size(121, 40);
             btnSaveInvoice.TabIndex = 2;
@@ -284,14 +278,38 @@
             Panel2.BorderColor = Color.White;
             Panel2.BorderRadius = 20;
             Panel2.BorderThickness = 2;
+            Panel2.Controls.Add(lblTotalData);
+            Panel2.Controls.Add(lblTotal);
             Panel2.Controls.Add(btnAddRow);
             Panel2.Controls.Add(dgvItems);
             Panel2.Controls.Add(lblItems);
             Panel2.Location = new Point(0, 256);
             Panel2.Name = "Panel2";
-            Panel2.Size = new Size(1143, 443);
+            Panel2.Size = new Size(1127, 443);
             Panel2.TabIndex = 1;
             Panel2.SizeChanged += Panel2_SizeChanged;
+            // 
+            // lblTotalData
+            // 
+            lblTotalData.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotalData.BackColor = Color.Transparent;
+            lblTotalData.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTotalData.Location = new Point(1004, 400);
+            lblTotalData.Name = "lblTotalData";
+            lblTotalData.Size = new Size(39, 25);
+            lblTotalData.TabIndex = 8;
+            lblTotalData.Text = "Data";
+            // 
+            // lblTotal
+            // 
+            lblTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotal.BackColor = Color.Transparent;
+            lblTotal.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTotal.Location = new Point(919, 400);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(41, 25);
+            lblTotal.TabIndex = 7;
+            lblTotal.Text = "Total";
             // 
             // btnAddRow
             // 
@@ -361,7 +379,7 @@
             dgvItems.RowHeadersVisible = false;
             dgvItems.RowHeadersWidth = 50;
             dgvItems.RowTemplate.Height = 29;
-            dgvItems.Size = new Size(1134, 339);
+            dgvItems.Size = new Size(1102, 339);
             dgvItems.TabIndex = 5;
             dgvItems.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvItems.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -638,5 +656,7 @@
         private DataGridViewTextBoxColumn unit_price;
         private DataGridViewTextBoxColumn amount;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleButton btnAddRow;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblTotalData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblTotal;
     }
 }

@@ -19,9 +19,15 @@ namespace InventoryManagementSystem.UserControls
 {
     public partial class UC_Invoices : UserControl
     {
+        private readonly MongoConnector _mongoConnector;
+        private decimal total = 0;
+
         public UC_Invoices()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
+            _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
         private void UC_Invoices_Load(object sender, EventArgs e)
@@ -43,25 +49,20 @@ namespace InventoryManagementSystem.UserControls
             lblInvoiceNo.Text = "KAP-10000";
             lblDateData.Text = DateTime.Today.ToShortDateString();
             lblTimeData.Text = DateTime.Now.ToString("hh:mm:ss tt");
+
+
         }
 
-        private void dgvItemsLoad()
+        private async void dgvItemsLoad()
         {
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // Find all part numbers in the collection
-            var documents = collection.Find(new BsonDocument()).ToList();
+            //get all the items from the collection items
+            var documents = await _mongoConnector.GetAllItems();
 
             // Create a list of part number strings
             var partNumberList = new List<string> { "-- Part Number --" };
             foreach (var document in documents)
             {
-                var partNumber = document["part_number"].AsString;
+                var partNumber = document.part_number;
                 if (partNumber != null)
                     partNumberList.Add(partNumber.ToString());
             }
@@ -74,10 +75,10 @@ namespace InventoryManagementSystem.UserControls
             part_no.MaxDropDownItems = 10;
             part_no.FlatStyle = FlatStyle.Flat;
             part_no.DataSource = partNumberList;
-            part_no.Width = 150;
+            part_no.Width = 300;
 
-            brand.Width = 150;
-            description.Width = 500;
+            brand.Width = 300;
+            description.Width = 600;
 
             qty.ValueType = typeof(int);
             qty.Width = 50;
@@ -139,91 +140,55 @@ namespace InventoryManagementSystem.UserControls
             UpdatePanelRegion(Panel3);
         }
 
-        public void ComboBoxLoad()
+        public async void ComboBoxLoad()
         {
             // Add the placeholder item to the ComboBox
             cbCustomerID.Items.Add("-- Select Customer ID --");
             cbCustomerID.SelectedIndex = 0;
             cbCustomerID.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+            var customers = await _mongoConnector.GetAllCustomers();
 
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("customers");
-
-            // Fetch the customer_id field from all documents and sort them alphabetically
-            var customerIds = collection.Find(new BsonDocument())
-                                        .Project(Builders<BsonDocument>.Projection.Include("customer_id"))
-                                        .Sort(Builders<BsonDocument>.Sort.Ascending("customer_id"))
-                                        .ToList()
-                                        .Select(doc => doc["customer_id"].AsString);
-
-            foreach (var customerId in customerIds)
+            foreach (var customer in customers)
             {
-                cbCustomerID.Items.Add(customerId);
+                cbCustomerID.Items.Add(customer.customer_id);
             }
         }
 
-        private void cbCustomerID_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cbCustomerID_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (cbCustomerID.SelectedIndex != 0)
             {
                 string selectedCustomer = cbCustomerID.Text;
 
-                // Create a MongoDB client and connect to the database
-                var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-                var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-                // Get a reference to the collection you want to query
-                var collection = database.GetCollection<BsonDocument>("customers");
-
-                // Define the filter to find the document with the selected customer_id
-                var filter = Builders<BsonDocument>.Filter.Eq("customer_id", selectedCustomer);
-
-                // Fetch the document from the customers collection where customer_id = selectedCustomer
-                var document = collection.Find(filter).FirstOrDefault();
+                var document = await _mongoConnector.GetByCustomerID(selectedCustomer);
 
                 if (document != null)
                 {
-                    string name = document["name"].AsString;
-                    string address = document["address"].AsString;
-                    string city = document["city"].AsString;
-                    string phone_no = document["phone_no"].AsString;
-
-                    lblMessrsData.Text = name;
-                    lblAddressData.Text = address;
-                    lblCityData.Text = city;
-                    lblPhoneNoData.Text = phone_no;
+                    lblMessrsData.Text = document.name;
+                    lblAddressData.Text = document.address;
+                    lblCityData.Text = document.city;
+                    lblPhoneNoData.Text = document.phone_no;
                 }
             }
         }
 
-        private void dgvItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private async void dgvItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvItems.Columns["part_no"].Index)
             {
-                var selectedValue = dgvItems.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+                var selectedPartNumber = dgvItems.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
 
-                if (!string.IsNullOrEmpty(selectedValue) && selectedValue != "-- Part Number --")
+                if (!string.IsNullOrEmpty(selectedPartNumber) && selectedPartNumber != "-- Part Number --")
                 {
-                    // Create a MongoDB client and connect to the database
-                    var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-                    var database = mongoClient.GetDatabase("InventoryManagementSystem");
-                    var collection = database.GetCollection<BsonDocument>("items");
-
-                    var filter = Builders<BsonDocument>.Filter.Eq("part_number", selectedValue);
-                    var document = collection.Find(filter).FirstOrDefault();
-
-                    decimal unitPrice = document["unit_price"].ToDecimal();
+                    var document = await _mongoConnector.GetByPartNumber(selectedPartNumber);
 
                     if (document != null)
                     {
-                        dgvItems.Rows[e.RowIndex].Cells["brand"].Value = document["brand"].AsString;
-                        dgvItems.Rows[e.RowIndex].Cells["description"].Value = document["description"].AsString;
-                        dgvItems.Rows[e.RowIndex].Cells["unit_price"].Value = document["unit_price"].ToDecimal();
+                        dgvItems.Rows[e.RowIndex].Cells["brand"].Value = document.brand;
+                        dgvItems.Rows[e.RowIndex].Cells["description"].Value = document.description;
+                        dgvItems.Rows[e.RowIndex].Cells["unit_price"].Value = document.unit_price;
                     }
                 }
             }
@@ -232,6 +197,7 @@ namespace InventoryManagementSystem.UserControls
             {
                 int qtyValue = 0;
                 decimal amount = 0;
+
                 if (int.TryParse(dgvItems.Rows[e.RowIndex].Cells["qty"].Value?.ToString(), out qtyValue))
                 {
                     decimal qtyDecimalValue = new decimal(qtyValue);
@@ -239,6 +205,15 @@ namespace InventoryManagementSystem.UserControls
                     amount = unitPrice * qtyDecimalValue;
                 }
                 dgvItems.Rows[e.RowIndex].Cells["amount"].Value = amount;
+            }
+
+            if (dgvItems.Rows.Count > 0)
+            {
+                DataGridViewRow lastRow = dgvItems.Rows[dgvItems.Rows.Count - 1];
+                decimal amount = Convert.ToDecimal(lastRow.Cells["amount"].Value);
+                total += amount;
+
+                lblTotalData.Text = (total / 2).ToString();
             }
         }
 
@@ -259,7 +234,7 @@ namespace InventoryManagementSystem.UserControls
             lblPhoneNoData.Text = "-- Phone No --";
         }
 
-        /*private void btnSaveInvoice_Click(object sender, EventArgs e)
+        private void btnSaveInvoice_Click(object sender, EventArgs e)
         {
             // Create a MongoDB client and connect to the database
             var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
@@ -289,7 +264,6 @@ namespace InventoryManagementSystem.UserControls
 
                 decimal buyingPrice = document["buying_price"].ToDecimal();
 
-
                 var item = new BsonDocument
                 {
                     { "part_number", partNumber },
@@ -299,6 +273,7 @@ namespace InventoryManagementSystem.UserControls
 
                 invoice["items"].AsBsonArray.Add(item);
             }
-        }*/
+        }
+
     }
 }

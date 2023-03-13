@@ -23,10 +23,14 @@ namespace InventoryManagementSystem
 {
     public partial class UC_Inventory : UserControl
     {
+        private readonly MongoConnector _mongoConnector;
 
         public UC_Inventory()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
+            _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
 
         }
 
@@ -42,58 +46,44 @@ namespace InventoryManagementSystem
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOverallInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // Add the placeholder item to the ComboBox
-            cbCategory.Items.Add("-- Select Category --");
-            cbCategory.SelectedIndex = 0;
-            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            cbBrand.Items.Add("-- Select Brand --");
-            cbBrand.SelectedIndex = 0;
-            cbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            ComboBoxLoad();
+            cbBrandLoad();
+            cbCategoryLoad();
         }
 
-        public void ItemsLoad()
+        public async void ItemsLoad()
         {
             // Disable automatic row height adjustment
             dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // Execute the query and store the result in a variable
-            var documents = collection.Find(new BsonDocument()).ToList();
+            //get all the items from the collection items
+            var documents = await _mongoConnector.GetAllItems();
 
             // Process the result
             foreach (var document in documents)
             {
-                // Do something with each document
-                var part_number = document["part_number"].AsString;
-                var description = document["description"].AsString;
-                var brand = document["brand"].AsString;
-                var quantity = document["quantity"].AsInt32;
-                var quantity_sold = document["quantity_sold"].AsInt32;
-                var quantity_in_hand = quantity - quantity_sold;
-                var unit_price = document["unit_price"].AsDecimal128;
+                var QuantityInHand = document.quantity - document.quantity_sold;
+                var Availability = "In-Stock";
 
-                var availability = "In-Stock";
-
-                if (quantity < 50 && quantity > 0)
+                if (document.quantity < 50 && document.quantity > 0)
                 {
-                    availability = "Low-Stock";
+                    Availability = "Low-Stock";
                 }
 
-                if (quantity == 0)
+                if (document.quantity == 0)
                 {
-                    availability = "Out-of-stock";
+                    Availability = "Out-of-stock";
                 }
 
-                dgvItems.Rows.Add(new object[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+                dgvItems.Rows.Add(new object[] { 
+                    document.part_number!, 
+                    document.description!, 
+                    document.brand!, 
+                    document.quantity!, 
+                    QuantityInHand!, 
+                    document.quantity_sold!, 
+                    document.unit_price!, 
+                    Availability 
+                });
             }
 
             foreach (DataGridViewRow row in dgvItems.Rows)
@@ -106,45 +96,33 @@ namespace InventoryManagementSystem
             dgvOverallInventory.CurrentCell = null;
         }
 
-        public void OverallInventoryLoad()
+        public async void OverallInventoryLoad()
         {
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // use the Aggregate method to get the number of unique items in the category field
-            var distinctCategories = collection.Aggregate()
-            .Group(new BsonDocument { { "_id", "$category" } })
-            .ToList();
+            var uniqueCategories = await _mongoConnector.GetUniqueCategories();
 
             // get the count of the distinct categories
-            int uniqueCategoriesCount = distinctCategories.Count;
-
-            // Execute the query and store the result in a variable
-            var result = collection.Find(new BsonDocument()).ToList();
+            int uniqueCategoriesCount = uniqueCategories.Count;
 
             int totalItems = 0;
             int lowInStock = 0;
             int outOfStock = 0;
 
+            //get all the items from the collection items
+            var documents = await _mongoConnector.GetAllItems();
+
             // Process the result
-            foreach (var document in result)
+            foreach (var document in documents)
             {
-                var quantity = document["quantity"].AsInt32;
-                var quantity_sold = document["quantity_sold"].AsInt32;
-                var quantity_in_hand = quantity - quantity_sold;
+                var QuantityInHand = document.quantity - document.quantity_sold;
 
                 totalItems++;
 
-                if (quantity_in_hand == 0)
+                if (QuantityInHand == 0)
                 {
                     outOfStock++;
                 }
 
-                if (quantity_in_hand < 50)
+                if (QuantityInHand < 50)
                 {
                     lowInStock++;
                 }
@@ -160,31 +138,53 @@ namespace InventoryManagementSystem
 
         }
 
-        public void ComboBoxLoad()
+        private async void cbBrandLoad()
         {
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
+            cbBrand.Items.Add("-- Select Brand --");
+            cbBrand.SelectedIndex = 0;
+            cbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
+            var uniqueBrands = await _mongoConnector.GetUniqueBrands();
 
-            // use the Aggregate method to get the number of unique items in the category field
-            var distinctCategories = collection.Distinct<string>("category", "{}").ToList();
-
-            foreach (var category in distinctCategories)
-            {
-                cbCategory.Items.Add(category);
-            }
-
-            // use the Aggregate method to get the number of unique items in the brand field
-            var distinctBrands = collection.Distinct<string>("brand", "{}").ToList();
-
-            foreach (var brand in distinctBrands)
+            foreach (var brand in uniqueBrands)
             {
                 cbBrand.Items.Add(brand);
             }
         }
+
+        private async void cbCategoryLoad()
+        {
+            // Add the placeholder item to the ComboBox
+            cbCategory.Items.Add("-- Select Category --");
+            cbCategory.SelectedIndex = 0;
+            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            if (cbBrand.SelectedIndex == 0)
+            {
+                var uniqueCategories = await _mongoConnector.GetUniqueCategories();
+
+                foreach (var category in uniqueCategories)
+                {
+                    cbCategory.Items.Add(category);
+                }
+            }
+            else
+            {
+                cbCategory.Items.Clear();
+
+                // Add the placeholder item to the ComboBox
+                cbCategory.Items.Add("-- Select Category --");
+                cbCategory.SelectedIndex = 0;
+                cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                var uniqueCategoriesByBrand = await _mongoConnector.GetUniqueCategoriesByBrand(cbBrand.Text);
+                foreach (var category in uniqueCategoriesByBrand)
+                {
+                    cbCategory.Items.Add(category);
+                }
+            }
+
+        }  
 
         private void UpdatePanelRegion(Panel panel)
         {
@@ -225,8 +225,11 @@ namespace InventoryManagementSystem
                     formBackground.BackColor = Color.Black;
                     formBackground.WindowState = FormWindowState.Maximized;
                     formBackground.TopMost = true;
-                    formBackground.Location = Screen.PrimaryScreen.WorkingArea.Location;
-                    formBackground.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
+                    if (Screen.PrimaryScreen != null)
+                    {
+                        formBackground.Location = Screen.PrimaryScreen.WorkingArea.Location;
+                        formBackground.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
+                    }                   
                     formBackground.ShowInTaskbar = false;
                     formBackground.Show();
 
@@ -324,55 +327,46 @@ namespace InventoryManagementSystem
             }
         }
 
-        private void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbBrand.SelectedIndex != 0)
             {
                 dgvItems.Rows.Clear();
                 string selectedBrand = cbBrand.Text;
 
+                cbCategoryLoad();
+
                 // Disable automatic row height adjustment
                 dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
-                // Create a MongoDB client and connect to the database
-                var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-                var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-                // Get a reference to the collection you want to query
-                var collection = database.GetCollection<BsonDocument>("items");
-
-                var filter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("brand", selectedBrand)
-                );
-
-                // Execute the query and store the result in a variable
-                var documents = collection.Find(filter).ToList();
+                var documents = await _mongoConnector.GetItemsByBrand(selectedBrand);
 
                 // Process the result
                 foreach (var document in documents)
                 {
-                    // Do something with each document
-                    var part_number = document["part_number"].AsString;
-                    var description = document["description"].AsString;
-                    var brand = document["brand"].AsString;
-                    var quantity = document["quantity"].AsInt32;
-                    var quantity_sold = document["quantity_sold"].AsInt32;
-                    var quantity_in_hand = quantity - quantity_sold;
-                    var unit_price = document["unit_price"].AsDecimal128;
+                    var QuantityInHand = document.quantity - document.quantity_sold;
+                    var Availability = "In-Stock";
 
-                    var availability = "In-Stock";
-
-                    if (quantity < 50 && quantity > 0)
+                    if (document.quantity < 50 && document.quantity > 0)
                     {
-                        availability = "Low-Stock";
+                        Availability = "Low-Stock";
                     }
 
-                    if (quantity == 0)
+                    if (document.quantity == 0)
                     {
-                        availability = "Out-of-stock";
+                        Availability = "Out-of-stock";
                     }
 
-                    dgvItems.Rows.Add(new object[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+                    dgvItems.Rows.Add(new object[] {
+                        document.part_number!,
+                        document.description!,
+                        document.brand!,
+                        document.quantity!,
+                        QuantityInHand!,
+                        document.quantity_sold!,
+                        document.unit_price!,
+                        Availability
+                    });
                 }
 
                 foreach (DataGridViewRow row in dgvItems.Rows)
@@ -387,57 +381,44 @@ namespace InventoryManagementSystem
 
         }
 
-        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbCategory.SelectedIndex != 0)
             {
                 dgvItems.Rows.Clear();
                 string selectedCategory = cbCategory.Text;
-                string selectedBrand = cbBrand.Text;
 
                 // Disable automatic row height adjustment
                 dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
-                // Create a MongoDB client and connect to the database
-                var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-                var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-                // Get a reference to the collection you want to query
-                var collection = database.GetCollection<BsonDocument>("items");
-
-                var filter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("category", selectedCategory),
-                    Builders<BsonDocument>.Filter.Eq("brand", selectedBrand)
-                );
-
-                // Execute the query and store the result in a variable
-                var documents = collection.Find(filter).ToList();
+                var documents = await _mongoConnector.GetItemsByCategory(selectedCategory);
 
                 // Process the result
                 foreach (var document in documents)
                 {
-                    // Do something with each document
-                    var part_number = document["part_number"].AsString;
-                    var description = document["description"].AsString;
-                    var brand = document["brand"].AsString;
-                    var quantity = document["quantity"].AsInt32;
-                    var quantity_sold = document["quantity_sold"].AsInt32;
-                    var quantity_in_hand = quantity - quantity_sold;
-                    var unit_price = document["unit_price"].AsDecimal128;
+                    var QuantityInHand = document.quantity - document.quantity_sold;
+                    var Availability = "In-Stock";
 
-                    var availability = "In-Stock";
-
-                    if (quantity < 50 && quantity > 0)
+                    if (document.quantity < 50 && document.quantity > 0)
                     {
-                        availability = "Low-Stock";
+                        Availability = "Low-Stock";
                     }
 
-                    if (quantity == 0)
+                    if (document.quantity == 0)
                     {
-                        availability = "Out-of-stock";
+                        Availability = "Out-of-stock";
                     }
 
-                    dgvItems.Rows.Add(new object[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+                    dgvItems.Rows.Add(new object[] {
+                        document.part_number!,
+                        document.description!,
+                        document.brand!,
+                        document.quantity!,
+                        QuantityInHand!,
+                        document.quantity_sold!,
+                        document.unit_price!,
+                        Availability
+                    });
                 }
 
                 foreach (DataGridViewRow row in dgvItems.Rows)
