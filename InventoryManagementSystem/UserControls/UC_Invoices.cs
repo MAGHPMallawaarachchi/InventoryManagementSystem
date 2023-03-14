@@ -1,22 +1,16 @@
-﻿using MongoDB.Bson;
+﻿using InventoryManagementSystem.DataModels;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Net;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
+
 
 namespace InventoryManagementSystem.UserControls
 {
+
     public partial class UC_Invoices : UserControl
     {
         private readonly MongoConnector _mongoConnector;
@@ -30,8 +24,11 @@ namespace InventoryManagementSystem.UserControls
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
-        private void UC_Invoices_Load(object sender, EventArgs e)
+        private async void UC_Invoices_Load(object sender, EventArgs e)
         {
+            lblRowsError.Visible = false;
+            lblCustomerError.Visible = false;
+
             UpdatePanelRegion(Panel2);
             UpdatePanelRegion(Panel1);
             UpdatePanelRegion(Panel3);
@@ -45,8 +42,10 @@ namespace InventoryManagementSystem.UserControls
             lblCityData.Text = "-- City --";
             lblPhoneNoData.Text = "-- Phone No --";
 
-            lblInvoiceNoData.Text = "KAP-10000";
-            lblInvoiceNo.Text = "KAP-10000";
+            int InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
+
+            lblInvoiceNoData.Text = "KAP-" + InvoiceNo;
+            lblInvoiceNo.Text = "KAP-" + InvoiceNo;
             lblDateData.Text = DateTime.Today.ToShortDateString();
             lblTimeData.Text = DateTime.Now.ToString("hh:mm:ss tt");
 
@@ -77,7 +76,7 @@ namespace InventoryManagementSystem.UserControls
             part_no.DataSource = partNumberList;
             part_no.Width = 300;
 
-            brand.Width = 300;
+            brand.Width = 200;
             description.Width = 600;
 
             qty.ValueType = typeof(int);
@@ -159,6 +158,8 @@ namespace InventoryManagementSystem.UserControls
         {
             if (cbCustomerID.SelectedIndex != 0)
             {
+                lblCustomerError.Visible = false;
+
                 string selectedCustomer = cbCustomerID.Text;
 
                 var document = await _mongoConnector.GetByCustomerID(selectedCustomer);
@@ -182,6 +183,8 @@ namespace InventoryManagementSystem.UserControls
 
                 if (!string.IsNullOrEmpty(selectedPartNumber) && selectedPartNumber != "-- Part Number --")
                 {
+                    lblRowsError.Visible = false;
+
                     var document = await _mongoConnector.GetByPartNumber(selectedPartNumber);
 
                     if (document != null)
@@ -222,11 +225,18 @@ namespace InventoryManagementSystem.UserControls
             AddRow();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private async void btnClear_Click(object sender, EventArgs e)
         {
             dgvItems.Rows.Clear();
             dgvItemsLoad();
             cbCustomerID.SelectedIndex = 0;
+
+            int InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
+
+            lblInvoiceNoData.Text = "KAP-" + InvoiceNo;
+            lblInvoiceNo.Text = "KAP-" + InvoiceNo;
+            lblDateData.Text = DateTime.Today.ToShortDateString();
+            lblTimeData.Text = DateTime.Now.ToString("hh:mm:ss tt");
 
             lblMessrsData.Text = "-- Name --";
             lblAddressData.Text = "-- Address --";
@@ -234,46 +244,119 @@ namespace InventoryManagementSystem.UserControls
             lblPhoneNoData.Text = "-- Phone No --";
         }
 
-        private void btnSaveInvoice_Click(object sender, EventArgs e)
+        private async void btnSaveInvoice_Click(object sender, EventArgs e)
         {
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // create a new invoice document
-            var invoice = new BsonDocument
+            if (cbCustomerID.SelectedIndex == 0)
             {
-                { "prefix", "KAP-" },
-                { "sequence", 10000 },
-                { "date", DateTime.Today.ToShortDateString()},
-                { "time", DateTime.Now.ToString("hh:mm:ss tt") },
-                { "customer_id", cbCustomerID.Text},
-                { "items", new BsonArray() } // initialize an empty array
-            };
-
-            // iterate through the rows of the DataGridView and add each row as a new BsonDocument to the "items" array
-            foreach (DataGridViewRow row in dgvItems.Rows)
+                lblCustomerError.Text = "Please enter the Customer ID!";
+                lblCustomerError.Visible = true;
+            }
+            else
             {
-                string partNumber = row.Cells["part_no"].Value.ToString();
-                int quantity = int.Parse(row.Cells["qty"].Value.ToString());
-                decimal amount = decimal.Parse(row.Cells["amount"].Value.ToString());
+                lblRowsError.Visible = false;
 
-                var filter = Builders<BsonDocument>.Filter.Eq("part_number", partNumber);
-                var document = collection.Find(filter).FirstOrDefault();
+                var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+                var database = mongoClient.GetDatabase("InventoryManagementSystem");
+                var collection = database.GetCollection<BsonDocument>("invoices");
 
-                decimal buyingPrice = document["buying_price"].ToDecimal();
+                int InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
 
-                var item = new BsonDocument
+                decimal totalProfit = 0;
+                decimal totalCost = 0;
+                decimal totalRevenue = 0;
+
+                List<InvoiceItem> items = new List<InvoiceItem>();
+
+                foreach (DataGridViewRow row in dgvItems.Rows)
                 {
-                    { "part_number", partNumber },
-                    { "quantity", quantity },
-                    { "amount", amount }
-                };
+                    string? partNumber = row.Cells["part_no"].Value?.ToString();
 
-                invoice["items"].AsBsonArray.Add(item);
+                    if (partNumber == "-- Part Number --" || partNumber == null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        int quantity = Convert.ToInt32(row.Cells["qty"].Value);
+                        decimal amount = Convert.ToDecimal(row.Cells["amount"].Value);
+
+                        var document = await _mongoConnector.GetByPartNumber(partNumber);
+
+                        decimal cost = (document?.buying_price ?? 0) * quantity;
+                        decimal profit = amount - cost;
+
+                        totalProfit += profit;
+                        totalCost += cost;
+                        totalRevenue += amount;
+
+                        // create a new InvoiceItem object and add it to the list
+                        items.Add(new InvoiceItem
+                        {
+                            part_number = partNumber,
+                            quantity = quantity,
+                            revenue = amount,
+                            cost = cost,
+                            profit = profit
+                        });
+
+                        var collectionItems = database.GetCollection<BsonDocument>("items");
+                        var filter = Builders<BsonDocument>.Filter.Eq("part_number", partNumber);
+                        var update1 = Builders<BsonDocument>.Update.Set("quantity", document.quantity - quantity);
+                        var update2 = Builders<BsonDocument>.Update.Set("quantity_sold", document.quantity_sold + quantity);
+                        collectionItems.UpdateOne(filter, update1);
+                        collectionItems.UpdateOne(filter, update2);
+                    }
+                }
+
+                bool hasEmptyRows = false;
+                foreach (DataGridViewRow row in dgvItems.Rows)
+                {
+                    string? partNo = row.Cells["part_no"].Value?.ToString();
+                    if (string.IsNullOrEmpty(partNo) || partNo == "-- Part Number --")
+                    {
+                        hasEmptyRows = true;
+                        break;
+                    }
+                }
+
+                if (hasEmptyRows)
+                {
+                    lblRowsError.Text = "The rows are empty!";
+                    lblRowsError.Visible = true;
+                }
+
+                else
+                {
+                    // create an instance of the PdfGenerator class
+                    PdfGenerator pdfGenerator = new PdfGenerator();
+
+                    Invoice newInvoice = new Invoice
+                    {
+                        prefix = "KAP-",
+                        sequence = InvoiceNo,
+                        date = DateTime.Today,
+                        time = DateTime.Now.ToString("hh:mm:ss tt"),
+                        customer_id = cbCustomerID.Text,
+                        items = items,
+                        total_profit = totalProfit,
+                        total_cost = totalCost,
+                        total_revenue = totalRevenue
+                    };
+
+                    collection.InsertOne(newInvoice.ToBsonDocument());
+
+                    // generate the PDF document
+                    pdfGenerator.GeneratePdf(newInvoice);
+
+                    MessageBox.Show("Invoice saved successfully.");
+                }
             }
         }
 
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            string filePath = @"C:\Users\Hasini\OneDrive\Documents\invoices";
+            string outputPath = $"{filePath}\\{"KAP-" + lblInvoiceNoData.Text}.pdf";
+        }
     }
 }

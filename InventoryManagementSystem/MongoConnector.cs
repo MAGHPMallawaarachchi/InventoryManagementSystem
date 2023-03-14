@@ -1,11 +1,6 @@
-﻿using MongoDB.Bson;
+﻿using InventoryManagementSystem.DataModels;
+using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InventoryManagementSystem
 {
@@ -25,6 +20,18 @@ namespace InventoryManagementSystem
         {
             return _database.GetCollection<T>(collectionName);
         }
+
+
+        //CREATE
+
+        //insert a document to a collection
+        public async Task Insert<T>(string collectionName, T document)
+        {
+            var collection = GetCollection<T>(collectionName);
+            await collection.InsertOneAsync(document);
+        }
+
+
 
         //READ
 
@@ -48,9 +55,7 @@ namespace InventoryManagementSystem
         public async Task<List<string>> GetUniqueBrands()
         {
             var collection = _database.GetCollection<BsonDocument>("items");
-
             var distinctResults = await collection.DistinctAsync<string>("brand", "{}");
-
             return distinctResults.ToList();
         }
 
@@ -58,9 +63,7 @@ namespace InventoryManagementSystem
         public async Task<List<string>> GetUniqueCategories()
         {
             var collection = _database.GetCollection<BsonDocument>("items");
-
             var distinctResults = await collection.DistinctAsync<string>("category", "{}");
-
             return distinctResults.ToList();
         }       
 
@@ -68,11 +71,8 @@ namespace InventoryManagementSystem
         public async Task<List<Item>> GetItemsByBrand(string brand)
         {
             var collection = _database.GetCollection<Item>("items");
-
             var filter = Builders<Item>.Filter.Eq("brand", brand);
-
             var items = await collection.Find(filter).ToListAsync();
-
             return items;
         }
 
@@ -80,11 +80,8 @@ namespace InventoryManagementSystem
         public async Task<List<Item>> GetItemsByCategory(string category)
         {
             var collection = _database.GetCollection<Item>("items");
-
             var filter = Builders<Item>.Filter.Eq("category", category);
-
             var items = await collection.Find(filter).ToListAsync();
-
             return items;
         }
 
@@ -92,11 +89,8 @@ namespace InventoryManagementSystem
         public async Task<List<string>> GetUniqueCategoriesByBrand(string selectedBrand)
         {
             var collection = _database.GetCollection<BsonDocument>("items");
-
             var filter = Builders<BsonDocument>.Filter.Eq("brand", selectedBrand);
-
             var distinctResults = await collection.DistinctAsync<string>("category", filter);
-
             return distinctResults.ToList();
         }
 
@@ -119,33 +113,28 @@ namespace InventoryManagementSystem
             return result;
         }
 
-
-        //CREATE
-
-        //insert a document to a collection
-        public async Task Insert<T>(string collectionName, T document)
+        //get the sequence of the last invoice
+        public async Task<int> GetLastInvoice()
         {
-            var collection = GetCollection<T>(collectionName);
-            await collection.InsertOneAsync(document);
+            var collection = GetCollection<Invoice>("invoices");
+            var filter = Builders<Invoice>.Filter.Empty;
+            var sort = Builders<Invoice>.Sort.Descending(c => c.sequence);
+            var projection = Builders<Invoice>.Projection.Include(c => c.sequence);
+            var result = await collection.Find(filter).Sort(sort).Project(projection).FirstOrDefaultAsync();
+            return result?["sequence"]?.ToInt32() ?? 0;
         }
 
-        //update an item
-        public async Task<bool> UpdateItem<T>(string part_number, T document)
+
+        //UPDATE
+
+        //update one field of item
+        public async Task<bool> UpdateItem<T>(ObjectId objectId, string fieldName, object value)
         {
             var collection = GetCollection<T>("items");
-            var objectId = new ObjectId(part_number);
-            var filter = Builders<T>.Filter.Eq("part_number", objectId);
-            var result = await collection.ReplaceOneAsync(filter, document);
-            return result.ModifiedCount > 0;
-        }
+            var filter = Builders<T>.Filter.Eq("_id", objectId);
+            var update = Builders<T>.Update.Set(fieldName, value);
+            var result = await collection.UpdateOneAsync(filter, update);
 
-        //update an customer
-        public async Task<bool> UpdateCustomer<T>(string customer_id, T document)
-        {
-            var collection = GetCollection<T>("customers");
-            var objectId = new ObjectId(customer_id);
-            var filter = Builders<T>.Filter.Eq("customer_id", objectId);
-            var result = await collection.ReplaceOneAsync(filter, document);
             return result.ModifiedCount > 0;
         }
 
