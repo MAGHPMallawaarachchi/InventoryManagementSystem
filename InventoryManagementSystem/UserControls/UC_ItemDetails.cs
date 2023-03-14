@@ -193,6 +193,7 @@ namespace InventoryManagementSystem.UserControls
             var collection = database.GetCollection<BsonDocument>("items");
 
             // Define the query filter . representing the query
+            //i think this is where the problem is 
             var filter = Builders<BsonDocument>.Filter.Eq("part_number", "part_numberText.Text");
             UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.Set("part_number", newValue);
 
