@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryManagementSystem.UserControls
+namespace InventoryManagementSystem
 {
-    public partial class UC_Customers : UserControl
+    public partial class AddCustomer : Form
     {
-        public UC_Customers()
+        public AddCustomer()
         {
             InitializeComponent();
         }
 
-        private void btnAddCustomer_Click(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
-            AddCustomer addCustomer = new AddCustomer();
-            addCustomer.ShowDialog();
+
         }
     }
 }
