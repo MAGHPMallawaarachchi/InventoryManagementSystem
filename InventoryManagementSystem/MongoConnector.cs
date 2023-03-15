@@ -126,9 +126,16 @@ namespace InventoryManagementSystem
 
 
         //UPDATE
+        public async Task<bool> Update<T>(string id, T item)
+        {
+            var filter = Builders<T>.Filter.Eq("_id", id);
+            var collection = GetCollection<T>("items");
+            var result = await collection.ReplaceOneAsync(filter, item);
+            return result.ModifiedCount > 0;
+        }
 
         //update one field of item
-        public async Task<bool> UpdateItem<T>(ObjectId objectId, string fieldName, object value)
+        public async Task<bool> UpdateFieldItem<T>(ObjectId objectId, string fieldName, object value)
         {
             var collection = GetCollection<T>("items");
             var filter = Builders<T>.Filter.Eq("_id", objectId);
@@ -137,6 +144,33 @@ namespace InventoryManagementSystem
 
             return result.ModifiedCount > 0;
         }
+
+        //update 1 or more fields of item
+        public async Task<bool> UpdateItem<T>(string partNumber, Item updatedItem)
+        {
+            var collection = GetCollection<T>("items");
+            var filter = Builders<T>.Filter.Eq("part_number", partNumber);
+
+            var update = Builders<T>.Update
+                .Set("part_number", updatedItem.part_number)
+                .Set("oem_number", updatedItem.oem_number)
+                .Set("description", updatedItem.description)
+                .Set("brand", updatedItem.brand)
+                .Set("vehicle_brand", updatedItem.vehicle_brand)
+                .Set("buying_price", updatedItem.buying_price)
+                .Set("unit_price", updatedItem.unit_price)
+                .Set("quantity", updatedItem.quantity)
+                .Set("quantity_sold", updatedItem.quantity_sold)
+                .Set("supplier", updatedItem.supplier);
+
+            var result = await collection.UpdateOneAsync(filter, update);
+
+            return result.ModifiedCount > 0;
+        }
+
+
+
+
 
         //delete an item
         public async Task<bool> DeleteItem<T>(string part_number)
