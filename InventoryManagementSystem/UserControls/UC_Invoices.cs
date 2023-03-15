@@ -301,7 +301,7 @@ namespace InventoryManagementSystem.UserControls
 
                         var collectionItems = database.GetCollection<BsonDocument>("items");
                         var filter = Builders<BsonDocument>.Filter.Eq("part_number", partNumber);
-                        var update1 = Builders<BsonDocument>.Update.Set("quantity_in_hand", document.quantity - quantity);
+                        var update1 = Builders<BsonDocument>.Update.Set("quantity_in_hand", document.quantity_in_hand - quantity);
                         var update2 = Builders<BsonDocument>.Update.Set("quantity_sold", document.quantity_sold + quantity);
                         collectionItems.UpdateOne(filter, update1);
                         collectionItems.UpdateOne(filter, update2);

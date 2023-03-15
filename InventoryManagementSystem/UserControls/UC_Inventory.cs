@@ -1,23 +1,6 @@
 ﻿using InventoryManagementSystem.UserControls;
-using Siticone.Desktop.UI.WinForms.Suite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using dotenv.net;
 using System.Configuration;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using ImageResizer.Configuration.Xml;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Text.RegularExpressions;
 
 namespace InventoryManagementSystem
 {
@@ -253,7 +236,16 @@ namespace InventoryManagementSystem
         private void btnReload_Click(object sender, EventArgs e)
         {
             dgvItems.Rows.Clear();
+            dgvOverallInventory.Rows.Clear();
+
             ItemsLoad();
+            OverallInventoryLoad();
+
+            cbBrand.Items.Clear();
+            cbCategory.Items.Clear();
+
+            cbBrandLoad();
+            cbCategoryLoad();
         }
 
         public void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -316,9 +308,11 @@ namespace InventoryManagementSystem
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            cbCategory.SelectedIndex = 0;
-
+            
             cbBrand.SelectedIndex = 0;
+
+            cbCategory.Items.Clear();
+            cbCategoryLoad();
 
             if (cbCategory.SelectedIndex == 0 && cbBrand.SelectedIndex == 0)
             {
