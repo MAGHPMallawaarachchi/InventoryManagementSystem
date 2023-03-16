@@ -11,6 +11,65 @@ namespace InventoryManagementSystem.UserControls
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
+        /*public async void OverviewLoad()
+        {
+            // Disable automatic row height adjustment
+            dgvOverview.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            //get all the items from the collection items
+            
+            var documents = await _mongoConnector.GetOverview();
+
+            // Process the result
+            foreach (var document in documents)
+            {
+
+                dgvOverview.Rows.Add(new object[] {
+                    document.brand!,
+                    "revenue",
+                    "profit"
+                });
+            }
+
+            foreach (DataGridViewRow row in dgvOverview.Rows)
+            {
+                row.Height = 50;
+            }
+
+            // set the current cell to null to prevent the first row from being selected
+            dgvOverview.CurrentCell = null;
+
+        }
+
+        public async void BestSellingCategoriesLoad()
+        {
+            // Disable automatic row height adjustment
+            dgvBestSellingCategories.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            //get all the items from the collection items
+            var documents = await _mongoConnector.GetBestSellingCategories();
+
+            // Process the result
+            foreach (var document in documents)
+            {
+
+                dgvBestSellingCategories.Rows.Add(new object[] {
+                    document.brand!,
+                    "revenue",
+                    "profit"
+                });
+            }
+
+            foreach (DataGridViewRow row in dgvBestSellingCategories.Rows)
+            {
+                row.Height = 50;
+            }
+
+            // set the current cell to null to prevent the first row from being selected
+            dgvBestSellingCategories.CurrentCell = null;
+
+        }*/
+
         public async void BestSellingItemsLoad()
         {
             // Disable automatic row height adjustment
