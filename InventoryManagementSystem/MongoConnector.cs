@@ -124,6 +124,16 @@ namespace InventoryManagementSystem
             return result?["sequence"]?.ToInt32() ?? 0;
         }
 
+        //fetch documents from a collection and sort by quantity_sold in descending order
+        public async Task<List<Item>> GetBestSellingItems()
+        {
+            var collection = _database.GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Empty;
+            var sort = Builders<Item>.Sort.Descending(x => x.quantity_sold);
+            var documents = await collection.Find(filter).Sort(sort).ToListAsync();
+            return documents;
+        }
+
 
         //UPDATE
         public async Task<bool> Update<T>(string id, T item)

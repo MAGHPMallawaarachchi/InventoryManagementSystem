@@ -40,8 +40,8 @@
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.dgvBestSellingItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.part_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantity_in_hand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.revenue = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,8 +110,8 @@
             this.dgvBestSellingItems.ColumnHeadersHeight = 22;
             this.dgvBestSellingItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvBestSellingItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.brand,
             this.part_number,
+            this.brand,
             this.category,
             this.quantity_in_hand,
             this.revenue,
@@ -130,7 +130,7 @@
             this.dgvBestSellingItems.RowHeadersVisible = false;
             this.dgvBestSellingItems.RowHeadersWidth = 51;
             this.dgvBestSellingItems.RowTemplate.Height = 29;
-            this.dgvBestSellingItems.Size = new System.Drawing.Size(928, 256);
+            this.dgvBestSellingItems.Size = new System.Drawing.Size(928, 345);
             this.dgvBestSellingItems.TabIndex = 19;
             this.dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -154,17 +154,17 @@
             this.dgvBestSellingItems.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvBestSellingItems.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // brand
-            // 
-            this.brand.HeaderText = "Brand";
-            this.brand.MinimumWidth = 6;
-            this.brand.Name = "brand";
-            // 
             // part_number
             // 
             this.part_number.HeaderText = "Part Number";
             this.part_number.MinimumWidth = 6;
             this.part_number.Name = "part_number";
+            // 
+            // brand
+            // 
+            this.brand.HeaderText = "Brand";
+            this.brand.MinimumWidth = 6;
+            this.brand.Name = "brand";
             // 
             // category
             // 
@@ -406,6 +406,7 @@
             this.Name = "UC_Reports";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.Size = new System.Drawing.Size(1067, 806);
+            this.Load += new System.EventHandler(this.UC_Reports_Load);
             this.siticonePanel3.ResumeLayout(false);
             this.siticonePanel2.ResumeLayout(false);
             this.siticonePanel2.PerformLayout();
@@ -438,8 +439,8 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvBestSellingItems;
-        private DataGridViewTextBoxColumn brand;
         private DataGridViewTextBoxColumn part_number;
+        private DataGridViewTextBoxColumn brand;
         private DataGridViewTextBoxColumn category;
         private DataGridViewTextBoxColumn quantity_in_hand;
         private DataGridViewTextBoxColumn revenue;
