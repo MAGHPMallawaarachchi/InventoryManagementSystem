@@ -1,5 +1,8 @@
 ﻿using InventoryManagementSystem.DataModels;
 using InventoryManagementSystem.Messages;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
 using System.Configuration;
 
 namespace InventoryManagementSystem
@@ -18,7 +21,7 @@ namespace InventoryManagementSystem
 
         private void AddItem_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -28,29 +31,34 @@ namespace InventoryManagementSystem
 
         private async void btnAddItem_Click(object sender, EventArgs e)
         {
+            decimal buyingPrice = Convert.ToDecimal(txtBuyingPrice.Text);
+            decimal unitPrice = Convert.ToDecimal(txtUnitPrice.Text);
+            decimal totalCost = 0;
+            decimal totalRevenue = 0;
+            decimal totalProfit = totalRevenue - totalCost;
 
-            Item item = new Item
+            BsonDocument newItem = new BsonDocument
             {
-                part_number = txtPartNumber.Text,
-                oem_number = txtOEMNumber.Text,
-                description = txtDescription.Text,
-                category = txtCategory.Text,
-                brand = txtBrand.Text,
-                vehicle_brand = txtVehicleBrand.Text,
-                supplier = txtSupplier.Text,
-                buying_price = Convert.ToDecimal(txtBuyingPrice.Text),
-                unit_price = Convert.ToDecimal(txtUnitPrice.Text),
-                quantity = Convert.ToInt32(txtQuantity.Text),
-                quantity_sold = 0,
-                quantity_in_hand = Convert.ToInt32(txtQuantity.Text),
-                total_cost = 0,
-                total_profit = 0,
-                total_revenue = 0,
+                {"part_number", txtPartNumber.Text.ToString()},
+                {"oem_number", txtOEMNumber.Text.ToString()},
+                {"description", txtDescription.Text.ToString()},
+                {"category", txtCategory.Text.ToString()},
+                {"brand", txtBrand.Text.ToString()},
+                {"vehicle_brand", txtVehicleBrand.Text.ToString()},
+                {"supplier", txtSupplier.Text.ToString()},
+                {"buying_price", buyingPrice },
+                {"unit_price", unitPrice },
+                {"quantity", Convert.ToInt32(txtQuantity.Text) },
+                {"quantity_sold", 0 },
+                {"quantity_in_hand", Convert.ToInt32(txtQuantity.Text) },
+                {"total_cost", totalCost },
+                {"total_profit", totalProfit },
+                {"total_revenue", totalRevenue }
             };
 
             try
             {
-                await _mongoConnector.Insert<Item>("items", item);
+                await _mongoConnector.InsertDocumentAsync("items", newItem);
 
                 var addItemSuccessForm = new AddItemSuccess();
                 addItemSuccessForm.Owner = this;
@@ -206,9 +214,5 @@ namespace InventoryManagementSystem
             }
         }
 
-        private void txtPartNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

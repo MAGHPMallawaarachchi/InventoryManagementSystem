@@ -203,40 +203,8 @@ namespace InventoryManagementSystem
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            Form formBackground = new Form();
-            try
-            {
-                using (AddItem addItem = new AddItem())
-                {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .70d;
-                    formBackground.BackColor = Color.Black;
-                    formBackground.WindowState = FormWindowState.Maximized;
-                    formBackground.TopMost = true;
-                    if (Screen.PrimaryScreen != null)
-                    {
-                        formBackground.Location = Screen.PrimaryScreen.WorkingArea.Location;
-                        formBackground.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
-                    }
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
-
-                    addItem.Owner = null;
-
-                    addItem.ShowDialog();
-
-                    formBackground.Dispose();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                formBackground.Dispose();
-            }
+            AddItem addItem = new AddItem();
+            addItem.ShowDialog();
         }
 
         private void btnReload_Click(object sender, EventArgs e)

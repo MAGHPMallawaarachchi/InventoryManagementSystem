@@ -31,6 +31,16 @@ namespace InventoryManagementSystem.UserControls
         private void InitializeComponent()
         {
             siticonePanel1 = new SiticonePanel();
+            txtProfit = new SiticoneTextBox();
+            txtRevenue = new SiticoneTextBox();
+            txtCost = new SiticoneTextBox();
+            lblProfitData = new SiticoneHtmlLabel();
+            lblRevenueData = new SiticoneHtmlLabel();
+            lblCostData = new SiticoneHtmlLabel();
+            siticoneHtmlLabel2 = new SiticoneHtmlLabel();
+            siticoneHtmlLabel3 = new SiticoneHtmlLabel();
+            siticoneHtmlLabel4 = new SiticoneHtmlLabel();
+            siticoneHtmlLabel1 = new SiticoneHtmlLabel();
             txtVehicleBrand = new SiticoneTextBox();
             lblVehicleBrandData = new SiticoneHtmlLabel();
             lblVehicleBrand = new SiticoneHtmlLabel();
@@ -47,17 +57,17 @@ namespace InventoryManagementSystem.UserControls
             txtDescription = new SiticoneTextBox();
             txtOEMNumber = new SiticoneTextBox();
             txtPartNumber = new SiticoneTextBox();
-            qtySoldData = new SiticoneHtmlLabel();
-            qtyInHndData = new SiticoneHtmlLabel();
-            totalQtyData = new SiticoneHtmlLabel();
-            unitPriceData = new SiticoneHtmlLabel();
-            buyingPriceData = new SiticoneHtmlLabel();
-            supplierNameData = new SiticoneHtmlLabel();
-            brandData = new SiticoneHtmlLabel();
-            categoryData = new SiticoneHtmlLabel();
-            descriptionData = new SiticoneHtmlLabel();
-            oemNumberData = new SiticoneHtmlLabel();
-            partNumberData = new SiticoneHtmlLabel();
+            lblQuantitySoldData = new SiticoneHtmlLabel();
+            lblQuantityInHandData = new SiticoneHtmlLabel();
+            lblTotalQuantityData = new SiticoneHtmlLabel();
+            lblUnitPriceData = new SiticoneHtmlLabel();
+            lblBuyingPriceData = new SiticoneHtmlLabel();
+            lblSupplierNameData = new SiticoneHtmlLabel();
+            lblBrandData = new SiticoneHtmlLabel();
+            lblCategoryData = new SiticoneHtmlLabel();
+            lblDescriptionData = new SiticoneHtmlLabel();
+            lblOEMNumberData = new SiticoneHtmlLabel();
+            lblPartNumberData = new SiticoneHtmlLabel();
             qtySold = new SiticoneHtmlLabel();
             qtyInHnd = new SiticoneHtmlLabel();
             totalQty = new SiticoneHtmlLabel();
@@ -82,6 +92,16 @@ namespace InventoryManagementSystem.UserControls
             // siticonePanel1
             // 
             siticonePanel1.BackColor = Color.White;
+            siticonePanel1.Controls.Add(txtProfit);
+            siticonePanel1.Controls.Add(txtRevenue);
+            siticonePanel1.Controls.Add(txtCost);
+            siticonePanel1.Controls.Add(lblProfitData);
+            siticonePanel1.Controls.Add(lblRevenueData);
+            siticonePanel1.Controls.Add(lblCostData);
+            siticonePanel1.Controls.Add(siticoneHtmlLabel2);
+            siticonePanel1.Controls.Add(siticoneHtmlLabel3);
+            siticonePanel1.Controls.Add(siticoneHtmlLabel4);
+            siticonePanel1.Controls.Add(siticoneHtmlLabel1);
             siticonePanel1.Controls.Add(txtVehicleBrand);
             siticonePanel1.Controls.Add(lblVehicleBrandData);
             siticonePanel1.Controls.Add(lblVehicleBrand);
@@ -98,17 +118,17 @@ namespace InventoryManagementSystem.UserControls
             siticonePanel1.Controls.Add(txtDescription);
             siticonePanel1.Controls.Add(txtOEMNumber);
             siticonePanel1.Controls.Add(txtPartNumber);
-            siticonePanel1.Controls.Add(qtySoldData);
-            siticonePanel1.Controls.Add(qtyInHndData);
-            siticonePanel1.Controls.Add(totalQtyData);
-            siticonePanel1.Controls.Add(unitPriceData);
-            siticonePanel1.Controls.Add(buyingPriceData);
-            siticonePanel1.Controls.Add(supplierNameData);
-            siticonePanel1.Controls.Add(brandData);
-            siticonePanel1.Controls.Add(categoryData);
-            siticonePanel1.Controls.Add(descriptionData);
-            siticonePanel1.Controls.Add(oemNumberData);
-            siticonePanel1.Controls.Add(partNumberData);
+            siticonePanel1.Controls.Add(lblQuantitySoldData);
+            siticonePanel1.Controls.Add(lblQuantityInHandData);
+            siticonePanel1.Controls.Add(lblTotalQuantityData);
+            siticonePanel1.Controls.Add(lblUnitPriceData);
+            siticonePanel1.Controls.Add(lblBuyingPriceData);
+            siticonePanel1.Controls.Add(lblSupplierNameData);
+            siticonePanel1.Controls.Add(lblBrandData);
+            siticonePanel1.Controls.Add(lblCategoryData);
+            siticonePanel1.Controls.Add(lblDescriptionData);
+            siticonePanel1.Controls.Add(lblOEMNumberData);
+            siticonePanel1.Controls.Add(lblPartNumberData);
             siticonePanel1.Controls.Add(qtySold);
             siticonePanel1.Controls.Add(qtyInHnd);
             siticonePanel1.Controls.Add(totalQty);
@@ -134,6 +154,147 @@ namespace InventoryManagementSystem.UserControls
             siticonePanel1.TabIndex = 0;
             siticonePanel1.SizeChanged += siticonePanel1_SizeChanged;
             // 
+            // txtProfit
+            // 
+            txtProfit.Anchor = AnchorStyles.None;
+            txtProfit.DefaultText = "";
+            txtProfit.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtProfit.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtProfit.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtProfit.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtProfit.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtProfit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtProfit.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtProfit.Location = new Point(838, 440);
+            txtProfit.Margin = new Padding(3, 5, 3, 5);
+            txtProfit.Name = "txtProfit";
+            txtProfit.PasswordChar = '\0';
+            txtProfit.PlaceholderText = "";
+            txtProfit.SelectedText = "";
+            txtProfit.Size = new Size(215, 33);
+            txtProfit.TabIndex = 59;
+            txtProfit.Visible = false;
+            // 
+            // txtRevenue
+            // 
+            txtRevenue.Anchor = AnchorStyles.None;
+            txtRevenue.DefaultText = "";
+            txtRevenue.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtRevenue.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtRevenue.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtRevenue.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtRevenue.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtRevenue.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRevenue.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtRevenue.Location = new Point(838, 396);
+            txtRevenue.Margin = new Padding(3, 5, 3, 5);
+            txtRevenue.Name = "txtRevenue";
+            txtRevenue.PasswordChar = '\0';
+            txtRevenue.PlaceholderText = "";
+            txtRevenue.SelectedText = "";
+            txtRevenue.Size = new Size(215, 33);
+            txtRevenue.TabIndex = 58;
+            txtRevenue.Visible = false;
+            // 
+            // txtCost
+            // 
+            txtCost.Anchor = AnchorStyles.None;
+            txtCost.DefaultText = "";
+            txtCost.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtCost.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtCost.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtCost.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtCost.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtCost.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCost.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtCost.Location = new Point(838, 352);
+            txtCost.Margin = new Padding(3, 5, 3, 5);
+            txtCost.Name = "txtCost";
+            txtCost.PasswordChar = '\0';
+            txtCost.PlaceholderText = "";
+            txtCost.SelectedText = "";
+            txtCost.Size = new Size(215, 33);
+            txtCost.TabIndex = 57;
+            txtCost.Visible = false;
+            // 
+            // lblProfitData
+            // 
+            lblProfitData.Anchor = AnchorStyles.None;
+            lblProfitData.BackColor = Color.Transparent;
+            lblProfitData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblProfitData.Location = new Point(838, 447);
+            lblProfitData.Name = "lblProfitData";
+            lblProfitData.Size = new Size(35, 22);
+            lblProfitData.TabIndex = 56;
+            lblProfitData.Text = "Data";
+            // 
+            // lblRevenueData
+            // 
+            lblRevenueData.Anchor = AnchorStyles.None;
+            lblRevenueData.BackColor = Color.Transparent;
+            lblRevenueData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblRevenueData.Location = new Point(838, 408);
+            lblRevenueData.Name = "lblRevenueData";
+            lblRevenueData.Size = new Size(35, 22);
+            lblRevenueData.TabIndex = 55;
+            lblRevenueData.Text = "Data";
+            // 
+            // lblCostData
+            // 
+            lblCostData.Anchor = AnchorStyles.None;
+            lblCostData.BackColor = Color.Transparent;
+            lblCostData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblCostData.Location = new Point(838, 367);
+            lblCostData.Name = "lblCostData";
+            lblCostData.Size = new Size(35, 22);
+            lblCostData.TabIndex = 54;
+            lblCostData.Text = "Data";
+            // 
+            // siticoneHtmlLabel2
+            // 
+            siticoneHtmlLabel2.Anchor = AnchorStyles.None;
+            siticoneHtmlLabel2.BackColor = Color.Transparent;
+            siticoneHtmlLabel2.ForeColor = Color.FromArgb(133, 141, 157);
+            siticoneHtmlLabel2.Location = new Point(622, 452);
+            siticoneHtmlLabel2.Name = "siticoneHtmlLabel2";
+            siticoneHtmlLabel2.Size = new Size(39, 22);
+            siticoneHtmlLabel2.TabIndex = 53;
+            siticoneHtmlLabel2.Text = "Profit";
+            // 
+            // siticoneHtmlLabel3
+            // 
+            siticoneHtmlLabel3.Anchor = AnchorStyles.None;
+            siticoneHtmlLabel3.BackColor = Color.Transparent;
+            siticoneHtmlLabel3.ForeColor = Color.FromArgb(133, 141, 157);
+            siticoneHtmlLabel3.Location = new Point(622, 409);
+            siticoneHtmlLabel3.Name = "siticoneHtmlLabel3";
+            siticoneHtmlLabel3.Size = new Size(59, 22);
+            siticoneHtmlLabel3.TabIndex = 52;
+            siticoneHtmlLabel3.Text = "Revenue";
+            // 
+            // siticoneHtmlLabel4
+            // 
+            siticoneHtmlLabel4.Anchor = AnchorStyles.None;
+            siticoneHtmlLabel4.BackColor = Color.Transparent;
+            siticoneHtmlLabel4.ForeColor = Color.FromArgb(133, 141, 157);
+            siticoneHtmlLabel4.Location = new Point(622, 368);
+            siticoneHtmlLabel4.Name = "siticoneHtmlLabel4";
+            siticoneHtmlLabel4.Size = new Size(32, 22);
+            siticoneHtmlLabel4.TabIndex = 51;
+            siticoneHtmlLabel4.Text = "Cost";
+            // 
+            // siticoneHtmlLabel1
+            // 
+            siticoneHtmlLabel1.Anchor = AnchorStyles.None;
+            siticoneHtmlLabel1.BackColor = Color.Transparent;
+            siticoneHtmlLabel1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            siticoneHtmlLabel1.ForeColor = Color.FromArgb(72, 80, 94);
+            siticoneHtmlLabel1.Location = new Point(622, 323);
+            siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
+            siticoneHtmlLabel1.Size = new Size(115, 22);
+            siticoneHtmlLabel1.TabIndex = 50;
+            siticoneHtmlLabel1.Text = "Revenue Details";
+            // 
             // txtVehicleBrand
             // 
             txtVehicleBrand.DefaultText = "";
@@ -144,7 +305,7 @@ namespace InventoryManagementSystem.UserControls
             txtVehicleBrand.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtVehicleBrand.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtVehicleBrand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtVehicleBrand.Location = new Point(293, 376);
+            txtVehicleBrand.Location = new Point(293, 369);
             txtVehicleBrand.Margin = new Padding(3, 5, 3, 5);
             txtVehicleBrand.Name = "txtVehicleBrand";
             txtVehicleBrand.PasswordChar = '\0';
@@ -239,7 +400,7 @@ namespace InventoryManagementSystem.UserControls
             txtQuantitySold.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtQuantitySold.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtQuantitySold.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtQuantitySold.Location = new Point(838, 251);
+            txtQuantitySold.Location = new Point(838, 256);
             txtQuantitySold.Margin = new Padding(3, 5, 3, 5);
             txtQuantitySold.Name = "txtQuantitySold";
             txtQuantitySold.PasswordChar = '\0';
@@ -260,7 +421,7 @@ namespace InventoryManagementSystem.UserControls
             txtQuantityInHand.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtQuantityInHand.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtQuantityInHand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtQuantityInHand.Location = new Point(838, 207);
+            txtQuantityInHand.Location = new Point(838, 212);
             txtQuantityInHand.Margin = new Padding(3, 5, 3, 5);
             txtQuantityInHand.Name = "txtQuantityInHand";
             txtQuantityInHand.PasswordChar = '\0';
@@ -281,7 +442,7 @@ namespace InventoryManagementSystem.UserControls
             txtTotalQuantity.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtTotalQuantity.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtTotalQuantity.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtTotalQuantity.Location = new Point(838, 163);
+            txtTotalQuantity.Location = new Point(838, 168);
             txtTotalQuantity.Margin = new Padding(3, 5, 3, 5);
             txtTotalQuantity.Name = "txtTotalQuantity";
             txtTotalQuantity.PasswordChar = '\0';
@@ -301,7 +462,7 @@ namespace InventoryManagementSystem.UserControls
             txtUnitPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtUnitPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtUnitPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUnitPrice.Location = new Point(293, 649);
+            txtUnitPrice.Location = new Point(293, 655);
             txtUnitPrice.Margin = new Padding(3, 5, 3, 5);
             txtUnitPrice.Name = "txtUnitPrice";
             txtUnitPrice.PasswordChar = '\0';
@@ -321,7 +482,7 @@ namespace InventoryManagementSystem.UserControls
             txtBuyingPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtBuyingPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtBuyingPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBuyingPrice.Location = new Point(293, 604);
+            txtBuyingPrice.Location = new Point(293, 610);
             txtBuyingPrice.Margin = new Padding(3, 5, 3, 5);
             txtBuyingPrice.Name = "txtBuyingPrice";
             txtBuyingPrice.PasswordChar = '\0';
@@ -341,7 +502,7 @@ namespace InventoryManagementSystem.UserControls
             txtSupplier.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSupplier.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtSupplier.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSupplier.Location = new Point(293, 501);
+            txtSupplier.Location = new Point(293, 500);
             txtSupplier.Margin = new Padding(3, 5, 3, 5);
             txtSupplier.Name = "txtSupplier";
             txtSupplier.PasswordChar = '\0';
@@ -361,7 +522,7 @@ namespace InventoryManagementSystem.UserControls
             txtBrand.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtBrand.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtBrand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBrand.Location = new Point(293, 337);
+            txtBrand.Location = new Point(293, 330);
             txtBrand.Margin = new Padding(3, 5, 3, 5);
             txtBrand.Name = "txtBrand";
             txtBrand.PasswordChar = '\0';
@@ -381,7 +542,7 @@ namespace InventoryManagementSystem.UserControls
             txtCategory.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtCategory.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtCategory.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCategory.Location = new Point(293, 296);
+            txtCategory.Location = new Point(293, 289);
             txtCategory.Margin = new Padding(3, 5, 3, 5);
             txtCategory.Name = "txtCategory";
             txtCategory.PasswordChar = '\0';
@@ -401,7 +562,7 @@ namespace InventoryManagementSystem.UserControls
             txtDescription.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescription.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescription.Location = new Point(293, 256);
+            txtDescription.Location = new Point(293, 249);
             txtDescription.Margin = new Padding(3, 5, 3, 5);
             txtDescription.Name = "txtDescription";
             txtDescription.PasswordChar = '\0';
@@ -421,7 +582,7 @@ namespace InventoryManagementSystem.UserControls
             txtOEMNumber.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtOEMNumber.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtOEMNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtOEMNumber.Location = new Point(293, 215);
+            txtOEMNumber.Location = new Point(293, 208);
             txtOEMNumber.Margin = new Padding(3, 5, 3, 5);
             txtOEMNumber.Name = "txtOEMNumber";
             txtOEMNumber.PasswordChar = '\0';
@@ -441,7 +602,7 @@ namespace InventoryManagementSystem.UserControls
             txtPartNumber.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPartNumber.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtPartNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPartNumber.Location = new Point(293, 172);
+            txtPartNumber.Location = new Point(293, 165);
             txtPartNumber.Margin = new Padding(3, 5, 3, 5);
             txtPartNumber.Name = "txtPartNumber";
             txtPartNumber.PasswordChar = '\0';
@@ -451,118 +612,118 @@ namespace InventoryManagementSystem.UserControls
             txtPartNumber.TabIndex = 33;
             txtPartNumber.Visible = false;
             // 
-            // qtySoldData
+            // lblQuantitySoldData
             // 
-            qtySoldData.Anchor = AnchorStyles.None;
-            qtySoldData.BackColor = Color.Transparent;
-            qtySoldData.ForeColor = Color.FromArgb(133, 141, 157);
-            qtySoldData.Location = new Point(838, 256);
-            qtySoldData.Name = "qtySoldData";
-            qtySoldData.Size = new Size(35, 22);
-            qtySoldData.TabIndex = 32;
-            qtySoldData.Text = "Data";
+            lblQuantitySoldData.Anchor = AnchorStyles.None;
+            lblQuantitySoldData.BackColor = Color.Transparent;
+            lblQuantitySoldData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblQuantitySoldData.Location = new Point(838, 256);
+            lblQuantitySoldData.Name = "lblQuantitySoldData";
+            lblQuantitySoldData.Size = new Size(35, 22);
+            lblQuantitySoldData.TabIndex = 32;
+            lblQuantitySoldData.Text = "Data";
             // 
-            // qtyInHndData
+            // lblQuantityInHandData
             // 
-            qtyInHndData.Anchor = AnchorStyles.None;
-            qtyInHndData.BackColor = Color.Transparent;
-            qtyInHndData.ForeColor = Color.FromArgb(133, 141, 157);
-            qtyInHndData.Location = new Point(838, 217);
-            qtyInHndData.Name = "qtyInHndData";
-            qtyInHndData.Size = new Size(35, 22);
-            qtyInHndData.TabIndex = 31;
-            qtyInHndData.Text = "Data";
+            lblQuantityInHandData.Anchor = AnchorStyles.None;
+            lblQuantityInHandData.BackColor = Color.Transparent;
+            lblQuantityInHandData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblQuantityInHandData.Location = new Point(838, 217);
+            lblQuantityInHandData.Name = "lblQuantityInHandData";
+            lblQuantityInHandData.Size = new Size(35, 22);
+            lblQuantityInHandData.TabIndex = 31;
+            lblQuantityInHandData.Text = "Data";
             // 
-            // totalQtyData
+            // lblTotalQuantityData
             // 
-            totalQtyData.Anchor = AnchorStyles.None;
-            totalQtyData.BackColor = Color.Transparent;
-            totalQtyData.ForeColor = Color.FromArgb(133, 141, 157);
-            totalQtyData.Location = new Point(838, 176);
-            totalQtyData.Name = "totalQtyData";
-            totalQtyData.Size = new Size(35, 22);
-            totalQtyData.TabIndex = 30;
-            totalQtyData.Text = "Data";
+            lblTotalQuantityData.Anchor = AnchorStyles.None;
+            lblTotalQuantityData.BackColor = Color.Transparent;
+            lblTotalQuantityData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblTotalQuantityData.Location = new Point(838, 176);
+            lblTotalQuantityData.Name = "lblTotalQuantityData";
+            lblTotalQuantityData.Size = new Size(35, 22);
+            lblTotalQuantityData.TabIndex = 30;
+            lblTotalQuantityData.Text = "Data";
             // 
-            // unitPriceData
+            // lblUnitPriceData
             // 
-            unitPriceData.BackColor = Color.Transparent;
-            unitPriceData.ForeColor = Color.FromArgb(133, 141, 157);
-            unitPriceData.Location = new Point(310, 661);
-            unitPriceData.Name = "unitPriceData";
-            unitPriceData.Size = new Size(35, 22);
-            unitPriceData.TabIndex = 29;
-            unitPriceData.Text = "Data";
+            lblUnitPriceData.BackColor = Color.Transparent;
+            lblUnitPriceData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblUnitPriceData.Location = new Point(310, 661);
+            lblUnitPriceData.Name = "lblUnitPriceData";
+            lblUnitPriceData.Size = new Size(35, 22);
+            lblUnitPriceData.TabIndex = 29;
+            lblUnitPriceData.Text = "Data";
             // 
-            // buyingPriceData
+            // lblBuyingPriceData
             // 
-            buyingPriceData.BackColor = Color.Transparent;
-            buyingPriceData.ForeColor = Color.FromArgb(133, 141, 157);
-            buyingPriceData.Location = new Point(310, 619);
-            buyingPriceData.Name = "buyingPriceData";
-            buyingPriceData.Size = new Size(35, 22);
-            buyingPriceData.TabIndex = 28;
-            buyingPriceData.Text = "Data";
+            lblBuyingPriceData.BackColor = Color.Transparent;
+            lblBuyingPriceData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblBuyingPriceData.Location = new Point(310, 619);
+            lblBuyingPriceData.Name = "lblBuyingPriceData";
+            lblBuyingPriceData.Size = new Size(35, 22);
+            lblBuyingPriceData.TabIndex = 28;
+            lblBuyingPriceData.Text = "Data";
             // 
-            // supplierNameData
+            // lblSupplierNameData
             // 
-            supplierNameData.BackColor = Color.Transparent;
-            supplierNameData.ForeColor = Color.FromArgb(133, 141, 157);
-            supplierNameData.Location = new Point(310, 506);
-            supplierNameData.Name = "supplierNameData";
-            supplierNameData.Size = new Size(35, 22);
-            supplierNameData.TabIndex = 26;
-            supplierNameData.Text = "Data";
+            lblSupplierNameData.BackColor = Color.Transparent;
+            lblSupplierNameData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblSupplierNameData.Location = new Point(310, 506);
+            lblSupplierNameData.Name = "lblSupplierNameData";
+            lblSupplierNameData.Size = new Size(35, 22);
+            lblSupplierNameData.TabIndex = 26;
+            lblSupplierNameData.Text = "Data";
             // 
-            // brandData
+            // lblBrandData
             // 
-            brandData.BackColor = Color.Transparent;
-            brandData.ForeColor = Color.FromArgb(133, 141, 157);
-            brandData.Location = new Point(310, 337);
-            brandData.Name = "brandData";
-            brandData.Size = new Size(35, 22);
-            brandData.TabIndex = 25;
-            brandData.Text = "Data";
+            lblBrandData.BackColor = Color.Transparent;
+            lblBrandData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblBrandData.Location = new Point(310, 337);
+            lblBrandData.Name = "lblBrandData";
+            lblBrandData.Size = new Size(35, 22);
+            lblBrandData.TabIndex = 25;
+            lblBrandData.Text = "Data";
             // 
-            // categoryData
+            // lblCategoryData
             // 
-            categoryData.BackColor = Color.Transparent;
-            categoryData.ForeColor = Color.FromArgb(133, 141, 157);
-            categoryData.Location = new Point(310, 296);
-            categoryData.Name = "categoryData";
-            categoryData.Size = new Size(35, 22);
-            categoryData.TabIndex = 24;
-            categoryData.Text = "Data";
+            lblCategoryData.BackColor = Color.Transparent;
+            lblCategoryData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblCategoryData.Location = new Point(310, 296);
+            lblCategoryData.Name = "lblCategoryData";
+            lblCategoryData.Size = new Size(35, 22);
+            lblCategoryData.TabIndex = 24;
+            lblCategoryData.Text = "Data";
             // 
-            // descriptionData
+            // lblDescriptionData
             // 
-            descriptionData.BackColor = Color.Transparent;
-            descriptionData.ForeColor = Color.FromArgb(133, 141, 157);
-            descriptionData.Location = new Point(310, 256);
-            descriptionData.Name = "descriptionData";
-            descriptionData.Size = new Size(35, 22);
-            descriptionData.TabIndex = 23;
-            descriptionData.Text = "Data";
+            lblDescriptionData.BackColor = Color.Transparent;
+            lblDescriptionData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblDescriptionData.Location = new Point(310, 256);
+            lblDescriptionData.Name = "lblDescriptionData";
+            lblDescriptionData.Size = new Size(35, 22);
+            lblDescriptionData.TabIndex = 23;
+            lblDescriptionData.Text = "Data";
             // 
-            // oemNumberData
+            // lblOEMNumberData
             // 
-            oemNumberData.BackColor = Color.Transparent;
-            oemNumberData.ForeColor = Color.FromArgb(133, 141, 157);
-            oemNumberData.Location = new Point(310, 217);
-            oemNumberData.Name = "oemNumberData";
-            oemNumberData.Size = new Size(35, 22);
-            oemNumberData.TabIndex = 22;
-            oemNumberData.Text = "Data";
+            lblOEMNumberData.BackColor = Color.Transparent;
+            lblOEMNumberData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblOEMNumberData.Location = new Point(310, 217);
+            lblOEMNumberData.Name = "lblOEMNumberData";
+            lblOEMNumberData.Size = new Size(35, 22);
+            lblOEMNumberData.TabIndex = 22;
+            lblOEMNumberData.Text = "Data";
             // 
-            // partNumberData
+            // lblPartNumberData
             // 
-            partNumberData.BackColor = Color.Transparent;
-            partNumberData.ForeColor = Color.FromArgb(133, 141, 157);
-            partNumberData.Location = new Point(310, 176);
-            partNumberData.Name = "partNumberData";
-            partNumberData.Size = new Size(35, 22);
-            partNumberData.TabIndex = 21;
-            partNumberData.Text = "Data";
+            lblPartNumberData.BackColor = Color.Transparent;
+            lblPartNumberData.ForeColor = Color.FromArgb(133, 141, 157);
+            lblPartNumberData.Location = new Point(310, 176);
+            lblPartNumberData.Name = "lblPartNumberData";
+            lblPartNumberData.Size = new Size(35, 22);
+            lblPartNumberData.TabIndex = 21;
+            lblPartNumberData.Text = "Data";
             // 
             // qtySold
             // 
@@ -823,17 +984,17 @@ namespace InventoryManagementSystem.UserControls
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHnd;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel totalQty;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel stockDetails;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtySoldData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel qtyInHndData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel totalQtyData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel unitPriceData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel buyingPriceData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierNameData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel brandData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel categoryData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel descriptionData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel oemNumberData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel partNumberData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblQuantitySoldData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblQuantityInHandData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblTotalQuantityData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblUnitPriceData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBuyingPriceData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblSupplierNameData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBrandData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblCategoryData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblDescriptionData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblOEMNumberData;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblPartNumberData;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtPartNumber;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtBuyingPrice;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtSupplier;
@@ -850,5 +1011,15 @@ namespace InventoryManagementSystem.UserControls
         private SiticoneTextBox txtVehicleBrand;
         private SiticoneHtmlLabel lblVehicleBrandData;
         private SiticoneHtmlLabel lblVehicleBrand;
+        private SiticoneHtmlLabel siticoneHtmlLabel1;
+        private SiticoneTextBox txtProfit;
+        private SiticoneTextBox txtRevenue;
+        private SiticoneTextBox txtCost;
+        private SiticoneHtmlLabel lblProfitData;
+        private SiticoneHtmlLabel lblRevenueData;
+        private SiticoneHtmlLabel lblCostData;
+        private SiticoneHtmlLabel siticoneHtmlLabel2;
+        private SiticoneHtmlLabel siticoneHtmlLabel3;
+        private SiticoneHtmlLabel siticoneHtmlLabel4;
     }
 }

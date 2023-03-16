@@ -1,6 +1,9 @@
 ﻿using InventoryManagementSystem.DataModels;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using System.Collections;
 
 namespace InventoryManagementSystem
 {
@@ -11,6 +14,7 @@ namespace InventoryManagementSystem
 
         public MongoConnector(string connectionString, string databaseName)
         {
+
             _client = new MongoClient(connectionString);
             _database = _client.GetDatabase(databaseName);
         }
@@ -23,6 +27,21 @@ namespace InventoryManagementSystem
 
 
         //CREATE
+
+        public async Task<bool> InsertDocumentAsync(string collectionName, BsonDocument document)
+        {
+            try
+            {
+                var collection = GetCollection<BsonDocument>(collectionName);
+                await collection.InsertOneAsync(document);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to insert document: {ex}");
+                return false;
+            }
+        }
 
         //insert a document to a collection
         public async Task Insert<T>(string collectionName, T document)
@@ -136,6 +155,22 @@ namespace InventoryManagementSystem
 
 
         //UPDATE
+
+        public async Task<bool> UpdateDocumentAsync(string collectionName, FilterDefinition<BsonDocument> filter, BsonDocument update)
+        {
+            try
+            {
+                var collection = GetCollection<BsonDocument>(collectionName);
+                var result = await collection.UpdateOneAsync(filter, new BsonDocument("$set", update));
+                return result.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to update document: {ex}");
+                return false;
+            }
+        }
+
         public async Task<bool> Update<T>(string id, T item)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);

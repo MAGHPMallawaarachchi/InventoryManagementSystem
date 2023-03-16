@@ -16,15 +16,15 @@ namespace InventoryManagementSystem.DataModels
         public string? category { get; set; }
         public string? brand { get; set; }
         public string? vehicle_brand { get; set; }
-        public decimal? buying_price { get; set; }
-        public decimal? unit_price { get; set; }
+        public decimal buying_price { get; set; }
+        public decimal unit_price { get; set; }
         public int? quantity { get; set; }
         public int? quantity_sold { get; set; }
         public int? quantity_in_hand { get; set; }
         public string? supplier { get; set; }
-        public decimal? total_cost { get; set; }
-        public decimal? total_revenue { get; set; }
-        public decimal? total_profit { get; set; }
+        public decimal total_cost { get; set; }
+        public decimal total_revenue { get; set; }
+        public decimal total_profit { get; set; }
 
 
     }

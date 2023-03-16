@@ -87,8 +87,8 @@ namespace InventoryManagementSystem.UserControls
                     document.brand!,
                     document.category!,
                     document.quantity_in_hand!,
-                    "revenue",
-                    "profit"
+                    document.total_revenue!,
+                    document.total_profit!
                 });
             }
 

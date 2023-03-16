@@ -324,7 +324,6 @@
             txtPartNumber.Size = new Size(273, 44);
             txtPartNumber.TabIndex = 24;
             txtPartNumber.TextOffset = new Point(10, 0);
-            txtPartNumber.TextChanged += txtPartNumber_TextChanged;
             txtPartNumber.KeyDown += txtPartNumber_KeyDown;
             // 
             // label3
