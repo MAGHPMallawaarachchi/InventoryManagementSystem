@@ -1,4 +1,6 @@
 using System.Configuration;
+using System.Drawing.Drawing2D;
+
 namespace InventoryManagementSystem.UserControls
 {
     public partial class UC_Reports : UserControl
@@ -9,6 +11,31 @@ namespace InventoryManagementSystem.UserControls
             InitializeComponent();
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
+        }
+
+        private void UC_Reports_Load(object sender, EventArgs e)
+        {
+            BestSellingItemsLoad();
+
+            UpdatePanelRegion(Panel2);
+            UpdatePanelRegion(Panel1);
+            UpdatePanelRegion(Panel3);
+        }
+
+        private void UpdatePanelRegion(Panel panel)
+        {
+            // Create a new GraphicsPath object that defines a rounded rectangle
+            GraphicsPath path = new GraphicsPath();
+            int radius = 20;
+            Rectangle rect = new Rectangle(0, 0, panel.Width, panel.Height);
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+            path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+            path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+            path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
+            path.CloseFigure();
+
+            // Set the Region property of the panel to the new GraphicsPath object
+            panel.Region = new Region(path);
         }
 
         /*public async void OverviewLoad()
@@ -86,6 +113,7 @@ namespace InventoryManagementSystem.UserControls
                     document.part_number!,
                     document.brand!,
                     document.category!,
+                    document.quantity_sold!,
                     document.quantity_in_hand!,
                     document.total_revenue!,
                     document.total_profit!
@@ -99,12 +127,22 @@ namespace InventoryManagementSystem.UserControls
 
             // set the current cell to null to prevent the first row from being selected
             dgvBestSellingItems.CurrentCell = null;
-            
+
         }
 
-        private void UC_Reports_Load(object sender, EventArgs e)
+        private void Panel1_StyleChanged(object sender, EventArgs e)
         {
-            BestSellingItemsLoad();
+            UpdatePanelRegion(Panel1);
+        }
+
+        private void Panel2_SizeChanged(object sender, EventArgs e)
+        {
+            UpdatePanelRegion(Panel2);
+        }
+
+        private void Panel3_SizeChanged(object sender, EventArgs e)
+        {
+            UpdatePanelRegion(Panel3);
         }
     }
 }
