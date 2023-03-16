@@ -37,12 +37,15 @@ namespace InventoryManagementSystem
                 category = txtCategory.Text,
                 brand = txtBrand.Text,
                 vehicle_brand = txtVehicleBrand.Text,
+                supplier = txtSupplier.Text,
                 buying_price = Convert.ToDecimal(txtBuyingPrice.Text),
                 unit_price = Convert.ToDecimal(txtUnitPrice.Text),
                 quantity = Convert.ToInt32(txtQuantity.Text),
                 quantity_sold = 0,
                 quantity_in_hand = Convert.ToInt32(txtQuantity.Text),
-                supplier = txtSupplier.Text
+                total_cost = 0,
+                total_profit = 0,
+                total_revenue = 0,
             };
 
             try

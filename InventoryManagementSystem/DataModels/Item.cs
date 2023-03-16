@@ -22,6 +22,10 @@ namespace InventoryManagementSystem.DataModels
         public int? quantity_sold { get; set; }
         public int? quantity_in_hand { get; set; }
         public string? supplier { get; set; }
+        public decimal? total_cost { get; set; }
+        public decimal? total_revenue { get; set; }
+        public decimal? total_profit { get; set; }
+
 
     }
 }
