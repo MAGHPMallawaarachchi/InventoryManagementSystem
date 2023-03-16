@@ -1,23 +1,7 @@
 ﻿using InventoryManagementSystem.UserControls;
-using Siticone.Desktop.UI.WinForms.Suite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using dotenv.net;
 using System.Configuration;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using ImageResizer.Configuration.Xml;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace InventoryManagementSystem
 {
@@ -28,6 +12,8 @@ namespace InventoryManagementSystem
         public UC_Inventory()
         {
             InitializeComponent();
+
+            btnDelete.Visible = false;
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
@@ -55,6 +41,8 @@ namespace InventoryManagementSystem
             // Disable automatic row height adjustment
             dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
+            checkboxColumn.Width = 50;
+
             //get all the items from the collection items
             var documents = await _mongoConnector.GetAllItems();
 
@@ -74,15 +62,16 @@ namespace InventoryManagementSystem
                     Availability = "Out-of-stock";
                 }
 
-                dgvItems.Rows.Add(new object[] { 
-                    document.part_number!, 
-                    document.description!, 
-                    document.brand!, 
-                    document.quantity!, 
-                    QuantityInHand!, 
-                    document.quantity_sold!, 
-                    document.unit_price!, 
-                    Availability 
+                dgvItems.Rows.Add(new object[] {
+                    false,
+                    document.part_number!,
+                    document.description!,
+                    document.brand!,
+                    document.quantity!,
+                    QuantityInHand!,
+                    document.quantity_sold!,
+                    document.unit_price!,
+                    Availability
                 });
             }
 
@@ -184,7 +173,7 @@ namespace InventoryManagementSystem
                 }
             }
 
-        }  
+        }
 
         private void UpdatePanelRegion(Panel panel)
         {
@@ -229,7 +218,7 @@ namespace InventoryManagementSystem
                     {
                         formBackground.Location = Screen.PrimaryScreen.WorkingArea.Location;
                         formBackground.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
-                    }                   
+                    }
                     formBackground.ShowInTaskbar = false;
                     formBackground.Show();
 
@@ -253,13 +242,22 @@ namespace InventoryManagementSystem
         private void btnReload_Click(object sender, EventArgs e)
         {
             dgvItems.Rows.Clear();
+            dgvOverallInventory.Rows.Clear();
+
             ItemsLoad();
+            OverallInventoryLoad();
+
+            cbBrand.Items.Clear();
+            cbCategory.Items.Clear();
+
+            cbBrandLoad();
+            cbCategoryLoad();
         }
 
         public void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Check if a row is selected
-            if (dgvItems.SelectedRows.Count > 0)
+            if (dgvItems.SelectedRows.Count > 0 && e.ColumnIndex == dgvItems.Columns["part_number"].Index)
             {
                 // Get the selected part number from the first cell of the selected row
                 string partNumber = dgvItems.SelectedRows[0].Cells["part_number"].Value?.ToString() ?? "N/A";
@@ -316,9 +314,11 @@ namespace InventoryManagementSystem
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            cbCategory.SelectedIndex = 0;
-
+            btnDelete.Visible = false;
             cbBrand.SelectedIndex = 0;
+
+            cbCategory.Items.Clear();
+            cbCategoryLoad();
 
             if (cbCategory.SelectedIndex == 0 && cbBrand.SelectedIndex == 0)
             {
@@ -441,6 +441,23 @@ namespace InventoryManagementSystem
                 defaultForeColor = dgvItems.Rows[e.RowIndex].DefaultCellStyle.ForeColor;
                 dgvItems.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.FromArgb(10, 73, 156);
             }
+
+            // Check if the hovered cell is in the part_number column
+            if (e.ColumnIndex == dgvItems.Columns["part_number"].Index && e.RowIndex >= 0)
+            {
+                // Get the cell to be underlined
+                DataGridViewCell cell = dgvItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                // Underline the cell content
+                cell.Style.Font = new Font(cell.InheritedStyle.Font, FontStyle.Underline);
+
+                // Change the cursor to a hand when hovering over the cell
+                dgvItems.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                dgvItems.Cursor = Cursors.Default;
+            }
         }
 
         private void dgvItems_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
@@ -449,6 +466,17 @@ namespace InventoryManagementSystem
             {
                 dgvItems.Rows[e.RowIndex].DefaultCellStyle.ForeColor = defaultForeColor;
             }
+
+            // Check if the mouse left the part_number column
+            if (e.ColumnIndex == dgvItems.Columns["part_number"].Index && e.RowIndex >= 0)
+            {
+                // Get the cell to remove the underline
+                DataGridViewCell cell = dgvItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                // Remove the underline from the cell content
+                cell.Style.Font = new Font(cell.InheritedStyle.Font, FontStyle.Regular);
+            }
         }
+
     }
 }

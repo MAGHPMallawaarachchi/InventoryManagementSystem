@@ -828,7 +828,6 @@ namespace InventoryManagementSystem.UserControls
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel totalQtyData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel unitPriceData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel buyingPriceData;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierEmailData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel supplierNameData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel brandData;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel categoryData;
