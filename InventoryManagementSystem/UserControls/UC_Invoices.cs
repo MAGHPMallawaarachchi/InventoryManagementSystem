@@ -3,7 +3,6 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Configuration;
 using System.Drawing.Drawing2D;
-using static MongoDB.Driver.WriteConcern;
 
 
 namespace InventoryManagementSystem.UserControls
@@ -288,6 +287,7 @@ namespace InventoryManagementSystem.UserControls
                 decimal totalCost = 0;
                 decimal totalRevenue = 0;
 
+                var invoiceItems = new List<BsonDocument>();
                 List<InvoiceItem> items = new List<InvoiceItem>();
 
                 foreach (DataGridViewRow row in dgvItems.Rows)
@@ -314,7 +314,16 @@ namespace InventoryManagementSystem.UserControls
                         totalCost += cost;
                         totalRevenue += amount;
 
-                        // create a new InvoiceItem object and add it to the list
+                        var invoiceItem = new BsonDocument
+                        {
+                            { "part_number", partNumber },
+                            { "quantity", quantity },
+                            { "revenue", amount },
+                            { "cost", cost },
+                            { "profit", profit }
+                        };
+                        invoiceItems.Add(invoiceItem);
+
                         items.Add(new InvoiceItem
                         {
                             part_number = partNumber,
@@ -327,12 +336,16 @@ namespace InventoryManagementSystem.UserControls
                         decimal updateTotalCost = (decimal)(document.total_cost + (DecimalQty * document.buying_price))!;
                         decimal updateTotalRevenue = (decimal)(document.total_revenue + (DecimalQty * document.unit_price))!;
                         decimal updateTotalProfit = updateTotalRevenue - updateTotalCost;
+                        int updateQuantitySold = Convert.ToInt32(document.quantity_sold + quantity);
+                        int updateQuantityInHand = Convert.ToInt32(document.quantity_in_hand - quantity);
 
                         var updateDoc = new BsonDocument
                         {
                             { "total_cost", BsonDecimal128.Create(updateTotalCost) },
                             { "total_revenue", BsonDecimal128.Create(updateTotalRevenue) },
-                            { "total_profit", BsonDecimal128.Create(updateTotalProfit) }
+                            { "total_profit", BsonDecimal128.Create(updateTotalProfit) },
+                            { "quantity_sold", BsonInt32.Create(updateQuantitySold) },
+                            { "quantity_in_hand", BsonInt32.Create(updateQuantityInHand) }
                         };
 
                         var collectionNew = _mongoConnector.GetCollection<Item>("items");
@@ -364,7 +377,20 @@ namespace InventoryManagementSystem.UserControls
                     // create an instance of the PdfGenerator class
                     PdfGenerator pdfGenerator = new PdfGenerator();
 
-                    Invoice newInvoice = new Invoice
+                    var newInvoice = new BsonDocument
+                    {
+                        { "prefix", "KAP-" },
+                        { "sequence", InvoiceNo },
+                        { "date", DateTime.Today },
+                        { "time", DateTime.Now.ToString("hh:mm:ss tt") },
+                        { "customer_id", cbCustomerID.Text },
+                        { "items", new BsonArray(invoiceItems) },
+                        { "total_profit", totalProfit },
+                        { "total_cost", totalCost },
+                        { "total_revenue", totalRevenue }
+                    };
+
+                    Invoice invoice = new Invoice
                     {
                         prefix = "KAP-",
                         sequence = InvoiceNo,
@@ -377,10 +403,10 @@ namespace InventoryManagementSystem.UserControls
                         total_revenue = totalRevenue
                     };
 
-                    collection.InsertOne(newInvoice.ToBsonDocument());
+                    await _mongoConnector.InsertDocumentAsync("invoices", newInvoice);
 
                     // generate the PDF document
-                    pdfGenerator.GeneratePdf(newInvoice);
+                    pdfGenerator.GeneratePdf(invoice);
 
                     MessageBox.Show("Invoice saved successfully.");
                 }
