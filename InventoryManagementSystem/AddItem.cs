@@ -1,28 +1,19 @@
-﻿using dotenv.net;
-using ImageResizer.Plugins.Basic;
+﻿using InventoryManagementSystem.DataModels;
 using InventoryManagementSystem.Messages;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventoryManagementSystem
 {
     public partial class AddItem : Form
     {
+        private readonly MongoConnector _mongoConnector;
+
         public AddItem()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
+            _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
         private void AddItem_Load(object sender, EventArgs e)
@@ -35,34 +26,28 @@ namespace InventoryManagementSystem
             this.Close();
         }
 
-        private void btnAddItem_Click(object sender, EventArgs e)
+        private async void btnAddItem_Click(object sender, EventArgs e)
         {
-            string collectionName = "items";
 
-            // Get the MongoDB client
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-
-            // Get the database and collection objects
-            IMongoDatabase db = client.GetDatabase("InventoryManagementSystem");
-            IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>(collectionName);
-
-            var item = new BsonDocument {
-                { "part_number", txtPartNumber.Text },
-                { "oem_number", txtOEMNumber.Text },
-                { "description", txtDescription.Text },
-                { "category", txtCategory.Text },
-                { "brand", txtBrand.Text },
-                { "vehicle_brand", txtVehicleBrand.Text },
-                { "buying_price", Convert.ToDecimal(txtBuyingPrice.Value) },
-                { "unit_price", Convert.ToDecimal(txtUnitPrice.Value) },
-                { "quantity", Convert.ToInt32(txtQuantity.Value) },
-                { "quantity_sold", 0 },
-                { "supplier", txtSupplier.Text },
+            Item item = new Item
+            {
+                part_number = txtPartNumber.Text,
+                oem_number = txtOEMNumber.Text,
+                description = txtDescription.Text,
+                category = txtCategory.Text,
+                brand = txtBrand.Text,
+                vehicle_brand = txtVehicleBrand.Text,
+                buying_price = Convert.ToDecimal(txtBuyingPrice.Text),
+                unit_price = Convert.ToDecimal(txtUnitPrice.Text),
+                quantity = Convert.ToInt32(txtQuantity.Text),
+                quantity_sold = 0,
+                quantity_in_hand = Convert.ToInt32(txtQuantity.Text),
+                supplier = txtSupplier.Text
             };
 
             try
             {
-                collection.InsertOne(item);
+                await _mongoConnector.Insert<Item>("items", item);
 
                 var addItemSuccessForm = new AddItemSuccess();
                 addItemSuccessForm.Owner = this;

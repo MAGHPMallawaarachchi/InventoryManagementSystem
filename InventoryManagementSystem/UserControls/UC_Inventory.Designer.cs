@@ -45,12 +45,14 @@
             out_of_stock = new DataGridViewTextBoxColumn();
             lblOverallInventory = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             panel2 = new Panel();
+            btnDelete = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnClear = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             cbBrand = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             btnReload = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             cbCategory = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            checkboxColumn = new DataGridViewCheckBoxColumn();
             part_number = new DataGridViewTextBoxColumn();
             description = new DataGridViewTextBoxColumn();
             brand = new DataGridViewTextBoxColumn();
@@ -187,6 +189,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnClear);
             panel2.Controls.Add(cbBrand);
             panel2.Controls.Add(btnReload);
@@ -201,6 +204,31 @@
             panel2.Size = new Size(1101, 592);
             panel2.TabIndex = 1;
             panel2.SizeChanged += panel2_SizeChanged;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.BorderColor = Color.FromArgb(10, 73, 156);
+            btnDelete.BorderRadius = 4;
+            btnDelete.BorderThickness = 2;
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.DisabledState.BorderColor = Color.DarkGray;
+            btnDelete.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDelete.FillColor = Color.FromArgb(10, 73, 156);
+            btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnDelete.HoverState.FillColor = Color.FromArgb(10, 73, 156);
+            btnDelete.ImageOffset = new Point(0, 1);
+            btnDelete.ImageSize = new Size(15, 10);
+            btnDelete.Location = new Point(115, 22);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(92, 40);
+            btnDelete.TabIndex = 53;
+            btnDelete.Text = "delete";
+            btnDelete.TextOffset = new Point(2, 0);
             // 
             // btnClear
             // 
@@ -325,7 +353,7 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvItems.ColumnHeadersHeight = 50;
-            dgvItems.Columns.AddRange(new DataGridViewColumn[] { part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
+            dgvItems.Columns.AddRange(new DataGridViewColumn[] { checkboxColumn, part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = Color.White;
             dataGridViewCellStyle8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
@@ -376,6 +404,14 @@
             dgvItems.CellClick += dgvItems_CellClick;
             dgvItems.CellMouseEnter += dgvItems_CellMouseEnter;
             dgvItems.CellMouseLeave += dgvItems_CellMouseLeave;
+            // 
+            // checkboxColumn
+            // 
+            checkboxColumn.HeaderText = "";
+            checkboxColumn.MinimumWidth = 6;
+            checkboxColumn.Name = "checkboxColumn";
+            checkboxColumn.Resizable = DataGridViewTriState.True;
+            checkboxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // part_number
             // 
@@ -501,6 +537,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbBrand;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbCategory;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnClear;
+        private DataGridViewCheckBoxColumn checkboxColumn;
         private DataGridViewTextBoxColumn part_number;
         private DataGridViewTextBoxColumn description;
         private DataGridViewTextBoxColumn brand;
@@ -509,5 +546,6 @@
         private DataGridViewTextBoxColumn quantity_sold;
         private DataGridViewTextBoxColumn unit_price;
         private DataGridViewTextBoxColumn availability;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnDelete;
     }
 }

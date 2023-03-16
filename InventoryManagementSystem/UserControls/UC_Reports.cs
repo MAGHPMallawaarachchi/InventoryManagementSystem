@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-
+using System.Configuration;
 namespace InventoryManagementSystem.UserControls
 {
     public partial class UC_Reports : UserControl

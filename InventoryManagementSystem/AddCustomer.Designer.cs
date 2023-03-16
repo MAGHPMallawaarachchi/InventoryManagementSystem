@@ -48,9 +48,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(56, 62, 73);
-            label1.Location = new Point(21, 25);
+            label1.Location = new Point(24, 33);
             label1.Name = "label1";
-            label1.Size = new Size(136, 25);
+            label1.Size = new Size(164, 31);
             label1.TabIndex = 22;
             label1.Text = "New Customer";
             // 
@@ -59,9 +59,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(72, 80, 94);
-            label2.Location = new Point(31, 117);
+            label2.Location = new Point(35, 156);
             label2.Name = "label2";
-            label2.Size = new Size(91, 20);
+            label2.Size = new Size(112, 25);
             label2.TabIndex = 23;
             label2.Text = "Customer ID";
             // 
@@ -78,13 +78,13 @@
             txtCustomerID.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtCustomerID.ForeColor = Color.FromArgb(72, 80, 94);
             txtCustomerID.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCustomerID.Location = new Point(172, 112);
-            txtCustomerID.Margin = new Padding(3, 4, 3, 4);
+            txtCustomerID.Location = new Point(197, 149);
+            txtCustomerID.Margin = new Padding(3, 5, 3, 5);
             txtCustomerID.Name = "txtCustomerID";
             txtCustomerID.PasswordChar = '\0';
             txtCustomerID.PlaceholderText = "";
             txtCustomerID.SelectedText = "";
-            txtCustomerID.Size = new Size(239, 33);
+            txtCustomerID.Size = new Size(273, 44);
             txtCustomerID.TabIndex = 25;
             txtCustomerID.TextOffset = new Point(10, 0);
             // 
@@ -101,13 +101,13 @@
             txtContactNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtContactNumber.ForeColor = Color.FromArgb(72, 80, 94);
             txtContactNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtContactNumber.Location = new Point(172, 352);
-            txtContactNumber.Margin = new Padding(3, 4, 3, 4);
+            txtContactNumber.Location = new Point(197, 469);
+            txtContactNumber.Margin = new Padding(3, 5, 3, 5);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PasswordChar = '\0';
             txtContactNumber.PlaceholderText = "";
             txtContactNumber.SelectedText = "";
-            txtContactNumber.Size = new Size(239, 33);
+            txtContactNumber.Size = new Size(273, 44);
             txtContactNumber.TabIndex = 27;
             txtContactNumber.TextOffset = new Point(10, 0);
             // 
@@ -116,9 +116,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(72, 80, 94);
-            label3.Location = new Point(31, 357);
+            label3.Location = new Point(35, 476);
             label3.Name = "label3";
-            label3.Size = new Size(118, 20);
+            label3.Size = new Size(143, 25);
             label3.TabIndex = 26;
             label3.Text = "Contact Number";
             // 
@@ -135,13 +135,13 @@
             txtCity.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtCity.ForeColor = Color.FromArgb(72, 80, 94);
             txtCity.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCity.Location = new Point(172, 285);
-            txtCity.Margin = new Padding(3, 4, 3, 4);
+            txtCity.Location = new Point(197, 380);
+            txtCity.Margin = new Padding(3, 5, 3, 5);
             txtCity.Name = "txtCity";
             txtCity.PasswordChar = '\0';
             txtCity.PlaceholderText = "";
             txtCity.SelectedText = "";
-            txtCity.Size = new Size(239, 33);
+            txtCity.Size = new Size(273, 44);
             txtCity.TabIndex = 29;
             txtCity.TextOffset = new Point(10, 0);
             // 
@@ -150,9 +150,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(72, 80, 94);
-            label4.Location = new Point(31, 290);
+            label4.Location = new Point(35, 387);
             label4.Name = "label4";
-            label4.Size = new Size(34, 20);
+            label4.Size = new Size(42, 25);
             label4.TabIndex = 28;
             label4.Text = "City";
             label4.Click += label4_Click;
@@ -170,13 +170,13 @@
             txtAddress.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtAddress.ForeColor = Color.FromArgb(72, 80, 94);
             txtAddress.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Location = new Point(172, 225);
-            txtAddress.Margin = new Padding(3, 4, 3, 4);
+            txtAddress.Location = new Point(197, 300);
+            txtAddress.Margin = new Padding(3, 5, 3, 5);
             txtAddress.Name = "txtAddress";
             txtAddress.PasswordChar = '\0';
             txtAddress.PlaceholderText = "";
             txtAddress.SelectedText = "";
-            txtAddress.Size = new Size(239, 33);
+            txtAddress.Size = new Size(273, 44);
             txtAddress.TabIndex = 31;
             txtAddress.TextOffset = new Point(10, 0);
             // 
@@ -185,9 +185,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(72, 80, 94);
-            label5.Location = new Point(31, 230);
+            label5.Location = new Point(35, 307);
             label5.Name = "label5";
-            label5.Size = new Size(62, 20);
+            label5.Size = new Size(77, 25);
             label5.TabIndex = 30;
             label5.Text = "Address";
             // 
@@ -204,13 +204,13 @@
             txtName.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtName.ForeColor = Color.FromArgb(72, 80, 94);
             txtName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtName.Location = new Point(172, 168);
-            txtName.Margin = new Padding(3, 4, 3, 4);
+            txtName.Location = new Point(197, 224);
+            txtName.Margin = new Padding(3, 5, 3, 5);
             txtName.Name = "txtName";
             txtName.PasswordChar = '\0';
             txtName.PlaceholderText = "";
             txtName.SelectedText = "";
-            txtName.Size = new Size(239, 33);
+            txtName.Size = new Size(273, 44);
             txtName.TabIndex = 33;
             txtName.TextOffset = new Point(10, 0);
             // 
@@ -219,9 +219,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(72, 80, 94);
-            label6.Location = new Point(31, 173);
+            label6.Location = new Point(35, 231);
             label6.Name = "label6";
-            label6.Size = new Size(49, 20);
+            label6.Size = new Size(59, 25);
             label6.TabIndex = 32;
             label6.Text = "Name";
             // 
@@ -241,13 +241,13 @@
             btnAddCustomer.ForeColor = Color.White;
             btnAddCustomer.ImageOffset = new Point(0, 1);
             btnAddCustomer.ImageSize = new Size(15, 10);
-            btnAddCustomer.Location = new Point(304, 507);
-            btnAddCustomer.Margin = new Padding(3, 2, 3, 2);
+            btnAddCustomer.Location = new Point(322, 676);
             btnAddCustomer.Name = "btnAddCustomer";
-            btnAddCustomer.Size = new Size(107, 30);
+            btnAddCustomer.Size = new Size(147, 40);
             btnAddCustomer.TabIndex = 43;
             btnAddCustomer.Text = "Add Customer";
             btnAddCustomer.TextOffset = new Point(2, 0);
+            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // btnDiscard
             // 
@@ -265,20 +265,20 @@
             btnDiscard.ForeColor = Color.FromArgb(93, 102, 121);
             btnDiscard.ImageOffset = new Point(0, 1);
             btnDiscard.ImageSize = new Size(15, 10);
-            btnDiscard.Location = new Point(199, 507);
-            btnDiscard.Margin = new Padding(3, 2, 3, 2);
+            btnDiscard.Location = new Point(197, 676);
             btnDiscard.Name = "btnDiscard";
-            btnDiscard.Size = new Size(89, 30);
+            btnDiscard.Size = new Size(102, 40);
             btnDiscard.TabIndex = 42;
             btnDiscard.Text = "Discard";
             btnDiscard.TextOffset = new Point(2, 0);
+            btnDiscard.Click += btnDiscard_Click;
             // 
             // AddCustomer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(441, 572);
+            ClientSize = new Size(504, 763);
             ControlBox = false;
             Controls.Add(btnAddCustomer);
             Controls.Add(btnDiscard);
@@ -293,7 +293,9 @@
             Controls.Add(txtCustomerID);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AddCustomer";
+            StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
             PerformLayout();
         }

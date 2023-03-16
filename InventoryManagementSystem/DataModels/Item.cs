@@ -20,7 +20,6 @@ namespace InventoryManagementSystem.DataModels
         public decimal? unit_price { get; set; }
         public int? quantity { get; set; }
         public int? quantity_sold { get; set; }
-
         public int? quantity_in_hand { get; set; }
         public string? supplier { get; set; }
 
