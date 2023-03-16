@@ -125,12 +125,12 @@ namespace InventoryManagementSystem
         }
 
         //fetch documents from a collection and sort by quantity_sold in descending order
-        public List<Item> GetItemsSortedByQuantitySoldDescending(string collectionName)
+        public async Task<List<Item>> GetBestSellingItems()
         {
-            var collection = _database.GetCollection<Item>(collectionName);
+            var collection = _database.GetCollection<Item>("items");
             var filter = Builders<Item>.Filter.Empty;
             var sort = Builders<Item>.Sort.Descending(x => x.quantity_sold);
-            var documents = collection.Find(filter).Sort(sort).ToList();
+            var documents = await collection.Find(filter).Sort(sort).ToListAsync();
             return documents;
         }
 
