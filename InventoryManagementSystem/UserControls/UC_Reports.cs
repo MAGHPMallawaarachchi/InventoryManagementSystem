@@ -16,5 +16,65 @@ namespace InventoryManagementSystem.UserControls
         {
             InitializeComponent();
         }
+
+        private void siticoneButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticonePanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void siticonePanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void siticoneHtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneHtmlLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvBestSellingCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void siticoneDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblBestSellingCategories_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvOverview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void siticonePanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
