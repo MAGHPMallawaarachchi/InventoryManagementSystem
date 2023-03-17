@@ -153,6 +153,15 @@ namespace InventoryManagementSystem
             return documents;
         }
 
+        public async Task<List<Item>> GetItemsFromCategory(string category)
+        {
+            var collection = _database.GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Eq("category", category);
+            var documents = await collection.Find(filter).ToListAsync();
+
+            return documents;
+        }
+
 
         //UPDATE
 
