@@ -79,9 +79,9 @@
             middlePanel.Controls.Add(Panel2);
             middlePanel.Controls.Add(Panel1);
             middlePanel.Dock = DockStyle.Fill;
-            middlePanel.Location = new Point(20, 20);
+            middlePanel.Location = new Point(19, 19);
             middlePanel.Name = "middlePanel";
-            middlePanel.Size = new Size(1029, 766);
+            middlePanel.Size = new Size(1028, 766);
             middlePanel.TabIndex = 2;
             // 
             // Panel3
@@ -92,7 +92,7 @@
             Panel3.Controls.Add(lblBestSellingItems);
             Panel3.Location = new Point(0, 295);
             Panel3.Name = "Panel3";
-            Panel3.Size = new Size(1029, 471);
+            Panel3.Size = new Size(1028, 471);
             Panel3.TabIndex = 4;
             Panel3.SizeChanged += Panel3_SizeChanged;
             // 
@@ -140,7 +140,7 @@
             dgvBestSellingItems.RowHeadersVisible = false;
             dgvBestSellingItems.RowHeadersWidth = 50;
             dgvBestSellingItems.RowTemplate.Height = 29;
-            dgvBestSellingItems.Size = new Size(1029, 405);
+            dgvBestSellingItems.Size = new Size(1028, 405);
             dgvBestSellingItems.TabIndex = 20;
             dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -224,7 +224,7 @@
             Panel2.Controls.Add(lblBestSellingCategories);
             Panel2.Location = new Point(608, 0);
             Panel2.Name = "Panel2";
-            Panel2.Size = new Size(421, 272);
+            Panel2.Size = new Size(420, 272);
             Panel2.TabIndex = 3;
             Panel2.SizeChanged += Panel2_SizeChanged;
             // 
@@ -272,7 +272,7 @@
             dgvBestSellingCategories.RowHeadersVisible = false;
             dgvBestSellingCategories.RowHeadersWidth = 50;
             dgvBestSellingCategories.RowTemplate.Height = 29;
-            dgvBestSellingCategories.Size = new Size(421, 216);
+            dgvBestSellingCategories.Size = new Size(420, 216);
             dgvBestSellingCategories.TabIndex = 19;
             dgvBestSellingCategories.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvBestSellingCategories.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -446,7 +446,7 @@
             BackColor = Color.FromArgb(240, 241, 243);
             Controls.Add(middlePanel);
             Name = "UC_Reports";
-            Padding = new Padding(20);
+            Padding = new Padding(19, 19, 22, 21);
             Size = new Size(1069, 806);
             Load += UC_Reports_Load;
             middlePanel.ResumeLayout(false);

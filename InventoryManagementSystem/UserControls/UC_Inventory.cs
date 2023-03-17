@@ -1,7 +1,6 @@
 ﻿using InventoryManagementSystem.UserControls;
 using System.Drawing.Drawing2D;
 using System.Configuration;
-using System.Windows.Forms;
 
 namespace InventoryManagementSystem
 {

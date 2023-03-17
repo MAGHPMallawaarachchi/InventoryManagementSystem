@@ -183,6 +183,16 @@ namespace InventoryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LowInStock {
+            get {
+                object obj = ResourceManager.GetObject("LowInStock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap orders {
             get {
                 object obj = ResourceManager.GetObject("orders", resourceCulture);
@@ -196,6 +206,36 @@ namespace InventoryManagementSystem.Properties {
         internal static System.Drawing.Bitmap ordersBlue {
             get {
                 object obj = ResourceManager.GetObject("ordersBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OutOfStock {
+            get {
+                object obj = ResourceManager.GetObject("OutOfStock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap QuantityInHand {
+            get {
+                object obj = ResourceManager.GetObject("QuantityInHand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap QuantitySold {
+            get {
+                object obj = ResourceManager.GetObject("QuantitySold", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
