@@ -153,13 +153,13 @@ namespace InventoryManagementSystem
             return documents;
         }
 
-        public async Task<List<Item>> GetItemsFromCategory(string category)
+        //get all invoices
+        public async Task<List<Invoice>> GetAllInvoices()
         {
-            var collection = _database.GetCollection<Item>("items");
-            var filter = Builders<Item>.Filter.Eq("category", category);
-            var documents = await collection.Find(filter).ToListAsync();
-
-            return documents;
+            var collection = GetCollection<Invoice>("invoices");
+            var filter = Builders<Invoice>.Filter.Empty;
+            var invoices = await collection.Find(filter).ToListAsync();
+            return invoices;
         }
 
 
