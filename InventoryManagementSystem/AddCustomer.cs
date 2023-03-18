@@ -1,4 +1,5 @@
 ﻿using InventoryManagementSystem.DataModels;
+using InventoryManagementSystem.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,20 +16,18 @@ namespace InventoryManagementSystem
     public partial class AddCustomer : Form
     {
         private readonly MongoConnector _mongoConnector;
-        public AddCustomer()
+        private readonly UC_Customers _ucCustomers;
+
+        public AddCustomer(UC_Customers ucCustomers)
         {
             InitializeComponent();
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
+
+            _ucCustomers = ucCustomers;
         }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //Add Customer Button
+        //addCustomer button
         private async void btnAddCustomer_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer
@@ -36,11 +35,20 @@ namespace InventoryManagementSystem
                 customer_id = txtCustomerID.Text,
                 name = txtName.Text,
                 address = txtAddress.Text,
-                city =  txtCity.Text,
+                city = txtCity.Text,
                 phone_no = txtContactNumber.Text
             };
 
             await _mongoConnector.Insert<Customer>("customers", customer);
+
+            txtCustomerID.Text = "";
+            txtName.Text = "";
+            txtAddress.Text = "";
+            txtCity.Text = "";
+            txtContactNumber.Text = "";
+
+            _ucCustomers.RefreshCustomers();
+            this.Close();
         }
 
         //Discard button
@@ -50,3 +58,4 @@ namespace InventoryManagementSystem
         }
     }
 }
+
