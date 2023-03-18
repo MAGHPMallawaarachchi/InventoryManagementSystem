@@ -12,8 +12,6 @@ namespace InventoryManagementSystem
         {
             InitializeComponent();
 
-            btnDelete.Visible = false;
-
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
 
@@ -21,8 +19,16 @@ namespace InventoryManagementSystem
 
         private void UC_Inventory_Load(object sender, EventArgs e)
         {
+            RefreshInventory();
+        }
+
+        public void RefreshInventory()
+        {
             UpdatePanelRegion(panel1);
             UpdatePanelRegion(panel2);
+
+            dgvItems.Rows.Clear();
+            dgvOverallInventory.Rows.Clear();
 
             ItemsLoad();
             OverallInventoryLoad();
@@ -51,7 +57,7 @@ namespace InventoryManagementSystem
                 var QuantityInHand = document.quantity - document.quantity_sold;
                 var Availability = "In-Stock";
 
-                if (document.quantity < 50 && document.quantity > 0)
+                if (document.quantity <= 10 && document.quantity > 0)
                 {
                     Availability = "Low-Stock";
                 }
@@ -202,7 +208,7 @@ namespace InventoryManagementSystem
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            AddItem addItem = new AddItem();
+            AddItem addItem = new AddItem(this);
             addItem.ShowDialog();
         }
 
@@ -281,7 +287,6 @@ namespace InventoryManagementSystem
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            btnDelete.Visible = false;
             cbBrand.SelectedIndex = 0;
 
             cbCategory.Items.Clear();

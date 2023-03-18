@@ -1,8 +1,6 @@
-﻿using InventoryManagementSystem.DataModels;
-using InventoryManagementSystem.Messages;
+﻿using InventoryManagementSystem.Messages;
+using InventoryManagementSystem.UserControls;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson.Serialization;
 using System.Configuration;
 
 namespace InventoryManagementSystem
@@ -10,13 +8,16 @@ namespace InventoryManagementSystem
     public partial class AddItem : Form
     {
         private readonly MongoConnector _mongoConnector;
+        private readonly UC_Inventory _ucInventory;
 
-        public AddItem()
+        public AddItem(UC_Inventory ucInventory)
         {
             InitializeComponent();
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
+
+            _ucInventory = ucInventory;
         }
 
         private void AddItem_Load(object sender, EventArgs e)
@@ -77,11 +78,13 @@ namespace InventoryManagementSystem
                 txtQuantity.Value = 0;
                 txtSupplier.Text = "";
 
+                _ucInventory.RefreshInventory();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while adding the item to the database: {ex.Message}");
-            }
+            }           
         }
 
         private void txtPartNumber_KeyDown(object sender, KeyEventArgs e)

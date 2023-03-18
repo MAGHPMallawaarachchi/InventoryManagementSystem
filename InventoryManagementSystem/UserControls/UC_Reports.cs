@@ -40,7 +40,7 @@ namespace InventoryManagementSystem.UserControls
             panel.Region = new Region(path);
         }
 
-        public async void OverviewLoad()
+        private async void OverviewLoad()
         {
             // Disable automatic row height adjustment
             dgvOverview.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -78,7 +78,7 @@ namespace InventoryManagementSystem.UserControls
 
         }
 
-        public async void BestSellingCategoriesLoad()
+        private async void BestSellingCategoriesLoad()
         {
             // Disable automatic row height adjustment
             dgvBestSellingCategories.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -139,7 +139,7 @@ namespace InventoryManagementSystem.UserControls
 
         }
 
-        public async void BestSellingItemsLoad()
+        private async void BestSellingItemsLoad()
         {
             // Disable automatic row height adjustment
             dgvBestSellingItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;

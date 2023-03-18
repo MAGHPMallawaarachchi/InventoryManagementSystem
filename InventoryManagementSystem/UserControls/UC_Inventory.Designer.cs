@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             panel1 = new Panel();
             dgvOverallInventory = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             categories = new DataGridViewTextBoxColumn();
@@ -45,10 +45,8 @@
             out_of_stock = new DataGridViewTextBoxColumn();
             lblOverallInventory = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             panel2 = new Panel();
-            btnDelete = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnClear = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             cbBrand = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            btnReload = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             cbCategory = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
@@ -87,42 +85,42 @@
             dgvOverallInventory.AllowUserToDeleteRows = false;
             dgvOverallInventory.AllowUserToResizeColumns = false;
             dgvOverallInventory.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dgvOverallInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = Color.White;
+            dgvOverallInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             dgvOverallInventory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle2.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvOverallInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.White;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle11.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle11.SelectionBackColor = Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dgvOverallInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dgvOverallInventory.ColumnHeadersHeight = 30;
             dgvOverallInventory.Columns.AddRange(new DataGridViewColumn[] { categories, total_items, low_in_stock, out_of_stock });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle3.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle3.SelectionBackColor = Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvOverallInventory.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.White;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle12.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle12.SelectionBackColor = Color.White;
+            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dgvOverallInventory.DefaultCellStyle = dataGridViewCellStyle12;
             dgvOverallInventory.GridColor = Color.FromArgb(240, 241, 243);
             dgvOverallInventory.ImeMode = ImeMode.NoControl;
             dgvOverallInventory.Location = new Point(0, 67);
             dgvOverallInventory.Name = "dgvOverallInventory";
             dgvOverallInventory.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvOverallInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = Color.White;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle13.SelectionBackColor = Color.White;
+            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgvOverallInventory.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dgvOverallInventory.RowHeadersVisible = false;
             dgvOverallInventory.RowHeadersWidth = 50;
             dgvOverallInventory.RowTemplate.Height = 29;
@@ -189,10 +187,8 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
-            panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnClear);
             panel2.Controls.Add(cbBrand);
-            panel2.Controls.Add(btnReload);
             panel2.Controls.Add(cbCategory);
             panel2.Controls.Add(lblItems);
             panel2.Controls.Add(dgvItems);
@@ -204,31 +200,6 @@
             panel2.Size = new Size(1101, 592);
             panel2.TabIndex = 1;
             panel2.SizeChanged += panel2_SizeChanged;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDelete.BorderColor = Color.FromArgb(10, 73, 156);
-            btnDelete.BorderRadius = 4;
-            btnDelete.BorderThickness = 2;
-            btnDelete.Cursor = Cursors.Hand;
-            btnDelete.DisabledState.BorderColor = Color.DarkGray;
-            btnDelete.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnDelete.FillColor = Color.FromArgb(10, 73, 156);
-            btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDelete.ForeColor = Color.White;
-            btnDelete.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
-            btnDelete.HoverState.FillColor = Color.FromArgb(10, 73, 156);
-            btnDelete.ImageOffset = new Point(0, 1);
-            btnDelete.ImageSize = new Size(15, 10);
-            btnDelete.Location = new Point(115, 22);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(92, 40);
-            btnDelete.TabIndex = 53;
-            btnDelete.Text = "delete";
-            btnDelete.TextOffset = new Point(2, 0);
             // 
             // btnClear
             // 
@@ -278,31 +249,6 @@
             cbBrand.TabIndex = 51;
             cbBrand.SelectedIndexChanged += cbBrand_SelectedIndexChanged;
             // 
-            // btnReload
-            // 
-            btnReload.Cursor = Cursors.Hand;
-            btnReload.DisabledState.BorderColor = Color.DarkGray;
-            btnReload.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnReload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnReload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnReload.FillColor = Color.Transparent;
-            btnReload.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnReload.ForeColor = Color.White;
-            btnReload.HoverState.BorderColor = Color.Transparent;
-            btnReload.HoverState.FillColor = Color.Transparent;
-            btnReload.HoverState.Image = Properties.Resources.reloadBlue;
-            btnReload.Image = Properties.Resources.reload;
-            btnReload.ImageOffset = new Point(1, 0);
-            btnReload.ImageSize = new Size(16, 15);
-            btnReload.Location = new Point(75, 21);
-            btnReload.Margin = new Padding(3, 4, 3, 4);
-            btnReload.Name = "btnReload";
-            btnReload.PressedColor = Color.Transparent;
-            btnReload.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            btnReload.Size = new Size(34, 40);
-            btnReload.TabIndex = 4;
-            btnReload.Click += btnReload_Click;
-            // 
             // cbCategory
             // 
             cbCategory.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -340,41 +286,41 @@
             dgvItems.AllowUserToDeleteRows = false;
             dgvItems.AllowUserToResizeColumns = false;
             dgvItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.BackColor = Color.White;
+            dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
             dgvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle6.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle6.SelectionBackColor = Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = Color.White;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle15.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle15.SelectionBackColor = Color.White;
+            dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             dgvItems.ColumnHeadersHeight = 50;
             dgvItems.Columns.AddRange(new DataGridViewColumn[] { checkboxColumn, part_number, description, brand, quantity, quantity_in_hand, quantity_sold, unit_price, availability });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle8.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle8.SelectionBackColor = Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvItems.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.White;
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle17.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle17.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle17.SelectionBackColor = Color.White;
+            dataGridViewCellStyle17.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
+            dgvItems.DefaultCellStyle = dataGridViewCellStyle17;
             dgvItems.GridColor = Color.FromArgb(240, 241, 243);
             dgvItems.Location = new Point(0, 85);
             dgvItems.Name = "dgvItems";
             dgvItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = Color.White;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle9.SelectionBackColor = Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = Color.White;
+            dataGridViewCellStyle18.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle18.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle18.SelectionBackColor = Color.White;
+            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             dgvItems.RowHeadersVisible = false;
             dgvItems.RowHeadersWidth = 50;
             dgvItems.RowTemplate.Height = 29;
@@ -439,8 +385,8 @@
             // 
             // quantity_in_hand
             // 
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            quantity_in_hand.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            quantity_in_hand.DefaultCellStyle = dataGridViewCellStyle16;
             quantity_in_hand.HeaderText = "Quantity in Hand";
             quantity_in_hand.MinimumWidth = 6;
             quantity_in_hand.Name = "quantity_in_hand";
@@ -527,7 +473,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnAddItem;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvItems;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblItems;
-        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton btnReload;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblOverallInventory;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvOverallInventory;
         private DataGridViewTextBoxColumn categories;
@@ -546,6 +491,5 @@
         private DataGridViewTextBoxColumn quantity_sold;
         private DataGridViewTextBoxColumn unit_price;
         private DataGridViewTextBoxColumn availability;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btnDelete;
     }
 }

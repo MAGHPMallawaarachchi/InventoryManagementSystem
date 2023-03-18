@@ -54,6 +54,42 @@ namespace InventoryManagementSystem
 
         //READ
 
+        //get all items
+        public async Task<List<Item>> GetAllItems()
+        {
+            var collection = GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Empty;
+            var result = await collection.Find(filter).ToListAsync();
+            return result;
+        }
+
+        //get all customers
+        public async Task<List<Customer>> GetAllCustomers()
+        {
+            var collection = GetCollection<Customer>("customers");
+            var filter = Builders<Customer>.Filter.Empty;
+            var sort = Builders<Customer>.Sort.Ascending(c => c.customer_id);
+            var result = await collection.Find(filter).Sort(sort).ToListAsync();
+            return result;
+        }
+
+        public async Task<List<Item>> GetLowQuantityItems()
+        {
+            var items = await GetAllItems();
+            var filteredItems = items.Where(i => i.quantity_in_hand <= 10 && i.quantity_in_hand != 0)
+                                     .OrderBy(i => i.quantity_in_hand)
+                                     .ToList();
+            return filteredItems;
+        }
+
+        public async Task<List<Item>> GetOutOfStockItems()
+        {
+            var items = await GetAllItems();
+            var filteredItems = items.Where(i => i.quantity_in_hand == 0)
+                                     .ToList();
+            return filteredItems;
+        }
+
         //get item by part_number
         public async Task<Item> GetByPartNumber(string partNumber)
         {
@@ -111,25 +147,6 @@ namespace InventoryManagementSystem
             var filter = Builders<BsonDocument>.Filter.Eq("brand", selectedBrand);
             var distinctResults = await collection.DistinctAsync<string>("category", filter);
             return distinctResults.ToList();
-        }
-
-        //get all items
-        public async Task<List<Item>> GetAllItems()
-        {
-            var collection = GetCollection<Item>("items");
-            var filter = Builders<Item>.Filter.Empty;
-            var result = await collection.Find(filter).ToListAsync();
-            return result;
-        }
-
-        //get all customers
-        public async Task<List<Customer>> GetAllCustomers()
-        {
-            var collection = GetCollection<Customer>("customers");
-            var filter = Builders<Customer>.Filter.Empty;
-            var sort = Builders<Customer>.Sort.Ascending(c => c.customer_id);
-            var result = await collection.Find(filter).Sort(sort).ToListAsync();
-            return result;
         }
 
         //get the sequence of the last invoice
