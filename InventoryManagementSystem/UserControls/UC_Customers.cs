@@ -14,6 +14,7 @@ namespace InventoryManagementSystem.UserControls
     public partial class UC_Customers : UserControl
     {
         private readonly MongoConnector _mongoConnector;
+
         public UC_Customers()
         {
             InitializeComponent();
@@ -22,29 +23,16 @@ namespace InventoryManagementSystem.UserControls
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
-        private void btnAddCustomer_Click(object sender, EventArgs e)
-        {
-            AddCustomer addCustomer = new AddCustomer();
-            addCustomer.ShowDialog();
-        }
-
-        private void UC_Customers_Load(object sender, EventArgs e)
-        {
-            CustomersLoad();
-        }
-
         private async void CustomersLoad()
         {
-            // Disable automatic row height adjustment
             dgvCustomers.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
-            //get all the items from the collection items
             var documents = await _mongoConnector.GetAllCustomers();
 
-            // Process the result
+            dgvCustomers.Rows.Clear(); // Clear existing data in the grid view
+
             foreach (var document in documents)
             {
-
                 dgvCustomers.Rows.Add(new object[] {
                     document.customer_id!,
                     document.name!,
@@ -59,8 +47,29 @@ namespace InventoryManagementSystem.UserControls
                 row.Height = 50;
             }
 
-            // set the current cell to null to prevent the first row from being selected
             dgvCustomers.CurrentCell = null;
+        }
+
+        public void RefreshCustomers()
+        {
+            CustomersLoad();
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            AddCustomer addCustomer = new AddCustomer(this);
+            addCustomer.ShowDialog();
+        }
+
+        private void UC_Customers_Load(object sender, EventArgs e)
+        {
+            CustomersLoad();
+        }
+
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
+
