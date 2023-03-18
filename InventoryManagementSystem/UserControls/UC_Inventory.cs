@@ -75,7 +75,7 @@ namespace InventoryManagementSystem
                     document.quantity!,
                     QuantityInHand!,
                     document.quantity_sold!,
-                    document.unit_price!,
+                    document.unit_price!.ToString("N2"),
                     Availability
                 });
             }

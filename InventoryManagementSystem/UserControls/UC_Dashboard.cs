@@ -105,9 +105,9 @@ namespace InventoryManagementSystem
             }
 
             lblSalesData.Text = salesCount.ToString();
-            lblRevenueData.Text = TotalRevenue.ToString("N2");
-            lblProfitData.Text = TotalProfit.ToString("N2");
-            lblCostData.Text = TotalCost.ToString("N2");
+            lblRevenueData.Text = "Rs."+TotalRevenue.ToString("N2");
+            lblProfitData.Text = "Rs." + TotalProfit.ToString("N2");
+            lblCostData.Text = "Rs." + TotalCost.ToString("N2");
         }
 
         private async void TopSellingStockLoad()
