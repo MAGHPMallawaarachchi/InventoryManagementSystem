@@ -73,6 +73,14 @@ namespace InventoryManagementSystem
             return result;
         }
 
+        public async Task<List<Item>> GetFilteredItems(FilterDefinition<Item> filter)
+        {
+            var collection = GetCollection<Item>("items");
+            var result = await collection.Find(filter).ToListAsync();
+            return result;
+        }
+
+
         public async Task<List<Item>> GetLowQuantityItems()
         {
             var items = await GetAllItems();
@@ -106,6 +114,14 @@ namespace InventoryManagementSystem
             return await collection.Find(filter).FirstOrDefaultAsync();
         }
 
+        public async Task<List<string>> GetUniqueField(string field, FilterDefinition<BsonDocument> filter)
+        {
+            var collection = _database.GetCollection<BsonDocument>("items");
+            var distinctResults = await collection.DistinctAsync<string>(field, filter);
+            var sortedResults = distinctResults.ToList().OrderBy(x => x).ToList();
+            return sortedResults;
+        }
+
         //get unique brands
         public async Task<List<string>> GetUniqueBrands()
         {
@@ -122,11 +138,10 @@ namespace InventoryManagementSystem
             return distinctResults.ToList();
         }       
 
-        //get items by brand
-        public async Task<List<Item>> GetItemsByBrand(string brand)
+        //get items by filters
+        public async Task<List<Item>> GetItemsByFilter(FilterDefinition<Item> filter)
         {
             var collection = _database.GetCollection<Item>("items");
-            var filter = Builders<Item>.Filter.Eq("brand", brand);
             var items = await collection.Find(filter).ToListAsync();
             return items;
         }

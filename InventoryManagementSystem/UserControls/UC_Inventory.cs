@@ -1,6 +1,9 @@
 ﻿using InventoryManagementSystem.UserControls;
+using InventoryManagementSystem.DataModels;
 using System.Drawing.Drawing2D;
 using System.Configuration;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace InventoryManagementSystem
 {
@@ -30,28 +33,94 @@ namespace InventoryManagementSystem
             dgvItems.Rows.Clear();
             dgvOverallInventory.Rows.Clear();
 
-            ItemsLoad();
+            bool clear = true;
+            ItemsLoad(clear);
             OverallInventoryLoad();
 
             // set the selection mode to full row select
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOverallInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            cbBrandLoad();
-            cbCategoryLoad();
         }
 
-        public async void ItemsLoad()
+        public async void ItemsLoad(bool clear)
         {
-            // Disable automatic row height adjustment
-            dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgvItems.Rows.Clear();
 
+            if(clear)
+            {
+                // Disable automatic row height adjustment
+                dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+                checkboxColumn.Width = 50;
+
+                //get all the items from the collection items
+                var documents = await _mongoConnector.GetAllItems();
+
+                // Process the result
+                foreach (var document in documents)
+                {
+                    var QuantityInHand = document.quantity - document.quantity_sold;
+                    var Availability = "In-Stock";
+
+                    if (document.quantity <= 10 && document.quantity > 0)
+                    {
+                        Availability = "Low-Stock";
+                    }
+
+                    if (document.quantity == 0)
+                    {
+                        Availability = "Out-of-stock";
+                    }
+
+                    dgvItems.Rows.Add(new object[] {
+                    false,
+                    document.part_number!,
+                    document.description!,
+                    document.brand!,
+                    document.quantity!,
+                    QuantityInHand!,
+                    document.quantity_sold!,
+                    document.unit_price!.ToString("N2"),
+                    Availability
+                });
+                }
+
+                foreach (DataGridViewRow row in dgvItems.Rows)
+                {
+                    row.Height = 50;
+                }
+
+                // set the current cell to null to prevent the first row from being selected
+                dgvItems.CurrentCell = null;
+                dgvOverallInventory.CurrentCell = null;
+            }
+        }
+
+        public async void ItemsLoadWithFilters(string brand, string category)
+        {
+            dgvItems.Rows.Clear();
+
+            dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             checkboxColumn.Width = 50;
 
-            //get all the items from the collection items
-            var documents = await _mongoConnector.GetAllItems();
+            var filter = Builders<Item>.Filter.Empty;
 
-            // Process the result
+            if (brand != "-- Brand --" && category != "-- Category --")
+            {
+                filter = Builders<Item>.Filter.Eq(x => x.category, category);
+            }
+            else if (brand != "-- Brand --")
+            {
+                filter = Builders<Item>.Filter.Eq(x => x.brand, brand);
+            }
+            else if (category != "-- Category --")
+            {
+                filter = Builders<Item>.Filter.Eq(x => x.category, category);
+            }
+
+            var documents = await _mongoConnector.GetItemsByFilter(filter);
+
             foreach (var document in documents)
             {
                 var QuantityInHand = document.quantity - document.quantity_sold;
@@ -89,6 +158,8 @@ namespace InventoryManagementSystem
             dgvItems.CurrentCell = null;
             dgvOverallInventory.CurrentCell = null;
         }
+
+
 
         public async void OverallInventoryLoad()
         {
@@ -132,54 +203,6 @@ namespace InventoryManagementSystem
 
         }
 
-        private async void cbBrandLoad()
-        {
-            cbBrand.Items.Add("-- Select Brand --");
-            cbBrand.SelectedIndex = 0;
-            cbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            var uniqueBrands = await _mongoConnector.GetUniqueBrands();
-
-            foreach (var brand in uniqueBrands)
-            {
-                cbBrand.Items.Add(brand);
-            }
-        }
-
-        private async void cbCategoryLoad()
-        {
-            // Add the placeholder item to the ComboBox
-            cbCategory.Items.Add("-- Select Category --");
-            cbCategory.SelectedIndex = 0;
-            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            if (cbBrand.SelectedIndex == 0)
-            {
-                var uniqueCategories = await _mongoConnector.GetUniqueCategories();
-
-                foreach (var category in uniqueCategories)
-                {
-                    cbCategory.Items.Add(category);
-                }
-            }
-            else
-            {
-                cbCategory.Items.Clear();
-
-                // Add the placeholder item to the ComboBox
-                cbCategory.Items.Add("-- Select Category --");
-                cbCategory.SelectedIndex = 0;
-                cbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-
-                var uniqueCategoriesByBrand = await _mongoConnector.GetUniqueCategoriesByBrand(cbBrand.Text);
-                foreach (var category in uniqueCategoriesByBrand)
-                {
-                    cbCategory.Items.Add(category);
-                }
-            }
-
-        }
-
         private void UpdatePanelRegion(Panel panel)
         {
             // Create a new GraphicsPath object that defines a rounded rectangle
@@ -210,21 +233,6 @@ namespace InventoryManagementSystem
         {
             AddItem addItem = new AddItem(this);
             addItem.ShowDialog();
-        }
-
-        private void btnReload_Click(object sender, EventArgs e)
-        {
-            dgvItems.Rows.Clear();
-            dgvOverallInventory.Rows.Clear();
-
-            ItemsLoad();
-            OverallInventoryLoad();
-
-            cbBrand.Items.Clear();
-            cbCategory.Items.Clear();
-
-            cbBrandLoad();
-            cbCategoryLoad();
         }
 
         public void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -285,125 +293,6 @@ namespace InventoryManagementSystem
                                   rgbValues[columnIndex % rgbValues.Length][2]);
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            cbBrand.SelectedIndex = 0;
-
-            cbCategory.Items.Clear();
-            cbCategoryLoad();
-
-            if (cbCategory.SelectedIndex == 0 && cbBrand.SelectedIndex == 0)
-            {
-                dgvItems.Rows.Clear();
-                ItemsLoad();
-            }
-        }
-
-        private async void cbBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbBrand.SelectedIndex != 0)
-            {
-                dgvItems.Rows.Clear();
-                string selectedBrand = cbBrand.Text;
-
-                cbCategoryLoad();
-
-                // Disable automatic row height adjustment
-                dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
-                var documents = await _mongoConnector.GetItemsByBrand(selectedBrand);
-
-                // Process the result
-                foreach (var document in documents)
-                {
-                    var QuantityInHand = document.quantity - document.quantity_sold;
-                    var Availability = "In-Stock";
-
-                    if (document.quantity < 50 && document.quantity > 0)
-                    {
-                        Availability = "Low-Stock";
-                    }
-
-                    if (document.quantity == 0)
-                    {
-                        Availability = "Out-of-stock";
-                    }
-
-                    dgvItems.Rows.Add(new object[] {
-                        document.part_number!,
-                        document.description!,
-                        document.brand!,
-                        document.quantity!,
-                        QuantityInHand!,
-                        document.quantity_sold!,
-                        document.unit_price!,
-                        Availability
-                    });
-                }
-
-                foreach (DataGridViewRow row in dgvItems.Rows)
-                {
-                    row.Height = 50;
-                }
-
-                // set the current cell to null to prevent the first row from being selected
-                dgvItems.CurrentCell = null;
-                dgvOverallInventory.CurrentCell = null;
-            }
-
-        }
-
-        private async void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbCategory.SelectedIndex != 0)
-            {
-                dgvItems.Rows.Clear();
-                string selectedCategory = cbCategory.Text;
-
-                // Disable automatic row height adjustment
-                dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
-                var documents = await _mongoConnector.GetItemsByCategory(selectedCategory);
-
-                // Process the result
-                foreach (var document in documents)
-                {
-                    var QuantityInHand = document.quantity - document.quantity_sold;
-                    var Availability = "In-Stock";
-
-                    if (document.quantity < 50 && document.quantity > 0)
-                    {
-                        Availability = "Low-Stock";
-                    }
-
-                    if (document.quantity == 0)
-                    {
-                        Availability = "Out-of-stock";
-                    }
-
-                    dgvItems.Rows.Add(new object[] {
-                        document.part_number!,
-                        document.description!,
-                        document.brand!,
-                        document.quantity!,
-                        QuantityInHand!,
-                        document.quantity_sold!,
-                        document.unit_price!,
-                        Availability
-                    });
-                }
-
-                foreach (DataGridViewRow row in dgvItems.Rows)
-                {
-                    row.Height = 50;
-                }
-
-                // set the current cell to null to prevent the first row from being selected
-                dgvItems.CurrentCell = null;
-                dgvOverallInventory.CurrentCell = null;
-            }
-        }
-
         private Color defaultForeColor;
 
         private void dgvItems_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -450,5 +339,10 @@ namespace InventoryManagementSystem
             }
         }
 
+        private void btnFilters_Click(object sender, EventArgs e)
+        {
+            Filters filters = new Filters(this);
+            filters.ShowDialog();
+        }
     }
 }
