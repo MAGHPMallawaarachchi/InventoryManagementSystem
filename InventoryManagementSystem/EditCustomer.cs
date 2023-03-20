@@ -1,4 +1,4 @@
-﻿using InventoryManagementSystem.DataModels;
+using InventoryManagementSystem.DataModels;
 using InventoryManagementSystem.UserControls;
 using MongoDB.Bson;
 using MongoDB.Driver;
