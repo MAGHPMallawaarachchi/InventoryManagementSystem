@@ -33,13 +33,15 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             dgvCustomers = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            btnAddCustomer = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            lblCustomers = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             customer_id = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
             address = new DataGridViewTextBoxColumn();
             city = new DataGridViewTextBoxColumn();
             contact_number = new DataGridViewTextBoxColumn();
-            btnAddCustomer = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            lblCustomers = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            editbtn = new DataGridViewButtonColumn();
+            deletebtn = new DataGridViewButtonColumn();
             siticonePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
             SuspendLayout();
@@ -71,7 +73,7 @@
             dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvCustomers.ColumnHeadersHeight = 50;
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { customer_id, name, address, city, contact_number });
+            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { customer_id, name, address, city, contact_number, editbtn, deletebtn });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -109,37 +111,7 @@
             dgvCustomers.ThemeStyle.RowsStyle.Height = 25;
             dgvCustomers.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvCustomers.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dgvCustomers.CellContentClick += dgvCustomers_CellContentClick;
-            // 
-            // customer_id
-            // 
-            customer_id.HeaderText = "Customer ID";
-            customer_id.MinimumWidth = 6;
-            customer_id.Name = "customer_id";
-            // 
-            // name
-            // 
-            name.HeaderText = "Name";
-            name.MinimumWidth = 6;
-            name.Name = "name";
-            // 
-            // address
-            // 
-            address.HeaderText = "Adress";
-            address.MinimumWidth = 6;
-            address.Name = "address";
-            // 
-            // city
-            // 
-            city.HeaderText = "City";
-            city.MinimumWidth = 6;
-            city.Name = "city";
-            // 
-            // contact_number
-            // 
-            contact_number.HeaderText = "Contact Number";
-            contact_number.MinimumWidth = 6;
-            contact_number.Name = "contact_number";
+            dgvCustomers.CellContentClick += dgvCustomers_CellContentClickAsync;
             // 
             // btnAddCustomer
             // 
@@ -178,6 +150,52 @@
             lblCustomers.TabIndex = 0;
             lblCustomers.Text = "Customers";
             // 
+            // customer_id
+            // 
+            customer_id.HeaderText = "Customer ID";
+            customer_id.MinimumWidth = 6;
+            customer_id.Name = "customer_id";
+            // 
+            // name
+            // 
+            name.HeaderText = "Name";
+            name.MinimumWidth = 6;
+            name.Name = "name";
+            // 
+            // address
+            // 
+            address.HeaderText = "Adress";
+            address.MinimumWidth = 6;
+            address.Name = "address";
+            // 
+            // city
+            // 
+            city.HeaderText = "City";
+            city.MinimumWidth = 6;
+            city.Name = "city";
+            // 
+            // contact_number
+            // 
+            contact_number.HeaderText = "Contact Number";
+            contact_number.MinimumWidth = 6;
+            contact_number.Name = "contact_number";
+            // 
+            // editbtn
+            // 
+            editbtn.FillWeight = 50F;
+            editbtn.HeaderText = "Actions";
+            editbtn.Name = "editbtn";
+            editbtn.Text = "Edit";
+            editbtn.UseColumnTextForButtonValue = true;
+            // 
+            // deletebtn
+            // 
+            deletebtn.FillWeight = 50F;
+            deletebtn.HeaderText = "";
+            deletebtn.Name = "deletebtn";
+            deletebtn.Text = "Delete";
+            deletebtn.UseColumnTextForButtonValue = true;
+            // 
             // UC_Customers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -206,5 +224,7 @@
         private DataGridViewTextBoxColumn address;
         private DataGridViewTextBoxColumn city;
         private DataGridViewTextBoxColumn contact_number;
+        private DataGridViewButtonColumn editbtn;
+        private DataGridViewButtonColumn deletebtn;
     }
 }

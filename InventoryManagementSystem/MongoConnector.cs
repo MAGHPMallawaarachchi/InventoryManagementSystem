@@ -138,6 +138,18 @@ namespace InventoryManagementSystem
             return result.ModifiedCount > 0;
         }
 
+        //UPDATE ANY Field
+        public async Task<bool> Update<T>(string collectionName, string documentId, string fieldName, object value)
+        {
+            var collection = GetCollection<T>(collectionName);
+            var objectId = new ObjectId(documentId);
+            var filter = Builders<T>.Filter.Eq("_id", objectId);
+            var update = Builders<T>.Update.Set(fieldName, value);
+            var result = await collection.UpdateOneAsync(filter, update);
+
+            return result.ModifiedCount > 0;
+        }
+
         //delete an item
         public async Task<bool> DeleteItem<T>(string part_number)
         {
