@@ -1,5 +1,4 @@
-﻿using InventoryManagementSystem.DataModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -10,12 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryManagementSystem.UserControls
+namespace InventoryManagementSystem
 {
     public partial class UC_Customers : UserControl
     {
         private readonly MongoConnector _mongoConnector;
-
         public UC_Customers()
         {
             InitializeComponent();
@@ -116,7 +114,7 @@ namespace InventoryManagementSystem.UserControls
                             String idToDelete = (String)selectedRow.Cells["customer_id"].Value;
 
                             // Call the DeleteCustomer method in your data access layer to delete the record
-                            bool deletedSuccessfully = await _mongoConnector.DeleteCustomer<Customer>(idToDelete);
+                            bool deletedSuccessfully = await _mongoConnector.DeleteCustomer(idToDelete);
 
 
                             if (deletedSuccessfully)
@@ -140,4 +138,3 @@ namespace InventoryManagementSystem.UserControls
         }
     }
 }
-

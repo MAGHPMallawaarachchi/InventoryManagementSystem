@@ -294,6 +294,7 @@
             Controls.Add(label1);
             Name = "EditCustomer";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += EditCustomer_Load;
             ResumeLayout(false);
             PerformLayout();
         }
