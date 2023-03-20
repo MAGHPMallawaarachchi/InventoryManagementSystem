@@ -57,7 +57,8 @@ namespace InventoryManagementSystem
                 phone_no = txtContactNumber.Text
             };
 
-            bool updatedSuccessfully = await _mongoConnector.Update<Customer>("customers", _customerId, "name", txtName.Text);
+            var objectId = new ObjectId(_customerId);
+            bool updatedSuccessfully = await _mongoConnector.UpdateItem<Customer>(objectId, "name", txtName.Text);
 
             if (updatedSuccessfully)
             {
