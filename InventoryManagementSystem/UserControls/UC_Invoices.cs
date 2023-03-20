@@ -225,7 +225,7 @@ namespace InventoryManagementSystem.UserControls
                 decimal amount = Convert.ToDecimal(lastRow.Cells["amount"].Value);
                 total += amount;
 
-                lblTotalData.Text = (total / 2).ToString();
+                lblTotalData.Text = (total / 2).ToString("N2");
             }
         }
 
@@ -234,7 +234,12 @@ namespace InventoryManagementSystem.UserControls
             AddRow();
         }
 
-        private async void btnClear_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private async void Clear()
         {
             dgvItems.Rows.Clear();
             dgvItemsLoad();
@@ -411,6 +416,8 @@ namespace InventoryManagementSystem.UserControls
                     MessageBox.Show("Invoice saved successfully.");
                 }
             }
+
+            Clear();
         }
 
         private void btnPrintPreview_Click(object sender, EventArgs e)

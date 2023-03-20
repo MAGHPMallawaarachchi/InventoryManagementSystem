@@ -84,7 +84,7 @@ namespace InventoryManagementSystem
         public async Task<List<Item>> GetLowQuantityItems()
         {
             var items = await GetAllItems();
-            var filteredItems = items.Where(i => i.quantity_in_hand <= 10 && i.quantity_in_hand != 0)
+            var filteredItems = items.Where(i => i.quantity_in_hand <= 20 && i.quantity_in_hand != 0)
                                      .OrderBy(i => i.quantity_in_hand)
                                      .ToList();
             return filteredItems;
@@ -212,68 +212,23 @@ namespace InventoryManagementSystem
             }
         }
 
-        public async Task<bool> Update<T>(string id, T item)
-        {
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            var collection = GetCollection<T>("items");
-            var result = await collection.ReplaceOneAsync(filter, item);
-            return result.ModifiedCount > 0;
-        }
 
-        //update one field of item
-        public async Task<bool> UpdateFieldItem<T>(ObjectId objectId, string fieldName, object value)
-        {
-            var collection = GetCollection<T>("items");
-            var filter = Builders<T>.Filter.Eq("_id", objectId);
-            var update = Builders<T>.Update.Set(fieldName, value);
-            var result = await collection.UpdateOneAsync(filter, update);
-
-            return result.ModifiedCount > 0;
-        }
-
-        //update 1 or more fields of item
-        public async Task<bool> UpdateItem<T>(string partNumber, Item updatedItem)
-        {
-            var collection = GetCollection<T>("items");
-            var filter = Builders<T>.Filter.Eq("part_number", partNumber);
-
-            var update = Builders<T>.Update
-                .Set("part_number", updatedItem.part_number)
-                .Set("oem_number", updatedItem.oem_number)
-                .Set("description", updatedItem.description)
-                .Set("brand", updatedItem.brand)
-                .Set("vehicle_brand", updatedItem.vehicle_brand)
-                .Set("buying_price", updatedItem.buying_price)
-                .Set("unit_price", updatedItem.unit_price)
-                .Set("quantity", updatedItem.quantity)
-                .Set("quantity_sold", updatedItem.quantity_sold)
-                .Set("supplier", updatedItem.supplier);
-
-            var result = await collection.UpdateOneAsync(filter, update);
-
-            return result.ModifiedCount > 0;
-        }
-
-
-
-
+        //DELETE
 
         //delete an item
-        public async Task<bool> DeleteItem<T>(string part_number)
+        public async Task<bool> DeleteItem(string part_number)
         {
-            var collection = GetCollection<T>("items");
-            var objectId = new ObjectId(part_number);
-            var filter = Builders<T>.Filter.Eq("part_number", objectId);
+            var collection = GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Eq(item => item.part_number, part_number);
             var result = await collection.DeleteOneAsync(filter);
             return result.DeletedCount > 0;
         }
 
         //delete a customer
-        public async Task<bool> DeleteCustomer<T>(string customer_id)
+        public async Task<bool> DeleteCustomer(string customer_id)
         {
-            var collection = GetCollection<T>("customers");
-            var objectId = new ObjectId(customer_id);
-            var filter = Builders<T>.Filter.Eq("customer_id", objectId);
+            var collection = GetCollection<Customer>("customers");
+            var filter = Builders<Customer>.Filter.Eq(customer => customer.customer_id, customer_id);
             var result = await collection.DeleteOneAsync(filter);
             return result.DeletedCount > 0;
         }
