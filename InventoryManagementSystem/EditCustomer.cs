@@ -1,5 +1,7 @@
 ﻿using InventoryManagementSystem.DataModels;
 using InventoryManagementSystem.UserControls;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,7 +50,18 @@ namespace InventoryManagementSystem
         //EditCustomer button
         private async void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer
+            var filter = Builders<BsonDocument>.Filter.Eq("customer_id", txtCustomerID.Text.ToString());
+
+            BsonDocument updateCustomer = new BsonDocument
+            {
+                {"customer_id", _customerId},
+                {"name",  txtName.Text.ToString()},
+                {"address", txtAddress.Text.ToString()},
+                {"city", txtCity.Text.ToString()},
+                {"phone_no", txtCustomerID.Text.ToString()}
+            };
+
+            /*Customer customer = new Customer
             {
                 customer_id = _customerId,
                 name = txtName.Text,
@@ -56,9 +69,10 @@ namespace InventoryManagementSystem
                 city = txtCity.Text,
                 phone_no = txtContactNumber.Text
             };
-
             var objectId = new ObjectId(_customerId);
-            bool updatedSuccessfully = await _mongoConnector.UpdateItem<Customer>(objectId, "name", txtName.Text);
+            bool updatedSuccessfully = await _mongoConnector.UpdateItem<Customer>(objectId, "name", txtName.Text); */
+
+            bool updatedSuccessfully = await _mongoConnector.UpdateDocumentAsync("customers", filter, updateCustomer);
 
             if (updatedSuccessfully)
             {

@@ -116,7 +116,7 @@ namespace InventoryManagementSystem.UserControls
                             String idToDelete = (String)selectedRow.Cells["customer_id"].Value;
 
                             // Call the DeleteCustomer method in your data access layer to delete the record
-                            bool deletedSuccessfully = await _mongoConnector.DeleteCustomer<Customer>(idToDelete);
+                            bool deletedSuccessfully = await _mongoConnector.DeleteCustomer(idToDelete);
 
 
                             if (deletedSuccessfully)
