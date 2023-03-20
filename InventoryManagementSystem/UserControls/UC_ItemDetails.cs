@@ -279,5 +279,19 @@ namespace InventoryManagementSystem.UserControls
 
             UpdateContent(partNumber.Text.ToString());
         }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {           
+            try
+            {
+                var result = await _mongoConnector.DeleteItem(partNumber.Text.ToString());
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception here
+                MessageBox.Show("Failed to delete item: " + ex.Message);
+            }
+
+        }
     }
 }

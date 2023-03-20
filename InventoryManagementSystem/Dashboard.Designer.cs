@@ -83,7 +83,7 @@
             btnOrders.PressedDepth = 0;
             btnOrders.Size = new Size(277, 56);
             btnOrders.TabIndex = 5;
-            btnOrders.Text = "Orders";
+            btnOrders.Text = "Invoice";
             btnOrders.TextAlign = HorizontalAlignment.Left;
             btnOrders.TextOffset = new Point(35, 0);
             btnOrders.Click += btnOrders_Click;

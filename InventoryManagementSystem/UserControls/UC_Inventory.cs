@@ -2,7 +2,6 @@
 using InventoryManagementSystem.DataModels;
 using System.Drawing.Drawing2D;
 using System.Configuration;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace InventoryManagementSystem
@@ -43,12 +42,14 @@ namespace InventoryManagementSystem
 
         }
 
+
         public async void ItemsLoad(bool clear)
         {
             dgvItems.Rows.Clear();
 
-            if(clear)
+            if (clear)
             {
+
                 // Disable automatic row height adjustment
                 dgvItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
@@ -126,7 +127,7 @@ namespace InventoryManagementSystem
                 var QuantityInHand = document.quantity - document.quantity_sold;
                 var Availability = "In-Stock";
 
-                if (document.quantity <= 10 && document.quantity > 0)
+                if (document.quantity <= 20 && document.quantity > 0)
                 {
                     Availability = "Low-Stock";
                 }
@@ -159,8 +160,6 @@ namespace InventoryManagementSystem
             dgvOverallInventory.CurrentCell = null;
         }
 
-
-
         public async void OverallInventoryLoad()
         {
             var uniqueCategories = await _mongoConnector.GetUniqueCategories();
@@ -187,7 +186,7 @@ namespace InventoryManagementSystem
                     outOfStock++;
                 }
 
-                if (QuantityInHand < 50)
+                if (QuantityInHand <= 20)
                 {
                     lowInStock++;
                 }
@@ -343,6 +342,81 @@ namespace InventoryManagementSystem
         {
             Filters filters = new Filters(this);
             filters.ShowDialog();
+        }
+
+        private void dgvItems_SelectionChanged(object sender, EventArgs e)
+        {
+            btnDelete.Visible = dgvItems.SelectedRows.Count > 0;
+
+            // Hide the Delete button if no rows are selected
+            if (dgvItems.SelectedRows.Count == 0)
+            {
+                btnDelete.Visible = false;
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Iterate through all rows of the DataGridView
+            for (int i = 0; i < dgvItems.Rows.Count; i++)
+            {
+                // Check if the checkbox in the first column is checked
+                if ((bool)dgvItems.Rows[i].Cells[0].Value == true)
+                {
+                    string? partNumber = dgvItems.Rows[i].Cells["part_number"].Value.ToString();
+
+                    try
+                    {
+                        var result = await _mongoConnector.DeleteItem(partNumber!);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle the exception here
+                        MessageBox.Show("Failed to delete item: " + ex.Message);
+                    }
+
+                    // Remove the row from the DataGridView
+                    dgvItems.Rows.RemoveAt(i);
+                    i--; // Decrement i to account for the removed row
+                }
+            }
+
+            btnDelete.Visible = false;
+        }
+
+        private void dgvItems_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex == -1 && e.ColumnIndex == 0) // Check if it is the header cell of the first column
+            {
+                // Create a checkbox and draw it in the header cell
+                CheckBox chkBoxHeader = new CheckBox();
+                chkBoxHeader.Size = new Size(16, 16);
+                chkBoxHeader.Location = new Point(e.CellBounds.X + 7 + (e.CellBounds.Width / 2) - (chkBoxHeader.Width / 2), e.CellBounds.Y + (e.CellBounds.Height / 2) - (chkBoxHeader.Height / 2));
+                chkBoxHeader.CheckedChanged += new EventHandler(chkBoxHeader_CheckedChanged!);
+                ((DataGridView)sender).Controls.Add(chkBoxHeader);
+            }
+        }
+
+        private void chkBoxHeader_CheckedChanged(object sender, EventArgs e)
+        {
+            // Check or uncheck all the checkboxes in the DataGridViewCheckBoxColumn based on the header checkbox value
+            foreach (DataGridViewRow row in dgvItems.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                chk.Value = ((CheckBox)sender).Checked;
+            }
+
+            // Show or hide the btnDelete based on the header checkbox value
+            if (((CheckBox)sender).Checked)
+            {
+                btnDelete.Visible = true;
+            }
+            else
+            {
+                btnDelete.Visible = false;
+            }
+
+            dgvItems.RefreshEdit();
         }
     }
 }

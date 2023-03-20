@@ -45,8 +45,12 @@
             out_of_stock = new DataGridViewTextBoxColumn();
             lblOverallInventory = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             panel2 = new Panel();
+            btnDelete = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            btnFilters = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            middlePanel = new Panel();
             checkboxColumn = new DataGridViewCheckBoxColumn();
             part_number = new DataGridViewTextBoxColumn();
             description = new DataGridViewTextBoxColumn();
@@ -56,9 +60,6 @@
             quantity_sold = new DataGridViewTextBoxColumn();
             unit_price = new DataGridViewTextBoxColumn();
             availability = new DataGridViewTextBoxColumn();
-            btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            middlePanel = new Panel();
-            btnFilters = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverallInventory).BeginInit();
             panel2.SuspendLayout();
@@ -185,6 +186,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnFilters);
             panel2.Controls.Add(lblItems);
             panel2.Controls.Add(dgvItems);
@@ -196,6 +198,60 @@
             panel2.Size = new Size(1101, 592);
             panel2.TabIndex = 1;
             panel2.SizeChanged += panel2_SizeChanged;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.BorderColor = Color.FromArgb(243, 105, 96);
+            btnDelete.BorderRadius = 4;
+            btnDelete.BorderThickness = 2;
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.DisabledState.BorderColor = Color.DarkGray;
+            btnDelete.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDelete.FillColor = Color.FromArgb(243, 105, 96);
+            btnDelete.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.HoverState.BorderColor = Color.FromArgb(243, 105, 96);
+            btnDelete.HoverState.FillColor = Color.FromArgb(243, 105, 96);
+            btnDelete.Image = Properties.Resources.delete;
+            btnDelete.ImageOffset = new Point(0, 1);
+            btnDelete.ImageSize = new Size(16, 18);
+            btnDelete.Location = new Point(737, 22);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(102, 40);
+            btnDelete.TabIndex = 54;
+            btnDelete.Text = "Delete";
+            btnDelete.TextOffset = new Point(2, 0);
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnFilters
+            // 
+            btnFilters.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnFilters.BorderColor = Color.FromArgb(208, 211, 217);
+            btnFilters.BorderRadius = 4;
+            btnFilters.BorderThickness = 2;
+            btnFilters.DisabledState.BorderColor = Color.DarkGray;
+            btnFilters.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnFilters.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnFilters.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnFilters.FillColor = Color.White;
+            btnFilters.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFilters.ForeColor = Color.FromArgb(93, 102, 121);
+            btnFilters.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnFilters.HoverState.FillColor = Color.Transparent;
+            btnFilters.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnFilters.Image = Properties.Resources.filters;
+            btnFilters.ImageOffset = new Point(0, 1);
+            btnFilters.ImageSize = new Size(15, 10);
+            btnFilters.Location = new Point(856, 22);
+            btnFilters.Name = "btnFilters";
+            btnFilters.Size = new Size(102, 40);
+            btnFilters.TabIndex = 53;
+            btnFilters.Text = "Filters";
+            btnFilters.TextOffset = new Point(2, 0);
+            btnFilters.Click += btnFilters_Click;
             // 
             // lblItems
             // 
@@ -277,14 +333,49 @@
             dgvItems.CellClick += dgvItems_CellClick;
             dgvItems.CellMouseEnter += dgvItems_CellMouseEnter;
             dgvItems.CellMouseLeave += dgvItems_CellMouseLeave;
+            dgvItems.CellPainting += dgvItems_CellPainting;
+            dgvItems.SelectionChanged += dgvItems_SelectionChanged;
+            // 
+            // btnAddItem
+            // 
+            btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.BorderRadius = 4;
+            btnAddItem.BorderThickness = 2;
+            btnAddItem.Cursor = Cursors.Hand;
+            btnAddItem.DisabledState.BorderColor = Color.DarkGray;
+            btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddItem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddItem.FillColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddItem.ForeColor = Color.White;
+            btnAddItem.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.HoverState.FillColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.ImageOffset = new Point(0, 1);
+            btnAddItem.ImageSize = new Size(15, 10);
+            btnAddItem.Location = new Point(973, 22);
+            btnAddItem.Name = "btnAddItem";
+            btnAddItem.Size = new Size(102, 40);
+            btnAddItem.TabIndex = 1;
+            btnAddItem.Text = "Add Item";
+            btnAddItem.TextOffset = new Point(2, 0);
+            btnAddItem.Click += btnAddItem_Click;
+            // 
+            // middlePanel
+            // 
+            middlePanel.Dock = DockStyle.Fill;
+            middlePanel.Location = new Point(19, 19);
+            middlePanel.Name = "middlePanel";
+            middlePanel.Size = new Size(1101, 773);
+            middlePanel.TabIndex = 2;
+            middlePanel.Paint += middlePanel_Paint;
             // 
             // checkboxColumn
             // 
             checkboxColumn.HeaderText = "";
             checkboxColumn.MinimumWidth = 6;
             checkboxColumn.Name = "checkboxColumn";
-            checkboxColumn.Resizable = DataGridViewTriState.True;
-            checkboxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // part_number
             // 
@@ -336,68 +427,6 @@
             availability.MinimumWidth = 6;
             availability.Name = "availability";
             // 
-            // btnAddItem
-            // 
-            btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.BorderRadius = 4;
-            btnAddItem.BorderThickness = 2;
-            btnAddItem.Cursor = Cursors.Hand;
-            btnAddItem.DisabledState.BorderColor = Color.DarkGray;
-            btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnAddItem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddItem.FillColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddItem.ForeColor = Color.White;
-            btnAddItem.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.HoverState.FillColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.ImageOffset = new Point(0, 1);
-            btnAddItem.ImageSize = new Size(15, 10);
-            btnAddItem.Location = new Point(973, 22);
-            btnAddItem.Name = "btnAddItem";
-            btnAddItem.Size = new Size(102, 40);
-            btnAddItem.TabIndex = 1;
-            btnAddItem.Text = "Add Item";
-            btnAddItem.TextOffset = new Point(2, 0);
-            btnAddItem.Click += btnAddItem_Click;
-            // 
-            // middlePanel
-            // 
-            middlePanel.Dock = DockStyle.Fill;
-            middlePanel.Location = new Point(19, 19);
-            middlePanel.Name = "middlePanel";
-            middlePanel.Size = new Size(1101, 773);
-            middlePanel.TabIndex = 2;
-            middlePanel.Paint += middlePanel_Paint;
-            // 
-            // btnFilters
-            // 
-            btnFilters.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnFilters.BorderColor = Color.FromArgb(208, 211, 217);
-            btnFilters.BorderRadius = 4;
-            btnFilters.BorderThickness = 2;
-            btnFilters.DisabledState.BorderColor = Color.DarkGray;
-            btnFilters.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnFilters.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnFilters.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnFilters.FillColor = Color.White;
-            btnFilters.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFilters.ForeColor = Color.FromArgb(93, 102, 121);
-            btnFilters.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
-            btnFilters.HoverState.FillColor = Color.Transparent;
-            btnFilters.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
-            btnFilters.Image = Properties.Resources.filters;
-            btnFilters.ImageOffset = new Point(0, 1);
-            btnFilters.ImageSize = new Size(15, 10);
-            btnFilters.Location = new Point(856, 22);
-            btnFilters.Name = "btnFilters";
-            btnFilters.Size = new Size(102, 40);
-            btnFilters.TabIndex = 53;
-            btnFilters.Text = "Filters";
-            btnFilters.TextOffset = new Point(2, 0);
-            btnFilters.Click += btnFilters_Click;
-            // 
             // UC_Inventory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -433,6 +462,8 @@
         private DataGridViewTextBoxColumn total_items;
         private DataGridViewTextBoxColumn low_in_stock;
         private DataGridViewTextBoxColumn out_of_stock;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnFilters;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnDelete;
         private DataGridViewCheckBoxColumn checkboxColumn;
         private DataGridViewTextBoxColumn part_number;
         private DataGridViewTextBoxColumn description;
@@ -442,6 +473,5 @@
         private DataGridViewTextBoxColumn quantity_sold;
         private DataGridViewTextBoxColumn unit_price;
         private DataGridViewTextBoxColumn availability;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btnFilters;
     }
 }

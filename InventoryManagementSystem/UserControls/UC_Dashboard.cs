@@ -67,7 +67,7 @@ namespace InventoryManagementSystem
                 QuantitySold += (int)item.quantity_sold!;
                 QuantityInHand += (int)item.quantity_in_hand!;
 
-                if (item.quantity_in_hand < 50 && item.quantity_in_hand != 0)
+                if (item.quantity_in_hand <= 20 && item.quantity_in_hand != 0)
                 {
                     LowQuantityStock++;
                 }
@@ -105,7 +105,7 @@ namespace InventoryManagementSystem
             }
 
             lblSalesData.Text = salesCount.ToString();
-            lblRevenueData.Text = "Rs."+TotalRevenue.ToString("N2");
+            lblRevenueData.Text = "Rs." + TotalRevenue.ToString("N2");
             lblProfitData.Text = "Rs." + TotalProfit.ToString("N2");
             lblCostData.Text = "Rs." + TotalCost.ToString("N2");
         }

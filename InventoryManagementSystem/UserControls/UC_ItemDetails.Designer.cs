@@ -86,12 +86,14 @@ namespace InventoryManagementSystem.UserControls
             partNumber = new SiticoneHtmlLabel();
             btnEdit = new SiticoneButton();
             btnBack = new SiticoneButton();
+            btnDelete = new SiticoneButton();
             siticonePanel1.SuspendLayout();
             SuspendLayout();
             // 
             // siticonePanel1
             // 
             siticonePanel1.BackColor = Color.White;
+            siticonePanel1.Controls.Add(btnDelete);
             siticonePanel1.Controls.Add(txtProfit);
             siticonePanel1.Controls.Add(txtRevenue);
             siticonePanel1.Controls.Add(txtCost);
@@ -949,6 +951,33 @@ namespace InventoryManagementSystem.UserControls
             btnBack.TextOffset = new Point(2, 0);
             btnBack.Click += btnBack_Click;
             // 
+            // btnDelete
+            // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.BorderColor = Color.FromArgb(243, 105, 96);
+            btnDelete.BorderRadius = 4;
+            btnDelete.BorderThickness = 2;
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.DisabledState.BorderColor = Color.DarkGray;
+            btnDelete.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDelete.FillColor = Color.FromArgb(243, 105, 96);
+            btnDelete.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.HoverState.BorderColor = Color.FromArgb(243, 105, 96);
+            btnDelete.HoverState.FillColor = Color.FromArgb(243, 105, 96);
+            btnDelete.Image = Properties.Resources.delete;
+            btnDelete.ImageOffset = new Point(0, 1);
+            btnDelete.ImageSize = new Size(16, 18);
+            btnDelete.Location = new Point(725, 27);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(102, 40);
+            btnDelete.TabIndex = 60;
+            btnDelete.Text = "Delete";
+            btnDelete.TextOffset = new Point(2, 0);
+            btnDelete.Click += btnDelete_Click;
+            // 
             // UC_ItemDetails
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1021,5 +1050,6 @@ namespace InventoryManagementSystem.UserControls
         private SiticoneHtmlLabel siticoneHtmlLabel2;
         private SiticoneHtmlLabel siticoneHtmlLabel3;
         private SiticoneHtmlLabel siticoneHtmlLabel4;
+        private SiticoneButton btnDelete;
     }
 }
