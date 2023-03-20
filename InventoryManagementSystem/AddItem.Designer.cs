@@ -324,7 +324,6 @@
             txtPartNumber.Size = new Size(273, 44);
             txtPartNumber.TabIndex = 24;
             txtPartNumber.TextOffset = new Point(10, 0);
-            txtPartNumber.TextChanged += txtPartNumber_TextChanged;
             txtPartNumber.KeyDown += txtPartNumber_KeyDown;
             // 
             // label3
@@ -462,7 +461,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(504, 763);
+            ClientSize = new Size(504, 782);
             ControlBox = false;
             Controls.Add(txtBrand);
             Controls.Add(label11);
@@ -489,7 +488,7 @@
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddItem";
-            Padding = new Padding(29, 29, 29, 29);
+            Padding = new Padding(29);
             StartPosition = FormStartPosition.CenterScreen;
             TopMost = true;
             Load += AddItem_Load;

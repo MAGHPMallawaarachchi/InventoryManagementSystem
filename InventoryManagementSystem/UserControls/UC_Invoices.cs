@@ -1,11 +1,8 @@
 ﻿using InventoryManagementSystem.DataModels;
-using iText.Kernel.Pdf;
-using iText.Layout;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Configuration;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
 
 namespace InventoryManagementSystem.UserControls
@@ -42,13 +39,25 @@ namespace InventoryManagementSystem.UserControls
             lblCityData.Text = "-- City --";
             lblPhoneNoData.Text = "-- Phone No --";
 
-            int InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
+            int InvoiceNo = 10000;
+
+            // Check if the invoices collection is empty
+            var invoicesCollection = _mongoConnector.GetCollection<Invoice>("invoices");
+            long count = invoicesCollection.CountDocuments(FilterDefinition<Invoice>.Empty);
+
+            if (count == 0)
+            {
+                InvoiceNo = 10000;
+            }
+            else
+            {
+                InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
+            }
 
             lblInvoiceNoData.Text = "KAP-" + InvoiceNo;
             lblInvoiceNo.Text = "KAP-" + InvoiceNo;
             lblDateData.Text = DateTime.Today.ToShortDateString();
             lblTimeData.Text = DateTime.Now.ToString("hh:mm:ss tt");
-
 
         }
 
@@ -259,12 +268,26 @@ namespace InventoryManagementSystem.UserControls
                 var database = mongoClient.GetDatabase("InventoryManagementSystem");
                 var collection = database.GetCollection<BsonDocument>("invoices");
 
-                int InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
+                int InvoiceNo = 10000;
+
+                // Check if the invoices collection is empty
+                var invoicesCollection = _mongoConnector.GetCollection<Invoice>("invoices");
+                long count = invoicesCollection.CountDocuments(FilterDefinition<Invoice>.Empty);
+
+                if (count == 0)
+                {
+                    InvoiceNo = 10000;
+                }
+                else
+                {
+                    InvoiceNo = await _mongoConnector.GetLastInvoice() + 1;
+                }
 
                 decimal totalProfit = 0;
                 decimal totalCost = 0;
                 decimal totalRevenue = 0;
 
+                var invoiceItems = new List<BsonDocument>();
                 List<InvoiceItem> items = new List<InvoiceItem>();
 
                 foreach (DataGridViewRow row in dgvItems.Rows)
@@ -280,16 +303,27 @@ namespace InventoryManagementSystem.UserControls
                         int quantity = Convert.ToInt32(row.Cells["qty"].Value);
                         decimal amount = Convert.ToDecimal(row.Cells["amount"].Value);
 
+                        decimal DecimalQty = Convert.ToDecimal(quantity);
+
                         var document = await _mongoConnector.GetByPartNumber(partNumber);
 
-                        decimal cost = (document?.buying_price ?? 0) * quantity;
+                        decimal cost = (document?.buying_price ?? 0) * DecimalQty;
                         decimal profit = amount - cost;
 
                         totalProfit += profit;
                         totalCost += cost;
                         totalRevenue += amount;
 
-                        // create a new InvoiceItem object and add it to the list
+                        var invoiceItem = new BsonDocument
+                        {
+                            { "part_number", partNumber },
+                            { "quantity", quantity },
+                            { "revenue", amount },
+                            { "cost", cost },
+                            { "profit", profit }
+                        };
+                        invoiceItems.Add(invoiceItem);
+
                         items.Add(new InvoiceItem
                         {
                             part_number = partNumber,
@@ -299,12 +333,25 @@ namespace InventoryManagementSystem.UserControls
                             profit = profit
                         });
 
-                        var collectionItems = database.GetCollection<BsonDocument>("items");
-                        var filter = Builders<BsonDocument>.Filter.Eq("part_number", partNumber);
-                        var update1 = Builders<BsonDocument>.Update.Set("quantity", document.quantity - quantity);
-                        var update2 = Builders<BsonDocument>.Update.Set("quantity_sold", document.quantity_sold + quantity);
-                        collectionItems.UpdateOne(filter, update1);
-                        collectionItems.UpdateOne(filter, update2);
+                        decimal updateTotalCost = (decimal)(document.total_cost + (DecimalQty * document.buying_price))!;
+                        decimal updateTotalRevenue = (decimal)(document.total_revenue + (DecimalQty * document.unit_price))!;
+                        decimal updateTotalProfit = updateTotalRevenue - updateTotalCost;
+                        int updateQuantitySold = Convert.ToInt32(document.quantity_sold + quantity);
+                        int updateQuantityInHand = Convert.ToInt32(document.quantity_in_hand - quantity);
+
+                        var updateDoc = new BsonDocument
+                        {
+                            { "total_cost", BsonDecimal128.Create(updateTotalCost) },
+                            { "total_revenue", BsonDecimal128.Create(updateTotalRevenue) },
+                            { "total_profit", BsonDecimal128.Create(updateTotalProfit) },
+                            { "quantity_sold", BsonInt32.Create(updateQuantitySold) },
+                            { "quantity_in_hand", BsonInt32.Create(updateQuantityInHand) }
+                        };
+
+                        var collectionNew = _mongoConnector.GetCollection<Item>("items");
+                        var filter = Builders<Item>.Filter.Eq("_id", document.Id);
+
+                        await collectionNew.UpdateOneAsync(filter, new BsonDocument("$set", updateDoc));
                     }
                 }
 
@@ -330,7 +377,20 @@ namespace InventoryManagementSystem.UserControls
                     // create an instance of the PdfGenerator class
                     PdfGenerator pdfGenerator = new PdfGenerator();
 
-                    Invoice newInvoice = new Invoice
+                    var newInvoice = new BsonDocument
+                    {
+                        { "prefix", "KAP-" },
+                        { "sequence", InvoiceNo },
+                        { "date", DateTime.Today },
+                        { "time", DateTime.Now.ToString("hh:mm:ss tt") },
+                        { "customer_id", cbCustomerID.Text },
+                        { "items", new BsonArray(invoiceItems) },
+                        { "total_profit", totalProfit },
+                        { "total_cost", totalCost },
+                        { "total_revenue", totalRevenue }
+                    };
+
+                    Invoice invoice = new Invoice
                     {
                         prefix = "KAP-",
                         sequence = InvoiceNo,
@@ -343,10 +403,10 @@ namespace InventoryManagementSystem.UserControls
                         total_revenue = totalRevenue
                     };
 
-                    collection.InsertOne(newInvoice.ToBsonDocument());
+                    await _mongoConnector.InsertDocumentAsync("invoices", newInvoice);
 
                     // generate the PDF document
-                    pdfGenerator.GeneratePdf(newInvoice);
+                    pdfGenerator.GeneratePdf(invoice);
 
                     MessageBox.Show("Invoice saved successfully.");
                 }

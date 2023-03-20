@@ -1,33 +1,28 @@
-﻿using dotenv.net;
-using ImageResizer.Plugins.Basic;
-using InventoryManagementSystem.Messages;
+﻿using InventoryManagementSystem.Messages;
+using InventoryManagementSystem.UserControls;
 using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventoryManagementSystem
 {
     public partial class AddItem : Form
     {
-        public AddItem()
+        private readonly MongoConnector _mongoConnector;
+        private readonly UC_Inventory _ucInventory;
+
+        public AddItem(UC_Inventory ucInventory)
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
+            _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
+
+            _ucInventory = ucInventory;
         }
 
         private void AddItem_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -35,34 +30,36 @@ namespace InventoryManagementSystem
             this.Close();
         }
 
-        private void btnAddItem_Click(object sender, EventArgs e)
+        private async void btnAddItem_Click(object sender, EventArgs e)
         {
-            string collectionName = "items";
+            decimal buyingPrice = Convert.ToDecimal(txtBuyingPrice.Text);
+            decimal unitPrice = Convert.ToDecimal(txtUnitPrice.Text);
+            decimal totalCost = 0;
+            decimal totalRevenue = 0;
+            decimal totalProfit = totalRevenue - totalCost;
 
-            // Get the MongoDB client
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-
-            // Get the database and collection objects
-            IMongoDatabase db = client.GetDatabase("InventoryManagementSystem");
-            IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>(collectionName);
-
-            var item = new BsonDocument {
-                { "part_number", txtPartNumber.Text },
-                { "oem_number", txtOEMNumber.Text },
-                { "description", txtDescription.Text },
-                { "category", txtCategory.Text },
-                { "brand", txtBrand.Text },
-                { "vehicle_brand", txtVehicleBrand.Text },
-                { "buying_price", txtBuyingPrice.Value },
-                { "unit_price", txtUnitPrice.Value },
-                { "quantity", Convert.ToInt32(txtQuantity.Value) },
-                { "quantity_sold", 0 },
-                { "supplier", txtSupplier.Text },
+            BsonDocument newItem = new BsonDocument
+            {
+                {"part_number", txtPartNumber.Text.ToString()},
+                {"oem_number", txtOEMNumber.Text.ToString()},
+                {"description", txtDescription.Text.ToString()},
+                {"category", txtCategory.Text.ToString()},
+                {"brand", txtBrand.Text.ToString()},
+                {"vehicle_brand", txtVehicleBrand.Text.ToString()},
+                {"supplier", txtSupplier.Text.ToString()},
+                {"buying_price", buyingPrice },
+                {"unit_price", unitPrice },
+                {"quantity", Convert.ToInt32(txtQuantity.Text) },
+                {"quantity_sold", 0 },
+                {"quantity_in_hand", Convert.ToInt32(txtQuantity.Text) },
+                {"total_cost", totalCost },
+                {"total_profit", totalProfit },
+                {"total_revenue", totalRevenue }
             };
 
             try
             {
-                collection.InsertOne(item);
+                await _mongoConnector.InsertDocumentAsync("items", newItem);
 
                 var addItemSuccessForm = new AddItemSuccess();
                 addItemSuccessForm.Owner = this;
@@ -81,11 +78,13 @@ namespace InventoryManagementSystem
                 txtQuantity.Value = 0;
                 txtSupplier.Text = "";
 
+                _ucInventory.RefreshInventory();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while adding the item to the database: {ex.Message}");
-            }
+            }           
         }
 
         private void txtPartNumber_KeyDown(object sender, KeyEventArgs e)
@@ -218,9 +217,5 @@ namespace InventoryManagementSystem
             }
         }
 
-        private void txtPartNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

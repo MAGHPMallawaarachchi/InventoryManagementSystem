@@ -50,6 +50,7 @@ namespace InventoryManagementSystem
         {
             UC_Dashboard uc = new UC_Dashboard();
             addUserControl(uc);
+            uc.RefreshData();
         }
 
         private void btnInventory_Click(object sender, EventArgs e)

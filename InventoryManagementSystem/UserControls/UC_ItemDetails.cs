@@ -1,77 +1,70 @@
-﻿using dotenv.net;
+﻿using InventoryManagementSystem.DataModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Siticone.Desktop.UI.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static MongoDB.Driver.WriteConcern;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventoryManagementSystem.UserControls
 {
     public partial class UC_ItemDetails : UserControl
     {
+        private readonly MongoConnector _mongoConnector;
         public UC_ItemDetails()
         {
             InitializeComponent();
+
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
+            _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
-        public void UpdateContent(string part_number)
+        private void UC_ItemDetails_Load(object sender, EventArgs e)
+        {
+            // set the update button control to not visible
+            btnUpdate.Visible = false;
+            btnCancel.Visible = false;
+        }
+
+        public async void UpdateContent(string part_number)
         {
             //Displaying the parameter of the part Number label 
             partNumber.Text = part_number.ToString();
 
-            // Create a MongoDB client and connect to the database
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // Define the query filter . representing the query
-            var filter = Builders<BsonDocument>.Filter.Eq("part_number", part_number);
-
-            //Storing the variable of the filtered document 
-            var document = collection.Find(filter).FirstOrDefault();
+            var document = await _mongoConnector.GetByPartNumber(partNumber.Text.ToString());
 
             //Storing the variables of the document
             //Creating Variables
-            var oem_number = document["oem_number"].AsString;
-            var description = document["description"].AsString;
-            var category = document["category"].AsString;
-            var brand = document["brand"].AsString;
-            var buying_price = document["buying_price"].AsDecimal128;
-            var unit_price = document["unit_price"].AsDecimal128;
-            var quantity = document["quantity"].AsInt32;
-            var quantity_sold = document["quantity_sold"].AsInt32;
-            var supplier = document["supplier"].AsString;
-            int quantity_in_hand = quantity - quantity_sold;
-
+            var oem_number = document.oem_number;
+            var description = document.description;
+            var category = document.category;
+            var brand = document.brand;
+            var vehicle_brand = document.vehicle_brand;
+            var buying_price = document.buying_price;
+            var unit_price = document.unit_price;
+            var quantity = document.quantity;
+            var quantity_sold = document.quantity_sold;
+            var quantity_in_hand = document.quantity_in_hand;
+            var supplier = document.supplier;
+            var cost = document.total_cost;
+            var revenue = document.total_revenue;
+            var profit = document.total_profit;
 
 
             //Displaying fetched data
-            partNumberData.Text = part_number.ToString();
-            oemNumberData.Text = oem_number.ToString();
-            descriptionData.Text = description.ToString();
-            categoryData.Text = category.ToString();
-            brandData.Text = brand.ToString();
-            supplierNameData.Text = supplier.ToString();
-            buyingPriceData.Text = buying_price.ToString();
-            unitPriceData.Text = unit_price.ToString();
-            totalQtyData.Text = quantity.ToString();
-            qtySoldData.Text = quantity_sold.ToString();
-            qtyInHndData.Text = quantity_in_hand.ToString();
+            lblPartNumberData.Text = part_number;
+            lblOEMNumberData.Text = oem_number;
+            lblDescriptionData.Text = description;
+            lblCategoryData.Text = category;
+            lblBrandData.Text = brand;
+            lblVehicleBrandData.Text = vehicle_brand;
+            lblSupplierNameData.Text = supplier;
+            lblBuyingPriceData.Text = buying_price.ToString();
+            lblUnitPriceData.Text = unit_price.ToString();
+            lblTotalQuantityData.Text = quantity.ToString();
+            lblQuantitySoldData.Text = quantity_sold.ToString();
+            lblQuantityInHandData.Text = quantity_in_hand.ToString();
+            lblCostData.Text = cost.ToString();
+            lblRevenueData.Text = revenue.ToString();
+            lblProfitData.Text = profit.ToString();
 
         }
 
@@ -113,172 +106,178 @@ namespace InventoryManagementSystem.UserControls
         {
             // set the update button control to visible
             btnUpdate.Visible = true;
-            btnDiscard.Visible = true;
+            btnCancel.Visible = true;
             btnEdit.Hide();
             btnBack.Hide();
 
             //Hiding the Previous data
-            partNumberData.Hide();
-            oemNumberData.Hide();
-            descriptionData.Hide();
-            categoryData.Hide();
-            brandData.Hide();
-            supplierNameData.Hide();
-            buyingPriceData.Hide();
-            unitPriceData.Hide();
-            qtyInHndData.Hide(); //quantity in hand in stock details i named it as qtyInHnd
-            qtySoldData.Hide();
-            totalQtyData.Hide();
-            supplierEmailData.Hide();
+            lblPartNumberData.Hide();
+            lblOEMNumberData.Hide();
+            lblDescriptionData.Hide();
+            lblCategoryData.Hide();
+            lblBrandData.Hide();
+            lblVehicleBrandData.Hide();
+            lblSupplierNameData.Hide();
+            lblBuyingPriceData.Hide();
+            lblUnitPriceData.Hide();
+            lblQuantityInHandData.Hide(); //quantity in hand in stock details i named it as qtyInHnd
+            lblQuantitySoldData.Hide();
+            lblTotalQuantityData.Hide();
+            lblCostData.Hide();
+            lblRevenueData.Hide();
+            lblProfitData.Hide();
 
 
             // make the text box visible
-            part_numberText.Visible = true;
-            oemNumberText.Visible = true;
-            descriptionText.Visible = true;
-            categoryText.Visible = true;
-            brandText.Visible = true;
-            supplierNameText.Visible = true;
-            supplierEmailText.Visible = true;
-            buyingPriceText.Visible = true;
-            unitPriceText.Visible = true;
-            qtyInHndData.Visible = true;
-            totalQtyText.Visible = true;
-            qtySoldText.Visible = true;
-            qtyInHndText.Visible = true;
-            supplierEmailText.Visible = true;
+            txtPartNumber.Visible = true;
+            txtOEMNumber.Visible = true;
+            txtDescription.Visible = true;
+            txtCategory.Visible = true;
+            txtBrand.Visible = true;
+            txtVehicleBrand.Visible = true;
+            txtSupplier.Visible = true;
+            txtBuyingPrice.Visible = true;
+            txtUnitPrice.Visible = true;
+            txtQuantityInHand.Visible = true;
+            txtTotalQuantity.Visible = true;
+            txtQuantitySold.Visible = true;
+            txtCost.Visible = true;
+            txtRevenue.Visible = true;
+            txtProfit.Visible = true;
 
 
             // copy the old data to the text box
-            part_numberText.Text = partNumberData.Text;
-            oemNumberText.Text = oemNumberData.Text;
-            descriptionText.Text = descriptionData.Text;
-            categoryText.Text = categoryData.Text;
-            brandText.Text = brandData.Text;
-            supplierNameText.Text = supplierNameData.Text;
-            supplierEmailText.Text = supplierEmailData.Text;
-            buyingPriceText.Text = buyingPriceData.Text;
-            unitPriceText.Text = unitPriceData.Text;
-            totalQtyText.Text = totalQtyData.Text;
-            qtySoldText.Text = qtySoldData.Text;
-            qtyInHndText.Text = qtyInHndData.Text;
+            txtPartNumber.Text = lblPartNumberData.Text;
+            txtOEMNumber.Text = lblOEMNumberData.Text;
+            txtDescription.Text = lblDescriptionData.Text;
+            txtCategory.Text = lblCategoryData.Text;
+            txtBrand.Text = lblBrandData.Text;
+            txtVehicleBrand.Text = lblVehicleBrandData.Text;
+            txtSupplier.Text = lblSupplierNameData.Text;
+            txtBuyingPrice.Text = lblBuyingPriceData.Text;
+            txtUnitPrice.Text = lblUnitPriceData.Text;
+            txtTotalQuantity.Text = lblTotalQuantityData.Text;
+            txtQuantitySold.Text = lblQuantitySoldData.Text;
+            txtQuantityInHand.Text = lblQuantityInHandData.Text;
+            txtCost.Text = lblCostData.Text;
+            txtProfit.Text = lblProfitData.Text;
+            txtRevenue.Text = lblRevenueData.Text;
 
             // hide the old data label
-            partNumberData.Visible = false;
-            descriptionData.Visible = false;
-            categoryData.Visible = false;
-            brandData.Visible = false;
-            supplierNameData.Visible = false;
-            supplierEmailData.Visible = false;
-            buyingPriceData.Visible = false;
-            unitPriceData.Visible = false;
-            qtySoldData.Visible = false;
-            qtyInHndData.Visible = false;
-            totalQtyData.Visible = false;
+            lblPartNumberData.Visible = false;
+            lblDescriptionData.Visible = false;
+            lblCategoryData.Visible = false;
+            lblBrandData.Visible = false;
+            lblVehicleBrandData.Visible = false;
+            lblSupplierNameData.Visible = false;
+            lblBuyingPriceData.Visible = false;
+            lblUnitPriceData.Visible = false;
+            lblQuantitySoldData.Visible = false;
+            lblQuantityInHandData.Visible = false;
+            lblTotalQuantityData.Visible = false;
+            lblCostData.Visible = false;
+            lblProfitData.Visible = false;
+            lblRevenueData.Visible = false;
 
         }
 
-        private void updateBtn_Click(object sender, EventArgs e)
-
+        private async void updateBtn_Click(object sender, EventArgs e)
         {
-            // retrieve the new value from the text box
-            string newValue = part_numberText.Text;
+            var filter = Builders<BsonDocument>.Filter.Eq("part_number", txtPartNumber.Text.ToString());
+            BsonDocument updateItem = new BsonDocument
+            {
+                {"part_number", txtPartNumber.Text.ToString()},
+                {"oem_number", txtOEMNumber.Text.ToString()},
+                {"description", txtDescription.Text.ToString()},
+                {"category", txtCategory.Text.ToString()},
+                {"brand", txtBrand.Text.ToString()},
+                {"vehicle_brand", txtVehicleBrand.Text.ToString()},
+                {"supplier", txtSupplier.Text.ToString()},
+                {"buying_price", Convert.ToDecimal(txtBuyingPrice.Text) },
+                {"unit_price", Convert.ToDecimal(txtUnitPrice.Text) },
+                {"quantity", Convert.ToInt32(txtTotalQuantity.Text) },
+                {"quantity_sold", Convert.ToInt32(txtQuantitySold.Text) },
+                {"quantity_in_hand", Convert.ToInt32(txtQuantityInHand.Text) },
+                {"total_cost", Convert.ToDecimal(txtCost.Text) },
+                {"total_profit", Convert.ToDecimal(txtProfit.Text) },
+                {"total_revenue", Convert.ToDecimal(txtRevenue.Text) }
+            };
 
-            // create a new MongoDB client object
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
-
-            var database = mongoClient.GetDatabase("InventoryManagementSystem");
-
-            // Get a reference to the collection you want to query
-            var collection = database.GetCollection<BsonDocument>("items");
-
-            // Define the query filter . representing the query
-            //i think this is where the problem is 
-            var filter = Builders<BsonDocument>.Filter.Eq("part_number", "part_numberText.Text");
-            UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.Set("part_number", newValue);
-
-            // execute the update operation
-            UpdateResult result = collection.UpdateOne(filter, update);
+            var isUpdated = await _mongoConnector.UpdateDocumentAsync("items", filter, updateItem);
 
             // check if the update was successful
-            if (result.ModifiedCount > 0)
+            if (isUpdated)
             {
-                // retrieve the updated document or documents from the database
-                List<BsonDocument> documents = collection.Find(filter).ToList();
-
-                // display the updated values
-                foreach (BsonDocument document in documents)
-                {
-                    string updatedValue = document["part_number"].ToString();
-                    part_numberText.Text = updatedValue;
-                }
+                MessageBox.Show("Updated successfully");
             }
             else
             {
                 // display an error message if the update failed
-                part_numberText.Text = "Update failed.";
+                txtPartNumber.Text = "Update failed.";
             }
 
         }
 
-        private void UC_ItemDetails_Load(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            // set the update button control to not visible
-            btnUpdate.Visible = false;
-            btnDiscard.Visible = false;
-        }
-
-        private void btnDiscard_Click(object sender, EventArgs e)
-        {
-
             btnUpdate.Hide();
-            btnDiscard.Hide();
+            btnCancel.Hide();
             btnEdit.Visible = true;
             btnBack.Visible = true;
 
             //making the Previous data visible
-            partNumberData.Visible = true;
-            oemNumberData.Visible = true;
-            descriptionData.Visible = true;
-            categoryData.Visible = true;
-            brandData.Visible = true;
-            supplierNameData.Visible = true;
-            buyingPriceData.Visible = true;
-            unitPriceData.Visible = true;
-            qtyInHndData.Visible = true; //quantity in hand in stock details i named it as qtyInHnd
-            qtySoldData.Visible = true;
-            totalQtyData.Visible = true;
-            supplierEmailData.Visible = true;
+            lblPartNumberData.Visible = true;
+            lblOEMNumberData.Visible = true;
+            lblDescriptionData.Visible = true;
+            lblCategoryData.Visible = true;
+            lblBrandData.Visible = true;
+            lblVehicleBrandData.Visible = true;
+            lblSupplierNameData.Visible = true;
+            lblBuyingPriceData.Visible = true;
+            lblUnitPriceData.Visible = true;
+            lblQuantityInHandData.Visible = true; //quantity in hand in stock details i named it as qtyInHnd
+            lblQuantitySoldData.Visible = true;
+            lblTotalQuantityData.Visible = true;
+            lblRevenueData.Visible = true;
+            lblCostData.Visible = true;
+            lblProfitData.Visible = true;
 
 
             // hide the text boxes
-            part_numberText.Hide();
-            oemNumberText.Hide();
-            descriptionText.Hide();
-            categoryText.Hide();
-            brandText.Hide();
-            supplierNameText.Hide();
-            supplierEmailText.Hide();
-            buyingPriceText.Hide();
-            unitPriceText.Hide();
-            qtyInHndData.Hide();
-            totalQtyText.Hide();
-            qtySoldText.Hide();
-            qtyInHndText.Hide();
-            supplierEmailText.Hide();
+            txtPartNumber.Hide();
+            txtOEMNumber.Hide();
+            txtDescription.Hide();
+            txtCategory.Hide();
+            txtBrand.Hide();
+            txtVehicleBrand.Hide();
+            txtSupplier.Hide();
+            txtBuyingPrice.Hide();
+            txtUnitPrice.Hide();
+            lblQuantityInHandData.Hide();
+            txtTotalQuantity.Hide();
+            txtQuantitySold.Hide();
+            txtQuantityInHand.Hide();
+            txtRevenue.Hide();
+            txtProfit.Hide();
+            txtCost.Hide();
 
             // hide the old data label
-            partNumberData.Visible = true;
-            descriptionData.Visible = true;
-            categoryData.Visible = true;
-            brandData.Visible = true;
-            supplierNameData.Visible = true;
-            supplierEmailData.Visible = true;
-            buyingPriceData.Visible = true;
-            unitPriceData.Visible = true;
-            qtySoldData.Visible = true;
-            qtyInHndData.Visible = true;
-            totalQtyData.Visible = true;
+            lblPartNumberData.Visible = true;
+            lblDescriptionData.Visible = true;
+            lblCategoryData.Visible = true;
+            lblBrandData.Visible = true;
+            lblVehicleBrandData.Visible = true;
+            lblSupplierNameData.Visible = true;
+            lblBuyingPriceData.Visible = true;
+            lblUnitPriceData.Visible = true;
+            lblQuantitySoldData.Visible = true;
+            lblQuantityInHandData.Visible = true;
+            lblTotalQuantityData.Visible = true;
+            lblCostData.Visible = true;
+            lblProfitData.Visible = true;
+            lblRevenueData.Visible = true;
+
+            UpdateContent(partNumber.Text.ToString());
         }
     }
 }

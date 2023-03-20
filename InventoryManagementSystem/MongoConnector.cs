@@ -1,6 +1,9 @@
 ﻿using InventoryManagementSystem.DataModels;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using System.Collections;
 
 namespace InventoryManagementSystem
 {
@@ -11,6 +14,7 @@ namespace InventoryManagementSystem
 
         public MongoConnector(string connectionString, string databaseName)
         {
+
             _client = new MongoClient(connectionString);
             _database = _client.GetDatabase(databaseName);
         }
@@ -24,6 +28,21 @@ namespace InventoryManagementSystem
 
         //CREATE
 
+        public async Task<bool> InsertDocumentAsync(string collectionName, BsonDocument document)
+        {
+            try
+            {
+                var collection = GetCollection<BsonDocument>(collectionName);
+                await collection.InsertOneAsync(document);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to insert document: {ex}");
+                return false;
+            }
+        }
+
         //insert a document to a collection
         public async Task Insert<T>(string collectionName, T document)
         {
@@ -34,6 +53,50 @@ namespace InventoryManagementSystem
 
 
         //READ
+
+        //get all items
+        public async Task<List<Item>> GetAllItems()
+        {
+            var collection = GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Empty;
+            var result = await collection.Find(filter).ToListAsync();
+            return result;
+        }
+
+        //get all customers
+        public async Task<List<Customer>> GetAllCustomers()
+        {
+            var collection = GetCollection<Customer>("customers");
+            var filter = Builders<Customer>.Filter.Empty;
+            var sort = Builders<Customer>.Sort.Ascending(c => c.customer_id);
+            var result = await collection.Find(filter).Sort(sort).ToListAsync();
+            return result;
+        }
+
+        public async Task<List<Item>> GetFilteredItems(FilterDefinition<Item> filter)
+        {
+            var collection = GetCollection<Item>("items");
+            var result = await collection.Find(filter).ToListAsync();
+            return result;
+        }
+
+
+        public async Task<List<Item>> GetLowQuantityItems()
+        {
+            var items = await GetAllItems();
+            var filteredItems = items.Where(i => i.quantity_in_hand <= 10 && i.quantity_in_hand != 0)
+                                     .OrderBy(i => i.quantity_in_hand)
+                                     .ToList();
+            return filteredItems;
+        }
+
+        public async Task<List<Item>> GetOutOfStockItems()
+        {
+            var items = await GetAllItems();
+            var filteredItems = items.Where(i => i.quantity_in_hand == 0)
+                                     .ToList();
+            return filteredItems;
+        }
 
         //get item by part_number
         public async Task<Item> GetByPartNumber(string partNumber)
@@ -49,6 +112,14 @@ namespace InventoryManagementSystem
             var collection = GetCollection<Customer>("customers");
             var filter = Builders<Customer>.Filter.Eq("customer_id", customerID);
             return await collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<string>> GetUniqueField(string field, FilterDefinition<BsonDocument> filter)
+        {
+            var collection = _database.GetCollection<BsonDocument>("items");
+            var distinctResults = await collection.DistinctAsync<string>(field, filter);
+            var sortedResults = distinctResults.ToList().OrderBy(x => x).ToList();
+            return sortedResults;
         }
 
         //get unique brands
@@ -67,11 +138,10 @@ namespace InventoryManagementSystem
             return distinctResults.ToList();
         }       
 
-        //get items by brand
-        public async Task<List<Item>> GetItemsByBrand(string brand)
+        //get items by filters
+        public async Task<List<Item>> GetItemsByFilter(FilterDefinition<Item> filter)
         {
             var collection = _database.GetCollection<Item>("items");
-            var filter = Builders<Item>.Filter.Eq("brand", brand);
             var items = await collection.Find(filter).ToListAsync();
             return items;
         }
@@ -94,25 +164,6 @@ namespace InventoryManagementSystem
             return distinctResults.ToList();
         }
 
-        //get all items
-        public async Task<List<Item>> GetAllItems()
-        {
-            var collection = GetCollection<Item>("items");
-            var filter = Builders<Item>.Filter.Empty;
-            var result = await collection.Find(filter).ToListAsync();
-            return result;
-        }
-
-        //get all customers
-        public async Task<List<Customer>> GetAllCustomers()
-        {
-            var collection = GetCollection<Customer>("customers");
-            var filter = Builders<Customer>.Filter.Empty;
-            var sort = Builders<Customer>.Sort.Ascending(c => c.customer_id);
-            var result = await collection.Find(filter).Sort(sort).ToListAsync();
-            return result;
-        }
-
         //get the sequence of the last invoice
         public async Task<int> GetLastInvoice()
         {
@@ -124,11 +175,53 @@ namespace InventoryManagementSystem
             return result?["sequence"]?.ToInt32() ?? 0;
         }
 
+        //fetch documents from a collection and sort by quantity_sold in descending order
+        public async Task<List<Item>> GetBestSellingItems()
+        {
+            var collection = _database.GetCollection<Item>("items");
+            var filter = Builders<Item>.Filter.Empty;
+            var sort = Builders<Item>.Sort.Descending(x => x.quantity_sold);
+            var documents = await collection.Find(filter).Sort(sort).ToListAsync();
+            return documents;
+        }
+
+        //get all invoices
+        public async Task<List<Invoice>> GetAllInvoices()
+        {
+            var collection = GetCollection<Invoice>("invoices");
+            var filter = Builders<Invoice>.Filter.Empty;
+            var invoices = await collection.Find(filter).ToListAsync();
+            return invoices;
+        }
+
 
         //UPDATE
 
+        public async Task<bool> UpdateDocumentAsync(string collectionName, FilterDefinition<BsonDocument> filter, BsonDocument update)
+        {
+            try
+            {
+                var collection = GetCollection<BsonDocument>(collectionName);
+                var result = await collection.UpdateOneAsync(filter, new BsonDocument("$set", update));
+                return result.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to update document: {ex}");
+                return false;
+            }
+        }
+
+        public async Task<bool> Update<T>(string id, T item)
+        {
+            var filter = Builders<T>.Filter.Eq("_id", id);
+            var collection = GetCollection<T>("items");
+            var result = await collection.ReplaceOneAsync(filter, item);
+            return result.ModifiedCount > 0;
+        }
+
         //update one field of item
-        public async Task<bool> UpdateItem<T>(ObjectId objectId, string fieldName, object value)
+        public async Task<bool> UpdateFieldItem<T>(ObjectId objectId, string fieldName, object value)
         {
             var collection = GetCollection<T>("items");
             var filter = Builders<T>.Filter.Eq("_id", objectId);
@@ -138,13 +231,24 @@ namespace InventoryManagementSystem
             return result.ModifiedCount > 0;
         }
 
-        //UPDATE ANY Field
-        public async Task<bool> Update<T>(string collectionName, string documentId, string fieldName, object value)
+        //update 1 or more fields of item
+        public async Task<bool> UpdateItem<T>(string partNumber, Item updatedItem)
         {
-            var collection = GetCollection<T>(collectionName);
-            var objectId = new ObjectId(documentId);
-            var filter = Builders<T>.Filter.Eq("_id", objectId);
-            var update = Builders<T>.Update.Set(fieldName, value);
+            var collection = GetCollection<T>("items");
+            var filter = Builders<T>.Filter.Eq("part_number", partNumber);
+
+            var update = Builders<T>.Update
+                .Set("part_number", updatedItem.part_number)
+                .Set("oem_number", updatedItem.oem_number)
+                .Set("description", updatedItem.description)
+                .Set("brand", updatedItem.brand)
+                .Set("vehicle_brand", updatedItem.vehicle_brand)
+                .Set("buying_price", updatedItem.buying_price)
+                .Set("unit_price", updatedItem.unit_price)
+                .Set("quantity", updatedItem.quantity)
+                .Set("quantity_sold", updatedItem.quantity_sold)
+                .Set("supplier", updatedItem.supplier);
+
             var result = await collection.UpdateOneAsync(filter, update);
 
             return result.ModifiedCount > 0;
