@@ -9,19 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryManagementSystem
+namespace InventoryManagementSystem.UserControls
 {
-    public partial class UC_Customers : UserControl
+    public partial class UC_Customer : UserControl
     {
         private readonly MongoConnector _mongoConnector;
-        public UC_Customers()
+        public UC_Customer()
         {
             InitializeComponent();
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
-        }
 
+            CustomersLoad();
+        }
         private async void CustomersLoad()
         {
             dgvCustomers.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -48,19 +49,16 @@ namespace InventoryManagementSystem
 
             dgvCustomers.CurrentCell = null;
         }
-
         public void RefreshCustomers()
         {
             CustomersLoad();
         }
-
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             AddCustomer addCustomer = new AddCustomer(this);
             addCustomer.ShowDialog();
         }
-
-        private void UC_Customers_Load(object sender, EventArgs e)
+        private void UC_Customer_Load(object sender, EventArgs e)
         {
             CustomersLoad();
         }
@@ -75,7 +73,7 @@ namespace InventoryManagementSystem
 
 
                     // Perform edit action
-                    if (buttonCell.OwningColumn.Index == 6)     // Edit button is in 6th column
+                    if (buttonCell.OwningColumn.Index == 5)     // Edit button is in 5th column
                     {
 
                         // Get the selected row
@@ -95,7 +93,7 @@ namespace InventoryManagementSystem
 
 
                     // Perform delete action
-                    else if (buttonCell.OwningColumn.Index == 7)    // Delete button is in 7th column
+                    else if (buttonCell.OwningColumn.Index == 6)    // Delete button is in 6th column
                     {
                         // Get the selected row
                         var selectedRow = dgvCustomers.Rows[e.RowIndex];
@@ -111,7 +109,8 @@ namespace InventoryManagementSystem
 
                             // Perform delete action
                             // Get the ID of the record to delete from the selected row
-                            String idToDelete = (String)selectedRow.Cells["customer_id"].Value;
+                            int idIndex = 0;
+                            String idToDelete = (String)selectedRow.Cells[idIndex].Value;
 
                             // Call the DeleteCustomer method in your data access layer to delete the record
                             bool deletedSuccessfully = await _mongoConnector.DeleteCustomer(idToDelete);

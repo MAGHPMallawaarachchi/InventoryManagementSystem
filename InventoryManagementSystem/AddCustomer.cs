@@ -16,9 +16,9 @@ namespace InventoryManagementSystem
     public partial class AddCustomer : Form
     {
         private readonly MongoConnector _mongoConnector;
-        private readonly UC_Customers _ucCustomers;
+        private readonly UC_Customer _ucCustomers;
 
-        public AddCustomer(UC_Customers ucCustomers)
+        public AddCustomer(UC_Customer ucCustomers)
         {
             InitializeComponent();
 

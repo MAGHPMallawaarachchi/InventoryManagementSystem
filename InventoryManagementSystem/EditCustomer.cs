@@ -19,10 +19,10 @@ namespace InventoryManagementSystem
     public partial class EditCustomer : Form
     {
         private readonly MongoConnector _mongoConnector;
-        private readonly UC_Customers _ucCustomers;
+        private readonly UC_Customer _ucCustomers;
         private readonly string _customerId;
 
-        public EditCustomer(UC_Customers ucCustomers, string customerId)
+        public EditCustomer(UC_Customer ucCustomers, string customerId)
         {
             InitializeComponent();
 
@@ -47,22 +47,16 @@ namespace InventoryManagementSystem
 
         }
 
-
         //EditCustomer button
-        private async void btnEditCustomer_Click(object sender, EventArgs e)
+        private void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("customer_id", txtCustomerID.Text.ToString());
+            string customerId = txtCustomerID.Text;
+            string name = txtName.Text;
+            string address = txtAddress.Text;
+            string city = txtCity.Text;
+            string phoneNo = txtContactNumber.Text;
 
-            BsonDocument updateCustomer = new BsonDocument
-            {
-                {"customer_id", _customerId},
-                {"name",  txtName.Text.ToString()},
-                {"address", txtAddress.Text.ToString()},
-                {"city", txtCity.Text.ToString()},
-                {"phone_no", txtCustomerID.Text.ToString()}
-            };
-
-            bool updatedSuccessfully = await _mongoConnector.UpdateDocumentAsync("customers", filter, updateCustomer);
+            bool updatedSuccessfully = _mongoConnector.UpdateCustomer("customers", customerId, name, address, city, phoneNo);
 
             if (updatedSuccessfully)
             {
@@ -76,8 +70,6 @@ namespace InventoryManagementSystem
             }
         }
 
-
-        //Discard button
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             this.Close();
