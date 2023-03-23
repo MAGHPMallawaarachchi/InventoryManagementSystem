@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using System.Windows.Forms;
 
 namespace InventoryManagementSystem.UserControls
@@ -42,6 +34,11 @@ namespace InventoryManagementSystem.UserControls
                 });
             }
 
+            editbtn.Width = 30;
+            deletebtn.Width = 30;
+            address.Width = 400;
+            customer_id.Width = 200;
+
             foreach (DataGridViewRow row in dgvCustomers.Rows)
             {
                 row.Height = 50;
@@ -49,15 +46,18 @@ namespace InventoryManagementSystem.UserControls
 
             dgvCustomers.CurrentCell = null;
         }
+
         public void RefreshCustomers()
         {
             CustomersLoad();
         }
+
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             AddCustomer addCustomer = new AddCustomer(this);
             addCustomer.ShowDialog();
         }
+
         private void UC_Customer_Load(object sender, EventArgs e)
         {
             CustomersLoad();
@@ -68,10 +68,8 @@ namespace InventoryManagementSystem.UserControls
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 var cell = dgvCustomers.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                if (cell is DataGridViewButtonCell buttonCell)
+                if (cell is DataGridViewImageCell buttonCell)
                 {
-
-
                     // Perform edit action
                     if (buttonCell.OwningColumn.Index == 5)     // Edit button is in 5th column
                     {
@@ -89,8 +87,6 @@ namespace InventoryManagementSystem.UserControls
                         editCustomer.ShowDialog();
 
                     }
-
-
 
                     // Perform delete action
                     else if (buttonCell.OwningColumn.Index == 6)    // Delete button is in 6th column
@@ -134,6 +130,57 @@ namespace InventoryManagementSystem.UserControls
                     }
                 }
             }
+        }
+
+        private Color defaultForeColor;
+
+        private void dgvCustomers_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvCustomers.Rows.Count)
+            {
+                defaultForeColor = dgvCustomers.Rows[e.RowIndex].DefaultCellStyle.ForeColor;
+                dgvCustomers.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.FromArgb(10, 73, 156);
+            }
+
+            if (e.ColumnIndex == 5 && e.RowIndex >= 0)
+            {
+                dgvCustomers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.editBlue;
+            }
+
+            if (e.ColumnIndex == 6 && e.RowIndex >= 0)
+            {
+                dgvCustomers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.deleteRed;
+            }
+
+            if ((e.ColumnIndex == 6 && e.RowIndex >= 0) || (e.ColumnIndex == 5 && e.RowIndex >= 0))
+            {
+                // Change the cursor to a hand when hovering over the cell
+                dgvCustomers.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                dgvCustomers.Cursor = Cursors.Default;
+            }
+
+        }
+
+        private void dgvCustomers_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvCustomers.Rows.Count)
+            {
+                dgvCustomers.Rows[e.RowIndex].DefaultCellStyle.ForeColor = defaultForeColor;
+            }
+
+            if (e.ColumnIndex == 5 && e.RowIndex >= 0)
+            {
+                dgvCustomers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.edit;
+            }
+
+            if (e.ColumnIndex == 6 && e.RowIndex >= 0)
+            {
+                dgvCustomers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.deleteGray;
+            }
+
         }
     }
 }

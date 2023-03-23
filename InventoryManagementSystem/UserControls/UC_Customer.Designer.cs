@@ -32,7 +32,8 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            lblCustomer = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            panel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            lblCustomers = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             btnAddCustomer = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             dgvCustomers = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             customer_id = new DataGridViewTextBoxColumn();
@@ -40,20 +41,34 @@
             address = new DataGridViewTextBoxColumn();
             city = new DataGridViewTextBoxColumn();
             contact_number = new DataGridViewTextBoxColumn();
-            editbtn = new DataGridViewButtonColumn();
-            deletebtn = new DataGridViewButtonColumn();
+            editbtn = new DataGridViewImageColumn();
+            deletebtn = new DataGridViewImageColumn();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
             SuspendLayout();
             // 
-            // lblCustomer
+            // panel1
             // 
-            lblCustomer.BackColor = Color.Transparent;
-            lblCustomer.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCustomer.Location = new Point(39, 49);
-            lblCustomer.Name = "lblCustomer";
-            lblCustomer.Size = new Size(127, 31);
-            lblCustomer.TabIndex = 10;
-            lblCustomer.Text = "Customers";
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblCustomers);
+            panel1.Controls.Add(btnAddCustomer);
+            panel1.Controls.Add(dgvCustomers);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(19, 19);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(20);
+            panel1.Size = new Size(1102, 773);
+            panel1.TabIndex = 0;
+            // 
+            // lblCustomers
+            // 
+            lblCustomers.BackColor = Color.Transparent;
+            lblCustomers.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCustomers.Location = new Point(32, 23);
+            lblCustomers.Name = "lblCustomers";
+            lblCustomers.Size = new Size(100, 30);
+            lblCustomers.TabIndex = 21;
+            lblCustomers.Text = "Customers";
             // 
             // btnAddCustomer
             // 
@@ -73,10 +88,10 @@
             btnAddCustomer.HoverState.FillColor = Color.FromArgb(10, 73, 156);
             btnAddCustomer.ImageOffset = new Point(0, 1);
             btnAddCustomer.ImageSize = new Size(15, 10);
-            btnAddCustomer.Location = new Point(891, 40);
+            btnAddCustomer.Location = new Point(932, 23);
             btnAddCustomer.Name = "btnAddCustomer";
             btnAddCustomer.Size = new Size(139, 40);
-            btnAddCustomer.TabIndex = 9;
+            btnAddCustomer.TabIndex = 12;
             btnAddCustomer.Text = "Add Customer";
             btnAddCustomer.TextOffset = new Point(2, 0);
             btnAddCustomer.Click += btnAddCustomer_Click;
@@ -111,7 +126,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCustomers.GridColor = Color.FromArgb(240, 241, 243);
-            dgvCustomers.Location = new Point(39, 105);
+            dgvCustomers.Location = new Point(20, 105);
             dgvCustomers.Name = "dgvCustomers";
             dgvCustomers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -125,8 +140,8 @@
             dgvCustomers.RowHeadersVisible = false;
             dgvCustomers.RowHeadersWidth = 50;
             dgvCustomers.RowTemplate.Height = 29;
-            dgvCustomers.Size = new Size(1032, 668);
-            dgvCustomers.TabIndex = 8;
+            dgvCustomers.Size = new Size(1051, 648);
+            dgvCustomers.TabIndex = 11;
             dgvCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvCustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
             dgvCustomers.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
@@ -149,6 +164,8 @@
             dgvCustomers.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvCustomers.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvCustomers.CellContentClick += dgvCustomers_CellContentClickAsync;
+            dgvCustomers.CellMouseEnter += dgvCustomers_CellMouseEnter;
+            dgvCustomers.CellMouseLeave += dgvCustomers_CellMouseLeave;
             // 
             // customer_id
             // 
@@ -183,46 +200,46 @@
             // 
             // editbtn
             // 
-            editbtn.HeaderText = "Actions";
+            editbtn.HeaderText = "";
+            editbtn.Image = Properties.Resources.edit;
             editbtn.MinimumWidth = 6;
             editbtn.Name = "editbtn";
-            editbtn.Text = "Edit";
-            editbtn.UseColumnTextForButtonValue = true;
             // 
             // deletebtn
             // 
             deletebtn.HeaderText = "";
+            deletebtn.Image = Properties.Resources.deleteGray;
             deletebtn.MinimumWidth = 6;
             deletebtn.Name = "deletebtn";
-            deletebtn.Text = "Delete";
-            deletebtn.UseColumnTextForButtonValue = true;
+            deletebtn.Resizable = DataGridViewTriState.True;
             // 
             // UC_Customer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lblCustomer);
-            Controls.Add(btnAddCustomer);
-            Controls.Add(dgvCustomers);
+            Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "UC_Customer";
+            Padding = new Padding(19, 19, 22, 21);
             Size = new Size(1143, 813);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblCustomer;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel panel1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnAddCustomer;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvCustomers;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblCustomers;
         private DataGridViewTextBoxColumn customer_id;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn address;
         private DataGridViewTextBoxColumn city;
         private DataGridViewTextBoxColumn contact_number;
-        private DataGridViewButtonColumn editbtn;
-        private DataGridViewButtonColumn deletebtn;
+        private DataGridViewImageColumn editbtn;
+        private DataGridViewImageColumn deletebtn;
     }
 }
