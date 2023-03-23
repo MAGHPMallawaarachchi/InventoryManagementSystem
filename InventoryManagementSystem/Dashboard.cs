@@ -67,7 +67,7 @@ namespace InventoryManagementSystem
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            UC_Customers uc = new UC_Customers();
+            UC_Customer uc = new UC_Customer();
             addUserControl(uc);
         }
 

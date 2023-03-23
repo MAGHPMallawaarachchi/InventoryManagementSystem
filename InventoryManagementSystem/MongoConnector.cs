@@ -212,6 +212,24 @@ namespace InventoryManagementSystem
             }
         }
 
+        //UpdateCustomers
+        public bool UpdateCustomer(string collectionName, string customerId, string name, string address, string city, string phoneNo)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("customer_id", customerId);
+
+            var updateCustomer = Builders<BsonDocument>.Update
+                .Set("customer_id", customerId)
+                .Set("name", name)
+                .Set("address", address)
+                .Set("city", city)
+                .Set("phone_no", phoneNo);
+
+            var updateResult = _database.GetCollection<BsonDocument>(collectionName)
+                                        .UpdateOne(filter, updateCustomer);
+
+            return updateResult.ModifiedCount > 0;
+        }
+
         //DELETE
 
         //delete an item

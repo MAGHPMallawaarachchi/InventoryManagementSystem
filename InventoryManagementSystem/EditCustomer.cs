@@ -1,8 +1,9 @@
-﻿using InventoryManagementSystem.DataModels;
+using InventoryManagementSystem.DataModels;
 using InventoryManagementSystem.UserControls;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -18,10 +19,10 @@ namespace InventoryManagementSystem
     public partial class EditCustomer : Form
     {
         private readonly MongoConnector _mongoConnector;
-        private readonly UC_Customers _ucCustomers;
+        private readonly UC_Customer _ucCustomers;
         private readonly string _customerId;
 
-        public EditCustomer(UC_Customers ucCustomers, string customerId)
+        public EditCustomer(UC_Customer ucCustomers, string customerId)
         {
             InitializeComponent();
 
@@ -46,33 +47,16 @@ namespace InventoryManagementSystem
 
         }
 
-
         //EditCustomer button
-        private async void btnEditCustomer_Click(object sender, EventArgs e)
+        private void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("customer_id", txtCustomerID.Text.ToString());
+            string customerId = txtCustomerID.Text;
+            string name = txtName.Text;
+            string address = txtAddress.Text;
+            string city = txtCity.Text;
+            string phoneNo = txtContactNumber.Text;
 
-            BsonDocument updateCustomer = new BsonDocument
-            {
-                {"customer_id", _customerId},
-                {"name",  txtName.Text.ToString()},
-                {"address", txtAddress.Text.ToString()},
-                {"city", txtCity.Text.ToString()},
-                {"phone_no", txtCustomerID.Text.ToString()}
-            };
-
-            /*Customer customer = new Customer
-            {
-                customer_id = _customerId,
-                name = txtName.Text,
-                address = txtAddress.Text,
-                city = txtCity.Text,
-                phone_no = txtContactNumber.Text
-            };
-            var objectId = new ObjectId(_customerId);
-            bool updatedSuccessfully = await _mongoConnector.UpdateItem<Customer>(objectId, "name", txtName.Text); */
-
-            bool updatedSuccessfully = await _mongoConnector.UpdateDocumentAsync("customers", filter, updateCustomer);
+            bool updatedSuccessfully = _mongoConnector.UpdateCustomer("customers", customerId, name, address, city, phoneNo);
 
             if (updatedSuccessfully)
             {
@@ -86,11 +70,14 @@ namespace InventoryManagementSystem
             }
         }
 
-
-        //Discard button
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void EditCustomer_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

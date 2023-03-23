@@ -77,6 +77,7 @@
             btnEditCustomer.TabIndex = 57;
             btnEditCustomer.Text = "Edit Customer";
             btnEditCustomer.TextOffset = new Point(2, 0);
+            btnEditCustomer.Click += btnEditCustomer_Click;
             // 
             // btnDiscard
             // 
@@ -101,6 +102,7 @@
             btnDiscard.TabIndex = 56;
             btnDiscard.Text = "Discard";
             btnDiscard.TextOffset = new Point(2, 0);
+            btnDiscard.Click += btnDiscard_Click;
             // 
             // txtName
             // 
@@ -236,6 +238,7 @@
             txtCustomerID.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtCustomerID.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtCustomerID.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtCustomerID.Enabled = false;
             txtCustomerID.FocusedState.BorderColor = Color.FromArgb(10, 73, 156);
             txtCustomerID.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtCustomerID.ForeColor = Color.FromArgb(72, 80, 94);
@@ -245,6 +248,7 @@
             txtCustomerID.Name = "txtCustomerID";
             txtCustomerID.PasswordChar = '\0';
             txtCustomerID.PlaceholderText = "";
+            txtCustomerID.ReadOnly = true;
             txtCustomerID.SelectedText = "";
             txtCustomerID.Size = new Size(239, 33);
             txtCustomerID.TabIndex = 48;
@@ -294,10 +298,10 @@
             Controls.Add(label1);
             Name = "EditCustomer";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += EditCustomer_Load;
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
 
         private Label label7;
