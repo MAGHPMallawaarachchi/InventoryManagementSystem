@@ -40,7 +40,7 @@
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            middlePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            tableLayoutPanel1 = new TableLayoutPanel();
             Panel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             dgvBestSellingItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -51,38 +51,47 @@
             dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
             lblBestSellingItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            tableLayoutPanel2 = new TableLayoutPanel();
             Panel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             dgvBestSellingCategories = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
+            category = new DataGridViewTextBoxColumn();
+            cat_quantity_sold = new DataGridViewTextBoxColumn();
+            cat_revenue = new DataGridViewTextBoxColumn();
+            cat_profit = new DataGridViewTextBoxColumn();
             lblBestSellingCategories = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             Panel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            cbFilters = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             dgvOverview = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             total_profit = new DataGridViewTextBoxColumn();
             revenue = new DataGridViewTextBoxColumn();
             sales = new DataGridViewTextBoxColumn();
             lblOverview = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            middlePanel.SuspendLayout();
+            btnDownload = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            tableLayoutPanel1.SuspendLayout();
             Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBestSellingItems).BeginInit();
+            tableLayoutPanel2.SuspendLayout();
             Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBestSellingCategories).BeginInit();
             Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverview).BeginInit();
             SuspendLayout();
             // 
-            // middlePanel
+            // tableLayoutPanel1
             // 
-            middlePanel.Controls.Add(Panel3);
-            middlePanel.Controls.Add(Panel2);
-            middlePanel.Controls.Add(Panel1);
-            middlePanel.Dock = DockStyle.Fill;
-            middlePanel.Location = new Point(19, 19);
-            middlePanel.Name = "middlePanel";
-            middlePanel.Size = new Size(1028, 766);
-            middlePanel.TabIndex = 2;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.4513626F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5486374F));
+            tableLayoutPanel1.Controls.Add(Panel3, 0, 1);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(19, 19);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.16188F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 63.83812F));
+            tableLayoutPanel1.Size = new Size(1599, 848);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // Panel3
             // 
@@ -90,11 +99,11 @@
             Panel3.BackColor = Color.White;
             Panel3.Controls.Add(dgvBestSellingItems);
             Panel3.Controls.Add(lblBestSellingItems);
-            Panel3.Location = new Point(0, 295);
+            Panel3.Location = new Point(3, 316);
+            Panel3.Margin = new Padding(3, 10, 3, 3);
             Panel3.Name = "Panel3";
-            Panel3.Size = new Size(1028, 471);
-            Panel3.TabIndex = 4;
-            Panel3.SizeChanged += Panel3_SizeChanged;
+            Panel3.Size = new Size(1593, 529);
+            Panel3.TabIndex = 5;
             // 
             // dgvBestSellingItems
             // 
@@ -126,7 +135,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvBestSellingItems.DefaultCellStyle = dataGridViewCellStyle3;
             dgvBestSellingItems.GridColor = Color.FromArgb(240, 241, 243);
-            dgvBestSellingItems.Location = new Point(0, 66);
+            dgvBestSellingItems.Location = new Point(0, 67);
             dgvBestSellingItems.Name = "dgvBestSellingItems";
             dgvBestSellingItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -140,8 +149,8 @@
             dgvBestSellingItems.RowHeadersVisible = false;
             dgvBestSellingItems.RowHeadersWidth = 50;
             dgvBestSellingItems.RowTemplate.Height = 29;
-            dgvBestSellingItems.Size = new Size(1028, 405);
-            dgvBestSellingItems.TabIndex = 20;
+            dgvBestSellingItems.Size = new Size(1593, 462);
+            dgvBestSellingItems.TabIndex = 21;
             dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.Font = null;
             dgvBestSellingItems.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
@@ -216,17 +225,33 @@
             lblBestSellingItems.TabIndex = 18;
             lblBestSellingItems.Text = "Best Selling Items";
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(Panel2, 0, 0);
+            tableLayoutPanel2.Controls.Add(Panel1, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 3);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(1593, 300);
+            tableLayoutPanel2.TabIndex = 0;
+            // 
             // Panel2
             // 
-            Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             Panel2.BackColor = Color.White;
             Panel2.Controls.Add(dgvBestSellingCategories);
             Panel2.Controls.Add(lblBestSellingCategories);
-            Panel2.Location = new Point(608, 0);
+            Panel2.Dock = DockStyle.Fill;
+            Panel2.Location = new Point(806, 3);
+            Panel2.Margin = new Padding(10, 3, 3, 10);
             Panel2.Name = "Panel2";
-            Panel2.Size = new Size(420, 272);
-            Panel2.TabIndex = 3;
-            Panel2.SizeChanged += Panel2_SizeChanged;
+            Panel2.Size = new Size(784, 287);
+            Panel2.TabIndex = 4;
             // 
             // dgvBestSellingCategories
             // 
@@ -246,7 +271,7 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dgvBestSellingCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvBestSellingCategories.ColumnHeadersHeight = 50;
-            dgvBestSellingCategories.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8, dataGridViewTextBoxColumn9 });
+            dgvBestSellingCategories.Columns.AddRange(new DataGridViewColumn[] { category, cat_quantity_sold, cat_revenue, cat_profit });
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = Color.White;
             dataGridViewCellStyle7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
@@ -258,7 +283,7 @@
             dgvBestSellingCategories.DefaultCellStyle = dataGridViewCellStyle7;
             dgvBestSellingCategories.Dock = DockStyle.Bottom;
             dgvBestSellingCategories.GridColor = Color.FromArgb(240, 241, 243);
-            dgvBestSellingCategories.Location = new Point(0, 56);
+            dgvBestSellingCategories.Location = new Point(0, 71);
             dgvBestSellingCategories.Name = "dgvBestSellingCategories";
             dgvBestSellingCategories.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -272,7 +297,7 @@
             dgvBestSellingCategories.RowHeadersVisible = false;
             dgvBestSellingCategories.RowHeadersWidth = 50;
             dgvBestSellingCategories.RowTemplate.Height = 29;
-            dgvBestSellingCategories.Size = new Size(420, 216);
+            dgvBestSellingCategories.Size = new Size(784, 216);
             dgvBestSellingCategories.TabIndex = 19;
             dgvBestSellingCategories.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvBestSellingCategories.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -296,29 +321,29 @@
             dgvBestSellingCategories.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvBestSellingCategories.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
-            // dataGridViewTextBoxColumn6
+            // category
             // 
-            dataGridViewTextBoxColumn6.HeaderText = "Category";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            category.HeaderText = "Category";
+            category.MinimumWidth = 6;
+            category.Name = "category";
             // 
-            // dataGridViewTextBoxColumn7
+            // cat_quantity_sold
             // 
-            dataGridViewTextBoxColumn7.HeaderText = "Quantity Sold";
-            dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            cat_quantity_sold.HeaderText = "Quantity Sold";
+            cat_quantity_sold.MinimumWidth = 6;
+            cat_quantity_sold.Name = "cat_quantity_sold";
             // 
-            // dataGridViewTextBoxColumn8
+            // cat_revenue
             // 
-            dataGridViewTextBoxColumn8.HeaderText = "Revenue";
-            dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            cat_revenue.HeaderText = "Revenue";
+            cat_revenue.MinimumWidth = 6;
+            cat_revenue.Name = "cat_revenue";
             // 
-            // dataGridViewTextBoxColumn9
+            // cat_profit
             // 
-            dataGridViewTextBoxColumn9.HeaderText = "Profit";
-            dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            cat_profit.HeaderText = "Profit";
+            cat_profit.MinimumWidth = 6;
+            cat_profit.Name = "cat_profit";
             // 
             // lblBestSellingCategories
             // 
@@ -333,13 +358,36 @@
             // Panel1
             // 
             Panel1.BackColor = Color.White;
+            Panel1.Controls.Add(btnDownload);
+            Panel1.Controls.Add(cbFilters);
             Panel1.Controls.Add(dgvOverview);
             Panel1.Controls.Add(lblOverview);
-            Panel1.Location = new Point(0, 0);
+            Panel1.Dock = DockStyle.Fill;
+            Panel1.Location = new Point(3, 3);
+            Panel1.Margin = new Padding(3, 3, 10, 10);
             Panel1.Name = "Panel1";
-            Panel1.Size = new Size(579, 272);
-            Panel1.TabIndex = 2;
-            Panel1.StyleChanged += Panel1_StyleChanged;
+            Panel1.Size = new Size(783, 287);
+            Panel1.TabIndex = 3;
+            // 
+            // cbFilters
+            // 
+            cbFilters.BackColor = Color.Transparent;
+            cbFilters.BorderColor = Color.FromArgb(208, 213, 221);
+            cbFilters.BorderRadius = 8;
+            cbFilters.Cursor = Cursors.Hand;
+            cbFilters.DrawMode = DrawMode.OwnerDrawFixed;
+            cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFilters.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbFilters.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbFilters.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            cbFilters.ForeColor = Color.FromArgb(72, 80, 94);
+            cbFilters.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            cbFilters.ItemHeight = 30;
+            cbFilters.Location = new Point(500, 14);
+            cbFilters.Name = "cbFilters";
+            cbFilters.Size = new Size(270, 36);
+            cbFilters.TabIndex = 56;
+            cbFilters.SelectedIndexChanged += cbFilters_SelectedIndexChanged;
             // 
             // dgvOverview
             // 
@@ -350,6 +398,7 @@
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.BackColor = Color.White;
             dgvOverview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dgvOverview.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle10.BackColor = Color.White;
             dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
@@ -369,10 +418,9 @@
             dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(10, 93, 156);
             dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
             dgvOverview.DefaultCellStyle = dataGridViewCellStyle11;
-            dgvOverview.Dock = DockStyle.Bottom;
             dgvOverview.GridColor = Color.FromArgb(240, 241, 243);
             dgvOverview.ImeMode = ImeMode.NoControl;
-            dgvOverview.Location = new Point(0, 56);
+            dgvOverview.Location = new Point(0, 71);
             dgvOverview.Name = "dgvOverview";
             dgvOverview.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -386,7 +434,7 @@
             dgvOverview.RowHeadersVisible = false;
             dgvOverview.RowHeadersWidth = 50;
             dgvOverview.RowTemplate.Height = 29;
-            dgvOverview.Size = new Size(579, 216);
+            dgvOverview.Size = new Size(783, 146);
             dgvOverview.TabIndex = 21;
             dgvOverview.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvOverview.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -439,20 +487,47 @@
             lblOverview.TabIndex = 20;
             lblOverview.Text = "Overview\r\n";
             // 
+            // btnDownload
+            // 
+            btnDownload.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnDownload.BorderColor = Color.FromArgb(208, 211, 217);
+            btnDownload.BorderRadius = 4;
+            btnDownload.BorderThickness = 2;
+            btnDownload.DisabledState.BorderColor = Color.DarkGray;
+            btnDownload.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDownload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDownload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDownload.FillColor = Color.White;
+            btnDownload.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDownload.ForeColor = Color.FromArgb(93, 102, 121);
+            btnDownload.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnDownload.HoverState.FillColor = Color.Transparent;
+            btnDownload.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnDownload.HoverState.Image = Properties.Resources.downloadBlue;
+            btnDownload.Image = Properties.Resources.download;
+            btnDownload.ImageSize = new Size(14, 17);
+            btnDownload.Location = new Point(316, 232);
+            btnDownload.Name = "btnDownload";
+            btnDownload.Size = new Size(147, 40);
+            btnDownload.TabIndex = 57;
+            btnDownload.Text = "Download";
+            btnDownload.TextOffset = new Point(2, 0);
+            // 
             // UC_Reports
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
-            Controls.Add(middlePanel);
+            Controls.Add(tableLayoutPanel1);
             Name = "UC_Reports";
             Padding = new Padding(19, 19, 22, 21);
-            Size = new Size(1069, 806);
+            Size = new Size(1640, 888);
             Load += UC_Reports_Load;
-            middlePanel.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
             Panel3.ResumeLayout(false);
             Panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBestSellingItems).EndInit();
+            tableLayoutPanel2.ResumeLayout(false);
             Panel2.ResumeLayout(false);
             Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBestSellingCategories).EndInit();
@@ -464,13 +539,15 @@
 
         #endregion
 
-        private Siticone.Desktop.UI.WinForms.SiticonePanel middlePanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel Panel3;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel Panel2;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
         private Siticone.Desktop.UI.WinForms.SiticonePanel Panel1;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBestSellingItems;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBestSellingCategories;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblOverview;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel Panel2;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvBestSellingCategories;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBestSellingCategories;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel Panel3;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBestSellingItems;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvBestSellingItems;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -479,14 +556,15 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvBestSellingCategories;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvOverview;
         private DataGridViewTextBoxColumn total_profit;
         private DataGridViewTextBoxColumn revenue;
         private DataGridViewTextBoxColumn sales;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbFilters;
+        private DataGridViewTextBoxColumn category;
+        private DataGridViewTextBoxColumn cat_quantity_sold;
+        private DataGridViewTextBoxColumn cat_revenue;
+        private DataGridViewTextBoxColumn cat_profit;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnDownload;
     }
 }

@@ -63,6 +63,7 @@ namespace InventoryManagementSystem
         {
             UC_Reports uc = new UC_Reports();
             addUserControl(uc);
+            uc.RefreshData();
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)

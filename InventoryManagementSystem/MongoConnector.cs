@@ -194,6 +194,25 @@ namespace InventoryManagementSystem
             return invoices;
         }
 
+        public async Task<List<Invoice>> GetInvoices(FilterDefinition<Invoice> filter)
+        {
+            var collection = GetCollection<Invoice>("invoices");
+            var invoices = await collection.Find(filter).ToListAsync();
+            return invoices;
+        }
+
+        public async Task<List<InvoiceItem>> GetInvoiceItems(int sequence)
+        {
+            var collection = GetCollection<Invoice>("invoices");
+            var filter = Builders<Invoice>.Filter.Eq("sequence", sequence);
+            var invoice = await collection.Find(filter).FirstOrDefaultAsync();
+            if (invoice == null)
+            {
+                throw new ArgumentException("Invalid invoice ID");
+            }
+            return invoice.items!;
+        }
+
 
         //UPDATE
 

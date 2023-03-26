@@ -1,10 +1,15 @@
+using InventoryManagementSystem.DataModels;
+using MongoDB.Driver;
+using System.ComponentModel;
 using System.Configuration;
 using System.Drawing.Drawing2D;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InventoryManagementSystem.UserControls
 {
     public partial class UC_Reports : UserControl
     {
+        UIHelper UIHelper = new UIHelper();
         private readonly MongoConnector _mongoConnector;
         public UC_Reports()
         {
@@ -15,38 +20,33 @@ namespace InventoryManagementSystem.UserControls
 
         private void UC_Reports_Load(object sender, EventArgs e)
         {
-            BestSellingItemsLoad();
-            BestSellingCategoriesLoad();
-            OverviewLoad();
+            ComboBoxLoad();
 
-            UpdatePanelRegion(Panel2);
-            UpdatePanelRegion(Panel1);
-            UpdatePanelRegion(Panel3);
+            var filter = Builders<Invoice>.Filter.Empty;
+            OverviewLoad(filter);
+            BestSellingCategoriesLoad(filter);
+            BestSellingItemsLoad(filter);
+
+            RefreshData();
         }
 
-        private void UpdatePanelRegion(Panel panel)
+        public void ComboBoxLoad()
         {
-            // Create a new GraphicsPath object that defines a rounded rectangle
-            GraphicsPath path = new GraphicsPath();
-            int radius = 20;
-            Rectangle rect = new Rectangle(0, 0, panel.Width, panel.Height);
-            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
-            path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
-            path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
-            path.CloseFigure();
-
-            // Set the Region property of the panel to the new GraphicsPath object
-            panel.Region = new Region(path);
+            cbFilters.Items.Add("All time");
+            cbFilters.Items.Add("Last week");
+            cbFilters.Items.Add("Last month");
+            cbFilters.Items.Add("Last year");
+            cbFilters.SelectedIndex = 0;
+            cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private async void OverviewLoad()
+        private async void OverviewLoad(FilterDefinition<Invoice> filter)
         {
             // Disable automatic row height adjustment
             dgvOverview.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
             //get all the invoices from the collection invoices          
-            var invoices = await _mongoConnector.GetAllInvoices();
+            var invoices = await _mongoConnector.GetInvoices(filter);
 
             decimal TotalProfit = 0m;
             decimal TotalRevenue = 0m;
@@ -60,11 +60,14 @@ namespace InventoryManagementSystem.UserControls
                 salesCount++;
             }
 
+            // Clear the existing rows in the DataGridView
+            dgvOverview.Rows.Clear();
+
             dgvOverview.Rows.Add(new object[] {
-                    "Rs."+TotalProfit.ToString("N2"),
-                    "Rs."+TotalRevenue.ToString("N2"),
-                    salesCount
-                });
+                "Rs."+TotalProfit.ToString("N2"),
+                "Rs."+TotalRevenue.ToString("N2"),
+                salesCount
+            });
 
             dgvOverview.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
 
@@ -78,10 +81,12 @@ namespace InventoryManagementSystem.UserControls
 
         }
 
-        private async void BestSellingCategoriesLoad()
+        private async void BestSellingCategoriesLoad(FilterDefinition<Invoice> filter)
         {
             // Disable automatic row height adjustment
             dgvBestSellingCategories.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            category.Width = 300;
 
             //get all the items from the collection items
             var categories = await _mongoConnector.GetUniqueCategories();
@@ -89,22 +94,30 @@ namespace InventoryManagementSystem.UserControls
             // create a list to store the data
             var data = new List<object[]>();
 
-            // Process the result
+            var invoices = await _mongoConnector.GetInvoices(filter);
+
             foreach (var category in categories)
             {
-                var items = await _mongoConnector.GetItemsByCategory(category);
-
-                // decimal CostByCategory = 0m;
                 decimal ProfitByCategory = 0m;
                 decimal RevenueByCategory = 0m;
+                decimal CostByCategory = 0m;
                 int QuantitySoldByCategory = 0;
 
-                foreach (var item in items)
+                foreach (var invoice in invoices)
                 {
-                    //CostByCategory += item.total_cost;
-                    ProfitByCategory += item.total_profit;
-                    RevenueByCategory += item.total_revenue;
-                    QuantitySoldByCategory += (int)item.quantity_sold!;
+                    var items = await _mongoConnector.GetInvoiceItems((int)invoice.sequence!);
+
+                    foreach (var item in items)
+                    {
+                        var ThisItem = await _mongoConnector.GetByPartNumber(item.part_number!);
+                        if (ThisItem.category == category)
+                        {
+                            CostByCategory += item.cost;
+                            ProfitByCategory += item.profit;
+                            RevenueByCategory += item.revenue;
+                            QuantitySoldByCategory += (int)item.quantity!;
+                        }
+                    }
                 }
 
                 // add the data to the list
@@ -139,33 +152,57 @@ namespace InventoryManagementSystem.UserControls
 
         }
 
-        private async void BestSellingItemsLoad()
+        private async void BestSellingItemsLoad(FilterDefinition<Invoice> filter)
         {
             // Disable automatic row height adjustment
             dgvBestSellingItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
-            //get all the items from the collection items
-            var documents = await _mongoConnector.GetBestSellingItems();
+            var invoices = await _mongoConnector.GetInvoices(filter);
 
-            // Process the result
-            foreach (var document in documents)
+            // create a list to store the data
+            var data = new List<object[]>();
+
+            // Group the invoice items by part number and sum their revenue and profit
+            var itemGroups = invoices.SelectMany(i => i.items!)
+                                     .GroupBy(item => item.part_number!)
+                                     .Select(group => new
+                                     {
+                                         PartNumber = group.Key,
+                                         Quantity = group.Sum(item => item.quantity),
+                                         Revenue = group.Sum(item => item.revenue),
+                                         Profit = group.Sum(item => item.profit)
+                                     });
+
+            foreach (var itemGroup in itemGroups)
             {
+                var item = await _mongoConnector.GetByPartNumber(itemGroup.PartNumber);
 
-                dgvBestSellingItems.Rows.Add(new object[] {
-                    document.part_number!,
-                    document.brand!,
-                    document.category!,
-                    document.quantity_sold!,
-                    document.quantity_in_hand!,
-                    document.total_revenue.ToString("N2"),
-                    document.total_profit.ToString("N2")
+                data.Add(new object[] {
+                    itemGroup.PartNumber,
+                    item.brand!,
+                    item.category!,
+                    itemGroup.Quantity,
+                    item.quantity_in_hand!,
+                    itemGroup.Revenue.ToString("N2"),
+                    itemGroup.Profit.ToString("N2")
                 });
+            }
+
+            // sort the data in descending order of QuantitySoldByCategory
+            data.Sort((x, y) => ((int)y[3]).CompareTo((int)x[3]));
+
+            // display the data in the DataGridView
+            dgvBestSellingItems.Rows.Clear();
+            foreach (var row in data)
+            {
+                dgvBestSellingItems.Rows.Add(row);
             }
 
             foreach (DataGridViewRow row in dgvBestSellingItems.Rows)
             {
                 row.Height = 50;
             }
+
 
             // set the current cell to null to prevent the first row from being selected
             dgvBestSellingItems.CurrentCell = null;
@@ -185,17 +222,17 @@ namespace InventoryManagementSystem.UserControls
 
         private void Panel1_StyleChanged(object sender, EventArgs e)
         {
-            UpdatePanelRegion(Panel1);
+            UIHelper.UpdatePanelRegion(Panel1);
         }
 
         private void Panel2_SizeChanged(object sender, EventArgs e)
         {
-            UpdatePanelRegion(Panel2);
+            UIHelper.UpdatePanelRegion(Panel2);
         }
 
         private void Panel3_SizeChanged(object sender, EventArgs e)
         {
-            UpdatePanelRegion(Panel3);
+            UIHelper.UpdatePanelRegion(Panel3);
         }
 
         private void dgvOverview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -216,6 +253,44 @@ namespace InventoryManagementSystem.UserControls
                 // Prevent the default painting of the header cell.
                 e.Handled = true;
             }
+        }
+
+        public void RefreshData()
+        {
+            UIHelper.UpdatePanelRegion(Panel2);
+            UIHelper.UpdatePanelRegion(Panel1);
+            UIHelper.UpdatePanelRegion(Panel3);
+        }
+
+        private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterDefinition<Invoice> filter;
+
+            if (cbFilters.SelectedIndex == 0)
+            {
+                filter = Builders<Invoice>.Filter.Empty;
+            }
+            else if (cbFilters.SelectedIndex == 1)
+            {
+                filter = Builders<Invoice>.Filter.Gte("date", DateTime.Now.AddDays(-7));
+            }
+            else if (cbFilters.SelectedIndex == 2)
+            {
+                filter = Builders<Invoice>.Filter.Gte("date", DateTime.Now.AddMonths(-1));
+            }
+            else if (cbFilters.SelectedIndex == 3)
+            {
+                filter = Builders<Invoice>.Filter.Gte("date", DateTime.Now.AddYears(-1));
+            }
+            else
+            {
+                // default case
+                filter = Builders<Invoice>.Filter.Empty;
+            }
+
+            OverviewLoad(filter);
+            BestSellingCategoriesLoad(filter);
+            BestSellingItemsLoad(filter);
         }
     }
 }
