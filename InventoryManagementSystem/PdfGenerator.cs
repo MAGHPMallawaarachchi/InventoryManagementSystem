@@ -19,7 +19,7 @@ namespace InventoryManagementSystem
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
         }
 
-        public async void GeneratePdf(Invoice invoice)
+        public async void GeneratePdfInvoice(Invoice invoice)
         {
             string filePath = @"C:\Users\Hasini\OneDrive\Documents\invoices";
             string outputPath = $"{filePath}\\{"KAP-" + invoice.sequence}.pdf";
@@ -101,5 +101,7 @@ namespace InventoryManagementSystem
             // close the document
             document.Close();
         }
+
+
     }
 }

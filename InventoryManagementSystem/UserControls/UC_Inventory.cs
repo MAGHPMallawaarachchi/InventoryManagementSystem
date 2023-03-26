@@ -9,6 +9,7 @@ namespace InventoryManagementSystem
     public partial class UC_Inventory : UserControl
     {
         private readonly MongoConnector _mongoConnector;
+        UIHelper UIHelper = new UIHelper();
 
         public UC_Inventory()
         {
@@ -26,8 +27,8 @@ namespace InventoryManagementSystem
 
         public void RefreshInventory()
         {
-            UpdatePanelRegion(panel1);
-            UpdatePanelRegion(panel2);
+            UIHelper.UpdatePanelRegion(panel1);
+            UIHelper.UpdatePanelRegion(panel2);
 
             dgvItems.Rows.Clear();
             dgvOverallInventory.Rows.Clear();
@@ -61,30 +62,34 @@ namespace InventoryManagementSystem
                 // Process the result
                 foreach (var document in documents)
                 {
-                    var QuantityInHand = document.quantity - document.quantity_sold;
-                    var Availability = "In-Stock";
+                    string Availability;
 
-                    if (document.quantity <= 10 && document.quantity > 0)
-                    {
-                        Availability = "Low-Stock";
-                    }
-
-                    if (document.quantity == 0)
+                    if (document.quantity_in_hand == 0)
                     {
                         Availability = "Out-of-stock";
                     }
 
+                    else if (document.quantity_in_hand <= 20)
+                    {
+                        Availability = "Low-in-Stock";
+                    }
+
+                    else
+                    {
+                        Availability = "In-Stock";
+                    }
+
                     dgvItems.Rows.Add(new object[] {
-                    false,
-                    document.part_number!,
-                    document.description!,
-                    document.brand!,
-                    document.quantity!,
-                    QuantityInHand!,
-                    document.quantity_sold!,
-                    document.unit_price!.ToString("N2"),
-                    Availability
-                });
+                        false,
+                        document.part_number!,
+                        document.description!,
+                        document.brand!,
+                        document.quantity!,
+                        document.quantity_in_hand!,
+                        document.quantity_sold!,
+                        document.unit_price!.ToString("N2"),
+                        Availability
+                    });
                 }
 
                 foreach (DataGridViewRow row in dgvItems.Rows)
@@ -124,26 +129,30 @@ namespace InventoryManagementSystem
 
             foreach (var document in documents)
             {
-                var QuantityInHand = document.quantity - document.quantity_sold;
-                var Availability = "In-Stock";
+                string Availability;
 
-                if (document.quantity <= 20 && document.quantity > 0)
-                {
-                    Availability = "Low-Stock";
-                }
-
-                if (document.quantity == 0)
+                if (document.quantity_in_hand == 0)
                 {
                     Availability = "Out-of-stock";
                 }
 
+                else if (document.quantity_in_hand <= 20)
+                {
+                    Availability = "Low-in-Stock";
+                }
+
+                else
+                {
+                    Availability = "In-Stock";
+                }
+                
                 dgvItems.Rows.Add(new object[] {
                     false,
                     document.part_number!,
                     document.description!,
                     document.brand!,
                     document.quantity!,
-                    QuantityInHand!,
+                    document.quantity_in_hand!,
                     document.quantity_sold!,
                     document.unit_price!.ToString("N2"),
                     Availability
@@ -177,16 +186,14 @@ namespace InventoryManagementSystem
             // Process the result
             foreach (var document in documents)
             {
-                var QuantityInHand = document.quantity - document.quantity_sold;
-
                 totalItems++;
 
-                if (QuantityInHand == 0)
+                if (document.quantity_in_hand == 0)
                 {
                     outOfStock++;
                 }
 
-                if (QuantityInHand <= 20)
+                if (document.quantity_in_hand <= 20)
                 {
                     lowInStock++;
                 }

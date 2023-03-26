@@ -396,7 +396,7 @@ namespace InventoryManagementSystem.UserControls
                     await _mongoConnector.InsertDocumentAsync("invoices", newInvoice);
 
                     // generate the PDF document
-                    pdfGenerator.GeneratePdf(invoice);
+                    pdfGenerator.GeneratePdfInvoice(invoice);
 
                     MessageBox.Show("Invoice saved successfully.");
                 }

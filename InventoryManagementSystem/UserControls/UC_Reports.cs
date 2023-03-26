@@ -1,9 +1,7 @@
 using InventoryManagementSystem.DataModels;
+using Microsoft.Office.Interop.Excel;
 using MongoDB.Driver;
-using System.ComponentModel;
 using System.Configuration;
-using System.Drawing.Drawing2D;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InventoryManagementSystem.UserControls
 {
@@ -291,6 +289,40 @@ namespace InventoryManagementSystem.UserControls
             OverviewLoad(filter);
             BestSellingCategoriesLoad(filter);
             BestSellingItemsLoad(filter);
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            DateTime today = DateTime.Today;
+            DateTime lastWeek = today.AddDays(-7);
+            DateTime lastMonth = today.AddMonths(-1);
+            DateTime lastYear = today.AddYears(-1);
+
+            string dateRange = lastWeek.ToString("MMM dd") + " - " + today.ToString("MMM dd");
+
+            string fileName;
+
+            if (cbFilters.SelectedIndex == 0)
+            {
+                fileName = today.ToString("yyyy-MM-dd");
+            }
+            else if (cbFilters.SelectedIndex == 1)
+            {
+                fileName = lastWeek.ToString("yyyy-MM-dd") + "-" + today.ToString("yyyy-MM-dd");
+            }
+            else if (cbFilters.SelectedIndex == 2)
+            {
+                fileName = lastMonth.ToString("yyyy-MM-dd") + "-" + today.ToString("yyyy-MM-dd");
+            }
+            else if (cbFilters.SelectedIndex == 3)
+            {
+                fileName = lastYear.ToString("yyyy-MM-dd") + "-" + today.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                // default case
+                fileName = today.ToString("yyyy-MM-dd");
+            }
         }
     }
 }
