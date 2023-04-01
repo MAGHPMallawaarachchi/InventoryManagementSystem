@@ -124,11 +124,26 @@
   <data name="dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="newInvoice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newInvoice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="invoicesBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\invoicesBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="orders" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\orders.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OutOfStock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OutOfStock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuantityInHand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QuantityInHand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downloadBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\downloadBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ordersBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ordersBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,8 +166,8 @@
   <data name="Cost" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cost.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="reports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="threeDotsBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\threeDotsBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +190,8 @@
   <data name="deleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleteRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="QuantityInHand" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QuantityInHand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="reports" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="deleteGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleteGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,8 +205,14 @@
   <data name="vertical Original (PVT)LTD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vertical Original (PVT)LTD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="invoices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\invoices.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="threeDots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\threeDots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reportsBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reportsBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,7 +244,7 @@
   <data name="WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="downloadBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\downloadBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="newInvoiceBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newInvoiceBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

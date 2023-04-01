@@ -83,6 +83,16 @@ namespace InventoryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addWhite {
+            get {
+                object obj = ResourceManager.GetObject("addWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cost {
             get {
                 object obj = ResourceManager.GetObject("Cost", resourceCulture);
@@ -243,6 +253,26 @@ namespace InventoryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap invoices {
+            get {
+                object obj = ResourceManager.GetObject("invoices", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap invoicesBlue {
+            get {
+                object obj = ResourceManager.GetObject("invoicesBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Low {
             get {
                 object obj = ResourceManager.GetObject("Low", resourceCulture);
@@ -256,6 +286,26 @@ namespace InventoryManagementSystem.Properties {
         internal static System.Drawing.Bitmap LowInStock {
             get {
                 object obj = ResourceManager.GetObject("LowInStock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newInvoice {
+            get {
+                object obj = ResourceManager.GetObject("newInvoice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newInvoiceBlue {
+            get {
+                object obj = ResourceManager.GetObject("newInvoiceBlue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -396,6 +446,26 @@ namespace InventoryManagementSystem.Properties {
         internal static System.Drawing.Bitmap success {
             get {
                 object obj = ResourceManager.GetObject("success", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap threeDots {
+            get {
+                object obj = ResourceManager.GetObject("threeDots", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap threeDotsBlue {
+            get {
+                object obj = ResourceManager.GetObject("threeDotsBlue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

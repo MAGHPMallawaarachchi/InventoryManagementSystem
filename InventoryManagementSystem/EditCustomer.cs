@@ -19,10 +19,10 @@ namespace InventoryManagementSystem
     public partial class EditCustomer : Form
     {
         private readonly MongoConnector _mongoConnector;
-        private readonly UC_Customer _ucCustomers;
+        private readonly UC_Customers _ucCustomers;
         private readonly string _customerId;
 
-        public EditCustomer(UC_Customer ucCustomers, string customerId)
+        public EditCustomer(UC_Customers ucCustomers, string customerId)
         {
             InitializeComponent();
 

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            btnNewInvoice = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnOrders = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnCustomers = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnReports = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -44,6 +45,7 @@
             // siticonePanel1
             // 
             siticonePanel1.BackColor = Color.White;
+            siticonePanel1.Controls.Add(btnNewInvoice);
             siticonePanel1.Controls.Add(btnOrders);
             siticonePanel1.Controls.Add(btnCustomers);
             siticonePanel1.Controls.Add(btnReports);
@@ -55,6 +57,39 @@
             siticonePanel1.Name = "siticonePanel1";
             siticonePanel1.Size = new Size(280, 913);
             siticonePanel1.TabIndex = 0;
+            // 
+            // btnNewInvoice
+            // 
+            btnNewInvoice.BackColor = Color.Transparent;
+            btnNewInvoice.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnNewInvoice.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
+            btnNewInvoice.CheckedState.FillColor = Color.Transparent;
+            btnNewInvoice.CustomBorderThickness = new Padding(5, 0, 0, 0);
+            btnNewInvoice.DisabledState.BorderColor = Color.DarkGray;
+            btnNewInvoice.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnNewInvoice.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnNewInvoice.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnNewInvoice.FillColor = Color.Transparent;
+            btnNewInvoice.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnNewInvoice.ForeColor = Color.FromArgb(93, 102, 121);
+            btnNewInvoice.HoverState.BorderColor = Color.Transparent;
+            btnNewInvoice.HoverState.CustomBorderColor = Color.Transparent;
+            btnNewInvoice.HoverState.FillColor = Color.Transparent;
+            btnNewInvoice.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnNewInvoice.HoverState.Image = Properties.Resources.newInvoiceBlue;
+            btnNewInvoice.Image = Properties.Resources.newInvoice;
+            btnNewInvoice.ImageAlign = HorizontalAlignment.Left;
+            btnNewInvoice.ImageOffset = new Point(30, 0);
+            btnNewInvoice.ImageSize = new Size(20, 22);
+            btnNewInvoice.Location = new Point(0, 462);
+            btnNewInvoice.Name = "btnNewInvoice";
+            btnNewInvoice.PressedDepth = 0;
+            btnNewInvoice.Size = new Size(277, 56);
+            btnNewInvoice.TabIndex = 6;
+            btnNewInvoice.Text = "New Invoice";
+            btnNewInvoice.TextAlign = HorizontalAlignment.Left;
+            btnNewInvoice.TextOffset = new Point(35, 0);
+            btnNewInvoice.Click += btnNewInvoice_Click;
             // 
             // btnOrders
             // 
@@ -74,16 +109,17 @@
             btnOrders.HoverState.CustomBorderColor = Color.Transparent;
             btnOrders.HoverState.FillColor = Color.Transparent;
             btnOrders.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
-            btnOrders.HoverState.Image = Properties.Resources.ordersBlue;
-            btnOrders.Image = Properties.Resources.orders;
+            btnOrders.HoverState.Image = Properties.Resources.invoicesBlue;
+            btnOrders.Image = Properties.Resources.invoices;
             btnOrders.ImageAlign = HorizontalAlignment.Left;
             btnOrders.ImageOffset = new Point(30, 0);
+            btnOrders.ImageSize = new Size(17, 20);
             btnOrders.Location = new Point(0, 396);
             btnOrders.Name = "btnOrders";
             btnOrders.PressedDepth = 0;
             btnOrders.Size = new Size(277, 56);
             btnOrders.TabIndex = 5;
-            btnOrders.Text = "Invoice";
+            btnOrders.Text = "Invoices";
             btnOrders.TextAlign = HorizontalAlignment.Left;
             btnOrders.TextOffset = new Point(35, 0);
             btnOrders.Click += btnOrders_Click;
@@ -252,7 +288,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
             WindowState = FormWindowState.Maximized;
-            Load += Dashboard_Load_1;
+            Load += Dashboard_Load;
             siticonePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -268,5 +304,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnDashboard;
         private PictureBox pictureBox1;
         private Panel panel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnNewInvoice;
     }
 }

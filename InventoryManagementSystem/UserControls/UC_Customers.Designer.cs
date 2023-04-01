@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagementSystem.UserControls
 {
-    partial class UC_Customer
+    partial class UC_Customers
     {
         /// <summary> 
         /// Required designer variable.
@@ -86,8 +86,8 @@
             btnAddCustomer.ForeColor = Color.White;
             btnAddCustomer.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
             btnAddCustomer.HoverState.FillColor = Color.FromArgb(10, 73, 156);
-            btnAddCustomer.ImageOffset = new Point(0, 1);
-            btnAddCustomer.ImageSize = new Size(15, 10);
+            btnAddCustomer.Image = Properties.Resources.addWhite;
+            btnAddCustomer.ImageSize = new Size(14, 14);
             btnAddCustomer.Location = new Point(932, 23);
             btnAddCustomer.Name = "btnAddCustomer";
             btnAddCustomer.Size = new Size(139, 40);
@@ -213,13 +213,13 @@
             deletebtn.Name = "deletebtn";
             deletebtn.Resizable = DataGridViewTriState.True;
             // 
-            // UC_Customer
+            // UC_Customers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "UC_Customer";
+            Name = "UC_Customers";
             Padding = new Padding(19, 19, 22, 21);
             Size = new Size(1143, 813);
             panel1.ResumeLayout(false);

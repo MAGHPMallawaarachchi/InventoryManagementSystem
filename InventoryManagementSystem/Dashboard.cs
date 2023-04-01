@@ -68,7 +68,7 @@ namespace InventoryManagementSystem
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            UC_Customer uc = new UC_Customer();
+            UC_Customers uc = new UC_Customers();
             addUserControl(uc);
         }
 
@@ -78,9 +78,10 @@ namespace InventoryManagementSystem
             addUserControl(uc);
         }
 
-        private void Dashboard_Load_1(object sender, EventArgs e)
+        private void btnNewInvoice_Click(object sender, EventArgs e)
         {
-
+            UC_NewInvoice uc = new UC_NewInvoice();
+            addUserControl(uc);
         }
 
     }

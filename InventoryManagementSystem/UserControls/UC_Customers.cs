@@ -3,10 +3,10 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.UserControls
 {
-    public partial class UC_Customer : UserControl
+    public partial class UC_Customers : UserControl
     {
         private readonly MongoConnector _mongoConnector;
-        public UC_Customer()
+        public UC_Customers()
         {
             InitializeComponent();
 

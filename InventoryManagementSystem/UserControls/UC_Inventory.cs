@@ -209,30 +209,14 @@ namespace InventoryManagementSystem
 
         }
 
-        private void UpdatePanelRegion(Panel panel)
-        {
-            // Create a new GraphicsPath object that defines a rounded rectangle
-            GraphicsPath path = new GraphicsPath();
-            int radius = 20;
-            Rectangle rect = new Rectangle(0, 0, panel.Width, panel.Height);
-            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
-            path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
-            path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
-            path.CloseFigure();
-
-            // Set the Region property of the panel to the new GraphicsPath object
-            panel.Region = new Region(path);
-        }
-
         private void panel1_SizeChanged(object sender, EventArgs e)
         {
-            UpdatePanelRegion(panel1);
+            UIHelper.UpdatePanelRegion(panel1);
         }
 
         private void panel2_SizeChanged(object sender, EventArgs e)
         {
-            UpdatePanelRegion(panel2);
+            UIHelper.UpdatePanelRegion(panel2);
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
