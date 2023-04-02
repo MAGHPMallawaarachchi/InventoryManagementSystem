@@ -145,7 +145,7 @@ namespace InventoryManagementSystem
                 {
                     Availability = "In-Stock";
                 }
-                
+
                 dgvItems.Rows.Add(new object[] {
                     false,
                     document.part_number!,
@@ -408,6 +408,26 @@ namespace InventoryManagementSystem
             }
 
             dgvItems.RefreshEdit();
+        }
+
+        private void dgvItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dgvItems.Columns["availability"].Index && e.Value != null)
+            {
+                string? availability = e.Value.ToString();
+                if (availability == "Low-in-Stock")
+                {
+                    e.CellStyle!.ForeColor = ColorTranslator.FromHtml("#E19133");
+                }
+                else if (availability == "In-Stock")
+                {
+                    e.CellStyle!.ForeColor = ColorTranslator.FromHtml("#10A760");
+                }
+                else if (availability == "Out-of-Stock")
+                {
+                    e.CellStyle!.ForeColor = ColorTranslator.FromHtml("#DA3E33");
+                }
+            }
         }
     }
 }

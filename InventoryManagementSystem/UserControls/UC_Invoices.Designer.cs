@@ -30,8 +30,9 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             lblInvoices = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -103,29 +104,29 @@
             dgvInvoices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvInvoices.ColumnHeadersHeight = 50;
             dgvInvoices.Columns.AddRange(new DataGridViewColumn[] { invoice_no, customer, date, total_amount, status, status_check });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle3.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle3.SelectionBackColor = Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvInvoices.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle4.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvInvoices.DefaultCellStyle = dataGridViewCellStyle4;
             dgvInvoices.Dock = DockStyle.Fill;
             dgvInvoices.GridColor = Color.FromArgb(240, 241, 243);
             dgvInvoices.Location = new Point(3, 74);
             dgvInvoices.Margin = new Padding(3, 3, 30, 3);
             dgvInvoices.Name = "dgvInvoices";
             dgvInvoices.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvInvoices.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle5.SelectionBackColor = Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvInvoices.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvInvoices.RowHeadersVisible = false;
             dgvInvoices.RowHeadersWidth = 50;
             dgvInvoices.RowTemplate.Height = 29;
@@ -152,6 +153,8 @@
             dgvInvoices.ThemeStyle.RowsStyle.Height = 29;
             dgvInvoices.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvInvoices.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvInvoices.CellFormatting += dgvInvoices_CellFormatting;
+            dgvInvoices.CellMouseDown += dgvInvoices_CellMouseDown;
             dgvInvoices.CellMouseEnter += dgvInvoices_CellMouseEnter;
             dgvInvoices.CellMouseLeave += dgvInvoices_CellMouseLeave;
             // 
@@ -181,6 +184,8 @@
             // 
             // status
             // 
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(225, 145, 51);
+            status.DefaultCellStyle = dataGridViewCellStyle3;
             status.HeaderText = "Status";
             status.MinimumWidth = 6;
             status.Name = "status";

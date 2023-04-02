@@ -218,17 +218,10 @@ namespace InventoryManagementSystem
 
         public async Task<bool> UpdateDocumentAsync(string collectionName, FilterDefinition<BsonDocument> filter, BsonDocument update)
         {
-            try
-            {
-                var collection = GetCollection<BsonDocument>(collectionName);
-                var result = await collection.UpdateOneAsync(filter, new BsonDocument("$set", update));
-                return result.ModifiedCount > 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to update document: {ex}");
-                return false;
-            }
+
+            var collection = GetCollection<BsonDocument>(collectionName);
+            var result = await collection.UpdateOneAsync(filter, new BsonDocument("$set", update));
+            return result.ModifiedCount > 0;
         }
 
         //UpdateCustomers
@@ -247,6 +240,16 @@ namespace InventoryManagementSystem
                                         .UpdateOne(filter, updateCustomer);
 
             return updateResult.ModifiedCount > 0;
+        }
+
+        //update status field of invoice
+        public void UpdateStatus(string invoice_no, string status)
+        {
+            var collection = GetCollection<BsonDocument>("invoices");
+            var filter = Builders<BsonDocument>.Filter.Eq("invoice_no", invoice_no);
+            var update = Builders<BsonDocument>.Update.Set("status", status);
+
+            collection.UpdateOne(filter, update);
         }
 
         //DELETE

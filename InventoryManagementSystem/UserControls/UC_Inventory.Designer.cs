@@ -49,8 +49,6 @@
             btnFilters = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             dgvItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            middlePanel = new Panel();
             checkboxColumn = new DataGridViewCheckBoxColumn();
             part_number = new DataGridViewTextBoxColumn();
             description = new DataGridViewTextBoxColumn();
@@ -60,6 +58,8 @@
             quantity_sold = new DataGridViewTextBoxColumn();
             unit_price = new DataGridViewTextBoxColumn();
             availability = new DataGridViewTextBoxColumn();
+            btnAddItem = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            middlePanel = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverallInventory).BeginInit();
             panel2.SuspendLayout();
@@ -331,45 +331,11 @@
             dgvItems.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvItems.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvItems.CellClick += dgvItems_CellClick;
+            dgvItems.CellFormatting += dgvItems_CellFormatting;
             dgvItems.CellMouseEnter += dgvItems_CellMouseEnter;
             dgvItems.CellMouseLeave += dgvItems_CellMouseLeave;
             dgvItems.CellPainting += dgvItems_CellPainting;
             dgvItems.SelectionChanged += dgvItems_SelectionChanged;
-            // 
-            // btnAddItem
-            // 
-            btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.BorderRadius = 4;
-            btnAddItem.BorderThickness = 2;
-            btnAddItem.Cursor = Cursors.Hand;
-            btnAddItem.DisabledState.BorderColor = Color.DarkGray;
-            btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnAddItem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddItem.FillColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddItem.ForeColor = Color.White;
-            btnAddItem.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.HoverState.FillColor = Color.FromArgb(10, 73, 156);
-            btnAddItem.ImageOffset = new Point(0, 1);
-            btnAddItem.ImageSize = new Size(15, 10);
-            btnAddItem.Location = new Point(973, 22);
-            btnAddItem.Name = "btnAddItem";
-            btnAddItem.Size = new Size(102, 40);
-            btnAddItem.TabIndex = 1;
-            btnAddItem.Text = "Add Item";
-            btnAddItem.TextOffset = new Point(2, 0);
-            btnAddItem.Click += btnAddItem_Click;
-            // 
-            // middlePanel
-            // 
-            middlePanel.Dock = DockStyle.Fill;
-            middlePanel.Location = new Point(19, 19);
-            middlePanel.Name = "middlePanel";
-            middlePanel.Size = new Size(1101, 773);
-            middlePanel.TabIndex = 2;
-            middlePanel.Paint += middlePanel_Paint;
             // 
             // checkboxColumn
             // 
@@ -426,6 +392,41 @@
             availability.HeaderText = "Availability";
             availability.MinimumWidth = 6;
             availability.Name = "availability";
+            // 
+            // btnAddItem
+            // 
+            btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.BorderRadius = 4;
+            btnAddItem.BorderThickness = 2;
+            btnAddItem.Cursor = Cursors.Hand;
+            btnAddItem.DisabledState.BorderColor = Color.DarkGray;
+            btnAddItem.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddItem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddItem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddItem.FillColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddItem.ForeColor = Color.White;
+            btnAddItem.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.HoverState.FillColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.ImageOffset = new Point(0, 1);
+            btnAddItem.ImageSize = new Size(15, 10);
+            btnAddItem.Location = new Point(973, 22);
+            btnAddItem.Name = "btnAddItem";
+            btnAddItem.Size = new Size(102, 40);
+            btnAddItem.TabIndex = 1;
+            btnAddItem.Text = "Add Item";
+            btnAddItem.TextOffset = new Point(2, 0);
+            btnAddItem.Click += btnAddItem_Click;
+            // 
+            // middlePanel
+            // 
+            middlePanel.Dock = DockStyle.Fill;
+            middlePanel.Location = new Point(19, 19);
+            middlePanel.Name = "middlePanel";
+            middlePanel.Size = new Size(1101, 773);
+            middlePanel.TabIndex = 2;
+            middlePanel.Paint += middlePanel_Paint;
             // 
             // UC_Inventory
             // 

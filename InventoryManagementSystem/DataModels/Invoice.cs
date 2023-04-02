@@ -7,6 +7,7 @@ namespace InventoryManagementSystem.DataModels
         public ObjectId Id { get; set; }
         public string? prefix { get; set; }
         public int? sequence { get; set; }
+        public string? invoice_no { get; set; }
         public DateTime date { get; set; }
         public string? time { get; set; }
         public string? customer_id { get; set; }
@@ -14,6 +15,7 @@ namespace InventoryManagementSystem.DataModels
         public decimal total_profit { get; set; }
         public decimal total_cost { get; set; }
         public decimal total_revenue { get; set; }
+        public string? status { get; set; }
     }
 
     internal class InvoiceItem

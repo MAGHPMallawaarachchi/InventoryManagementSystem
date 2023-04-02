@@ -371,13 +371,15 @@ namespace InventoryManagementSystem.UserControls
                     {
                         { "prefix", "KAP-" },
                         { "sequence", InvoiceNo },
+                        { "invoice_no", "KAP-"+InvoiceNo },
                         { "date", DateTime.Today },
                         { "time", DateTime.Now.ToString("hh:mm:ss tt") },
                         { "customer_id", cbCustomerID.Text },
                         { "items", new BsonArray(invoiceItems) },
                         { "total_profit", totalProfit },
                         { "total_cost", totalCost },
-                        { "total_revenue", totalRevenue }
+                        { "total_revenue", totalRevenue },
+                        { "status", "Pending" }
                     };
 
                     Invoice invoice = new Invoice

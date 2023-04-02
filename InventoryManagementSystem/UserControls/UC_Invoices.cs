@@ -15,6 +15,8 @@ namespace InventoryManagementSystem.UserControls
     {
         private readonly MongoConnector _mongoConnector;
         UIHelper uIHelper = new UIHelper();
+        private ContextMenuStrip? _contextMenuStrip;
+
         public UC_Invoices()
         {
             InitializeComponent();
@@ -51,11 +53,12 @@ namespace InventoryManagementSystem.UserControls
                     customer.name!,
                     invoice.date!,
                     invoice.total_revenue!.ToString("N2"),
-                    "Pending"
+                    invoice.status!
                 });
 
                 status_check.Width = 30;
                 status.Width = 200;
+                status_check.Width = 200;
                 invoice_no.Width = 200;
 
 
@@ -104,10 +107,92 @@ namespace InventoryManagementSystem.UserControls
             }
         }
 
-        private void dgvInvoices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvInvoices_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // Check if the clicked column is the status_check column
+            if (dgvInvoices.Columns[e.ColumnIndex].Name == "status_check" && e.RowIndex >= 0)
+            {
+                // If the context menu strip already exists, hide it
+                if (_contextMenuStrip != null)
+                {
+                    _contextMenuStrip.Close();
+                    _contextMenuStrip = null; // Set the reference to null when closed
+                    return;
+                }
 
+                // Create a new context menu strip and add three items
+                _contextMenuStrip = new ContextMenuStrip();
+                _contextMenuStrip.Items.Add("Complete", null, ToolStripMenuItem_Click!);
+                _contextMenuStrip.Items.Add("Pending", null, ToolStripMenuItem_Click!);
+                /*_contextMenuStrip.Items.Add("Cancel", null, ToolStripMenuItem_Click!);*/
+
+                // Set the Visible property to true
+                _contextMenuStrip.Visible = true;
+
+                // Set the location of the context menu strip
+                Rectangle rect = dgvInvoices.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                Point location = new Point(rect.Left, rect.Bottom);
+                _contextMenuStrip.Show(dgvInvoices, location);
+            }
         }
 
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Get the clicked ToolStripMenuItem control
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
+            // Get the index of the selected row
+            int rowIndex = dgvInvoices.CurrentCell.RowIndex;
+
+            // Get the value of the status column for the selected row
+            DataGridViewCell statusCell = dgvInvoices.Rows[rowIndex].Cells["status"];
+
+            // Get the value of the "invoice_no" column for the selected row
+            string? invoiceNo = dgvInvoices.Rows[rowIndex].Cells["invoice_no"].Value.ToString();
+
+            // Update the value of the status column based on the clicked item
+            if (item.Text == "Complete")
+            {
+                statusCell.Value = "Completed";
+                statusCell.Style.ForeColor = ColorTranslator.FromHtml("#10A760");
+                _mongoConnector.UpdateStatus(invoiceNo!, "Completed");
+            }
+            else if (item.Text == "Pending")
+            {
+                statusCell.Value = "Pending";
+                statusCell.Style.ForeColor = ColorTranslator.FromHtml("#E19133");
+                _mongoConnector.UpdateStatus(invoiceNo!, "Pending");
+            }
+            /*else if (item.Text == "Cancel")
+            {
+                statusCell.Value = "Cancelled";
+                statusCell.Style.ForeColor = ColorTranslator.FromHtml("#DA3E33");
+                _mongoConnector.UpdateStatus(invoiceNo!, "Cancelled");
+            }*/
+
+            // Dispose the context menu strip
+            _contextMenuStrip!.Dispose();
+            _contextMenuStrip = null;
+        }
+
+        private void dgvInvoices_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dgvInvoices.Columns["status"].Index && e.Value != null)
+            {
+                string? status = e.Value.ToString();
+                if (status == "Pending")
+                {
+                    e.CellStyle!.ForeColor = ColorTranslator.FromHtml("#E19133");
+                }
+                else if (status == "Completed")
+                {
+                    e.CellStyle!.ForeColor = ColorTranslator.FromHtml("#10A760");
+                }
+                /*else if (status == "Cancelled")
+                {
+                    e.CellStyle!.ForeColor = ColorTranslator.FromHtml("#DA3E33");
+                }*/
+            }
+        }
     }
 }
