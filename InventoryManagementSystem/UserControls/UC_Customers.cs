@@ -78,10 +78,10 @@ namespace InventoryManagementSystem.UserControls
                         var selectedRow = dgvCustomers.Rows[e.RowIndex];
 
                         // Get the customer ID from the selected row
-                        string customerId = selectedRow.Cells[0].Value.ToString();
+                        string? customerId = selectedRow.Cells[0].Value.ToString();
 
                         // Create a new instance of the EditCustomer form
-                        var editCustomer = new EditCustomer(this, customerId);
+                        var editCustomer = new EditCustomer(this, customerId!);
 
                         // Show the Editform
                         editCustomer.ShowDialog();
