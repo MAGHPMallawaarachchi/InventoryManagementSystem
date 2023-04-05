@@ -58,7 +58,7 @@ namespace InventoryManagementSystem
             document.Add(invoiceInfo);
 
             // add the customer information to the document
-            var customer = await _mongoConnector.GetByCustomerID(invoice.customer_id);
+            var customer = await _mongoConnector.GetByCustomerID(invoice.customer_id!);
             Paragraph customerInfo = new Paragraph($"Customer: {customer.name}\nAddress: {customer.address}\nCity: {customer.city}\nPhone: {customer.phone_no}\n\n");
             document.Add(customerInfo);
 
@@ -76,14 +76,14 @@ namespace InventoryManagementSystem
             table.AddHeaderCell("Amount");
 
             // add the line items to the table
-            for (int i = 0; i < invoice.items.Count; i++)
+            for (int i = 0; i < invoice.items!.Count; i++)
             {
                 InvoiceItem? invoice_item = invoice.items[i];
 
-                var current_item = await _mongoConnector.GetByPartNumber(invoice_item.part_number);
+                var current_item = await _mongoConnector.GetByPartNumber(invoice_item.part_number!);
 
                 table.AddCell((i + 1).ToString());
-                table.AddCell(invoice_item.part_number.ToString());
+                table.AddCell(invoice_item.part_number!.ToString());
                 table.AddCell(current_item.brand);
                 table.AddCell(current_item.description);
                 table.AddCell(invoice_item.quantity.ToString());
