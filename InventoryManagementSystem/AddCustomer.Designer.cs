@@ -88,7 +88,8 @@
             txtCustomerID.Margin = new Padding(3, 5, 3, 5);
             txtCustomerID.Name = "txtCustomerID";
             txtCustomerID.PasswordChar = '\0';
-            txtCustomerID.PlaceholderText = "";
+            txtCustomerID.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtCustomerID.PlaceholderText = "Customer ID";
             txtCustomerID.SelectedText = "";
             txtCustomerID.Size = new Size(275, 40);
             txtCustomerID.TabIndex = 25;
@@ -112,7 +113,8 @@
             txtContactNumber.Margin = new Padding(3, 5, 3, 5);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PasswordChar = '\0';
-            txtContactNumber.PlaceholderText = "";
+            txtContactNumber.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtContactNumber.PlaceholderText = "Contact Number";
             txtContactNumber.SelectedText = "";
             txtContactNumber.Size = new Size(275, 40);
             txtContactNumber.TabIndex = 27;
@@ -147,7 +149,8 @@
             txtCity.Margin = new Padding(3, 5, 3, 5);
             txtCity.Name = "txtCity";
             txtCity.PasswordChar = '\0';
-            txtCity.PlaceholderText = "";
+            txtCity.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtCity.PlaceholderText = "City";
             txtCity.SelectedText = "";
             txtCity.Size = new Size(275, 40);
             txtCity.TabIndex = 29;
@@ -178,7 +181,8 @@
             txtAddress.Margin = new Padding(3, 5, 3, 5);
             txtAddress.Name = "txtAddress";
             txtAddress.PasswordChar = '\0';
-            txtAddress.PlaceholderText = "";
+            txtAddress.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtAddress.PlaceholderText = "Address";
             txtAddress.SelectedText = "";
             txtAddress.Size = new Size(275, 40);
             txtAddress.TabIndex = 31;
@@ -213,7 +217,8 @@
             txtName.Margin = new Padding(3, 5, 3, 5);
             txtName.Name = "txtName";
             txtName.PasswordChar = '\0';
-            txtName.PlaceholderText = "";
+            txtName.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtName.PlaceholderText = "Name";
             txtName.SelectedText = "";
             txtName.Size = new Size(275, 40);
             txtName.TabIndex = 33;
