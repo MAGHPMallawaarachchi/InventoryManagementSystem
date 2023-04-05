@@ -64,6 +64,7 @@
             btnNewInvoice.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
             btnNewInvoice.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
             btnNewInvoice.CheckedState.FillColor = Color.Transparent;
+            btnNewInvoice.Cursor = Cursors.Hand;
             btnNewInvoice.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnNewInvoice.DisabledState.BorderColor = Color.DarkGray;
             btnNewInvoice.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -97,6 +98,7 @@
             btnOrders.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
             btnOrders.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
             btnOrders.CheckedState.FillColor = Color.Transparent;
+            btnOrders.Cursor = Cursors.Hand;
             btnOrders.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnOrders.DisabledState.BorderColor = Color.DarkGray;
             btnOrders.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -130,6 +132,7 @@
             btnCustomers.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
             btnCustomers.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
             btnCustomers.CheckedState.FillColor = Color.Transparent;
+            btnCustomers.Cursor = Cursors.Hand;
             btnCustomers.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnCustomers.DisabledState.BorderColor = Color.DarkGray;
             btnCustomers.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -162,6 +165,7 @@
             btnReports.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
             btnReports.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
             btnReports.CheckedState.FillColor = Color.Transparent;
+            btnReports.Cursor = Cursors.Hand;
             btnReports.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnReports.DisabledState.BorderColor = Color.DarkGray;
             btnReports.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -194,6 +198,7 @@
             btnInventory.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
             btnInventory.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
             btnInventory.CheckedState.FillColor = Color.Transparent;
+            btnInventory.Cursor = Cursors.Hand;
             btnInventory.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnInventory.DisabledState.BorderColor = Color.DarkGray;
             btnInventory.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -228,6 +233,7 @@
             btnDashboard.Checked = true;
             btnDashboard.CheckedState.CustomBorderColor = Color.FromArgb(10, 73, 156);
             btnDashboard.CheckedState.FillColor = Color.Transparent;
+            btnDashboard.Cursor = Cursors.Hand;
             btnDashboard.CustomBorderColor = Color.Transparent;
             btnDashboard.CustomBorderThickness = new Padding(5, 0, 0, 0);
             btnDashboard.DisabledState.BorderColor = Color.DarkGray;
