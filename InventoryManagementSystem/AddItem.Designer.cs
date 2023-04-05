@@ -52,6 +52,16 @@
             txtBuyingPrice = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
             txtBrand = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             label11 = new Label();
+            lblPartNumberError = new Label();
+            lblOEMNumberError = new Label();
+            lblDescriptionError = new Label();
+            lblCategoryError = new Label();
+            lblBrandError = new Label();
+            lblVehicleBrandError = new Label();
+            lblSupplierError = new Label();
+            lblBuyingPriceError = new Label();
+            lblUnitPriceError = new Label();
+            lblQuantityError = new Label();
             ((System.ComponentModel.ISupportInitialize)txtQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtUnitPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtBuyingPrice).BeginInit();
@@ -59,7 +69,7 @@
             // 
             // btnAddItem
             // 
-            btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAddItem.BorderColor = Color.FromArgb(10, 73, 156);
             btnAddItem.BorderRadius = 4;
             btnAddItem.BorderThickness = 2;
@@ -71,11 +81,12 @@
             btnAddItem.FillColor = Color.FromArgb(10, 73, 156);
             btnAddItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddItem.ForeColor = Color.White;
+            btnAddItem.Image = Properties.Resources.addWhite;
             btnAddItem.ImageOffset = new Point(0, 1);
-            btnAddItem.ImageSize = new Size(15, 10);
-            btnAddItem.Location = new Point(370, 719);
+            btnAddItem.ImageSize = new Size(15, 15);
+            btnAddItem.Location = new Point(352, 804);
             btnAddItem.Name = "btnAddItem";
-            btnAddItem.Size = new Size(102, 40);
+            btnAddItem.Size = new Size(120, 40);
             btnAddItem.TabIndex = 41;
             btnAddItem.Text = "Add Item";
             btnAddItem.TextOffset = new Point(2, 0);
@@ -83,7 +94,7 @@
             // 
             // btnDiscard
             // 
-            btnDiscard.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDiscard.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnDiscard.BorderColor = Color.FromArgb(208, 211, 217);
             btnDiscard.BorderRadius = 4;
             btnDiscard.BorderThickness = 2;
@@ -97,9 +108,9 @@
             btnDiscard.ForeColor = Color.FromArgb(93, 102, 121);
             btnDiscard.ImageOffset = new Point(0, 1);
             btnDiscard.ImageSize = new Size(15, 10);
-            btnDiscard.Location = new Point(250, 719);
+            btnDiscard.Location = new Point(214, 804);
             btnDiscard.Name = "btnDiscard";
-            btnDiscard.Size = new Size(102, 40);
+            btnDiscard.Size = new Size(120, 40);
             btnDiscard.TabIndex = 40;
             btnDiscard.Text = "Discard";
             btnDiscard.TextOffset = new Point(2, 0);
@@ -118,15 +129,17 @@
             txtSupplier.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtSupplier.ForeColor = Color.FromArgb(72, 80, 94);
             txtSupplier.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSupplier.Location = new Point(200, 649);
+            txtSupplier.Location = new Point(200, 500);
             txtSupplier.Margin = new Padding(3, 5, 3, 5);
             txtSupplier.Name = "txtSupplier";
             txtSupplier.PasswordChar = '\0';
-            txtSupplier.PlaceholderText = "";
+            txtSupplier.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtSupplier.PlaceholderText = "Supplier";
             txtSupplier.SelectedText = "";
-            txtSupplier.Size = new Size(273, 44);
+            txtSupplier.Size = new Size(275, 40);
             txtSupplier.TabIndex = 39;
             txtSupplier.TextOffset = new Point(10, 0);
+            txtSupplier.TextChanged += txtSupplier_TextChanged;
             txtSupplier.KeyDown += txtSupplier_KeyDown;
             // 
             // label10
@@ -134,7 +147,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = Color.FromArgb(72, 80, 94);
-            label10.Location = new Point(32, 660);
+            label10.Location = new Point(34, 507);
             label10.Name = "label10";
             label10.Size = new Size(77, 25);
             label10.TabIndex = 38;
@@ -145,7 +158,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(72, 80, 94);
-            label6.Location = new Point(32, 595);
+            label6.Location = new Point(34, 717);
             label6.Name = "label6";
             label6.Size = new Size(80, 25);
             label6.TabIndex = 36;
@@ -156,7 +169,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(72, 80, 94);
-            label7.Location = new Point(32, 531);
+            label7.Location = new Point(34, 647);
             label7.Name = "label7";
             label7.Size = new Size(86, 25);
             label7.TabIndex = 34;
@@ -175,15 +188,17 @@
             txtVehicleBrand.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtVehicleBrand.ForeColor = Color.FromArgb(72, 80, 94);
             txtVehicleBrand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtVehicleBrand.Location = new Point(199, 396);
+            txtVehicleBrand.Location = new Point(201, 430);
             txtVehicleBrand.Margin = new Padding(3, 5, 3, 5);
             txtVehicleBrand.Name = "txtVehicleBrand";
             txtVehicleBrand.PasswordChar = '\0';
-            txtVehicleBrand.PlaceholderText = "";
+            txtVehicleBrand.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtVehicleBrand.PlaceholderText = "Vehicle Brand";
             txtVehicleBrand.SelectedText = "";
-            txtVehicleBrand.Size = new Size(273, 44);
+            txtVehicleBrand.Size = new Size(275, 40);
             txtVehicleBrand.TabIndex = 32;
             txtVehicleBrand.TextOffset = new Point(10, 0);
+            txtVehicleBrand.TextChanged += txtVehicleBrand_TextChanged;
             txtVehicleBrand.KeyDown += txtVehicleBrand_KeyDown;
             // 
             // label8
@@ -191,7 +206,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.FromArgb(72, 80, 94);
-            label8.Location = new Point(32, 469);
+            label8.Location = new Point(32, 577);
             label8.Name = "label8";
             label8.Size = new Size(108, 25);
             label8.TabIndex = 31;
@@ -202,7 +217,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = Color.FromArgb(72, 80, 94);
-            label9.Location = new Point(32, 405);
+            label9.Location = new Point(32, 437);
             label9.Name = "label9";
             label9.Size = new Size(117, 25);
             label9.TabIndex = 30;
@@ -221,15 +236,17 @@
             txtCategory.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtCategory.ForeColor = Color.FromArgb(72, 80, 94);
             txtCategory.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCategory.Location = new Point(199, 269);
+            txtCategory.Location = new Point(201, 290);
             txtCategory.Margin = new Padding(3, 5, 3, 5);
             txtCategory.Name = "txtCategory";
             txtCategory.PasswordChar = '\0';
-            txtCategory.PlaceholderText = "";
+            txtCategory.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtCategory.PlaceholderText = "Category";
             txtCategory.SelectedText = "";
-            txtCategory.Size = new Size(273, 44);
+            txtCategory.Size = new Size(275, 40);
             txtCategory.TabIndex = 29;
             txtCategory.TextOffset = new Point(10, 0);
+            txtCategory.TextChanged += txtCategory_TextChanged;
             txtCategory.KeyDown += txtCategory_KeyDown;
             // 
             // label5
@@ -237,7 +254,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(72, 80, 94);
-            label5.Location = new Point(32, 280);
+            label5.Location = new Point(34, 297);
             label5.Name = "label5";
             label5.Size = new Size(84, 25);
             label5.TabIndex = 28;
@@ -256,15 +273,17 @@
             txtDescription.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtDescription.ForeColor = Color.FromArgb(72, 80, 94);
             txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescription.Location = new Point(199, 205);
+            txtDescription.Location = new Point(201, 220);
             txtDescription.Margin = new Padding(3, 5, 3, 5);
             txtDescription.Name = "txtDescription";
             txtDescription.PasswordChar = '\0';
-            txtDescription.PlaceholderText = "";
+            txtDescription.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtDescription.PlaceholderText = "Description";
             txtDescription.SelectedText = "";
-            txtDescription.Size = new Size(273, 44);
+            txtDescription.Size = new Size(275, 40);
             txtDescription.TabIndex = 27;
             txtDescription.TextOffset = new Point(10, 0);
+            txtDescription.TextChanged += txtDescription_TextChanged;
             txtDescription.KeyDown += txtDescription_KeyDown;
             // 
             // label4
@@ -272,7 +291,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(72, 80, 94);
-            label4.Location = new Point(32, 216);
+            label4.Location = new Point(34, 227);
             label4.Name = "label4";
             label4.Size = new Size(102, 25);
             label4.TabIndex = 26;
@@ -291,15 +310,17 @@
             txtOEMNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtOEMNumber.ForeColor = Color.FromArgb(72, 80, 94);
             txtOEMNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtOEMNumber.Location = new Point(199, 143);
+            txtOEMNumber.Location = new Point(201, 150);
             txtOEMNumber.Margin = new Padding(3, 5, 3, 5);
             txtOEMNumber.Name = "txtOEMNumber";
             txtOEMNumber.PasswordChar = '\0';
-            txtOEMNumber.PlaceholderText = "";
+            txtOEMNumber.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtOEMNumber.PlaceholderText = "OEM Number";
             txtOEMNumber.SelectedText = "";
-            txtOEMNumber.Size = new Size(273, 44);
+            txtOEMNumber.Size = new Size(275, 40);
             txtOEMNumber.TabIndex = 25;
             txtOEMNumber.TextOffset = new Point(10, 0);
+            txtOEMNumber.TextChanged += txtOEMNumber_TextChanged;
             txtOEMNumber.KeyDown += txtOEMNumber_KeyDown;
             // 
             // txtPartNumber
@@ -315,15 +336,17 @@
             txtPartNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtPartNumber.ForeColor = Color.FromArgb(72, 80, 94);
             txtPartNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPartNumber.Location = new Point(199, 81);
+            txtPartNumber.Location = new Point(200, 80);
             txtPartNumber.Margin = new Padding(3, 5, 3, 5);
             txtPartNumber.Name = "txtPartNumber";
             txtPartNumber.PasswordChar = '\0';
-            txtPartNumber.PlaceholderText = "";
+            txtPartNumber.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtPartNumber.PlaceholderText = "Part Number";
             txtPartNumber.SelectedText = "";
-            txtPartNumber.Size = new Size(273, 44);
+            txtPartNumber.Size = new Size(275, 40);
             txtPartNumber.TabIndex = 24;
             txtPartNumber.TextOffset = new Point(10, 0);
+            txtPartNumber.TextChanged += txtPartNumber_TextChanged;
             txtPartNumber.KeyDown += txtPartNumber_KeyDown;
             // 
             // label3
@@ -331,7 +354,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(72, 80, 94);
-            label3.Location = new Point(32, 155);
+            label3.Location = new Point(34, 157);
             label3.Name = "label3";
             label3.Size = new Size(121, 25);
             label3.TabIndex = 23;
@@ -342,7 +365,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(72, 80, 94);
-            label2.Location = new Point(32, 91);
+            label2.Location = new Point(34, 87);
             label2.Name = "label2";
             label2.Size = new Size(112, 25);
             label2.TabIndex = 22;
@@ -369,14 +392,15 @@
             txtQuantity.FocusedState.UpDownButtonForeColor = Color.White;
             txtQuantity.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtQuantity.ForeColor = Color.FromArgb(72, 80, 94);
-            txtQuantity.Location = new Point(200, 587);
+            txtQuantity.Location = new Point(201, 710);
             txtQuantity.Margin = new Padding(3, 5, 3, 5);
             txtQuantity.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(272, 44);
+            txtQuantity.Size = new Size(275, 40);
             txtQuantity.TabIndex = 42;
-            txtQuantity.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
+            txtQuantity.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
             txtQuantity.UpDownButtonForeColor = Color.White;
+            txtQuantity.ValueChanged += txtQuantity_ValueChanged;
             txtQuantity.KeyDown += txtQuantity_KeyDown;
             // 
             // txtUnitPrice
@@ -390,14 +414,15 @@
             txtUnitPrice.FocusedState.UpDownButtonForeColor = Color.White;
             txtUnitPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtUnitPrice.ForeColor = Color.FromArgb(72, 80, 94);
-            txtUnitPrice.Location = new Point(200, 523);
+            txtUnitPrice.Location = new Point(201, 640);
             txtUnitPrice.Margin = new Padding(3, 5, 3, 5);
             txtUnitPrice.Maximum = new decimal(new int[] { 10000000, 0, 0, 131072 });
             txtUnitPrice.Name = "txtUnitPrice";
-            txtUnitPrice.Size = new Size(272, 44);
+            txtUnitPrice.Size = new Size(275, 40);
             txtUnitPrice.TabIndex = 43;
-            txtUnitPrice.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
+            txtUnitPrice.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
             txtUnitPrice.UpDownButtonForeColor = Color.White;
+            txtUnitPrice.ValueChanged += txtUnitPrice_ValueChanged;
             txtUnitPrice.KeyDown += txtUnitPrice_KeyDown;
             // 
             // txtBuyingPrice
@@ -411,14 +436,15 @@
             txtBuyingPrice.FocusedState.UpDownButtonForeColor = Color.White;
             txtBuyingPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtBuyingPrice.ForeColor = Color.FromArgb(72, 80, 94);
-            txtBuyingPrice.Location = new Point(200, 459);
+            txtBuyingPrice.Location = new Point(201, 570);
             txtBuyingPrice.Margin = new Padding(3, 5, 3, 5);
             txtBuyingPrice.Maximum = new decimal(new int[] { 10000000, 0, 0, 131072 });
             txtBuyingPrice.Name = "txtBuyingPrice";
-            txtBuyingPrice.Size = new Size(272, 44);
+            txtBuyingPrice.Size = new Size(275, 40);
             txtBuyingPrice.TabIndex = 44;
-            txtBuyingPrice.UpDownButtonFillColor = Color.FromArgb(208, 213, 221);
+            txtBuyingPrice.UpDownButtonFillColor = Color.FromArgb(10, 73, 156);
             txtBuyingPrice.UpDownButtonForeColor = Color.White;
+            txtBuyingPrice.ValueChanged += txtBuyingPrice_ValueChanged;
             txtBuyingPrice.KeyDown += txtBuyingPrice_KeyDown;
             // 
             // txtBrand
@@ -434,15 +460,17 @@
             txtBrand.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtBrand.ForeColor = Color.FromArgb(72, 80, 94);
             txtBrand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBrand.Location = new Point(200, 332);
+            txtBrand.Location = new Point(201, 360);
             txtBrand.Margin = new Padding(3, 5, 3, 5);
             txtBrand.Name = "txtBrand";
             txtBrand.PasswordChar = '\0';
-            txtBrand.PlaceholderText = "";
+            txtBrand.PlaceholderForeColor = Color.FromArgb(133, 141, 157);
+            txtBrand.PlaceholderText = "Brand";
             txtBrand.SelectedText = "";
-            txtBrand.Size = new Size(273, 44);
+            txtBrand.Size = new Size(275, 40);
             txtBrand.TabIndex = 46;
             txtBrand.TextOffset = new Point(10, 0);
+            txtBrand.TextChanged += txtBrand_TextChanged;
             txtBrand.KeyDown += txtBrand_KeyDown;
             // 
             // label11
@@ -450,19 +478,129 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label11.ForeColor = Color.FromArgb(72, 80, 94);
-            label11.Location = new Point(33, 341);
+            label11.Location = new Point(34, 367);
             label11.Name = "label11";
             label11.Size = new Size(58, 25);
             label11.TabIndex = 45;
             label11.Text = "Brand";
+            // 
+            // lblPartNumberError
+            // 
+            lblPartNumberError.AutoSize = true;
+            lblPartNumberError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblPartNumberError.Location = new Point(201, 125);
+            lblPartNumberError.Name = "lblPartNumberError";
+            lblPartNumberError.Size = new Size(41, 20);
+            lblPartNumberError.TabIndex = 47;
+            lblPartNumberError.Text = "Error";
+            // 
+            // lblOEMNumberError
+            // 
+            lblOEMNumberError.AutoSize = true;
+            lblOEMNumberError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblOEMNumberError.Location = new Point(201, 195);
+            lblOEMNumberError.Name = "lblOEMNumberError";
+            lblOEMNumberError.Size = new Size(41, 20);
+            lblOEMNumberError.TabIndex = 48;
+            lblOEMNumberError.Text = "Error";
+            // 
+            // lblDescriptionError
+            // 
+            lblDescriptionError.AutoSize = true;
+            lblDescriptionError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblDescriptionError.Location = new Point(201, 265);
+            lblDescriptionError.Name = "lblDescriptionError";
+            lblDescriptionError.Size = new Size(41, 20);
+            lblDescriptionError.TabIndex = 49;
+            lblDescriptionError.Text = "Error";
+            // 
+            // lblCategoryError
+            // 
+            lblCategoryError.AutoSize = true;
+            lblCategoryError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblCategoryError.Location = new Point(201, 335);
+            lblCategoryError.Name = "lblCategoryError";
+            lblCategoryError.Size = new Size(41, 20);
+            lblCategoryError.TabIndex = 50;
+            lblCategoryError.Text = "Error";
+            // 
+            // lblBrandError
+            // 
+            lblBrandError.AutoSize = true;
+            lblBrandError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblBrandError.Location = new Point(201, 405);
+            lblBrandError.Name = "lblBrandError";
+            lblBrandError.Size = new Size(41, 20);
+            lblBrandError.TabIndex = 51;
+            lblBrandError.Text = "Error";
+            // 
+            // lblVehicleBrandError
+            // 
+            lblVehicleBrandError.AutoSize = true;
+            lblVehicleBrandError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblVehicleBrandError.Location = new Point(201, 475);
+            lblVehicleBrandError.Name = "lblVehicleBrandError";
+            lblVehicleBrandError.Size = new Size(41, 20);
+            lblVehicleBrandError.TabIndex = 52;
+            lblVehicleBrandError.Text = "Error";
+            // 
+            // lblSupplierError
+            // 
+            lblSupplierError.AutoSize = true;
+            lblSupplierError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblSupplierError.Location = new Point(201, 545);
+            lblSupplierError.Name = "lblSupplierError";
+            lblSupplierError.Size = new Size(41, 20);
+            lblSupplierError.TabIndex = 53;
+            lblSupplierError.Text = "Error";
+            // 
+            // lblBuyingPriceError
+            // 
+            lblBuyingPriceError.AutoSize = true;
+            lblBuyingPriceError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblBuyingPriceError.Location = new Point(201, 615);
+            lblBuyingPriceError.Name = "lblBuyingPriceError";
+            lblBuyingPriceError.Size = new Size(41, 20);
+            lblBuyingPriceError.TabIndex = 54;
+            lblBuyingPriceError.Text = "Error";
+            // 
+            // lblUnitPriceError
+            // 
+            lblUnitPriceError.AutoSize = true;
+            lblUnitPriceError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblUnitPriceError.Location = new Point(201, 685);
+            lblUnitPriceError.Name = "lblUnitPriceError";
+            lblUnitPriceError.Size = new Size(41, 20);
+            lblUnitPriceError.TabIndex = 55;
+            lblUnitPriceError.Text = "Error";
+            // 
+            // lblQuantityError
+            // 
+            lblQuantityError.AutoSize = true;
+            lblQuantityError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblQuantityError.Location = new Point(201, 755);
+            lblQuantityError.Name = "lblQuantityError";
+            lblQuantityError.Size = new Size(41, 20);
+            lblQuantityError.TabIndex = 56;
+            lblQuantityError.Text = "Error";
             // 
             // AddItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(504, 782);
+            ClientSize = new Size(504, 876);
             ControlBox = false;
+            Controls.Add(lblQuantityError);
+            Controls.Add(lblUnitPriceError);
+            Controls.Add(lblBuyingPriceError);
+            Controls.Add(lblSupplierError);
+            Controls.Add(lblVehicleBrandError);
+            Controls.Add(lblBrandError);
+            Controls.Add(lblCategoryError);
+            Controls.Add(lblDescriptionError);
+            Controls.Add(lblOEMNumberError);
+            Controls.Add(lblPartNumberError);
             Controls.Add(txtBrand);
             Controls.Add(label11);
             Controls.Add(txtBuyingPrice);
@@ -524,5 +662,15 @@
         private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtBuyingPrice;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtBrand;
         private Label label11;
+        private Label lblPartNumberError;
+        private Label lblOEMNumberError;
+        private Label lblDescriptionError;
+        private Label lblCategoryError;
+        private Label lblBrandError;
+        private Label lblVehicleBrandError;
+        private Label lblSupplierError;
+        private Label lblBuyingPriceError;
+        private Label lblUnitPriceError;
+        private Label lblQuantityError;
     }
 }

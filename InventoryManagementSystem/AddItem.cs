@@ -1,7 +1,9 @@
 ﻿using InventoryManagementSystem.Messages;
 using InventoryManagementSystem.UserControls;
 using MongoDB.Bson;
+using Siticone.Desktop.UI.WinForms;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace InventoryManagementSystem
 {
@@ -22,7 +24,7 @@ namespace InventoryManagementSystem
 
         private void AddItem_Load(object sender, EventArgs e)
         {
-            
+            HideErrorLabels();
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -32,59 +34,152 @@ namespace InventoryManagementSystem
 
         private async void btnAddItem_Click(object sender, EventArgs e)
         {
-            decimal buyingPrice = Convert.ToDecimal(txtBuyingPrice.Text);
-            decimal unitPrice = Convert.ToDecimal(txtUnitPrice.Text);
-            decimal totalCost = 0;
-            decimal totalRevenue = 0;
-            decimal totalProfit = totalRevenue - totalCost;
 
-            BsonDocument newItem = new BsonDocument
+            if (ValidateInputs())
             {
-                {"part_number", txtPartNumber.Text.ToString()},
-                {"oem_number", txtOEMNumber.Text.ToString()},
-                {"description", txtDescription.Text.ToString()},
-                {"category", txtCategory.Text.ToString()},
-                {"brand", txtBrand.Text.ToString()},
-                {"vehicle_brand", txtVehicleBrand.Text.ToString()},
-                {"supplier", txtSupplier.Text.ToString()},
-                {"buying_price", buyingPrice },
-                {"unit_price", unitPrice },
-                {"quantity", Convert.ToInt32(txtQuantity.Text) },
-                {"quantity_sold", 0 },
-                {"quantity_in_hand", Convert.ToInt32(txtQuantity.Text) },
-                {"total_cost", totalCost },
-                {"total_profit", totalProfit },
-                {"total_revenue", totalRevenue }
-            };
+                decimal buyingPrice = Convert.ToDecimal(txtBuyingPrice.Text);
+                decimal unitPrice = Convert.ToDecimal(txtUnitPrice.Text);
+                decimal totalCost = 0;
+                decimal totalRevenue = 0;
+                decimal totalProfit = totalRevenue - totalCost;
 
-            try
-            {
-                await _mongoConnector.InsertDocumentAsync("items", newItem);
+                BsonDocument newItem = new BsonDocument
+                {
+                    {"part_number", txtPartNumber.Text.ToString()},
+                    {"oem_number", txtOEMNumber.Text.ToString()},
+                    {"description", txtDescription.Text.ToString()},
+                    {"category", txtCategory.Text.ToString()},
+                    {"brand", txtBrand.Text.ToString()},
+                    {"vehicle_brand", txtVehicleBrand.Text.ToString()},
+                    {"supplier", txtSupplier.Text.ToString()},
+                    {"buying_price", buyingPrice },
+                    {"unit_price", unitPrice },
+                    {"quantity", Convert.ToInt32(txtQuantity.Text) },
+                    {"quantity_sold", 0 },
+                    {"quantity_in_hand", Convert.ToInt32(txtQuantity.Text) },
+                    {"total_cost", totalCost },
+                    {"total_profit", totalProfit },
+                    {"total_revenue", totalRevenue }
+                };
 
-                var addItemSuccessForm = new AddItemSuccess();
-                addItemSuccessForm.Owner = this;
-                addItemSuccessForm.TopMost = true;
-                addItemSuccessForm.ShowDialog();
+                try
+                {
+                    await _mongoConnector.InsertDocumentAsync("items", newItem);
 
-                // Empty the text boxes
-                txtPartNumber.Text = "";
-                txtOEMNumber.Text = "";
-                txtDescription.Text = "";
-                txtCategory.Text = "";
-                txtBrand.Text = "";
-                txtVehicleBrand.Text = "";
-                txtBuyingPrice.Value = 0;
-                txtUnitPrice.Value = 0;
-                txtQuantity.Value = 0;
-                txtSupplier.Text = "";
+                    var addItemSuccessForm = new AddItemSuccess();
+                    addItemSuccessForm.Owner = this;
+                    addItemSuccessForm.TopMost = true;
+                    addItemSuccessForm.ShowDialog();
 
-                _ucInventory.RefreshInventory();
+                    // Empty the text boxes
+                    txtPartNumber.Text = "";
+                    txtOEMNumber.Text = "";
+                    txtDescription.Text = "";
+                    txtCategory.Text = "";
+                    txtBrand.Text = "";
+                    txtVehicleBrand.Text = "";
+                    txtBuyingPrice.Value = 0;
+                    txtUnitPrice.Value = 0;
+                    txtQuantity.Value = 0;
+                    txtSupplier.Text = "";
 
+                    _ucInventory.RefreshInventory();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while adding the item to the database: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+        }
+
+        private bool ValidateInputs()
+        {
+            bool isValid = true;
+
+            isValid = ValidateField(txtPartNumber, lblPartNumberError, "Please enter a part number.") && isValid;
+            isValid = ValidateField(txtOEMNumber, lblOEMNumberError, "Please enter an OEM number.") && isValid;
+            isValid = ValidateField(txtDescription, lblDescriptionError, "Please enter a description.") && isValid;
+            isValid = ValidateField(txtCategory, lblCategoryError, "Please enter a category.") && isValid;
+            isValid = ValidateField(txtBrand, lblBrandError, "Please enter a brand.") && isValid;
+            isValid = ValidateField(txtVehicleBrand, lblVehicleBrandError, "Please enter a vehicle brand.") && isValid;
+            isValid = ValidateField(txtSupplier, lblSupplierError, "Please enter the vehicle brand.") && isValid;
+            isValid = ValidateDecimalField(txtBuyingPrice, lblBuyingPriceError, "Please enter a valid buying price.") && isValid;
+            isValid = ValidateDecimalField(txtUnitPrice, lblUnitPriceError, "Please enter a valid unit price.") && isValid;
+            isValid = ValidateIntegerField(txtQuantity, lblQuantityError, "Please enter a valid quantity.") && isValid;
+
+            return isValid;
+        }
+
+        private bool ValidateField(SiticoneTextBox textBox, Label errorLabel, string errorMessage)
+        {
+            bool isValid = true;
+
+            if (string.IsNullOrEmpty(textBox.Text))
             {
-                MessageBox.Show($"An error occurred while adding the item to the database: {ex.Message}");
-            }           
+                isValid = false;
+                errorLabel.Text = errorMessage;
+                errorLabel.Visible = true;
+                textBox.BorderColor = ColorTranslator.FromHtml("#DA3E33");
+            }
+            else
+            {
+                errorLabel.Visible = false;
+            }
+
+            return isValid;
+        }
+
+        private bool ValidateDecimalField(SiticoneNumericUpDown textBox, Label errorLabel, string errorMessage)
+        {
+            bool isValid = true;
+
+            if (!decimal.TryParse(textBox.Text, out decimal value) || value <= 0)
+            {
+                isValid = false;
+                errorLabel.Text = errorMessage;
+                errorLabel.Visible = true;
+                textBox.BorderColor = ColorTranslator.FromHtml("#DA3E33");
+            }
+            else
+            {
+                errorLabel.Visible = false;
+            }
+
+            return isValid;
+        }
+
+        private bool ValidateIntegerField(SiticoneNumericUpDown textBox, Label errorLabel, string errorMessage)
+        {
+            bool isValid = true;
+
+            if (!int.TryParse(textBox.Text, out int value) || value <= 0)
+            {
+                isValid = false;
+                errorLabel.Text = errorMessage;
+                errorLabel.Visible = true;
+                textBox.BorderColor = ColorTranslator.FromHtml("#DA3E33");
+            }
+            else
+            {
+                errorLabel.Visible = false;
+            }
+
+            return isValid;
+        }
+
+        private void HideErrorLabels()
+        {
+            lblPartNumberError.Visible = false;
+            lblOEMNumberError.Visible = false;
+            lblDescriptionError.Visible = false;
+            lblCategoryError.Visible = false;
+            lblBrandError.Visible = false;
+            lblVehicleBrandError.Visible = false;
+            lblBuyingPriceError.Visible = false;
+            lblUnitPriceError.Visible = false;
+            lblQuantityError.Visible = false;
+            lblSupplierError.Visible = false;
         }
 
         private void txtPartNumber_KeyDown(object sender, KeyEventArgs e)
@@ -217,5 +312,64 @@ namespace InventoryManagementSystem
             }
         }
 
+        private void txtPartNumber_TextChanged(object sender, EventArgs e)
+        {
+            lblPartNumberError.Visible = false;
+            txtPartNumber.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtOEMNumber_TextChanged(object sender, EventArgs e)
+        {
+            lblOEMNumberError.Visible = false;
+            txtOEMNumber.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+            lblDescriptionError.Visible = false;
+            txtDescription.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtCategory_TextChanged(object sender, EventArgs e)
+        {
+            lblCategoryError.Visible = false;
+            txtCategory.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtBrand_TextChanged(object sender, EventArgs e)
+        {
+            lblBrandError.Visible = false;
+            txtBrand.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtVehicleBrand_TextChanged(object sender, EventArgs e)
+        {
+            lblVehicleBrandError.Visible = false;
+            txtVehicleBrand.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtSupplier_TextChanged(object sender, EventArgs e)
+        {
+            lblSupplierError.Visible = false;
+            txtSupplier.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtBuyingPrice_ValueChanged(object sender, EventArgs e)
+        {
+            lblBuyingPriceError.Visible = false;
+            txtBuyingPrice.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtUnitPrice_ValueChanged(object sender, EventArgs e)
+        {
+            lblUnitPriceError.Visible = false;
+            txtUnitPrice.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
+
+        private void txtQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            lblQuantityError.Visible = false;
+            txtQuantity.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
+        }
     }
 }
