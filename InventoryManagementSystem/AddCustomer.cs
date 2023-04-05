@@ -98,6 +98,13 @@ namespace InventoryManagementSystem
                 lblCustomerIDError.Visible = true;
                 txtCustomerID.BorderColor = ColorTranslator.FromHtml("#DA3E33");
             }
+            else if (IsCustomerIdAlreadyExists(txtCustomerID.Text))
+            {
+                isValid = false;
+                lblCustomerIDError.Text = "The entered customer ID already exists";
+                lblCustomerIDError.Visible = true;
+                txtCustomerID.BorderColor = ColorTranslator.FromHtml("#DA3E33");
+            }
             else if (contactNumber.Length != 10 || !contactNumber.All(char.IsDigit))
             {
                 isValid = false;
@@ -111,6 +118,23 @@ namespace InventoryManagementSystem
             }
 
             return isValid;
+        }
+
+        private bool IsCustomerIdAlreadyExists(string customer_id)
+        {
+            bool isCustomerIdAlreadyExists = false;
+            var customers = _mongoConnector.GetCustomers();
+
+            foreach (var customer in customers)
+            {
+                if (customer.customer_id == customer_id)
+                {
+                    isCustomerIdAlreadyExists = true;
+                    break;
+                }
+            }
+
+            return isCustomerIdAlreadyExists;
         }
 
         private void HideErrorLabels()

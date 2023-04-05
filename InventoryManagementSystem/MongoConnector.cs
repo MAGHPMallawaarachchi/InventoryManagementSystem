@@ -73,13 +73,22 @@ namespace InventoryManagementSystem
             return result;
         }
 
+        public List<Customer> GetCustomers()
+        {
+            var collection = GetCollection<Customer>("customers");
+            var filter = Builders<Customer>.Filter.Empty;
+            var sort = Builders<Customer>.Sort.Ascending(c => c.customer_id);
+            var result = collection.Find(filter).Sort(sort).ToList();
+            return result;
+        }
+
+
         public async Task<List<Item>> GetFilteredItems(FilterDefinition<Item> filter)
         {
             var collection = GetCollection<Item>("items");
             var result = await collection.Find(filter).ToListAsync();
             return result;
         }
-
 
         public async Task<List<Item>> GetLowQuantityItems()
         {
