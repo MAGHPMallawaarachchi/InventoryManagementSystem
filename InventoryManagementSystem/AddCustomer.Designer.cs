@@ -42,6 +42,11 @@
             btnAddCustomer = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnDiscard = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             label7 = new Label();
+            lblContactNumberError = new Label();
+            lblCityError = new Label();
+            lblAddressError = new Label();
+            lblNameError = new Label();
+            lblCustomerIDError = new Label();
             SuspendLayout();
             // 
             // label1
@@ -49,9 +54,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(56, 62, 73);
-            label1.Location = new Point(21, 25);
+            label1.Location = new Point(30, 30);
             label1.Name = "label1";
-            label1.Size = new Size(136, 25);
+            label1.Size = new Size(164, 31);
             label1.TabIndex = 22;
             label1.Text = "New Customer";
             // 
@@ -60,9 +65,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(72, 80, 94);
-            label2.Location = new Point(31, 117);
+            label2.Location = new Point(34, 87);
             label2.Name = "label2";
-            label2.Size = new Size(91, 20);
+            label2.Size = new Size(112, 25);
             label2.TabIndex = 23;
             label2.Text = "Customer ID";
             // 
@@ -79,15 +84,16 @@
             txtCustomerID.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtCustomerID.ForeColor = Color.FromArgb(72, 80, 94);
             txtCustomerID.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCustomerID.Location = new Point(172, 112);
-            txtCustomerID.Margin = new Padding(3, 4, 3, 4);
+            txtCustomerID.Location = new Point(200, 80);
+            txtCustomerID.Margin = new Padding(3, 5, 3, 5);
             txtCustomerID.Name = "txtCustomerID";
             txtCustomerID.PasswordChar = '\0';
             txtCustomerID.PlaceholderText = "";
             txtCustomerID.SelectedText = "";
-            txtCustomerID.Size = new Size(239, 33);
+            txtCustomerID.Size = new Size(275, 40);
             txtCustomerID.TabIndex = 25;
             txtCustomerID.TextOffset = new Point(10, 0);
+            txtCustomerID.TextChanged += txtCustomerID_TextChanged;
             // 
             // txtContactNumber
             // 
@@ -102,24 +108,25 @@
             txtContactNumber.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtContactNumber.ForeColor = Color.FromArgb(72, 80, 94);
             txtContactNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtContactNumber.Location = new Point(172, 352);
-            txtContactNumber.Margin = new Padding(3, 4, 3, 4);
+            txtContactNumber.Location = new Point(201, 360);
+            txtContactNumber.Margin = new Padding(3, 5, 3, 5);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PasswordChar = '\0';
             txtContactNumber.PlaceholderText = "";
             txtContactNumber.SelectedText = "";
-            txtContactNumber.Size = new Size(239, 33);
+            txtContactNumber.Size = new Size(275, 40);
             txtContactNumber.TabIndex = 27;
             txtContactNumber.TextOffset = new Point(10, 0);
+            txtContactNumber.TextChanged += txtContactNumber_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(72, 80, 94);
-            label3.Location = new Point(31, 357);
+            label3.Location = new Point(34, 367);
             label3.Name = "label3";
-            label3.Size = new Size(118, 20);
+            label3.Size = new Size(143, 25);
             label3.TabIndex = 26;
             label3.Text = "Contact Number";
             // 
@@ -136,21 +143,22 @@
             txtCity.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtCity.ForeColor = Color.FromArgb(72, 80, 94);
             txtCity.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCity.Location = new Point(172, 285);
-            txtCity.Margin = new Padding(3, 4, 3, 4);
+            txtCity.Location = new Point(201, 290);
+            txtCity.Margin = new Padding(3, 5, 3, 5);
             txtCity.Name = "txtCity";
             txtCity.PasswordChar = '\0';
             txtCity.PlaceholderText = "";
             txtCity.SelectedText = "";
-            txtCity.Size = new Size(239, 33);
+            txtCity.Size = new Size(275, 40);
             txtCity.TabIndex = 29;
             txtCity.TextOffset = new Point(10, 0);
+            txtCity.TextChanged += txtCity_TextChanged;
             // 
             // label4
             // 
             label4.Location = new Point(0, 0);
             label4.Name = "label4";
-            label4.Size = new Size(88, 17);
+            label4.Size = new Size(101, 23);
             label4.TabIndex = 44;
             // 
             // txtAddress
@@ -166,24 +174,25 @@
             txtAddress.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtAddress.ForeColor = Color.FromArgb(72, 80, 94);
             txtAddress.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Location = new Point(172, 225);
-            txtAddress.Margin = new Padding(3, 4, 3, 4);
+            txtAddress.Location = new Point(201, 220);
+            txtAddress.Margin = new Padding(3, 5, 3, 5);
             txtAddress.Name = "txtAddress";
             txtAddress.PasswordChar = '\0';
             txtAddress.PlaceholderText = "";
             txtAddress.SelectedText = "";
-            txtAddress.Size = new Size(239, 33);
+            txtAddress.Size = new Size(275, 40);
             txtAddress.TabIndex = 31;
             txtAddress.TextOffset = new Point(10, 0);
+            txtAddress.TextChanged += txtAddress_TextChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(72, 80, 94);
-            label5.Location = new Point(31, 230);
+            label5.Location = new Point(34, 227);
             label5.Name = "label5";
-            label5.Size = new Size(62, 20);
+            label5.Size = new Size(77, 25);
             label5.TabIndex = 30;
             label5.Text = "Address";
             // 
@@ -200,30 +209,31 @@
             txtName.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             txtName.ForeColor = Color.FromArgb(72, 80, 94);
             txtName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtName.Location = new Point(172, 168);
-            txtName.Margin = new Padding(3, 4, 3, 4);
+            txtName.Location = new Point(201, 150);
+            txtName.Margin = new Padding(3, 5, 3, 5);
             txtName.Name = "txtName";
             txtName.PasswordChar = '\0';
             txtName.PlaceholderText = "";
             txtName.SelectedText = "";
-            txtName.Size = new Size(239, 33);
+            txtName.Size = new Size(275, 40);
             txtName.TabIndex = 33;
             txtName.TextOffset = new Point(10, 0);
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(72, 80, 94);
-            label6.Location = new Point(31, 173);
+            label6.Location = new Point(34, 157);
             label6.Name = "label6";
-            label6.Size = new Size(49, 20);
+            label6.Size = new Size(59, 25);
             label6.TabIndex = 32;
             label6.Text = "Name";
             // 
             // btnAddCustomer
             // 
-            btnAddCustomer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddCustomer.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAddCustomer.BorderColor = Color.FromArgb(10, 73, 156);
             btnAddCustomer.BorderRadius = 4;
             btnAddCustomer.BorderThickness = 2;
@@ -235,12 +245,12 @@
             btnAddCustomer.FillColor = Color.FromArgb(10, 73, 156);
             btnAddCustomer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddCustomer.ForeColor = Color.White;
+            btnAddCustomer.Image = Properties.Resources.addWhite;
             btnAddCustomer.ImageOffset = new Point(0, 1);
-            btnAddCustomer.ImageSize = new Size(15, 10);
-            btnAddCustomer.Location = new Point(282, 507);
-            btnAddCustomer.Margin = new Padding(3, 2, 3, 2);
+            btnAddCustomer.ImageSize = new Size(15, 15);
+            btnAddCustomer.Location = new Point(329, 442);
             btnAddCustomer.Name = "btnAddCustomer";
-            btnAddCustomer.Size = new Size(129, 30);
+            btnAddCustomer.Size = new Size(147, 40);
             btnAddCustomer.TabIndex = 43;
             btnAddCustomer.Text = "Add Customer";
             btnAddCustomer.TextOffset = new Point(2, 0);
@@ -248,7 +258,7 @@
             // 
             // btnDiscard
             // 
-            btnDiscard.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDiscard.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnDiscard.BorderColor = Color.FromArgb(208, 211, 217);
             btnDiscard.BorderRadius = 4;
             btnDiscard.BorderThickness = 2;
@@ -262,10 +272,9 @@
             btnDiscard.ForeColor = Color.FromArgb(93, 102, 121);
             btnDiscard.ImageOffset = new Point(0, 1);
             btnDiscard.ImageSize = new Size(15, 10);
-            btnDiscard.Location = new Point(172, 507);
-            btnDiscard.Margin = new Padding(3, 2, 3, 2);
+            btnDiscard.Location = new Point(185, 442);
             btnDiscard.Name = "btnDiscard";
-            btnDiscard.Size = new Size(89, 30);
+            btnDiscard.Size = new Size(120, 40);
             btnDiscard.TabIndex = 42;
             btnDiscard.Text = "Discard";
             btnDiscard.TextOffset = new Point(2, 0);
@@ -276,19 +285,74 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(72, 80, 94);
-            label7.Location = new Point(31, 298);
+            label7.Location = new Point(34, 297);
             label7.Name = "label7";
-            label7.Size = new Size(34, 20);
+            label7.Size = new Size(42, 25);
             label7.TabIndex = 45;
             label7.Text = "City";
             // 
+            // lblContactNumberError
+            // 
+            lblContactNumberError.AutoSize = true;
+            lblContactNumberError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblContactNumberError.Location = new Point(201, 405);
+            lblContactNumberError.Name = "lblContactNumberError";
+            lblContactNumberError.Size = new Size(41, 20);
+            lblContactNumberError.TabIndex = 56;
+            lblContactNumberError.Text = "Error";
+            // 
+            // lblCityError
+            // 
+            lblCityError.AutoSize = true;
+            lblCityError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblCityError.Location = new Point(201, 335);
+            lblCityError.Name = "lblCityError";
+            lblCityError.Size = new Size(41, 20);
+            lblCityError.TabIndex = 55;
+            lblCityError.Text = "Error";
+            // 
+            // lblAddressError
+            // 
+            lblAddressError.AutoSize = true;
+            lblAddressError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblAddressError.Location = new Point(201, 265);
+            lblAddressError.Name = "lblAddressError";
+            lblAddressError.Size = new Size(41, 20);
+            lblAddressError.TabIndex = 54;
+            lblAddressError.Text = "Error";
+            // 
+            // lblNameError
+            // 
+            lblNameError.AutoSize = true;
+            lblNameError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblNameError.Location = new Point(201, 195);
+            lblNameError.Name = "lblNameError";
+            lblNameError.Size = new Size(41, 20);
+            lblNameError.TabIndex = 53;
+            lblNameError.Text = "Error";
+            // 
+            // lblCustomerIDError
+            // 
+            lblCustomerIDError.AutoSize = true;
+            lblCustomerIDError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblCustomerIDError.Location = new Point(201, 125);
+            lblCustomerIDError.Name = "lblCustomerIDError";
+            lblCustomerIDError.Size = new Size(41, 20);
+            lblCustomerIDError.TabIndex = 52;
+            lblCustomerIDError.Text = "Error";
+            // 
             // AddCustomer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(441, 572);
+            ClientSize = new Size(504, 511);
             ControlBox = false;
+            Controls.Add(lblContactNumberError);
+            Controls.Add(lblCityError);
+            Controls.Add(lblAddressError);
+            Controls.Add(lblNameError);
+            Controls.Add(lblCustomerIDError);
             Controls.Add(label7);
             Controls.Add(btnAddCustomer);
             Controls.Add(btnDiscard);
@@ -303,8 +367,10 @@
             Controls.Add(txtCustomerID);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AddCustomer";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += AddCustomer_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -325,5 +391,10 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnAddCustomer;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnDiscard;
         private Label label7;
+        private Label lblContactNumberError;
+        private Label lblCityError;
+        private Label lblAddressError;
+        private Label lblNameError;
+        private Label lblCustomerIDError;
     }
 }
