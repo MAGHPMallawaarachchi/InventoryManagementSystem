@@ -35,7 +35,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_NewInvoice));
             middlePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             lblRowsError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            btnPrintPreview = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             Panel3 = new Siticone.Desktop.UI.WinForms.SiticoneCustomGradientPanel();
             lblTimeData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             lblDateData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -61,6 +60,7 @@
             amount = new DataGridViewTextBoxColumn();
             lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             Panel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            lblCustomerError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             cbCustomerID = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             lblPhoneNoData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             lblCityData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -73,7 +73,6 @@
             lblCustomer = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             printPreviewDialog = new PrintPreviewDialog();
             printDocument = new System.Drawing.Printing.PrintDocument();
-            lblCustomerError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             middlePanel.SuspendLayout();
             Panel3.SuspendLayout();
             Panel2.SuspendLayout();
@@ -84,7 +83,6 @@
             // middlePanel
             // 
             middlePanel.Controls.Add(lblRowsError);
-            middlePanel.Controls.Add(btnPrintPreview);
             middlePanel.Controls.Add(Panel3);
             middlePanel.Controls.Add(btnClear);
             middlePanel.Controls.Add(btnSaveInvoice);
@@ -100,39 +98,13 @@
             // 
             lblRowsError.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblRowsError.BackColor = Color.Transparent;
-            lblRowsError.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRowsError.ForeColor = Color.FromArgb(219, 0, 1);
+            lblRowsError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblRowsError.ForeColor = Color.FromArgb(218, 62, 51);
             lblRowsError.Location = new Point(625, 722);
             lblRowsError.Name = "lblRowsError";
-            lblRowsError.Size = new Size(40, 25);
+            lblRowsError.Size = new Size(35, 22);
             lblRowsError.TabIndex = 56;
             lblRowsError.Text = "error";
-            // 
-            // btnPrintPreview
-            // 
-            btnPrintPreview.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnPrintPreview.BorderColor = Color.FromArgb(10, 73, 156);
-            btnPrintPreview.BorderRadius = 4;
-            btnPrintPreview.BorderThickness = 2;
-            btnPrintPreview.Cursor = Cursors.Hand;
-            btnPrintPreview.DisabledState.BorderColor = Color.DarkGray;
-            btnPrintPreview.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnPrintPreview.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnPrintPreview.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnPrintPreview.FillColor = Color.FromArgb(10, 73, 156);
-            btnPrintPreview.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPrintPreview.ForeColor = Color.White;
-            btnPrintPreview.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
-            btnPrintPreview.HoverState.FillColor = Color.FromArgb(10, 73, 156);
-            btnPrintPreview.ImageOffset = new Point(0, 1);
-            btnPrintPreview.ImageSize = new Size(15, 10);
-            btnPrintPreview.Location = new Point(22, 715);
-            btnPrintPreview.Name = "btnPrintPreview";
-            btnPrintPreview.Size = new Size(121, 40);
-            btnPrintPreview.TabIndex = 55;
-            btnPrintPreview.Text = "Print Preview";
-            btnPrintPreview.TextOffset = new Point(2, 0);
-            btnPrintPreview.Click += btnPrintPreview_Click;
             // 
             // Panel3
             // 
@@ -500,6 +472,17 @@
             Panel1.TabIndex = 0;
             Panel1.SizeChanged += Panel1_SizeChanged;
             // 
+            // lblCustomerError
+            // 
+            lblCustomerError.BackColor = Color.Transparent;
+            lblCustomerError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCustomerError.ForeColor = Color.FromArgb(218, 62, 51);
+            lblCustomerError.Location = new Point(138, 22);
+            lblCustomerError.Name = "lblCustomerError";
+            lblCustomerError.Size = new Size(35, 22);
+            lblCustomerError.TabIndex = 57;
+            lblCustomerError.Text = "error";
+            // 
             // cbCustomerID
             // 
             cbCustomerID.BackColor = Color.Transparent;
@@ -628,24 +611,13 @@
             printPreviewDialog.Name = "printPreviewDialog";
             printPreviewDialog.Visible = false;
             // 
-            // lblCustomerError
-            // 
-            lblCustomerError.BackColor = Color.Transparent;
-            lblCustomerError.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCustomerError.ForeColor = Color.FromArgb(219, 0, 1);
-            lblCustomerError.Location = new Point(138, 22);
-            lblCustomerError.Name = "lblCustomerError";
-            lblCustomerError.Size = new Size(40, 25);
-            lblCustomerError.TabIndex = 57;
-            lblCustomerError.Text = "error";
-            // 
-            // UC_Invoices
+            // UC_NewInvoice
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 241, 243);
             Controls.Add(middlePanel);
-            Name = "UC_Invoices";
+            Name = "UC_NewInvoice";
             Padding = new Padding(19, 19, 22, 21);
             Size = new Size(1184, 813);
             Load += UC_Invoices_Load;
@@ -688,7 +660,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblDate;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblInvoiceNo2;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblInvoiceNo;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btnPrintPreview;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvItems;
         private DataGridViewTextBoxColumn no;
         private DataGridViewComboBoxColumn part_no;

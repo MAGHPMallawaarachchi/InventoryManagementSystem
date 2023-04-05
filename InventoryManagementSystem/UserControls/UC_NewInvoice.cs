@@ -323,7 +323,7 @@ namespace InventoryManagementSystem.UserControls
                             profit = profit
                         });
 
-                        decimal updateTotalCost = (decimal)(document.total_cost + (DecimalQty * document.buying_price))!;
+                        decimal updateTotalCost = (decimal)(document!.total_cost + (DecimalQty * document.buying_price))!;
                         decimal updateTotalRevenue = (decimal)(document.total_revenue + (DecimalQty * document.unit_price))!;
                         decimal updateTotalProfit = updateTotalRevenue - updateTotalCost;
                         int updateQuantitySold = Convert.ToInt32(document.quantity_sold + quantity);
@@ -407,10 +407,5 @@ namespace InventoryManagementSystem.UserControls
             Clear();
         }
 
-        private void btnPrintPreview_Click(object sender, EventArgs e)
-        {
-            string filePath = @"C:\Users\Hasini\OneDrive\Documents\invoices";
-            string outputPath = $"{filePath}\\{"KAP-" + lblInvoiceNoData.Text}.pdf";
-        }
     }
 }
