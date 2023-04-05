@@ -21,7 +21,7 @@ namespace InventoryManagementSystem
 
         public async void GeneratePdfInvoice(Invoice invoice)
         {
-            string filePath = @"C:\Users\Hasini\OneDrive\Documents\invoices";
+            string filePath = @"C:\Users\Hasini\OneDrive\Documents\Kamal Auto Parts\invoices";
             string outputPath = $"{filePath}\\{"KAP-" + invoice.sequence}.pdf";
 
             // create a new PDF document
@@ -94,14 +94,12 @@ namespace InventoryManagementSystem
             // add the table to the document
             document.Add(table);
 
-            // add the invoice number and date to the document
             Paragraph total = new Paragraph($"Total: Rs.{invoice.total_revenue}\n\n");
             document.Add(total);
 
             // close the document
             document.Close();
         }
-
 
     }
 }

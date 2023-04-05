@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             Panel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             dgvBestSellingItems = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
+            part_number = new DataGridViewTextBoxColumn();
+            brand = new DataGridViewTextBoxColumn();
+            category_ = new DataGridViewTextBoxColumn();
+            qty_sold = new DataGridViewTextBoxColumn();
+            qty_in_hand = new DataGridViewTextBoxColumn();
+            revenue_ = new DataGridViewTextBoxColumn();
+            profit_ = new DataGridViewTextBoxColumn();
             lblBestSellingItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             tableLayoutPanel2 = new TableLayoutPanel();
             Panel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -60,13 +60,13 @@
             cat_profit = new DataGridViewTextBoxColumn();
             lblBestSellingCategories = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             Panel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            btnDownload = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             cbFilters = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             dgvOverview = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             total_profit = new DataGridViewTextBoxColumn();
             revenue = new DataGridViewTextBoxColumn();
             sales = new DataGridViewTextBoxColumn();
             lblOverview = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            btnDownload = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             tableLayoutPanel1.SuspendLayout();
             Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBestSellingItems).BeginInit();
@@ -111,41 +111,41 @@
             dgvBestSellingItems.AllowUserToDeleteRows = false;
             dgvBestSellingItems.AllowUserToResizeColumns = false;
             dgvBestSellingItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = Color.White;
-            dgvBestSellingItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvBestSellingItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvBestSellingItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = Color.White;
-            dataGridViewCellStyle18.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle18.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle18.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle18.SelectionBackColor = Color.White;
-            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
-            dgvBestSellingItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle2.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvBestSellingItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvBestSellingItems.ColumnHeadersHeight = 50;
-            dgvBestSellingItems.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn10, dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12 });
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = Color.White;
-            dataGridViewCellStyle19.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle19.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle19.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle19.SelectionBackColor = Color.White;
-            dataGridViewCellStyle19.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.False;
-            dgvBestSellingItems.DefaultCellStyle = dataGridViewCellStyle19;
+            dgvBestSellingItems.Columns.AddRange(new DataGridViewColumn[] { part_number, brand, category_, qty_sold, qty_in_hand, revenue_, profit_ });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle3.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvBestSellingItems.DefaultCellStyle = dataGridViewCellStyle3;
             dgvBestSellingItems.GridColor = Color.FromArgb(240, 241, 243);
             dgvBestSellingItems.Location = new Point(0, 67);
             dgvBestSellingItems.Name = "dgvBestSellingItems";
             dgvBestSellingItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = Color.White;
-            dataGridViewCellStyle20.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle20.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle20.SelectionBackColor = Color.White;
-            dataGridViewCellStyle20.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
-            dgvBestSellingItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvBestSellingItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvBestSellingItems.RowHeadersVisible = false;
             dgvBestSellingItems.RowHeadersWidth = 50;
             dgvBestSellingItems.RowTemplate.Height = 29;
@@ -173,47 +173,47 @@
             dgvBestSellingItems.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvBestSellingItems.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
-            // dataGridViewTextBoxColumn1
+            // part_number
             // 
-            dataGridViewTextBoxColumn1.HeaderText = "Part Number";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            part_number.HeaderText = "Part Number";
+            part_number.MinimumWidth = 6;
+            part_number.Name = "part_number";
             // 
-            // dataGridViewTextBoxColumn2
+            // brand
             // 
-            dataGridViewTextBoxColumn2.HeaderText = "Brand";
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            brand.HeaderText = "Brand";
+            brand.MinimumWidth = 6;
+            brand.Name = "brand";
             // 
-            // dataGridViewTextBoxColumn3
+            // category_
             // 
-            dataGridViewTextBoxColumn3.HeaderText = "Category";
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            category_.HeaderText = "Category";
+            category_.MinimumWidth = 6;
+            category_.Name = "category_";
             // 
-            // dataGridViewTextBoxColumn5
+            // qty_sold
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Quantity Sold";
-            dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            qty_sold.HeaderText = "Quantity Sold";
+            qty_sold.MinimumWidth = 6;
+            qty_sold.Name = "qty_sold";
             // 
-            // dataGridViewTextBoxColumn10
+            // qty_in_hand
             // 
-            dataGridViewTextBoxColumn10.HeaderText = "Quantity In Hand";
-            dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            qty_in_hand.HeaderText = "Quantity In Hand";
+            qty_in_hand.MinimumWidth = 6;
+            qty_in_hand.Name = "qty_in_hand";
             // 
-            // dataGridViewTextBoxColumn11
+            // revenue_
             // 
-            dataGridViewTextBoxColumn11.HeaderText = "Revenue";
-            dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            revenue_.HeaderText = "Revenue";
+            revenue_.MinimumWidth = 6;
+            revenue_.Name = "revenue_";
             // 
-            // dataGridViewTextBoxColumn12
+            // profit_
             // 
-            dataGridViewTextBoxColumn12.HeaderText = "Profit";
-            dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            profit_.HeaderText = "Profit";
+            profit_.MinimumWidth = 6;
+            profit_.Name = "profit_";
             // 
             // lblBestSellingItems
             // 
@@ -259,41 +259,41 @@
             dgvBestSellingCategories.AllowUserToDeleteRows = false;
             dgvBestSellingCategories.AllowUserToResizeColumns = false;
             dgvBestSellingCategories.AllowUserToResizeRows = false;
-            dataGridViewCellStyle21.BackColor = Color.White;
-            dgvBestSellingCategories.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
-            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = Color.White;
-            dataGridViewCellStyle22.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle22.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle22.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle22.SelectionBackColor = Color.White;
-            dataGridViewCellStyle22.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
-            dgvBestSellingCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dgvBestSellingCategories.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle6.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvBestSellingCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvBestSellingCategories.ColumnHeadersHeight = 50;
             dgvBestSellingCategories.Columns.AddRange(new DataGridViewColumn[] { category, cat_quantity_sold, cat_revenue, cat_profit });
-            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = Color.White;
-            dataGridViewCellStyle23.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle23.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle23.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle23.SelectionBackColor = Color.White;
-            dataGridViewCellStyle23.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.False;
-            dgvBestSellingCategories.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.White;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle7.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle7.SelectionBackColor = Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dgvBestSellingCategories.DefaultCellStyle = dataGridViewCellStyle7;
             dgvBestSellingCategories.Dock = DockStyle.Bottom;
             dgvBestSellingCategories.GridColor = Color.FromArgb(240, 241, 243);
             dgvBestSellingCategories.Location = new Point(0, 71);
             dgvBestSellingCategories.Name = "dgvBestSellingCategories";
             dgvBestSellingCategories.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = Color.White;
-            dataGridViewCellStyle24.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle24.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle24.SelectionBackColor = Color.White;
-            dataGridViewCellStyle24.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
-            dgvBestSellingCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle8.SelectionBackColor = Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dgvBestSellingCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dgvBestSellingCategories.RowHeadersVisible = false;
             dgvBestSellingCategories.RowHeadersWidth = 50;
             dgvBestSellingCategories.RowTemplate.Height = 29;
@@ -369,6 +369,34 @@
             Panel1.Size = new Size(783, 287);
             Panel1.TabIndex = 3;
             // 
+            // btnDownload
+            // 
+            btnDownload.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnDownload.BorderColor = Color.FromArgb(208, 211, 217);
+            btnDownload.BorderRadius = 4;
+            btnDownload.BorderThickness = 2;
+            btnDownload.Cursor = Cursors.Hand;
+            btnDownload.DisabledState.BorderColor = Color.DarkGray;
+            btnDownload.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDownload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDownload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDownload.FillColor = Color.White;
+            btnDownload.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDownload.ForeColor = Color.FromArgb(93, 102, 121);
+            btnDownload.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
+            btnDownload.HoverState.FillColor = Color.Transparent;
+            btnDownload.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnDownload.HoverState.Image = Properties.Resources.downloadBlue;
+            btnDownload.Image = Properties.Resources.download;
+            btnDownload.ImageSize = new Size(14, 17);
+            btnDownload.Location = new Point(316, 232);
+            btnDownload.Name = "btnDownload";
+            btnDownload.Size = new Size(147, 40);
+            btnDownload.TabIndex = 57;
+            btnDownload.Text = "Download";
+            btnDownload.TextOffset = new Point(2, 0);
+            btnDownload.Click += btnDownload_Click;
+            // 
             // cbFilters
             // 
             cbFilters.BackColor = Color.Transparent;
@@ -395,42 +423,42 @@
             dgvOverview.AllowUserToDeleteRows = false;
             dgvOverview.AllowUserToResizeColumns = false;
             dgvOverview.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = Color.White;
-            dgvOverview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = Color.White;
+            dgvOverview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             dgvOverview.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = Color.White;
-            dataGridViewCellStyle14.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle14.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle14.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle14.SelectionBackColor = Color.White;
-            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dgvOverview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = Color.White;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle10.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle10.SelectionBackColor = Color.White;
+            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgvOverview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgvOverview.ColumnHeadersHeight = 50;
             dgvOverview.Columns.AddRange(new DataGridViewColumn[] { total_profit, revenue, sales });
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = Color.White;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle15.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle15.SelectionBackColor = Color.White;
-            dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
-            dgvOverview.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = Color.White;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle11.SelectionBackColor = Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dgvOverview.DefaultCellStyle = dataGridViewCellStyle11;
             dgvOverview.GridColor = Color.FromArgb(240, 241, 243);
             dgvOverview.ImeMode = ImeMode.NoControl;
             dgvOverview.Location = new Point(0, 71);
             dgvOverview.Name = "dgvOverview";
             dgvOverview.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = Color.White;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle16.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle16.SelectionBackColor = Color.White;
-            dataGridViewCellStyle16.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dgvOverview.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = Color.White;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle12.SelectionBackColor = Color.White;
+            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvOverview.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgvOverview.RowHeadersVisible = false;
             dgvOverview.RowHeadersWidth = 50;
             dgvOverview.RowTemplate.Height = 29;
@@ -487,33 +515,6 @@
             lblOverview.TabIndex = 20;
             lblOverview.Text = "Overview\r\n";
             // 
-            // btnDownload
-            // 
-            btnDownload.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnDownload.BorderColor = Color.FromArgb(208, 211, 217);
-            btnDownload.BorderRadius = 4;
-            btnDownload.BorderThickness = 2;
-            btnDownload.DisabledState.BorderColor = Color.DarkGray;
-            btnDownload.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnDownload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnDownload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnDownload.FillColor = Color.White;
-            btnDownload.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDownload.ForeColor = Color.FromArgb(93, 102, 121);
-            btnDownload.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
-            btnDownload.HoverState.FillColor = Color.Transparent;
-            btnDownload.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
-            btnDownload.HoverState.Image = Properties.Resources.downloadBlue;
-            btnDownload.Image = Properties.Resources.download;
-            btnDownload.ImageSize = new Size(14, 17);
-            btnDownload.Location = new Point(316, 232);
-            btnDownload.Name = "btnDownload";
-            btnDownload.Size = new Size(147, 40);
-            btnDownload.TabIndex = 57;
-            btnDownload.Text = "Download";
-            btnDownload.TextOffset = new Point(2, 0);
-            btnDownload.Click += btnDownload_Click;
-            // 
             // UC_Reports
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -550,13 +551,6 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel Panel3;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblBestSellingItems;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvBestSellingItems;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvOverview;
         private DataGridViewTextBoxColumn total_profit;
         private DataGridViewTextBoxColumn revenue;
@@ -567,5 +561,12 @@
         private DataGridViewTextBoxColumn cat_revenue;
         private DataGridViewTextBoxColumn cat_profit;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnDownload;
+        private DataGridViewTextBoxColumn part_number;
+        private DataGridViewTextBoxColumn brand;
+        private DataGridViewTextBoxColumn category_;
+        private DataGridViewTextBoxColumn qty_sold;
+        private DataGridViewTextBoxColumn qty_in_hand;
+        private DataGridViewTextBoxColumn revenue_;
+        private DataGridViewTextBoxColumn profit_;
     }
 }
