@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using Siticone.Desktop.UI.WinForms;
 using System.Configuration;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace InventoryManagementSystem
 {
@@ -24,6 +25,7 @@ namespace InventoryManagementSystem
 
         private void AddItem_Load(object sender, EventArgs e)
         {
+            lblSuccess.Visible = false;
             HideErrorLabels();
         }
 
@@ -66,10 +68,10 @@ namespace InventoryManagementSystem
                 {
                     await _mongoConnector.InsertDocumentAsync("items", newItem);
 
-                    var addItemSuccessForm = new AddItemSuccess();
+                    /*var addItemSuccessForm = new AddItemSuccess();
                     addItemSuccessForm.Owner = this;
                     addItemSuccessForm.TopMost = true;
-                    addItemSuccessForm.ShowDialog();
+                    addItemSuccessForm.ShowDialog();*/
 
                     // Empty the text boxes
                     txtPartNumber.Text = "";
@@ -84,6 +86,16 @@ namespace InventoryManagementSystem
                     txtSupplier.Text = "";
 
                     _ucInventory.RefreshInventory();
+
+                    lblSuccess.Visible = true;
+                    Timer timer = new Timer();
+                    timer.Interval = 5000; // 5000ms = 5s
+                    timer.Tick += (s, e) =>
+                    {
+                        lblSuccess.Visible = false;
+                        timer.Stop();
+                    };
+                    timer.Start();
 
                 }
                 catch (Exception ex)

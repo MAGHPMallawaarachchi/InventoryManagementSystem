@@ -1,16 +1,8 @@
 ﻿using InventoryManagementSystem.DataModels;
 using InventoryManagementSystem.UserControls;
 using Siticone.Desktop.UI.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace InventoryManagementSystem
 {
@@ -31,6 +23,7 @@ namespace InventoryManagementSystem
 
         private void AddCustomer_Load(object sender, EventArgs e)
         {
+            lblSuccess.Visible = false;
             HideErrorLabels();
         }
 
@@ -56,7 +49,16 @@ namespace InventoryManagementSystem
                 txtContactNumber.Text = "";
 
                 _ucCustomers.RefreshCustomers();
-                this.Close();
+
+                lblSuccess.Visible = true;
+                Timer timer = new Timer();
+                timer.Interval = 5000; // 5000ms = 5s
+                timer.Tick += (s, e) =>
+                {
+                    lblSuccess.Visible = false;
+                    timer.Stop();
+                };
+                timer.Start();
             }
         }
 

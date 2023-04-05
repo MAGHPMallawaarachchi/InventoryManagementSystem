@@ -62,6 +62,7 @@
             lblBuyingPriceError = new Label();
             lblUnitPriceError = new Label();
             lblQuantityError = new Label();
+            lblSuccess = new Label();
             ((System.ComponentModel.ISupportInitialize)txtQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtUnitPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtBuyingPrice).BeginInit();
@@ -84,7 +85,7 @@
             btnAddItem.Image = Properties.Resources.addWhite;
             btnAddItem.ImageOffset = new Point(0, 1);
             btnAddItem.ImageSize = new Size(15, 15);
-            btnAddItem.Location = new Point(352, 804);
+            btnAddItem.Location = new Point(353, 824);
             btnAddItem.Name = "btnAddItem";
             btnAddItem.Size = new Size(120, 40);
             btnAddItem.TabIndex = 41;
@@ -108,7 +109,7 @@
             btnDiscard.ForeColor = Color.FromArgb(93, 102, 121);
             btnDiscard.ImageOffset = new Point(0, 1);
             btnDiscard.ImageSize = new Size(15, 10);
-            btnDiscard.Location = new Point(214, 804);
+            btnDiscard.Location = new Point(201, 824);
             btnDiscard.Name = "btnDiscard";
             btnDiscard.Size = new Size(120, 40);
             btnDiscard.TabIndex = 40;
@@ -584,13 +585,28 @@
             lblQuantityError.TabIndex = 56;
             lblQuantityError.Text = "Error";
             // 
+            // lblSuccess
+            // 
+            lblSuccess.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSuccess.AutoSize = true;
+            lblSuccess.BackColor = Color.FromArgb(235, 255, 237);
+            lblSuccess.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSuccess.ForeColor = Color.FromArgb(16, 167, 96);
+            lblSuccess.Location = new Point(141, 765);
+            lblSuccess.Name = "lblSuccess";
+            lblSuccess.Padding = new Padding(12, 8, 12, 8);
+            lblSuccess.Size = new Size(219, 39);
+            lblSuccess.TabIndex = 57;
+            lblSuccess.Text = "Item added successfully!";
+            // 
             // AddItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(504, 876);
+            ClientSize = new Size(504, 896);
             ControlBox = false;
+            Controls.Add(lblSuccess);
             Controls.Add(lblQuantityError);
             Controls.Add(lblUnitPriceError);
             Controls.Add(lblBuyingPriceError);
@@ -672,5 +688,6 @@
         private Label lblBuyingPriceError;
         private Label lblUnitPriceError;
         private Label lblQuantityError;
+        private Label lblSuccess;
     }
 }

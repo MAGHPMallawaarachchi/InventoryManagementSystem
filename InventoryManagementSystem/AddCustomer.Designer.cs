@@ -47,6 +47,7 @@
             lblAddressError = new Label();
             lblNameError = new Label();
             lblCustomerIDError = new Label();
+            lblSuccess = new Label();
             SuspendLayout();
             // 
             // label1
@@ -253,7 +254,7 @@
             btnAddCustomer.Image = Properties.Resources.addWhite;
             btnAddCustomer.ImageOffset = new Point(0, 1);
             btnAddCustomer.ImageSize = new Size(15, 15);
-            btnAddCustomer.Location = new Point(329, 442);
+            btnAddCustomer.Location = new Point(329, 477);
             btnAddCustomer.Name = "btnAddCustomer";
             btnAddCustomer.Size = new Size(147, 40);
             btnAddCustomer.TabIndex = 43;
@@ -277,7 +278,7 @@
             btnDiscard.ForeColor = Color.FromArgb(93, 102, 121);
             btnDiscard.ImageOffset = new Point(0, 1);
             btnDiscard.ImageSize = new Size(15, 10);
-            btnDiscard.Location = new Point(185, 442);
+            btnDiscard.Location = new Point(185, 477);
             btnDiscard.Name = "btnDiscard";
             btnDiscard.Size = new Size(120, 40);
             btnDiscard.TabIndex = 42;
@@ -346,13 +347,28 @@
             lblCustomerIDError.TabIndex = 52;
             lblCustomerIDError.Text = "Error";
             // 
+            // lblSuccess
+            // 
+            lblSuccess.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSuccess.AutoSize = true;
+            lblSuccess.BackColor = Color.FromArgb(235, 255, 237);
+            lblSuccess.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSuccess.ForeColor = Color.FromArgb(16, 167, 96);
+            lblSuccess.Location = new Point(135, 421);
+            lblSuccess.Name = "lblSuccess";
+            lblSuccess.Padding = new Padding(12, 8, 12, 8);
+            lblSuccess.Size = new Size(258, 39);
+            lblSuccess.TabIndex = 58;
+            lblSuccess.Text = "Customer added successfully!";
+            // 
             // AddCustomer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(504, 511);
+            ClientSize = new Size(504, 546);
             ControlBox = false;
+            Controls.Add(lblSuccess);
             Controls.Add(lblContactNumberError);
             Controls.Add(lblCityError);
             Controls.Add(lblAddressError);
@@ -401,5 +417,6 @@
         private Label lblAddressError;
         private Label lblNameError;
         private Label lblCustomerIDError;
+        private Label lblSuccess;
     }
 }
