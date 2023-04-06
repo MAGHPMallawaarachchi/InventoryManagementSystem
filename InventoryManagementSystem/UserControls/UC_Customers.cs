@@ -6,6 +6,8 @@ namespace InventoryManagementSystem.UserControls
     public partial class UC_Customers : UserControl
     {
         private readonly MongoConnector _mongoConnector;
+        ShowMessage showMessage = new ShowMessage();
+
         public UC_Customers()
         {
             InitializeComponent();
@@ -108,22 +110,20 @@ namespace InventoryManagementSystem.UserControls
                             int idIndex = 0;
                             String idToDelete = (String)selectedRow.Cells[idIndex].Value;
 
-                            // Call the DeleteCustomer method in your data access layer to delete the record
-                            bool deletedSuccessfully = await _mongoConnector.DeleteCustomer(idToDelete);
+                            Form? parentForm = this.FindForm();
 
-
-                            if (deletedSuccessfully)
+                            try
                             {
-                                // Display a success message
-                                MessageBox.Show("Record deleted successfully.");
+                                await _mongoConnector.DeleteCustomer(idToDelete);
+
+                                showMessage.ShowSuccessMessage("Customer deleted successfully!", parentForm!);
 
                                 // Refresh the DataGridView to reflect the changes
                                 RefreshCustomers();
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                // Display an error message if the record could not be deleted
-                                MessageBox.Show("Error! deleting process is not successful.");
+                                showMessage.ShowErrorMessage(ex.Message, parentForm!);
                             }
 
                         }

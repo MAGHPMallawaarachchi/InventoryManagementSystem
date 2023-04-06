@@ -20,6 +20,8 @@ namespace InventoryManagementSystem
     {
         private readonly MongoConnector _mongoConnector;
         private readonly UC_Customers _ucCustomers;
+        ShowMessage showMessage = new ShowMessage();
+
         private readonly string _customerId;
 
         public EditCustomer(UC_Customers ucCustomers, string customerId)
@@ -40,8 +42,8 @@ namespace InventoryManagementSystem
             var document = await _mongoConnector.GetByCustomerID(_customerId);
 
             txtCustomerID.Text = document.customer_id;
-            txtName.Text = document?.name;
-            txtAddress.Text = document.address;
+            txtName.Text = document!.name;
+            txtAddress.Text = document!.address;
             txtCity.Text = document.city;
             txtContactNumber.Text = document.phone_no;
 
@@ -56,17 +58,21 @@ namespace InventoryManagementSystem
             string city = txtCity.Text;
             string phoneNo = txtContactNumber.Text;
 
-            bool updatedSuccessfully = _mongoConnector.UpdateCustomer("customers", customerId, name, address, city, phoneNo);
+            Form? parentForm = this.FindForm();
 
-            if (updatedSuccessfully)
+            try
             {
-                MessageBox.Show("Customer details updated successfully.");
+                _mongoConnector.UpdateCustomer("customers", customerId, name, address, city, phoneNo);
+
+                showMessage.ShowSuccessMessage("Customer updated successfully!", parentForm!);
+
                 _ucCustomers.RefreshCustomers();
+
                 this.Close();
             }
-            else
+            catch (Exception ex) 
             {
-                MessageBox.Show("Error! Failed to update customer details.");
+                showMessage.ShowErrorMessage(ex.Message, parentForm!);
             }
         }
 

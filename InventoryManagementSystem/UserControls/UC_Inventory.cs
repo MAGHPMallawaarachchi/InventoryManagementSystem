@@ -11,6 +11,7 @@ namespace InventoryManagementSystem
     {
         private readonly MongoConnector _mongoConnector;
         UIHelper UIHelper = new UIHelper();
+        ShowMessage showMessage = new ShowMessage();
 
         public UC_Inventory()
         {
@@ -362,14 +363,17 @@ namespace InventoryManagementSystem
                     {
                         string? partNumber = dgvItems.Rows[i].Cells["part_number"].Value.ToString();
 
+                        Form? parentForm = this.FindForm();
+
                         try
                         {
                             await _mongoConnector.DeleteItem(partNumber!);
+                            showMessage.ShowSuccessMessage("Item deleted successfully!", parentForm!);
+
                         }
                         catch (Exception ex)
                         {
-                            // Handle the exception here
-                            MessageBox.Show("Failed to delete item: " + ex.Message);
+                            showMessage.ShowErrorMessage(ex.Message, parentForm!);
                         }
 
                         // Remove the row from the DataGridView
