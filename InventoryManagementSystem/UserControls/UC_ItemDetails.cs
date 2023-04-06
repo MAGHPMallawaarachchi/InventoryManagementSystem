@@ -204,19 +204,19 @@ namespace InventoryManagementSystem.UserControls
                 {"total_cost", Convert.ToDecimal(txtCost.Text) },
                 {"total_profit", Convert.ToDecimal(txtProfit.Text) },
                 {"total_revenue", Convert.ToDecimal(txtRevenue.Text) }
-            };
+            };           
 
-            var isUpdated = await _mongoConnector.UpdateDocumentAsync("items", filter, updateItem);
+            Form? parentForm = this.FindForm();
 
             // check if the update was successful
-            if (isUpdated)
+            try
             {
-                MessageBox.Show("Updated successfully");
+                await _mongoConnector.UpdateDocumentAsync("items", filter, updateItem);
+                showMessage.ShowSuccessMessage("Item updated successfully!", parentForm!);
             }
-            else
+            catch(Exception ex)
             {
-                // display an error message if the update failed
-                txtPartNumber.Text = "Update failed.";
+                showMessage.ShowErrorMessage(ex.Message, parentForm!);
             }
 
         }

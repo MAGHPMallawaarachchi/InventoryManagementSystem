@@ -15,7 +15,7 @@ namespace InventoryManagementSystem
             Success success = new Success(Message);
 
             success.StartPosition = FormStartPosition.Manual;
-            success.Location = new Point(parentForm.Location.X + (parentForm.Width - success.Width)/2, parentForm.Location.Y + 10);
+            success.Location = new Point(parentForm.Location.X + (parentForm.Width - success.Width)/2, parentForm.Location.Y + 50);
 
             // Set opacity and animation
             success.Opacity = 0;
@@ -52,7 +52,7 @@ namespace InventoryManagementSystem
             Error error = new Error(Message);
 
             error.StartPosition = FormStartPosition.Manual;
-            error.Location = new Point(parentForm.Location.X + (parentForm.Width - error.Width) / 2, parentForm.Location.Y + 10);
+            error.Location = new Point(parentForm.Location.X + (parentForm.Width - error.Width) / 2, parentForm.Location.Y + 50);
 
             // Set opacity and animation
             error.Opacity = 0;

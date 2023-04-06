@@ -63,6 +63,8 @@ namespace InventoryManagementSystem
                     {"total_revenue", totalRevenue }
                 };
 
+                Form? parentForm = this.FindForm();
+
                 try
                 {
                     await _mongoConnector.InsertDocumentAsync("items", newItem);
@@ -81,12 +83,12 @@ namespace InventoryManagementSystem
 
                     _ucInventory.RefreshInventory();
 
-                    showMessage.ShowSuccessMessage("Item added successfully!", this);
+                    showMessage.ShowSuccessMessage("Item added successfully!", parentForm!);
 
                 }
                 catch (Exception ex)
                 {
-                    showMessage.ShowErrorMessage(ex.Message, this);
+                    showMessage.ShowErrorMessage(ex.Message, parentForm!);
                 }
             }
         }
