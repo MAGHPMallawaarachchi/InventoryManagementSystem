@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.UserControls;
+﻿using InventoryManagementSystem.Messages;
+using InventoryManagementSystem.UserControls;
 using Siticone.Desktop.UI.WinForms;
 using System;
 using System.Collections.Generic;
@@ -33,17 +34,28 @@ namespace InventoryManagementSystem
             addUserControl(uc);
         }
 
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            // Check if the user is authenticated
+            if (Session.Username == null)
+            {
+                // Redirect to the login form
+                var login = new Login();
+                login.ShowDialog();
+                this.Close();
+                return;
+            }
+
+            // Set the user label
+            lblUser.Text = "Welcome, " + Session.Name + "!";
+        }
+
         public void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(userControl);
             userControl.BringToFront();
-        }
-
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -84,5 +96,35 @@ namespace InventoryManagementSystem
             addUserControl(uc);
         }
 
+        private bool _isLoggingOut = false;
+
+        private void LogOut()
+        {
+            LogoutConfirmation logoutConfirmation = new LogoutConfirmation();
+            DialogResult result = logoutConfirmation.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                // Clear the session variables
+                Session.Username = null;
+                Session.Name = null;
+                Session.IsAdmin = false;
+
+                _isLoggingOut = true;
+                this.Close();
+                logoutConfirmation.Close();
+            }
+
+            else if (result == DialogResult.Cancel || logoutConfirmation.Cancelled)
+            {
+                logoutConfirmation.Close();
+                return;
+            }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            LogOut();
+        }
     }
 }

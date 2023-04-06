@@ -34,19 +34,30 @@ namespace InventoryManagementSystem
 
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
+            bool IsAdmin = false;
 
-            bool IsFound = _mongoConnector.FindAdmin(username,password);
-
-            if (IsFound)
+            var admin = await _mongoConnector.FindAdmin(username, password);
+            
+            if(admin != null)
             {
-                Dashboard dashboard = new Dashboard();
-                dashboard.Show();
+                IsAdmin = true;
+            }
+
+            if (IsAdmin)
+            {
+                // Set the session variables
+                Session.Username = txtUsername.Text;
+                Session.Name = admin!.name;
+                Session.IsAdmin = IsAdmin;
 
                 this.Hide();
+                Dashboard dashboard = new Dashboard();
+                dashboard.ShowDialog();
+                this.Close();
             }
             else
             {
@@ -69,6 +80,6 @@ namespace InventoryManagementSystem
             {
                 txtUsername.Focus();
             }
-        }
+        }       
     }
 }

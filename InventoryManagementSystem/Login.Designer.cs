@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
-            loginButton = new Button();
+            btnLogin = new Button();
             txtPassword = new TextBox();
             txtUsername = new TextBox();
             passwordLabel = new Label();
@@ -45,7 +45,7 @@
             // panel1
             // 
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(loginButton);
+            panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(passwordLabel);
@@ -69,20 +69,20 @@
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
             // 
-            // loginButton
+            // btnLogin
             // 
-            loginButton.BackColor = SystemColors.ActiveCaptionText;
-            loginButton.Cursor = Cursors.Hand;
-            loginButton.FlatStyle = FlatStyle.Popup;
-            loginButton.ForeColor = SystemColors.ButtonHighlight;
-            loginButton.Location = new Point(631, 430);
-            loginButton.Margin = new Padding(4, 2, 4, 2);
-            loginButton.Name = "loginButton";
-            loginButton.Size = new Size(298, 28);
-            loginButton.TabIndex = 19;
-            loginButton.Text = "Login";
-            loginButton.UseVisualStyleBackColor = false;
-            loginButton.Click += loginButton_Click;
+            btnLogin.BackColor = SystemColors.ActiveCaptionText;
+            btnLogin.Cursor = Cursors.Hand;
+            btnLogin.FlatStyle = FlatStyle.Popup;
+            btnLogin.ForeColor = SystemColors.ButtonHighlight;
+            btnLogin.Location = new Point(631, 430);
+            btnLogin.Margin = new Padding(4, 2, 4, 2);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(298, 28);
+            btnLogin.TabIndex = 19;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // txtPassword
             // 
@@ -164,7 +164,7 @@
             // 
             // Login
             // 
-            AcceptButton = loginButton;
+            AcceptButton = btnLogin;
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
@@ -186,7 +186,7 @@
         #endregion
 
         private Panel panel1;
-        private Button loginButton;
+        private Button btnLogin;
         private TextBox txtPassword;
         private TextBox txtUsername;
         private Label passwordLabel;

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            btnLogout = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnNewInvoice = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnOrders = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             btnCustomers = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -38,13 +39,18 @@
             btnDashboard = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            lblUser = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            siticoneCirclePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
             siticonePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)siticoneCirclePictureBox1).BeginInit();
             SuspendLayout();
             // 
             // siticonePanel1
             // 
             siticonePanel1.BackColor = Color.White;
+            siticonePanel1.Controls.Add(btnLogout);
             siticonePanel1.Controls.Add(btnNewInvoice);
             siticonePanel1.Controls.Add(btnOrders);
             siticonePanel1.Controls.Add(btnCustomers);
@@ -54,9 +60,43 @@
             siticonePanel1.Controls.Add(pictureBox1);
             siticonePanel1.Dock = DockStyle.Left;
             siticonePanel1.Location = new Point(0, 0);
+            siticonePanel1.Margin = new Padding(3, 3, 10, 3);
             siticonePanel1.Name = "siticonePanel1";
             siticonePanel1.Size = new Size(280, 913);
             siticonePanel1.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnLogout.BackColor = Color.Transparent;
+            btnLogout.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            btnLogout.CheckedState.FillColor = Color.Transparent;
+            btnLogout.CheckedState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnLogout.Cursor = Cursors.Hand;
+            btnLogout.DisabledState.BorderColor = Color.DarkGray;
+            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLogout.FillColor = Color.Transparent;
+            btnLogout.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLogout.ForeColor = Color.FromArgb(93, 102, 121);
+            btnLogout.HoverState.BorderColor = Color.Transparent;
+            btnLogout.HoverState.CustomBorderColor = Color.Transparent;
+            btnLogout.HoverState.FillColor = Color.Transparent;
+            btnLogout.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
+            btnLogout.HoverState.Image = Properties.Resources.logoutBlue;
+            btnLogout.Image = Properties.Resources.logout;
+            btnLogout.ImageAlign = HorizontalAlignment.Left;
+            btnLogout.ImageOffset = new Point(30, 0);
+            btnLogout.Location = new Point(2, 836);
+            btnLogout.Name = "btnLogout";
+            btnLogout.PressedDepth = 0;
+            btnLogout.Size = new Size(277, 56);
+            btnLogout.TabIndex = 7;
+            btnLogout.Text = "Logout";
+            btnLogout.TextAlign = HorizontalAlignment.Left;
+            btnLogout.TextOffset = new Point(35, 0);
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnNewInvoice
             // 
@@ -275,11 +315,39 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblUser);
+            panel1.Controls.Add(siticoneCirclePictureBox1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(280, 0);
+            panel1.Margin = new Padding(10, 3, 3, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(1142, 100);
             panel1.TabIndex = 1;
+            // 
+            // lblUser
+            // 
+            lblUser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            lblUser.BackColor = Color.Transparent;
+            lblUser.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUser.ForeColor = Color.FromArgb(56, 62, 73);
+            lblUser.Location = new Point(21, 32);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(157, 33);
+            lblUser.TabIndex = 1;
+            lblUser.Text = "Welcome user!";
+            // 
+            // siticoneCirclePictureBox1
+            // 
+            siticoneCirclePictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            siticoneCirclePictureBox1.Image = Properties.Resources.admin;
+            siticoneCirclePictureBox1.ImageRotate = 0F;
+            siticoneCirclePictureBox1.Location = new Point(1065, 21);
+            siticoneCirclePictureBox1.Name = "siticoneCirclePictureBox1";
+            siticoneCirclePictureBox1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            siticoneCirclePictureBox1.Size = new Size(54, 54);
+            siticoneCirclePictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            siticoneCirclePictureBox1.TabIndex = 0;
+            siticoneCirclePictureBox1.TabStop = false;
             // 
             // Dashboard
             // 
@@ -297,6 +365,9 @@
             Load += Dashboard_Load;
             siticonePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)siticoneCirclePictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -311,5 +382,8 @@
         private PictureBox pictureBox1;
         private Panel panel1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btnNewInvoice;
+        private Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox siticoneCirclePictureBox1;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblUser;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnLogout;
     }
 }
