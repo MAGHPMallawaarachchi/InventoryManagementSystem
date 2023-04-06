@@ -1,4 +1,5 @@
 ﻿using InventoryManagementSystem.DataModels;
+using InventoryManagementSystem.Messages;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Configuration;
@@ -9,6 +10,8 @@ namespace InventoryManagementSystem.UserControls
     public partial class UC_ItemDetails : UserControl
     {
         private readonly MongoConnector _mongoConnector;
+        ShowMessage showMessage = new ShowMessage();
+
         public UC_ItemDetails()
         {
             InitializeComponent();
@@ -281,15 +284,38 @@ namespace InventoryManagementSystem.UserControls
         }
 
         private async void btnDelete_Click(object sender, EventArgs e)
-        {           
-            try
+        {
+            DeleteConfirmation deleteConfirmation = new DeleteConfirmation();
+            DialogResult result = deleteConfirmation.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
-                var result = await _mongoConnector.DeleteItem(partNumber.Text.ToString());
+                Form? parentForm = this.FindForm();
+
+                try
+                {
+                    await _mongoConnector.DeleteItem(partNumber.Text.ToString());
+
+                    UC_Inventory uc = new UC_Inventory();
+
+                    Dashboard? dashboard = this.FindForm() as Dashboard;
+
+                    if (dashboard != null)
+                    {
+                        dashboard.addUserControl(uc);
+                    }
+
+                    showMessage.ShowSuccessMessage("Item deleted successfully!", parentForm!);
+                }
+                catch (Exception ex)
+                {
+                    showMessage.ShowErrorMessage(ex.Message, parentForm!);
+                }
             }
-            catch (Exception ex)
+            else if (result == DialogResult.Cancel || deleteConfirmation.Cancelled)
             {
-                // Handle the exception here
-                MessageBox.Show("Failed to delete item: " + ex.Message);
+                deleteConfirmation.Close();
+                return;
             }
 
         }

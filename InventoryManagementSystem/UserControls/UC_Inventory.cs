@@ -352,7 +352,7 @@ namespace InventoryManagementSystem
             DeleteConfirmation deleteConfirmation = new DeleteConfirmation();
             DialogResult result = deleteConfirmation.ShowDialog();
 
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 // Iterate through all rows of the DataGridView
                 for (int i = 0; i < dgvItems.Rows.Count; i++)

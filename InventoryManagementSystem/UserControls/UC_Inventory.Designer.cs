@@ -218,7 +218,7 @@
             btnDelete.Image = Properties.Resources.delete;
             btnDelete.ImageOffset = new Point(0, 1);
             btnDelete.ImageSize = new Size(16, 18);
-            btnDelete.Location = new Point(737, 22);
+            btnDelete.Location = new Point(725, 22);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(102, 40);
             btnDelete.TabIndex = 54;
@@ -232,6 +232,7 @@
             btnFilters.BorderColor = Color.FromArgb(208, 211, 217);
             btnFilters.BorderRadius = 4;
             btnFilters.BorderThickness = 2;
+            btnFilters.Cursor = Cursors.Hand;
             btnFilters.DisabledState.BorderColor = Color.DarkGray;
             btnFilters.DisabledState.CustomBorderColor = Color.DarkGray;
             btnFilters.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -245,7 +246,7 @@
             btnFilters.Image = Properties.Resources.filters;
             btnFilters.ImageOffset = new Point(0, 1);
             btnFilters.ImageSize = new Size(15, 10);
-            btnFilters.Location = new Point(856, 22);
+            btnFilters.Location = new Point(845, 22);
             btnFilters.Name = "btnFilters";
             btnFilters.Size = new Size(102, 40);
             btnFilters.TabIndex = 53;
@@ -409,11 +410,12 @@
             btnAddItem.ForeColor = Color.White;
             btnAddItem.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
             btnAddItem.HoverState.FillColor = Color.FromArgb(10, 73, 156);
+            btnAddItem.Image = Properties.Resources.addWhite;
             btnAddItem.ImageOffset = new Point(0, 1);
-            btnAddItem.ImageSize = new Size(15, 10);
-            btnAddItem.Location = new Point(973, 22);
+            btnAddItem.ImageSize = new Size(15, 15);
+            btnAddItem.Location = new Point(964, 22);
             btnAddItem.Name = "btnAddItem";
-            btnAddItem.Size = new Size(102, 40);
+            btnAddItem.Size = new Size(111, 40);
             btnAddItem.TabIndex = 1;
             btnAddItem.Text = "Add Item";
             btnAddItem.TextOffset = new Point(2, 0);
