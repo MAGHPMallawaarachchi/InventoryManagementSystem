@@ -46,7 +46,7 @@ namespace InventoryManagementSystem
                 Dashboard dashboard = new Dashboard();
                 dashboard.Show();
 
-                this.Close();
+                this.Hide();
             }
             else
             {
