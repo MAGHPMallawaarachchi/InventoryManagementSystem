@@ -10,7 +10,10 @@ namespace InventoryManagementSystem.UserControls
 
     public partial class UC_NewInvoice : UserControl
     {
-        UIHelper uIHelper = new UIHelper();
+        UIHelper uIHelper = new UIHelper();       
+        Dashboard dashboard = new Dashboard();
+        ShowMessage showMessage = new ShowMessage();
+
         private readonly MongoConnector _mongoConnector;
         private decimal total = 0;
 
@@ -241,19 +244,28 @@ namespace InventoryManagementSystem.UserControls
             lblAddressData.Text = "-- Address --";
             lblCityData.Text = "-- City --";
             lblPhoneNoData.Text = "-- Phone No --";
+
+            lblTotalData.Text = "";
         }
 
-        private async void btnSaveInvoice_Click(object sender, EventArgs e)
+        private bool ValidateInputs()
         {
+            bool IsValid = true;
+
             if (cbCustomerID.SelectedIndex == 0)
             {
                 lblCustomerError.Text = "Please enter the Customer ID!";
                 lblCustomerError.Visible = true;
+                IsValid = false;
             }
-            else
-            {
-                lblRowsError.Visible = false;
 
+            return IsValid;
+        }
+
+        private async void btnSaveInvoice_Click(object sender, EventArgs e)
+        {
+            if(ValidateInputs())
+            {
                 var mongoClient = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
                 var database = mongoClient.GetDatabase("InventoryManagementSystem");
                 var collection = database.GetCollection<BsonDocument>("invoices");
@@ -395,12 +407,22 @@ namespace InventoryManagementSystem.UserControls
                         total_revenue = totalRevenue
                     };
 
-                    await _mongoConnector.InsertDocumentAsync("invoices", newInvoice);
+                    Form? parentForm = this.FindForm();
 
-                    // generate the PDF document
-                    pdfGenerator.GeneratePdfInvoice(invoice);
+                    try
+                    {
+                        await _mongoConnector.InsertDocumentAsync("invoices", newInvoice);
 
-                    MessageBox.Show("Invoice saved successfully.");
+                        // generate the PDF document
+                        pdfGenerator.GeneratePdfInvoice(invoice);
+
+                        showMessage.ShowSuccessMessage("Invoice saved successfully!", parentForm!);
+                    }
+                    catch (Exception ex)
+                    {
+                        showMessage.ShowErrorMessage(ex.Message, parentForm!);
+                    }
+
                 }
             }
 
