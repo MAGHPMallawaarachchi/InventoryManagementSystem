@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             loginButton = new Button();
             txtPassword = new TextBox();
             txtUsername = new TextBox();
@@ -37,7 +38,6 @@
             usernameLabel = new Label();
             heading = new Label();
             rectangle = new Siticone.Desktop.UI.WinForms.SiticoneShapes();
-            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -58,7 +58,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1168, 701);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint_1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.vertical_Original__PVT_LTD;
+            pictureBox1.Location = new Point(132, 208);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(306, 274);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
             // 
             // loginButton
             // 
@@ -83,7 +92,6 @@
             txtPassword.Size = new Size(296, 27);
             txtPassword.TabIndex = 18;
             txtPassword.UseSystemPasswordChar = true;
-            txtPassword.TextChanged += password_TextChanged;
             txtPassword.KeyUp += txtPassword_KeyUp;
             // 
             // txtUsername
@@ -93,7 +101,6 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(296, 27);
             txtUsername.TabIndex = 17;
-            txtUsername.TextChanged += username_TextChanged;
             txtUsername.KeyDown += txtUsername_KeyDown;
             // 
             // passwordLabel
@@ -107,7 +114,6 @@
             passwordLabel.Size = new Size(70, 20);
             passwordLabel.TabIndex = 16;
             passwordLabel.Text = "Password";
-            passwordLabel.Click += passwordLabel_Click;
             // 
             // usernameLabel
             // 
@@ -120,7 +126,6 @@
             usernameLabel.Size = new Size(75, 20);
             usernameLabel.TabIndex = 15;
             usernameLabel.Text = "Username";
-            usernameLabel.Click += usernameLabel_Click;
             // 
             // heading
             // 
@@ -134,7 +139,6 @@
             heading.Size = new Size(164, 73);
             heading.TabIndex = 14;
             heading.Text = "Login";
-            heading.Click += heading_Click_1;
             // 
             // rectangle
             // 
@@ -157,17 +161,6 @@
             rectangle.Text = "Rectangle";
             rectangle.UseTransparentBackground = true;
             rectangle.Zoom = 80;
-            rectangle.Click += rectangle_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.vertical_Original__PVT_LTD;
-            pictureBox1.Location = new Point(132, 208);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(306, 274);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 20;
-            pictureBox1.TabStop = false;
             // 
             // Login
             // 

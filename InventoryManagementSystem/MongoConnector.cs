@@ -54,6 +54,18 @@ namespace InventoryManagementSystem
 
         //READ
 
+        //get admin
+        public bool FindAdmin(string username, string password)
+        {
+            var collection = GetCollection<Admin>("admin");
+            var filter = Builders<Admin>.Filter.Eq("username", username) & Builders<Admin>.Filter.Eq("password", password);
+
+            // Execute the query and check if a matching user is found
+            var admin = collection.Find(filter).FirstOrDefault();
+
+            return admin != null;
+        }
+
         //get all items
         public async Task<List<Item>> GetAllItems()
         {
