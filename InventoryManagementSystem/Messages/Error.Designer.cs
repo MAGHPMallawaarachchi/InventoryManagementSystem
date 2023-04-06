@@ -28,34 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnClose = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             lblErrorMessage = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             siticonePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             panel1 = new Panel();
+            btnClose = new Siticone.Desktop.UI.WinForms.SiticoneImageButton();
             ((System.ComponentModel.ISupportInitialize)siticonePictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // btnClose
-            // 
-            btnClose.BorderColor = Color.FromArgb(186, 186, 187);
-            btnClose.Cursor = Cursors.Hand;
-            btnClose.CustomBorderColor = Color.FromArgb(186, 186, 187);
-            btnClose.CustomBorderThickness = new Padding(1, 0, 0, 0);
-            btnClose.DisabledState.BorderColor = Color.DarkGray;
-            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnClose.Dock = DockStyle.Right;
-            btnClose.FillColor = Color.White;
-            btnClose.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClose.ForeColor = Color.FromArgb(186, 186, 187);
-            btnClose.Location = new Point(425, 0);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(97, 70);
-            btnClose.TabIndex = 9;
-            btnClose.Text = "CLOSE";
-            btnClose.Click += btnClose_Click;
             // 
             // lblErrorMessage
             // 
@@ -95,16 +74,32 @@
             panel1.BackColor = Color.FromArgb(218, 62, 51);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
             panel1.Size = new Size(16, 70);
             panel1.TabIndex = 5;
+            // 
+            // btnClose
+            // 
+            btnClose.CheckedState.ImageSize = new Size(64, 64);
+            btnClose.HoverState.ImageSize = new Size(64, 64);
+            btnClose.Image = Properties.Resources.closeRed;
+            btnClose.ImageOffset = new Point(0, 0);
+            btnClose.ImageRotate = 0F;
+            btnClose.ImageSize = new Size(20, 20);
+            btnClose.Location = new Point(408, 25);
+            btnClose.Name = "btnClose";
+            btnClose.PressedState.ImageSize = new Size(64, 64);
+            btnClose.Size = new Size(20, 20);
+            btnClose.TabIndex = 9;
+            btnClose.Click += btnClose_Click;
             // 
             // Error
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(522, 70);
+            BackColor = Color.FromArgb(252, 236, 235);
+            ClientSize = new Size(440, 70);
             Controls.Add(btnClose);
             Controls.Add(lblErrorMessage);
             Controls.Add(siticoneHtmlLabel1);
@@ -119,11 +114,10 @@
         }
 
         #endregion
-
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btnClose;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblErrorMessage;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel1;
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox1;
         private Panel panel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageButton btnClose;
     }
 }
