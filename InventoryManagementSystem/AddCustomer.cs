@@ -10,6 +10,7 @@ namespace InventoryManagementSystem
     {
         private readonly MongoConnector _mongoConnector;
         private readonly UC_Customers _ucCustomers;
+        ShowMessage showMessage = new ShowMessage();
 
         public AddCustomer(UC_Customers ucCustomers)
         {
@@ -17,13 +18,11 @@ namespace InventoryManagementSystem
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
-
             _ucCustomers = ucCustomers;
         }
 
         private void AddCustomer_Load(object sender, EventArgs e)
         {
-            lblSuccess.Visible = false;
             HideErrorLabels();
         }
 
@@ -40,25 +39,25 @@ namespace InventoryManagementSystem
                     phone_no = txtContactNumber.Text
                 };
 
-                await _mongoConnector.Insert<Customer>("customers", customer);
-
-                txtCustomerID.Text = "";
-                txtName.Text = "";
-                txtAddress.Text = "";
-                txtCity.Text = "";
-                txtContactNumber.Text = "";
-
-                _ucCustomers.RefreshCustomers();
-
-                lblSuccess.Visible = true;
-                Timer timer = new Timer();
-                timer.Interval = 5000; // 5000ms = 5s
-                timer.Tick += (s, e) =>
+                try
                 {
-                    lblSuccess.Visible = false;
-                    timer.Stop();
-                };
-                timer.Start();
+                    await _mongoConnector.Insert<Customer>("customers", customer);
+
+                    // Empty the text boxes
+                    txtCustomerID.Text = "";
+                    txtName.Text = "";
+                    txtAddress.Text = "";
+                    txtCity.Text = "";
+                    txtContactNumber.Text = "";
+
+                    _ucCustomers.RefreshCustomers();
+
+                    showMessage.ShowSuccessMessage("Customer added successfully!", this);
+                }
+                catch (Exception ex)
+                {
+                    showMessage.ShowErrorMessage(ex.Message, this);
+                }
             }
         }
 
