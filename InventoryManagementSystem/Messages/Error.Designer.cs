@@ -82,7 +82,7 @@
             // btnClose
             // 
             btnClose.CheckedState.ImageSize = new Size(64, 64);
-            btnClose.HoverState.ImageSize = new Size(64, 64);
+            btnClose.Cursor = Cursors.Hand;
             btnClose.Image = Properties.Resources.closeRed;
             btnClose.ImageOffset = new Point(0, 0);
             btnClose.ImageRotate = 0F;

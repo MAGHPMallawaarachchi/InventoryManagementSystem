@@ -86,7 +86,7 @@ namespace InventoryManagementSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred while adding the item to the database: {ex.Message}");
+                    showMessage.ShowErrorMessage(ex.Message, this);
                 }
             }
         }
