@@ -157,6 +157,9 @@
   <data name="Low" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Low.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="success1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\success.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="customersBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\customersBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -229,6 +232,9 @@
   <data name="filters" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filters.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="newInvoiceBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newInvoiceBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="inventoryBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventoryBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -244,7 +250,7 @@
   <data name="WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newInvoiceBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\newInvoiceBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
