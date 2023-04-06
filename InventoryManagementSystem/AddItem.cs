@@ -12,6 +12,7 @@ namespace InventoryManagementSystem
     {
         private readonly MongoConnector _mongoConnector;
         private readonly UC_Inventory _ucInventory;
+        ShowMessage showMessage = new ShowMessage();
 
         public AddItem(UC_Inventory ucInventory)
         {
@@ -19,13 +20,11 @@ namespace InventoryManagementSystem
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"]!;
             _mongoConnector = new MongoConnector(connectionString, "InventoryManagementSystem");
-
             _ucInventory = ucInventory;
         }
 
         private void AddItem_Load(object sender, EventArgs e)
         {
-            lblSuccess.Visible = false;
             HideErrorLabels();
         }
 
@@ -68,11 +67,6 @@ namespace InventoryManagementSystem
                 {
                     await _mongoConnector.InsertDocumentAsync("items", newItem);
 
-                    /*var addItemSuccessForm = new AddItemSuccess();
-                    addItemSuccessForm.Owner = this;
-                    addItemSuccessForm.TopMost = true;
-                    addItemSuccessForm.ShowDialog();*/
-
                     // Empty the text boxes
                     txtPartNumber.Text = "";
                     txtOEMNumber.Text = "";
@@ -87,15 +81,7 @@ namespace InventoryManagementSystem
 
                     _ucInventory.RefreshInventory();
 
-                    lblSuccess.Visible = true;
-                    Timer timer = new Timer();
-                    timer.Interval = 5000; // 5000ms = 5s
-                    timer.Tick += (s, e) =>
-                    {
-                        lblSuccess.Visible = false;
-                        timer.Stop();
-                    };
-                    timer.Start();
+                    showMessage.ShowSuccessMessage("Item added successfully!", this);
 
                 }
                 catch (Exception ex)
@@ -263,12 +249,25 @@ namespace InventoryManagementSystem
         {
             if (e.KeyCode == Keys.Down)
             {
-                txtBuyingPrice.Focus();
+                txtSupplier.Focus();
             }
 
             if (e.KeyCode == Keys.Up)
             {
                 txtBrand.Focus();
+            }
+        }
+
+        private void txtSupplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtBuyingPrice.Focus();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                txtVehicleBrand.Focus();
             }
         }
 
@@ -281,7 +280,7 @@ namespace InventoryManagementSystem
 
             if (e.KeyCode == Keys.Up)
             {
-                txtVehicleBrand.Focus();
+                txtSupplier.Focus();
             }
         }
 
@@ -302,25 +301,12 @@ namespace InventoryManagementSystem
         {
             if (e.KeyCode == Keys.Down)
             {
-                txtSupplier.Focus();
-            }
-
-            if (e.KeyCode == Keys.Up)
-            {
-                txtUnitPrice.Focus();
-            }
-        }
-
-        private void txtSupplier_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Down)
-            {
                 txtPartNumber.Focus();
             }
 
             if (e.KeyCode == Keys.Up)
             {
-                txtQuantity.Focus();
+                txtUnitPrice.Focus();
             }
         }
 
@@ -383,5 +369,6 @@ namespace InventoryManagementSystem
             lblQuantityError.Visible = false;
             txtQuantity.BorderColor = ColorTranslator.FromHtml("#D0D5DD");
         }
+
     }
 }

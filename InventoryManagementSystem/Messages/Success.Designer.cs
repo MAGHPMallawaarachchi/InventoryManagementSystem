@@ -32,7 +32,7 @@
             siticonePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             lblSuccessMessage = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            btnClose = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)siticonePictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -78,26 +78,26 @@
             lblSuccessMessage.TabIndex = 3;
             lblSuccessMessage.Text = "success message";
             // 
-            // siticoneButton1
+            // btnClose
             // 
-            siticoneButton1.BorderColor = Color.FromArgb(186, 186, 187);
-            siticoneButton1.Cursor = Cursors.Hand;
-            siticoneButton1.CustomBorderColor = Color.FromArgb(186, 186, 187);
-            siticoneButton1.CustomBorderThickness = new Padding(1, 0, 0, 0);
-            siticoneButton1.DisabledState.BorderColor = Color.DarkGray;
-            siticoneButton1.DisabledState.CustomBorderColor = Color.DarkGray;
-            siticoneButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            siticoneButton1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            siticoneButton1.Dock = DockStyle.Right;
-            siticoneButton1.FillColor = Color.White;
-            siticoneButton1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            siticoneButton1.ForeColor = Color.FromArgb(186, 186, 187);
-            siticoneButton1.Location = new Point(425, 0);
-            siticoneButton1.Name = "siticoneButton1";
-            siticoneButton1.Size = new Size(97, 70);
-            siticoneButton1.TabIndex = 4;
-            siticoneButton1.Text = "CLOSE";
-            siticoneButton1.Click += siticoneButton1_Click;
+            btnClose.BorderColor = Color.FromArgb(186, 186, 187);
+            btnClose.Cursor = Cursors.Hand;
+            btnClose.CustomBorderColor = Color.FromArgb(186, 186, 187);
+            btnClose.CustomBorderThickness = new Padding(1, 0, 0, 0);
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.Dock = DockStyle.Right;
+            btnClose.FillColor = Color.White;
+            btnClose.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnClose.ForeColor = Color.FromArgb(186, 186, 187);
+            btnClose.Location = new Point(425, 0);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(97, 70);
+            btnClose.TabIndex = 4;
+            btnClose.Text = "CLOSE";
+            btnClose.Click += btnClose_Click;
             // 
             // Success
             // 
@@ -105,7 +105,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(522, 70);
-            Controls.Add(siticoneButton1);
+            Controls.Add(btnClose);
             Controls.Add(lblSuccessMessage);
             Controls.Add(siticoneHtmlLabel1);
             Controls.Add(siticonePictureBox1);
@@ -124,6 +124,6 @@
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox1;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel1;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblSuccessMessage;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btnClose;
     }
 }

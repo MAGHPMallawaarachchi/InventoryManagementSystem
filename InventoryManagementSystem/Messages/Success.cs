@@ -12,28 +12,14 @@ namespace InventoryManagementSystem.Messages
 {
     public partial class Success : Form
     {
-        private System.Timers.Timer timer;
-
         public Success(string message)
         {
             InitializeComponent();
             lblSuccessMessage.Text = message;
-
-            // create the timer and set its interval to 5 seconds
-            timer = new System.Timers.Timer(5000);
-            timer.AutoReset = false; // disable auto-repeating
-            timer.Elapsed += Timer_Elapsed!;
-            timer.Start();
+            this.TopMost = true;
         }
 
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            // stop the timer and close the form
-            timer.Stop();
-            Close();
-        }
-
-        private void siticoneButton1_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
