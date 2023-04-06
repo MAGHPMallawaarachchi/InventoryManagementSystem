@@ -3,6 +3,7 @@ using InventoryManagementSystem.DataModels;
 using System.Drawing.Drawing2D;
 using System.Configuration;
 using MongoDB.Driver;
+using InventoryManagementSystem.Messages;
 
 namespace InventoryManagementSystem
 {
@@ -348,28 +349,48 @@ namespace InventoryManagementSystem
 
         private async void btnDelete_Click(object sender, EventArgs e)
         {
-            // Iterate through all rows of the DataGridView
-            for (int i = 0; i < dgvItems.Rows.Count; i++)
+            DeleteConfirmation deleteConfirmation = new DeleteConfirmation();
+            DialogResult result = deleteConfirmation.ShowDialog();
+
+            if(result == DialogResult.OK)
             {
-                // Check if the checkbox in the first column is checked
-                if ((bool)dgvItems.Rows[i].Cells[0].Value == true)
+                // Iterate through all rows of the DataGridView
+                for (int i = 0; i < dgvItems.Rows.Count; i++)
                 {
-                    string? partNumber = dgvItems.Rows[i].Cells["part_number"].Value.ToString();
-
-                    try
+                    // Check if the checkbox in the first column is checked
+                    if ((bool)dgvItems.Rows[i].Cells[0].Value == true)
                     {
-                        var result = await _mongoConnector.DeleteItem(partNumber!);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle the exception here
-                        MessageBox.Show("Failed to delete item: " + ex.Message);
-                    }
+                        string? partNumber = dgvItems.Rows[i].Cells["part_number"].Value.ToString();
 
-                    // Remove the row from the DataGridView
-                    dgvItems.Rows.RemoveAt(i);
-                    i--; // Decrement i to account for the removed row
+                        try
+                        {
+                            await _mongoConnector.DeleteItem(partNumber!);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Handle the exception here
+                            MessageBox.Show("Failed to delete item: " + ex.Message);
+                        }
+
+                        // Remove the row from the DataGridView
+                        dgvItems.Rows.RemoveAt(i);
+                        i--; // Decrement i to account for the removed row
+                    }
                 }
+            }
+
+            else if (result == DialogResult.Cancel || deleteConfirmation.Cancelled)
+            {
+                foreach (DataGridViewRow row in dgvItems.Rows)
+                {
+                    DataGridViewCheckBoxCell? checkBoxCell = row.Cells["checkboxColumn"] as DataGridViewCheckBoxCell;
+                    checkBoxCell!.Value = false;
+                }
+
+                btnDelete.Visible = false;
+
+                deleteConfirmation.Close();
+                return;
             }
 
             btnDelete.Visible = false;

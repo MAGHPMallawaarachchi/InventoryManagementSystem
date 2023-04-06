@@ -133,23 +133,23 @@
   <data name="orders" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\orders.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OutOfStock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OutOfStock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="closeRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\closeRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="addWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="QuantityInHand" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QuantityInHand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="reports" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ordersBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ordersBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="downloadBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\downloadBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ordersBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ordersBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OutOfStock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OutOfStock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="QuantitySold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\QuantitySold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +196,8 @@
   <data name="deleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleteRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="reports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="QuantityInHand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QuantityInHand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="deleteGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleteGray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,6 +241,9 @@
   <data name="newInvoiceBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newInvoiceBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="closeGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closeGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="inventoryBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventoryBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -256,7 +259,7 @@
   <data name="WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhatsApp_Image_2022-09-19_at_14.47.15-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="closeGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\closeGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="deleteConfirmation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleteConfirmation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

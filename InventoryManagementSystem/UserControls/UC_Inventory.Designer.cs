@@ -202,7 +202,7 @@
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDelete.BorderColor = Color.FromArgb(243, 105, 96);
+            btnDelete.BorderColor = Color.FromArgb(218, 62, 51);
             btnDelete.BorderRadius = 4;
             btnDelete.BorderThickness = 2;
             btnDelete.Cursor = Cursors.Hand;
@@ -210,7 +210,7 @@
             btnDelete.DisabledState.CustomBorderColor = Color.DarkGray;
             btnDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnDelete.FillColor = Color.FromArgb(243, 105, 96);
+            btnDelete.FillColor = Color.FromArgb(218, 62, 51);
             btnDelete.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnDelete.ForeColor = Color.White;
             btnDelete.HoverState.BorderColor = Color.FromArgb(243, 105, 96);
