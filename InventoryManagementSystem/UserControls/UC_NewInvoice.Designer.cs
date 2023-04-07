@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_NewInvoice));
             middlePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            lblRowsError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             Panel3 = new Siticone.Desktop.UI.WinForms.SiticoneCustomGradientPanel();
             lblTimeData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             lblDateData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -60,7 +59,6 @@
             amount = new DataGridViewTextBoxColumn();
             lblItems = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             Panel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            lblCustomerError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             cbCustomerID = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             lblPhoneNoData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             lblCityData = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -82,7 +80,6 @@
             // 
             // middlePanel
             // 
-            middlePanel.Controls.Add(lblRowsError);
             middlePanel.Controls.Add(Panel3);
             middlePanel.Controls.Add(btnClear);
             middlePanel.Controls.Add(btnSaveInvoice);
@@ -93,18 +90,6 @@
             middlePanel.Name = "middlePanel";
             middlePanel.Size = new Size(1143, 773);
             middlePanel.TabIndex = 0;
-            // 
-            // lblRowsError
-            // 
-            lblRowsError.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblRowsError.BackColor = Color.Transparent;
-            lblRowsError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRowsError.ForeColor = Color.FromArgb(218, 62, 51);
-            lblRowsError.Location = new Point(625, 722);
-            lblRowsError.Name = "lblRowsError";
-            lblRowsError.Size = new Size(35, 22);
-            lblRowsError.TabIndex = 56;
-            lblRowsError.Text = "error";
             // 
             // Panel3
             // 
@@ -119,7 +104,7 @@
             Panel3.Controls.Add(lblInvoice);
             Panel3.Location = new Point(800, 0);
             Panel3.Name = "Panel3";
-            Panel3.Size = new Size(327, 232);
+            Panel3.Size = new Size(343, 232);
             Panel3.TabIndex = 54;
             Panel3.SizeChanged += Panel3_SizeChanged;
             // 
@@ -228,7 +213,7 @@
             btnClear.HoverState.ForeColor = Color.FromArgb(10, 73, 156);
             btnClear.ImageOffset = new Point(0, 1);
             btnClear.ImageSize = new Size(15, 10);
-            btnClear.Location = new Point(869, 715);
+            btnClear.Location = new Point(897, 715);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(102, 40);
             btnClear.TabIndex = 53;
@@ -254,7 +239,7 @@
             btnSaveInvoice.HoverState.FillColor = Color.FromArgb(10, 73, 156);
             btnSaveInvoice.ImageOffset = new Point(0, 1);
             btnSaveInvoice.ImageSize = new Size(15, 10);
-            btnSaveInvoice.Location = new Point(987, 715);
+            btnSaveInvoice.Location = new Point(1022, 715);
             btnSaveInvoice.Name = "btnSaveInvoice";
             btnSaveInvoice.Size = new Size(121, 40);
             btnSaveInvoice.TabIndex = 2;
@@ -276,7 +261,7 @@
             Panel2.Controls.Add(lblItems);
             Panel2.Location = new Point(0, 256);
             Panel2.Name = "Panel2";
-            Panel2.Size = new Size(1127, 443);
+            Panel2.Size = new Size(1143, 443);
             Panel2.TabIndex = 1;
             Panel2.SizeChanged += Panel2_SizeChanged;
             // 
@@ -285,18 +270,18 @@
             lblTotalData.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblTotalData.BackColor = Color.Transparent;
             lblTotalData.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTotalData.Location = new Point(1005, 400);
+            lblTotalData.Location = new Point(1021, 400);
             lblTotalData.Name = "lblTotalData";
-            lblTotalData.Size = new Size(39, 25);
+            lblTotalData.Size = new Size(34, 25);
             lblTotalData.TabIndex = 8;
-            lblTotalData.Text = "Data";
+            lblTotalData.Text = "0.00";
             // 
             // lblTotal
             // 
             lblTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblTotal.BackColor = Color.Transparent;
             lblTotal.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTotal.Location = new Point(919, 400);
+            lblTotal.Location = new Point(935, 400);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(41, 25);
             lblTotal.TabIndex = 7;
@@ -332,45 +317,45 @@
             dgvItems.AllowUserToDeleteRows = false;
             dgvItems.AllowUserToResizeColumns = false;
             dgvItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle6.Padding = new Padding(10, 0, 0, 0);
-            dataGridViewCellStyle6.SelectionBackColor = Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle2.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvItems.ColumnHeadersHeight = 50;
             dgvItems.Columns.AddRange(new DataGridViewColumn[] { no, part_no, brand, description, qty, unit_price, amount });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.White;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle7.Padding = new Padding(12, 0, 0, 0);
-            dataGridViewCellStyle7.SelectionBackColor = Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dgvItems.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle3.Padding = new Padding(12, 0, 0, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvItems.DefaultCellStyle = dataGridViewCellStyle3;
             dgvItems.GridColor = Color.FromArgb(240, 241, 243);
             dgvItems.Location = new Point(6, 55);
             dgvItems.Name = "dgvItems";
             dgvItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(93, 102, 121);
-            dataGridViewCellStyle8.SelectionBackColor = Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(10, 93, 156);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(93, 102, 121);
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(10, 93, 156);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvItems.RowHeadersVisible = false;
             dgvItems.RowHeadersWidth = 50;
             dgvItems.RowTemplate.Height = 29;
-            dgvItems.Size = new Size(1102, 339);
+            dgvItems.Size = new Size(1118, 339);
             dgvItems.TabIndex = 5;
             dgvItems.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvItems.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -455,7 +440,6 @@
             Panel1.BorderColor = Color.White;
             Panel1.BorderRadius = 20;
             Panel1.BorderThickness = 2;
-            Panel1.Controls.Add(lblCustomerError);
             Panel1.Controls.Add(cbCustomerID);
             Panel1.Controls.Add(lblPhoneNoData);
             Panel1.Controls.Add(lblCityData);
@@ -472,17 +456,6 @@
             Panel1.TabIndex = 0;
             Panel1.SizeChanged += Panel1_SizeChanged;
             // 
-            // lblCustomerError
-            // 
-            lblCustomerError.BackColor = Color.Transparent;
-            lblCustomerError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCustomerError.ForeColor = Color.FromArgb(218, 62, 51);
-            lblCustomerError.Location = new Point(138, 22);
-            lblCustomerError.Name = "lblCustomerError";
-            lblCustomerError.Size = new Size(35, 22);
-            lblCustomerError.TabIndex = 57;
-            lblCustomerError.Text = "error";
-            // 
             // cbCustomerID
             // 
             cbCustomerID.BackColor = Color.Transparent;
@@ -497,7 +470,7 @@
             cbCustomerID.ForeColor = Color.FromArgb(72, 80, 94);
             cbCustomerID.HoverState.BorderColor = Color.FromArgb(10, 73, 156);
             cbCustomerID.ItemHeight = 30;
-            cbCustomerID.Location = new Point(493, 11);
+            cbCustomerID.Location = new Point(495, 15);
             cbCustomerID.Name = "cbCustomerID";
             cbCustomerID.Size = new Size(270, 36);
             cbCustomerID.TabIndex = 55;
@@ -622,7 +595,6 @@
             Size = new Size(1184, 813);
             Load += UC_Invoices_Load;
             middlePanel.ResumeLayout(false);
-            middlePanel.PerformLayout();
             Panel3.ResumeLayout(false);
             Panel3.PerformLayout();
             Panel2.ResumeLayout(false);
@@ -673,7 +645,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblTotal;
         private PrintPreviewDialog printPreviewDialog;
         private System.Drawing.Printing.PrintDocument printDocument;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblRowsError;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel lblCustomerError;
     }
 }
