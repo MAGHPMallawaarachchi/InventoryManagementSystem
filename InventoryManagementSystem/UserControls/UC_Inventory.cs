@@ -68,7 +68,7 @@ namespace InventoryManagementSystem
 
                     if (document.quantity_in_hand == 0)
                     {
-                        Availability = "Out-of-stock";
+                        Availability = "Out-of-Stock";
                     }
 
                     else if (document.quantity_in_hand <= 20)
@@ -135,7 +135,7 @@ namespace InventoryManagementSystem
 
                 if (document.quantity_in_hand == 0)
                 {
-                    Availability = "Out-of-stock";
+                    Availability = "Out-of-Stock";
                 }
 
                 else if (document.quantity_in_hand <= 20)

@@ -59,7 +59,7 @@ namespace InventoryManagementSystem.UserControls
                 status_check.Width = 30;
                 status.Width = 200;
                 status_check.Width = 200;
-                invoice_no.Width = 200;
+                invoice_no.Width = 150;
 
 
                 foreach (DataGridViewRow row in dgvInvoices.Rows)

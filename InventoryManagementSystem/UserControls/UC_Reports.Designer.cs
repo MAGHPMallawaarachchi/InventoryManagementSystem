@@ -371,7 +371,7 @@
             // 
             // btnDownload
             // 
-            btnDownload.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnDownload.Anchor = AnchorStyles.Bottom;
             btnDownload.BorderColor = Color.FromArgb(208, 211, 217);
             btnDownload.BorderRadius = 4;
             btnDownload.BorderThickness = 2;
@@ -399,6 +399,7 @@
             // 
             // cbFilters
             // 
+            cbFilters.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cbFilters.BackColor = Color.Transparent;
             cbFilters.BorderColor = Color.FromArgb(208, 213, 221);
             cbFilters.BorderRadius = 8;

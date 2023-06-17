@@ -38,8 +38,11 @@ namespace InventoryManagementSystem.UserControls
 
             editbtn.Width = 30;
             deletebtn.Width = 30;
-            address.Width = 400;
-            customer_id.Width = 200;
+            address.Width = 300;
+            customer_id.Width = 300;
+            name.Width = 300;
+            city.Width = 200;
+            contact_number.Width = 200;
 
             foreach (DataGridViewRow row in dgvCustomers.Rows)
             {

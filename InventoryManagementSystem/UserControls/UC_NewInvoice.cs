@@ -87,10 +87,10 @@ namespace InventoryManagementSystem.UserControls
             part_no.Width = 300;
 
             brand.Width = 200;
-            description.Width = 600;
+            description.Width = 450;
 
             qty.ValueType = typeof(int);
-            qty.Width = 50;
+            qty.Width = 150;
 
             unit_price.ValueType = typeof(decimal);
 

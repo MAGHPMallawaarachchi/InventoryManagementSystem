@@ -309,7 +309,7 @@ namespace InventoryManagementSystem.UserControls
 
             if (cbFilters.SelectedIndex == 0)
             {
-                fileName = "All Time - "+today.ToString("yyyy-MM-dd");
+                fileName = "All Time - " + today.ToString("yyyy-MM-dd");
             }
             else if (cbFilters.SelectedIndex == 1)
             {
