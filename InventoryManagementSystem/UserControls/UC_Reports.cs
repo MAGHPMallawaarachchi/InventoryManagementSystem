@@ -334,121 +334,131 @@ namespace InventoryManagementSystem.UserControls
 
         private void GeneratePdfReport()
         {
-            string filePath = @"C:\Users\Hasini\OneDrive\Documents\Kamal Auto Parts\reports";
+            // create a save file dialog to let the user choose the file location
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+            saveFileDialog.Title = "Save PDF Report";
 
+            // set the default file name based on the invoice information
             string fileName = FileName();
+            string defaultFileName = $"{fileName}.pdf";
+            saveFileDialog.FileName = defaultFileName;
 
-            string outputPath = $"{filePath}\\{fileName}.pdf";
-
-            // create a new PDF document
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(outputPath));
-
-            // create a new document instance using the PDF document
-            Document document = new Document(pdfDoc);
-
-            // add a title to the document
-            Paragraph title = new Paragraph("Report " + fileName);
-            title.SetFontSize(25);
-            document.Add(title);
-
-            // create three tables
-            Table table1 = new Table(new float[] { 2, 2, 1 })
-                .UseAllAvailableWidth();
-
-            Table table2 = new Table(new float[] { 2, 1, 2, 2 })
-                .UseAllAvailableWidth();
-
-            Table table3 = new Table(new float[] { 2, 2, 2, 1, 1, 2, 2 })
-                .UseAllAvailableWidth();
-
-            // add header row to the table1
-            table1.AddHeaderCell("Total Profit");
-            table1.AddHeaderCell("Revenue");
-            table1.AddHeaderCell("Sales");
-
-            // add data rows to the table1
-            foreach (DataGridViewRow row in dgvOverview.Rows)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string? total_profit = row.Cells["total_profit"].Value.ToString();
-                string? revenue = row.Cells["revenue"].Value.ToString();
-                string? sales = row.Cells["sales"].Value.ToString();
+                string outputPath = saveFileDialog.FileName;
 
-                table1.AddCell(total_profit);
-                table1.AddCell(revenue);
-                table1.AddCell(sales);
+                // create a new PDF document
+                PdfDocument pdfDoc = new PdfDocument(new PdfWriter(outputPath));
+
+                // create a new document instance using the PDF document
+                Document document = new Document(pdfDoc);
+
+                // add a title to the document
+                Paragraph title = new Paragraph("Report " + fileName);
+                title.SetFontSize(25);
+                document.Add(title);
+
+                // create three tables
+                Table table1 = new Table(new float[] { 2, 2, 1 })
+                    .UseAllAvailableWidth();
+
+                Table table2 = new Table(new float[] { 2, 1, 2, 2 })
+                    .UseAllAvailableWidth();
+
+                Table table3 = new Table(new float[] { 2, 2, 2, 1, 1, 2, 2 })
+                    .UseAllAvailableWidth();
+
+                // add header row to the table1
+                table1.AddHeaderCell("Total Profit");
+                table1.AddHeaderCell("Revenue");
+                table1.AddHeaderCell("Sales");
+
+                // add data rows to the table1
+                foreach (DataGridViewRow row in dgvOverview.Rows)
+                {
+                    string? total_profit = row.Cells["total_profit"].Value.ToString();
+                    string? revenue = row.Cells["revenue"].Value.ToString();
+                    string? sales = row.Cells["sales"].Value.ToString();
+
+                    table1.AddCell(total_profit);
+                    table1.AddCell(revenue);
+                    table1.AddCell(sales);
+                }
+
+                // add header row to the table2
+                table2.AddHeaderCell("Category");
+                table2.AddHeaderCell("Qty Sold");
+                table2.AddHeaderCell("Revenue");
+                table2.AddHeaderCell("Profit");
+
+                // add data rows to the table2
+                foreach (DataGridViewRow row in dgvBestSellingCategories.Rows)
+                {
+                    string? category = row.Cells["category"].Value.ToString();
+                    string? cat_qty_sold = row.Cells["cat_quantity_sold"].Value.ToString();
+                    string? cat_revenue = row.Cells["cat_revenue"].Value.ToString();
+                    string? cat_profit = row.Cells["cat_profit"].Value.ToString();
+
+                    table2.AddCell(category);
+                    table2.AddCell(cat_qty_sold);
+                    table2.AddCell(cat_revenue);
+                    table2.AddCell(cat_profit);
+                }
+
+                // add header row to the table3
+                table3.AddHeaderCell("Part Number");
+                table3.AddHeaderCell("Brand");
+                table3.AddHeaderCell("Category");
+                table3.AddHeaderCell("Qty Sold");
+                table3.AddHeaderCell("Qty in hand");
+                table3.AddHeaderCell("Revenue");
+                table3.AddHeaderCell("Profit");
+
+                // add data rows to the table3
+                foreach (DataGridViewRow row in dgvBestSellingItems.Rows)
+                {
+                    string? part_number = row.Cells["part_number"].Value.ToString();
+                    string? brand = row.Cells["brand"].Value.ToString();
+                    string? category_ = row.Cells["category_"].Value.ToString();
+                    string? qty_sold = row.Cells["qty_sold"].Value.ToString();
+                    string? qty_in_hand = row.Cells["qty_in_hand"].Value.ToString();
+                    string? revenue_ = row.Cells["revenue_"].Value.ToString();
+                    string? profit_ = row.Cells["profit_"].Value.ToString();
+
+                    table3.AddCell(part_number);
+                    table3.AddCell(brand);
+                    table3.AddCell(category_);
+                    table3.AddCell(qty_sold);
+                    table3.AddCell(qty_in_hand);
+                    table3.AddCell(revenue_);
+                    table3.AddCell(profit_);
+                }
+
+                // add the table3 to the document
+
+                Paragraph table1_title = new Paragraph("Overview");
+                title.SetFontSize(20);
+                document.Add(table1_title);
+
+                document.Add(table1);
+
+                Paragraph table2_title = new Paragraph("Best Selling Categories");
+                title.SetFontSize(20);
+                document.Add(table2_title);
+
+                document.Add(table2);
+
+                Paragraph table3_title = new Paragraph("Best Selling Items");
+                title.SetFontSize(20);
+                document.Add(table3_title);
+
+                document.Add(table3);
+
+                // close the document
+                document.Close();
             }
-
-            // add header row to the table2
-            table2.AddHeaderCell("Category");
-            table2.AddHeaderCell("Qty Sold");
-            table2.AddHeaderCell("Revenue");
-            table2.AddHeaderCell("Profit");
-
-            // add data rows to the table2
-            foreach (DataGridViewRow row in dgvBestSellingCategories.Rows)
-            {
-                string? category = row.Cells["category"].Value.ToString();
-                string? cat_qty_sold = row.Cells["cat_quantity_sold"].Value.ToString();
-                string? cat_revenue = row.Cells["cat_revenue"].Value.ToString();
-                string? cat_profit = row.Cells["cat_profit"].Value.ToString();
-
-                table2.AddCell(category);
-                table2.AddCell(cat_qty_sold);
-                table2.AddCell(cat_revenue);
-                table2.AddCell(cat_profit);
-            }
-
-            // add header row to the table3
-            table3.AddHeaderCell("Part Number");
-            table3.AddHeaderCell("Brand");
-            table3.AddHeaderCell("Category");
-            table3.AddHeaderCell("Qty Sold");
-            table3.AddHeaderCell("Qty in hand");
-            table3.AddHeaderCell("Revenue");
-            table3.AddHeaderCell("Profit");
-
-            // add data rows to the table3
-            foreach (DataGridViewRow row in dgvBestSellingItems.Rows)
-            {
-                string? part_number = row.Cells["part_number"].Value.ToString();
-                string? brand = row.Cells["brand"].Value.ToString();
-                string? category_ = row.Cells["category_"].Value.ToString();
-                string? qty_sold = row.Cells["qty_sold"].Value.ToString();
-                string? qty_in_hand = row.Cells["qty_in_hand"].Value.ToString();
-                string? revenue_ = row.Cells["revenue_"].Value.ToString();
-                string? profit_ = row.Cells["profit_"].Value.ToString();
-
-                table3.AddCell(part_number);
-                table3.AddCell(brand);
-                table3.AddCell(category_);
-                table3.AddCell(qty_sold);
-                table3.AddCell(qty_in_hand);
-                table3.AddCell(revenue_);
-                table3.AddCell(profit_);
-            }
-
-            // add the table3 to the document
-
-            Paragraph table1_title = new Paragraph("Overview");
-            title.SetFontSize(20);
-            document.Add(table1_title);
-
-            document.Add(table1);
-
-            Paragraph table2_title = new Paragraph("Best Selling Categories");
-            title.SetFontSize(20);
-            document.Add(table2_title);
-
-            document.Add(table2);
-
-            Paragraph table3_title = new Paragraph("Best Selling Items");
-            title.SetFontSize(20);
-            document.Add(table3_title);
-
-            document.Add(table3);
-
-            // close the document
-            document.Close();
+            
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
