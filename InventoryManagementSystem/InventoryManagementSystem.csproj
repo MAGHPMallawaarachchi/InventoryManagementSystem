@@ -14,8 +14,8 @@
     <PackageReference Include="itext7" Version="7.2.5" />
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
-    <PackageReference Include="MongoDB.Bson" Version="2.19.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.19.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.19.2" />
     <PackageReference Include="Siticone.Desktop.UI" Version="2.1.1" />
   </ItemGroup>
 
