@@ -31,7 +31,8 @@ namespace InventoryManagementSystem
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            txtUsername.Text = "admin";
+            txtPassword.Text = "1234";
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
